@@ -17,24 +17,9 @@
 
 package x.museum.quest
 
-import org.springframework.context.annotation.Bean
-import org.springframework.web.reactive.function.server.coRouter // webflux
-import x.museum.quest.rest.QuestHandler
+object Versions {
 
-/**
- * @author [Florian Göbel](mailto:alfiron.begoel@gmail.com)
- */
-interface Router {
+        // https://github.com/MicroUtils/kotlin-logging
+        const val kotlinLogging = "1.8.3"
 
-    @Bean
-    fun router(
-            handler: QuestHandler
-    ) = coRouter {
-
-        val questPath = '/'
-
-        accept(HAL_JSON).nest {
-            GET(questPath, handler::find)
-        }
-    }
 }

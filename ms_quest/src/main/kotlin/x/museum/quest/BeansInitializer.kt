@@ -17,24 +17,16 @@
 
 package x.museum.quest
 
-import org.springframework.context.annotation.Bean
-import org.springframework.web.reactive.function.server.coRouter // webflux
-import x.museum.quest.rest.QuestHandler
+import kotlinx.coroutines.InternalCoroutinesApi
+import org.springframework.context.ApplicationContextInitializer
+import org.springframework.context.support.GenericApplicationContext
+import org.springframework.context.support.beans
 
-/**
- * @author [Florian Göbel](mailto:alfiron.begoel@gmail.com)
- */
-interface Router {
+class BeansInitializer : ApplicationContextInitializer<GenericApplicationContext> {
+    override fun initialize(applicationContext: GenericApplicationContext) = beans.initialize(applicationContext)
 
-    @Bean
-    fun router(
-            handler: QuestHandler
-    ) = coRouter {
+}
 
-        val questPath = '/'
-
-        accept(HAL_JSON).nest {
-            GET(questPath, handler::find)
-        }
-    }
+@InternalCoroutinesApi
+val beans = beans {
 }

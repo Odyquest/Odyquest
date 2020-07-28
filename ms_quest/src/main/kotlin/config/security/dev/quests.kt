@@ -15,26 +15,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest
+package x.museum.quest.config.security.dev
 
-import org.springframework.context.annotation.Bean
-import org.springframework.web.reactive.function.server.coRouter // webflux
-import x.museum.quest.rest.QuestHandler
+import kotlinx.coroutines.flow.flowOf
+import x.museum.quest.entity.Quest
+import x.museum.quest.entity.QuestId
 
-/**
- * @author [Florian Göbel](mailto:alfiron.begoel@gmail.com)
- */
-interface Router {
-
-    @Bean
-    fun router(
-            handler: QuestHandler
-    ) = coRouter {
-
-        val questPath = '/'
-
-        accept(HAL_JSON).nest {
-            GET(questPath, handler::find)
-        }
-    }
-}
+val quests = flowOf(
+        Quest(
+                id = QuestId.fromString("00000000-0000-0000-0000-000000000000"),
+                title = "Hallo Xaver!",
+                description = "Das ist meine erste Aufgabe für Dich!"
+        )
+)

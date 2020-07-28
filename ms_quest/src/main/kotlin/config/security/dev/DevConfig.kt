@@ -15,26 +15,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest
+package x.museum.quest.config.security.dev
 
-import org.springframework.context.annotation.Bean
-import org.springframework.web.reactive.function.server.coRouter // webflux
-import x.museum.quest.rest.QuestHandler
+import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Profile
+import x.museum.quest.config.Settings.DEV
 
-/**
- * @author [Florian Göbel](mailto:alfiron.begoel@gmail.com)
- */
-interface Router {
-
-    @Bean
-    fun router(
-            handler: QuestHandler
-    ) = coRouter {
-
-        val questPath = '/'
-
-        accept(HAL_JSON).nest {
-            GET(questPath, handler::find)
-        }
-    }
+@Configuration(proxyBeanMethods = false)
+@Profile(DEV)
+class DevConfig: DbPopulate {
 }

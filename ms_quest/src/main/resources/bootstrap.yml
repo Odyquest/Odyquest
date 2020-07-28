@@ -1,0 +1,5 @@
+spring:
+  application.name: quest
+  cloud:
+    config:
+      fail-fast: true
