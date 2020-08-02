@@ -15,27 +15,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest
+package x.museum.config
 
-import org.springframework.context.annotation.Bean
-import org.springframework.hateoas.MediaTypes.HAL_JSON
-import org.springframework.web.reactive.function.server.coRouter // webflux
-import x.museum.quest.rest.QuestHandler
+import x.museum.config.config.SecurityConfig
+import org.springframework.context.support.beans
 
-/**
- * @author [Florian Göbel](mailto:alfiron.begoel@gmail.com)
- */
-interface Router {
+// https://stackoverflow.com/questions/45935931/how-to-use-functional-bean-definition-kotlin-dsl-with-spring-boot-and-spring-w/46033685#46033685
 
-    @Bean
-    fun router(
-            handler: QuestHandler
-    ) = coRouter {
-
-        val questPath = "/"
-
-        accept(HAL_JSON).nest {
-            GET(questPath, handler::findAll)
-        }
-    }
+val beans = beans {
+    bean<SecurityConfig>()
 }

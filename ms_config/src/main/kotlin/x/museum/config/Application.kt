@@ -1,5 +1,6 @@
 package x.museum.config
 
+import x.museum.config.config.banner
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.actuate.autoconfigure.context.ShutdownEndpointAutoConfiguration
 import org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration
@@ -32,69 +33,10 @@ import org.springframework.cloud.commons.util.UtilAutoConfiguration
 import org.springframework.cloud.config.server.EnableConfigServer
 import org.springframework.cloud.config.server.config.ConfigServerAutoConfiguration
 
+// Spring centralized configuration guide
+// https://spring.io/guides/gs/centralized-configuration/#scratch
+
 @EnableConfigServer
-@SpringBootConfiguration(proxyBeanMethods = false)
-/**
- * https://stackoverflow.com/questions/43653655/what-is-difference-between-importautoconfiguration-and-import
- * You would use @ImportAutoConfiguration when you don't want to enable the default autoconfiguration with
- * @EnableAutoConfiguration. As you probably know, @EnableAutoConfiguration attemps to configure beans that are
- * located on your classpath eg tomcat-embedded.jar. Whereas @ImportAutoConfiguration only runs the configuration
- * classes that you provided in the annotation.
- */
-@ImportAutoConfiguration(
-		classes = [
-			// Spring Framework und Spring Boot
-			ConfigurationPropertiesAutoConfiguration::class,
-			ProjectInfoAutoConfiguration::class,
-			PropertyPlaceholderAutoConfiguration::class,
-
-			// Spring WebMVC
-			DispatcherServletAutoConfiguration::class,
-			EmbeddedWebServerFactoryCustomizerAutoConfiguration::class,
-			HttpMessageConvertersAutoConfiguration::class,
-			ServletWebServerFactoryAutoConfiguration::class,
-			WebMvcAutoConfiguration::class,
-
-			// Jackson
-			JacksonAutoConfiguration::class,
-
-			// Spring Cloud Config
-			ConfigServerAutoConfiguration::class,
-			LifecycleMvcEndpointAutoConfiguration::class,
-			RefreshAutoConfiguration::class,
-			UtilAutoConfiguration::class,
-
-			// Spring Security
-			SecurityAutoConfiguration::class,
-			SecurityFilterAutoConfiguration::class,
-			UserDetailsServiceAutoConfiguration::class,
-
-			// Spring Cloud Commons
-			CommonsClientAutoConfiguration::class,
-
-			// Spring Cloud Consul
-			AutoServiceRegistrationAutoConfiguration::class,
-			CompositeDiscoveryClientAutoConfiguration::class,
-			ConsulAutoConfiguration::class,
-			ConsulAutoServiceRegistrationAutoConfiguration::class,
-			ConsulCatalogWatchAutoConfiguration::class,
-			ConsulServiceRegistryAutoConfiguration::class,
-			ServiceRegistryAutoConfiguration::class,
-			SimpleDiscoveryClientAutoConfiguration::class,
-
-			// Actuator
-			EndpointAutoConfiguration::class,
-			ManagementContextAutoConfiguration::class,
-			ServletManagementContextAutoConfiguration::class,
-			WebEndpointAutoConfiguration::class,
-			ShutdownEndpointAutoConfiguration::class,
-
-			// i.a. ausreichend:   .\gradlew bootRun --args='--debug'
-			// BeansEndpointAutoConfiguration::class,
-			// MappingsEndpointAutoConfiguration::class,
-		]
-)
-
 @SpringBootApplication
 class Application
 
@@ -103,5 +45,8 @@ class Application
  * @param args Additional arguments to start the config server
  */
 fun main(args: Array<String>) {
-	runApplication<Application>(*args)
+	runApplication<Application>(*args) {
+		setBanner(banner)
+		addInitializers(beans) // https://stackoverflow.com/questions/45935931/how-to-use-functional-bean-definition-kotlin-dsl-with-spring-boot-and-spring-w/46033685#46033685
+	}
 }

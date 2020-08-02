@@ -1,0 +1,16 @@
+spring:
+  application.name: config
+  cloud:
+    config.server.git.uri: https://gitlab.com/flogoe/ms_quest_config
+    private-key: ${SSH_KEY}
+
+server:
+  port: 8888
+
+logging:
+  file.name: build/logs/application.log
+  level:
+    org.springframework:
+      boot.actuate.endpoint.EndpointId: ERROR
+      security.core.userdetails.User: ERROR
+      cloud.config.server.environment.MultipleJGitEnvironmentRepository: ERROR
