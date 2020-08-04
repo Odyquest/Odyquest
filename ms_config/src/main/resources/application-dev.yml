@@ -1,0 +1,8 @@
+spring.jackson.serialization.indent_output: true
+
+logging.level:
+  x.museum: TRACE
+
+management.endpoint:
+  env.enabled: true
+  mappings.enabled: true

@@ -2,9 +2,11 @@ spring:
   application.name: config
   cloud:
     config.server.git.uri: https://gitlab.com/flogoe/ms_quest_config
-    private-key: ${SSH_KEY}
+    config.server.git.private-key: ${SSH_KEY}
 
 server:
+  error.whitelabel.enabled: false
+  http2.enabled: true
   port: 8888
 
 logging:
@@ -14,3 +16,11 @@ logging:
       boot.actuate.endpoint.EndpointId: ERROR
       security.core.userdetails.User: ERROR
       cloud.config.server.environment.MultipleJGitEnvironmentRepository: ERROR
+
+management:
+  endpoints.web.exposure.include: "*"
+  endpoint:
+    shutdown.enabled: true
+    health:
+      show-components: always
+      show-details: always

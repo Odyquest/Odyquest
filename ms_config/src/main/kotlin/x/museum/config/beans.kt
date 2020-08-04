@@ -19,9 +19,11 @@ package x.museum.config
 
 import x.museum.config.config.SecurityConfig
 import org.springframework.context.support.beans
+import x.museum.config.config.authentication
 
 // https://stackoverflow.com/questions/45935931/how-to-use-functional-bean-definition-kotlin-dsl-with-spring-boot-and-spring-w/46033685#46033685
 
 val beans = beans {
     bean<SecurityConfig>()
+    bean(::authentication)
 }

@@ -1,0 +1,6 @@
+### Get all quests
+http://{{host}}
+Accept: application/hal+json
+Authorization: {{basic-auth-admin}}
+ALPN: h2
+# ALPN: h2, http%2F1.1
