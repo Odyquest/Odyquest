@@ -3,3 +3,5 @@ spring:
   cloud:
     config:
       fail-fast: true
+      username: admin
+      password: p

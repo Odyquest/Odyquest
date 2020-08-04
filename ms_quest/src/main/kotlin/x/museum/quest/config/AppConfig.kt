@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest.config.security.dev
+package x.museum.quest.config
 
 import x.museum.quest.Router
 

@@ -18,6 +18,7 @@
 package x.museum.quest
 
 import kotlinx.coroutines.InternalCoroutinesApi
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
@@ -38,10 +39,9 @@ import org.springframework.cloud.autoconfigure.RefreshAutoConfiguration
 import org.springframework.cloud.client.CommonsClientAutoConfiguration
 import org.springframework.cloud.client.ReactiveCommonsClientAutoConfiguration
 import org.springframework.cloud.commons.util.UtilAutoConfiguration
-import org.springframework.cloud.config.client.ConfigClientAutoConfiguration
 import org.springframework.cloud.configuration.CompatibilityVerifierAutoConfiguration
 
-@SpringBootApplication(proxyBeanMethods = false)
+
 /**
  * https://stackoverflow.com/questions/43653655/what-is-difference-between-importautoconfiguration-and-import
  * You would use @ImportAutoConfiguration when you don't want to enable the default autoconfiguration with
@@ -49,50 +49,7 @@ import org.springframework.cloud.configuration.CompatibilityVerifierAutoConfigur
  * located on your classpath eg tomcat-embedded.jar. Whereas @ImportAutoConfiguration only runs the configuration
  * classes that you provided in the annotation.
  */
-@ImportAutoConfiguration(
-        classes = [
-            // Spring Framework and Spring Boot
-            ConfigurationPropertiesAutoConfiguration::class,
-            ProjectInfoAutoConfiguration::class,
-            PropertyPlaceholderAutoConfiguration::class,
-
-            // Spring WebFlux
-            CodecsAutoConfiguration::class,
-            ErrorWebFluxAutoConfiguration::class,
-            HttpHandlerAutoConfiguration::class,
-            HttpMessageConvertersAutoConfiguration::class,
-            ReactiveWebServerFactoryAutoConfiguration::class,
-            WebFluxAutoConfiguration::class,
-
-            // Jackson
-            JacksonAutoConfiguration::class,
-
-            // Spring Cloud Commons
-            ClientHttpConnectorAutoConfiguration::class,
-            CommonsClientAutoConfiguration::class,
-            CompatibilityVerifierAutoConfiguration::class,
-            ConfigurationPropertiesRebinderAutoConfiguration::class,
-            ReactiveCommonsClientAutoConfiguration::class,
-            RefreshAutoConfiguration::class,
-            UtilAutoConfiguration::class,
-            WebClientAutoConfiguration::class,
-
-            // Spring Cloud Config
-            ConfigClientAutoConfiguration::class
-
-            // Actuator
-//            EndpointAutoConfiguration::class,
-//            HealthContributorAutoConfiguration::class,
-//            HealthEndpointAutoConfiguration::class,
-//            MailHealthContributorAutoConfiguration::class,
-//            ManagementContextAutoConfiguration::class,
-//            MongoReactiveHealthContributorAutoConfiguration::class,
-//            ReactiveManagementContextAutoConfiguration::class,
-//            ShutdownEndpointAutoConfiguration::class,
-//            WebEndpointAutoConfiguration::class,
-            // BeansEndpointAutoConfiguration::class,
-        ]
-)
+@SpringBootApplication(proxyBeanMethods = false)
 class Application
 
 @InternalCoroutinesApi
