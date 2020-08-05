@@ -1,4 +1,4 @@
 ### Config-Properties for "quest"
-http://{{host}}/quest/dev
+https://{{host}}/quest/dev
 Authorization: {{basic-auth}}
 ALPN: h2

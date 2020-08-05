@@ -8,6 +8,14 @@ server:
   error.whitelabel.enabled: false
   http2.enabled: true
   port: 8888
+  ssl:
+    enabled: true
+    enabled-protocols: TLSv1.3,TLSv1.2
+    key-alias: microservice
+    key-store: classpath:keystore.p12
+    key-store-type: PKCS12
+    key-store-password: Admin123
+    key-password: Admin123
 
 logging:
   file.name: build/logs/application.log
