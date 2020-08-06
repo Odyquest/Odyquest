@@ -28,7 +28,7 @@ VALIDITY=3650
 HOSTNAME=$(hostname)
 PASSWORD=
 
-keytool -genkeypair  -v -alias $ALIAS -keyalg $KEYALG -keysize $KEYSIZE -storetype PKCS12 -keystore $KEYSTORE_DIR"keystore.p12" -validity $VALIDITY
+keytool -genkeypair  -v -alias $ALIAS -keyalg $KEYALG -keysize $KEYSIZE -storetype PKCS12 -keystore $KEYSTORE_DIR"keystore.p12" -validity $VALIDITY -ext SAN=DNS:"$HOSTNAME",IP:127.0.0.1
 
 echo "Generate certificate.cer..."
 CERT_DIR=$BASE_DIR"/config/"

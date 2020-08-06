@@ -1,7 +1,7 @@
 spring:
   application.name: config
   cloud:
-    config.server.git.uri: https://gitlab.com/flogoe/ms_quest_config
+    config.server.git.uri: git@gitlab.com:flogoe/ms_quest_config.git
     config.server.git.private-key: ${SSH_KEY}
 
 server:
