@@ -49,8 +49,31 @@ tasks.withType<Test> {
 }
 
 tasks.withType<KotlinCompile> {
+
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "11"
 	}
+}
+
+// ONLY FOR DEVELOPING, REMOVE FOR PRODUCTION
+// this adds truststore path, before the configuration from cloud config server is loaded
+// https://docs.gradle.org/current/userguide/task_configuration_avoidance.html
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+	jvmArgs = ArrayList(jvmArgs).apply {
+		add("-Dspring.profiles.active=dev")
+		add("-Dspring.config.location=classpath:/bootstrap.yml,classpath:/application.yml,classpath:/application-dev.yml")
+		add("-Djavax.net.ssl.trustStore=${System.getProperty("user.dir")}/src/main/resources/truststore.p12")
+		add("-Djavax.net.ssl.trustStorePassword=Admin123")
+	}
+}
+
+
+
+task("last") {
+
+doLast {
+	println("LAST:")
+	println(System.out.print(System.getProperty("javax.net.ssl.trustStore")))     }
+
 }
