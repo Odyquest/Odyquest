@@ -18,6 +18,7 @@
 package x.museum.quest.config
 
 import x.museum.quest.Router
+import x.museum.quest.config.security.AuthorizationConfig
 
-class AppConfig: Router {
+class AppConfig: Router, AuthorizationConfig {
 }

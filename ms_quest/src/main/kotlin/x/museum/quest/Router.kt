@@ -38,4 +38,11 @@ interface Router {
             GET(questPath, handler::findAll)
         }
     }
+
+    companion object {
+
+        const val apiPath = "/api"
+
+        const val authPath = "$apiPath/auth"
+    }
 }
