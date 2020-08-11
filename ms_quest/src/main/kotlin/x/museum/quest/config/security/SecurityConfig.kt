@@ -12,8 +12,9 @@ import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.web.server.SecurityWebFilterChain
 import x.museum.quest.Router.Companion.apiPath
 import x.museum.quest.Router.Companion.authPath
+import x.museum.quest.config.security.dev.quests
 
-interface AuthorizationConfig {
+interface SecurityConfig {
 
     @Bean
     fun securityWebFilterChain(http: ServerHttpSecurity, context: ApplicationContext) : SecurityWebFilterChain = http
@@ -29,4 +30,6 @@ interface AuthorizationConfig {
             // Cross-Site-Request-Forgery (TODO: Check if we need to enable it)
             .csrf { csrf -> csrf.disable() }
             .build()
+
+
 }

@@ -34,12 +34,19 @@ import org.springframework.boot.autoconfigure.web.reactive.error.ErrorWebFluxAut
 import org.springframework.boot.autoconfigure.web.reactive.function.client.ClientHttpConnectorAutoConfiguration
 import org.springframework.boot.autoconfigure.web.reactive.function.client.WebClientAutoConfiguration
 import org.springframework.boot.runApplication
-import org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration
-import org.springframework.cloud.autoconfigure.RefreshAutoConfiguration
-import org.springframework.cloud.client.CommonsClientAutoConfiguration
-import org.springframework.cloud.client.ReactiveCommonsClientAutoConfiguration
-import org.springframework.cloud.commons.util.UtilAutoConfiguration
-import org.springframework.cloud.configuration.CompatibilityVerifierAutoConfiguration
+//import org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration
+//import org.springframework.cloud.autoconfigure.RefreshAutoConfiguration
+//import org.springframework.cloud.client.CommonsClientAutoConfiguration
+//import org.springframework.cloud.client.ReactiveCommonsClientAutoConfiguration
+//import org.springframework.cloud.commons.util.UtilAutoConfiguration
+//import org.springframework.cloud.configuration.CompatibilityVerifierAutoConfiguration
+import org.springframework.boot.WebApplicationType.REACTIVE
+import org.springframework.data.mongodb.config.EnableMongoAuditing
+import org.springframework.hateoas.config.EnableHypermediaSupport
+import x.museum.quest.config.Settings.banner
+import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType.HAL
+import org.springframework.hateoas.support.WebStack.WEBFLUX
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 
 
 /**
@@ -49,10 +56,16 @@ import org.springframework.cloud.configuration.CompatibilityVerifierAutoConfigur
  * located on your classpath eg tomcat-embedded.jar. Whereas @ImportAutoConfiguration only runs the configuration
  * classes that you provided in the annotation.
  */
+@EnableHypermediaSupport(type = [HAL], stacks = [WEBFLUX])
+@EnableWebFluxSecurity
+@EnableMongoAuditing
 @SpringBootApplication(proxyBeanMethods = false)
 class Application
 
 @InternalCoroutinesApi
 fun main(args: Array<String>) {
-    runApplication<Application>(*args)
+    runApplication<Application>(*args) {
+        webApplicationType = REACTIVE
+        setBanner(banner)
+    }
 }

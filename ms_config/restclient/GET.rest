@@ -1,4 +1,13 @@
+GET https://{{host}}/quest/
+Accept: application/json
+Authorization: {{basic-auth}}
+ALPN: h2
+
+###
 ### Config-Properties for "quest"
 https ://{{host}}/quest/dev
 Authorization: {{basic-auth}}
+Accept: application/json
 ALPN: h2
+
+###

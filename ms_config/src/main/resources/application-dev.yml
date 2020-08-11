@@ -6,3 +6,4 @@ logging.level:
 management.endpoint:
   env.enabled: true
   mappings.enabled: true
+

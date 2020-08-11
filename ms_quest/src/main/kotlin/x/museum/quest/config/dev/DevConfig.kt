@@ -23,5 +23,4 @@ import x.museum.quest.config.Settings.DEV
 
 @Configuration(proxyBeanMethods = false)
 @Profile(DEV)
-class DevConfig: DbPopulate {
-}
+class DevConfig: DbPopulate
