@@ -1,7 +1,7 @@
 spring:
   application.name: config
   cloud:
-    config.server.git.uri: git@gitlab.com:flogoe/ms_quest_config.git
+    config.server.git.uri: git@gitlab.com:flogoe/ms_quest_config
     config.server.git.private-key: ${SSH_KEY}
 
 server:
@@ -23,7 +23,7 @@ logging:
     org.springframework:
       boot.actuate.endpoint.EndpointId: ERROR
       security.core.userdetails.User: ERROR
-      cloud.config.server.environment.MultipleJGitEnvironmentRepository: ERROR
+      cloud.config.server.environment.MultipleJGitEnvironmentRepository: TRACE
 
 management:
   endpoints.web.exposure.include: "*"

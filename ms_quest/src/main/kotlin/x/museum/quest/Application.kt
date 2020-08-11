@@ -40,6 +40,9 @@ import org.springframework.cloud.client.CommonsClientAutoConfiguration
 import org.springframework.cloud.client.ReactiveCommonsClientAutoConfiguration
 import org.springframework.cloud.commons.util.UtilAutoConfiguration
 import org.springframework.cloud.configuration.CompatibilityVerifierAutoConfiguration
+import org.springframework.boot.WebApplicationType.REACTIVE
+import x.museum.quest.config.Settings.banner
+
 
 
 /**
@@ -54,5 +57,8 @@ class Application
 
 @InternalCoroutinesApi
 fun main(args: Array<String>) {
-    runApplication<Application>(*args)
+    runApplication<Application>(*args) {
+        webApplicationType = REACTIVE
+        setBanner(banner)
+    }
 }

@@ -21,12 +21,20 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.beans
+import x.museum.quest.config.db.customConversions
+import x.museum.quest.config.db.generateQuestId
+import x.museum.quest.config.db.writeConcernResolver
 
-@InternalCoroutinesApi
+
 class BeansInitializer : ApplicationContextInitializer<GenericApplicationContext> {
+    @InternalCoroutinesApi
     override fun initialize(applicationContext: GenericApplicationContext) = beans.initialize(applicationContext)
 
 }
 
+@InternalCoroutinesApi
 val beans = beans {
+    bean(::customConversions)
+    bean(::generateQuestId)
+    bean(::writeConcernResolver)
 }
