@@ -15,19 +15,22 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest.config.db
+package x.museum.quest.config.dev
 
-import org.springframework.data.mongodb.core.convert.MongoCustomConversions
+import kotlinx.coroutines.flow.flowOf
+import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import x.museum.quest.config.security.CustomUser
+import x.museum.quest.config.security.Roles.adminAuthority
+import java.util.*
 
-fun customConversions() = MongoCustomConversions(
-        listOf(
-                // Quests
-                QuestIdConverter.ReadConverter(),
-                QuestIdConverter.WriteConverter(),
+private val passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
+private val password = passwordEncoder.encode("Admin123")
 
-                // User
-                CustomUser.RoleReadConverter(),
-                CustomUser.RoleWriteConverter()
+val users = flowOf(
+        CustomUser(
+                id = UUID.fromString("10000000-0000-0000-0000-000000000000"),
+                username = "admin",
+                password = password,
+                authorities = listOf(adminAuthority)
         )
 )

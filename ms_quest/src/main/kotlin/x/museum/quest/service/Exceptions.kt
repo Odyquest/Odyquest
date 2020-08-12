@@ -15,19 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest.config.db
+package x.museum.quest.service
 
-import org.springframework.data.mongodb.core.convert.MongoCustomConversions
-import x.museum.quest.config.security.CustomUser
-
-fun customConversions() = MongoCustomConversions(
-        listOf(
-                // Quests
-                QuestIdConverter.ReadConverter(),
-                QuestIdConverter.WriteConverter(),
-
-                // User
-                CustomUser.RoleReadConverter(),
-                CustomUser.RoleWriteConverter()
-        )
-)
+open class UsernameExistsException(username: String) :
+        RuntimeException("Username $username already exists!")

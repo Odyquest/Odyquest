@@ -17,8 +17,6 @@
 
 package x.museum.quest.service
 
-import org.springframework.data.mongodb.core.ReactiveFluentMongoOperations
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.stereotype.Service
 import org.springframework.util.MultiValueMap
 import x.museum.quest.entity.Quest
@@ -26,8 +24,14 @@ import kotlinx.coroutines.flow.Flow
 import mu.KotlinLogging
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.withTimeout
-import org.springframework.data.mongodb.core.flow
-import org.springframework.data.mongodb.core.query
+import org.springframework.data.mongodb.SessionSynchronization
+import org.springframework.transaction.ReactiveTransactionManager
+import org.springframework.transaction.reactive.TransactionalOperator
+import org.springframework.transaction.reactive.executeAndAwait
+import org.springframework.context.annotation.Lazy
+import org.springframework.data.mongodb.core.*
+import javax.validation.ConstraintViolationException
+import javax.validation.ValidatorFactory
 
 
 /**
@@ -40,8 +44,36 @@ import org.springframework.data.mongodb.core.query
 @Service
 class QuestService(
         private val mongo: ReactiveFluentMongoOperations,
-        private val mongoTemplate: ReactiveMongoTemplate
+        @Lazy private val mongoTemplate: ReactiveMongoTemplate,
+        @Lazy private val tm: ReactiveTransactionManager,
+        @Lazy private val validatorFactory: ValidatorFactory
         ) {
+        private val validator by lazy { validatorFactory.validator }
+
+        /*******************************************
+         *                 CREATE
+         *******************************************/
+
+        suspend fun create(quest: Quest): Quest {
+
+                validate(quest)
+
+                val newQuest = quest
+
+                // https://spring.io/blog/2019/05/16/reactive-transactions-with-spring
+                mongoTemplate.setSessionSynchronization(SessionSynchronization.ALWAYS)
+                val rxtx = TransactionalOperator.create(tm)
+                val issueDb = rxtx.executeAndAwait {
+                        create(quest)
+                }
+
+                logger.trace { "Create new quest: $quest" }
+                return withTimeout(timeoutShort) { mongo.insert<Quest>().oneAndAwait(newQuest) }
+        }
+
+        /*******************************************
+         *                  READ
+         *******************************************/
 
         /**
          * Find and return all quests.
@@ -50,6 +82,24 @@ class QuestService(
                 mongo.query<Quest>()
                         .flow()
                         .onEach{ logger.debug { "findAll(): $it"} }
+        }
+
+        /*******************************************
+         *                 UPDATE
+         *******************************************/
+
+
+        /*******************************************
+         *                 DELETE
+         *******************************************/
+
+        /*******************************************
+         *            Utility Functions
+         *******************************************/
+
+        private fun validate(quest: Quest){
+                val violations = validator.validate(quest)
+                if (violations.isNotEmpty()) throw ConstraintViolationException(violations)
         }
 
         private companion object {
