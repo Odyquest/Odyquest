@@ -19,6 +19,7 @@ package x.museum.quest
 
 import org.springframework.context.annotation.Bean
 import org.springframework.hateoas.MediaTypes.HAL_JSON
+import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.server.coRouter // webflux
 import x.museum.quest.rest.QuestHandler
 
@@ -32,10 +33,14 @@ interface Router {
             handler: QuestHandler
     ) = coRouter {
 
-        val questPath = "/"
+        val questPath = "${apiPath}/quest"
 
         accept(HAL_JSON).nest {
             GET(questPath, handler::findAll)
+        }
+
+        contentType(MediaType.APPLICATION_JSON).nest {
+            POST(apiPath, handler::create)
         }
     }
 

@@ -58,7 +58,7 @@ interface DbPopulate {
             createCollectionAndSchema(mongo, logger)
 
             quests.onEach { quest -> mongo.insert<Quest>().oneAndAwait(quest) }
-                    .collect { quest -> logger.warn { quest} }
+                    .collect { quest -> logger.warn { quest } }
         }
     }
 
@@ -74,6 +74,7 @@ interface DbPopulate {
         val schema = MongoJsonSchema.builder()
                 .required("title")
                 .properties(
+                        string("username"),
                         string("title")
                 ).build()
 

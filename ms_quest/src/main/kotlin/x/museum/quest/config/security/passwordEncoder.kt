@@ -15,19 +15,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest.config.db
+package x.museum.quest.config.security
 
-import org.springframework.data.mongodb.core.convert.MongoCustomConversions
-import x.museum.quest.config.security.CustomUser
+import org.springframework.security.crypto.factory.PasswordEncoderFactories
+import org.springframework.security.crypto.password.PasswordEncoder
 
-fun customConversions() = MongoCustomConversions(
-        listOf(
-                // Quests
-                QuestIdConverter.ReadConverter(),
-                QuestIdConverter.WriteConverter(),
-
-                // User
-                CustomUser.RoleReadConverter(),
-                CustomUser.RoleWriteConverter()
-        )
-)
+fun passwordEncoder(): PasswordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()

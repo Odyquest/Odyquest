@@ -1,0 +1,8 @@
+{
+  "title": "Neue Quest",
+  "description": "Diese Quest wurde via. REST Client angelegt.",
+  "user": {
+    "username": "xaver",
+    "password": "Xaver123"
+  }
+}

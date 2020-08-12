@@ -24,6 +24,7 @@ import org.springframework.context.support.beans
 import x.museum.quest.config.db.customConversions
 import x.museum.quest.config.db.generateQuestId
 import x.museum.quest.config.db.writeConcernResolver
+import x.museum.quest.config.security.passwordEncoder
 
 
 class BeansInitializer : ApplicationContextInitializer<GenericApplicationContext> {
@@ -34,6 +35,7 @@ class BeansInitializer : ApplicationContextInitializer<GenericApplicationContext
 
 @InternalCoroutinesApi
 val beans = beans {
+    bean(::passwordEncoder)
     bean(::customConversions)
     bean(::generateQuestId)
     bean(::writeConcernResolver)

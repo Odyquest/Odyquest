@@ -17,6 +17,7 @@
 
 package x.museum.quest.entity
 
+import x.museum.quest.config.security.CustomUser
 import java.util.*
 
 /**
@@ -27,6 +28,8 @@ data class Quest(
 
         val id: QuestId?,
         val version: Int? = null,
+        val username: String?= null,
+        var user: CustomUser? = null,
         val title: String,
         val description: String
 
