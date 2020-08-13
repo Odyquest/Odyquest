@@ -39,8 +39,8 @@ interface SecurityConfig {
                 val questPath = "$apiPath/*"
 
                 exchanges
-                        .pathMatchers(GET, questPath).permitAll()
-                        .pathMatchers(POST, questPath).permitAll()
+                        .pathMatchers(GET, apiPath).permitAll()
+                        .pathMatchers(POST, apiPath).permitAll()
             }
             .httpBasic{}
             .formLogin{ form -> form.disable() }

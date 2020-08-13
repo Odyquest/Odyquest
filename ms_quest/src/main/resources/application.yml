@@ -19,7 +19,7 @@ spring:
     # curl --tlsv1.3 --insecure https://localhost:8888/encrypt --data [password]
     # curl --tlsv1.3 --insecure https://localhost:8888/decrypt --data ...
     password: 'Admin123'
-#    replicaSetName: replicaSet
+    replicaSetName: replicaSet
     username: admin
     uuid-representation: standard
     # https://docs.mongodb.com/manual/reference/connection-string
