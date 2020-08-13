@@ -166,7 +166,6 @@ class QuestHandler(
         val forwardedHost = headers.getFirst("x-forwarded-host")
 
         return if (forwardedHost == null) {
-            // KEIN Forwarding von einem API-Gateway
             val baseUri = uri.toString().substringBefore('?').removeSuffix("/")
             if (id == null) {
                 baseUri
@@ -176,7 +175,6 @@ class QuestHandler(
         } else {
             // x-forwarded-proto: "https"
             // x-forwarded-host: "localhost:8443"
-            // x-forwarded-prefix: "/issues"
             val forwardedProto = headers.getFirst("x-forwarded-proto")
             val forwardedPrefix = headers.getFirst("x-forwarded-prefix")
             println("!!!$forwardedProto://$forwardedHost")

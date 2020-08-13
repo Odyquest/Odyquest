@@ -30,6 +30,7 @@ import org.springframework.transaction.reactive.TransactionalOperator
 import org.springframework.transaction.reactive.executeAndAwait
 import org.springframework.context.annotation.Lazy
 import org.springframework.data.mongodb.core.*
+import org.springframework.transaction.annotation.Transactional
 import javax.validation.ConstraintViolationException
 import javax.validation.ValidatorFactory
 

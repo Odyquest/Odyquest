@@ -19,7 +19,8 @@ package x.museum.quest.config
 
 import org.springframework.context.annotation.Configuration
 import x.museum.quest.Router
+import x.museum.quest.config.db.TransactionConfig
 import x.museum.quest.config.security.SecurityConfig
 
 @Configuration(proxyBeanMethods = false)
-class AppConfig: Router, SecurityConfig
+class AppConfig: Router, TransactionConfig, SecurityConfig

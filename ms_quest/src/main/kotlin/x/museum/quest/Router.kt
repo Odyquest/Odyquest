@@ -36,7 +36,7 @@ interface Router {
         val questPath = "${apiPath}/quest"
 
         accept(HAL_JSON).nest {
-            GET(questPath, handler::findAll)
+            GET(apiPath, handler::findAll)
         }
 
         contentType(MediaType.APPLICATION_JSON).nest {
