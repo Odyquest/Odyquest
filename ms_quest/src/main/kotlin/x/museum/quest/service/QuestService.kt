@@ -57,19 +57,20 @@ class QuestService(
 
         suspend fun create(quest: Quest): Quest {
 
-                validate(quest)
+                // validate(quest)
 
                 val newQuest = quest
 
                 // https://spring.io/blog/2019/05/16/reactive-transactions-with-spring
-                mongoTemplate.setSessionSynchronization(SessionSynchronization.ALWAYS)
-                val rxtx = TransactionalOperator.create(tm)
-                val issueDb = rxtx.executeAndAwait {
-                        create(quest)
-                }
+//                mongoTemplate.setSessionSynchronization(SessionSynchronization.ALWAYS)
+//                val rxtx = TransactionalOperator.create(tm)
+//                val questDb = rxtx.executeAndAwait {
+//                        create(quest)
+//                }
 
                 logger.trace { "Create new quest: $quest" }
                 return withTimeout(timeoutShort) { mongo.insert<Quest>().oneAndAwait(newQuest) }
+//                return newQuest
         }
 
         /*******************************************
