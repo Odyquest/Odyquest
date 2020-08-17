@@ -17,27 +17,10 @@
 
 package x.museum.quest.entity
 
-import x.museum.quest.config.security.CustomUser
-import java.util.*
+class Requirement (
+        val fulfilled: Boolean,
+        val logicType: LogicType,
+        val solutions: List<Solution>
 
-/**
- * @author [Florian Göbel](mailto:florian.goebel@outlook.de)
- */
+)
 
-data class Quest(
-
-        val id: QuestId?,
-        val version: Int? = null,
-        val title: String,
-        val description: Description,
-        val requirement: Requirement,
-        val tags: List<Tag>,
-        val lastEdited: Date,
-        val lastEditor: CustomUser?,
-        val author: CustomUser,
-        val creationDate: Date
-
-) {
-}
-
-typealias QuestId = UUID

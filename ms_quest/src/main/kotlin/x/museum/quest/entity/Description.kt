@@ -15,29 +15,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 package x.museum.quest.entity
 
-import x.museum.quest.config.security.CustomUser
-import java.util.*
-
-/**
- * @author [Florian Göbel](mailto:florian.goebel@outlook.de)
- */
-
-data class Quest(
-
-        val id: QuestId?,
-        val version: Int? = null,
-        val title: String,
-        val description: Description,
-        val requirement: Requirement,
-        val tags: List<Tag>,
-        val lastEdited: Date,
-        val lastEditor: CustomUser?,
-        val author: CustomUser,
-        val creationDate: Date
-
-) {
-}
-
-typealias QuestId = UUID
+// TODO: Proper implementation
+class Description (val text: String, val image: Any?)

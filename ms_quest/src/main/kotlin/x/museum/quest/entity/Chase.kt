@@ -20,24 +20,19 @@ package x.museum.quest.entity
 import x.museum.quest.config.security.CustomUser
 import java.util.*
 
-/**
- * @author [Florian Göbel](mailto:florian.goebel@outlook.de)
- */
-
-data class Quest(
-
-        val id: QuestId?,
+data class Chase (
+        val id: ChaseId?,
         val version: Int? = null,
+        val author: CustomUser? = null,
         val title: String,
-        val description: Description,
-        val requirement: Requirement,
+        val comment: String,
+        val quests: List<Quest>,
+        val path:Map<Int, QuestId>, // TODO: macht das Sinn?
         val tags: List<Tag>,
         val lastEdited: Date,
-        val lastEditor: CustomUser?,
-        val author: CustomUser,
+        val lastEditor: CustomUser,
         val creationDate: Date
 
-) {
-}
+)
 
-typealias QuestId = UUID
+typealias ChaseId = UUID
