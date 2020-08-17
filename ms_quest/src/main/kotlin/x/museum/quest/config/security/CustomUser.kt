@@ -42,9 +42,15 @@ class CustomUser(
             username: String,
             password: String,
             enabled: Boolean,
+            accountNonExpired: Boolean,
+            credentialsNonExpired: Boolean,
+            accountNonLocked: Boolean,
             authorities: Collection<GrantedAuthority>
     ) : this(id = id, username = username, password = password, authorities = authorities) {
         setFinalField("enabled", enabled)
+        setFinalField("accountNonExpired", accountNonExpired)
+        setFinalField("credentialsNonExpired", credentialsNonExpired)
+        setFinalField("accountNonLocked", accountNonLocked)
     }
 
     override fun toString() =

@@ -21,11 +21,10 @@ import kotlinx.coroutines.flow.flowOf
 import x.museum.quest.entity.Quest
 import x.museum.quest.entity.QuestId
 
-val quests = flowOf(
-        Quest(
-                id = QuestId.fromString("00000000-0000-0000-0000-000000000000"),
-                username = "Xaver",
-                title = "Hallo Xaver!",
-                description = "Das ist meine erste Aufgabe für Dich!"
-        )
-)
+//val quests = flowOf(
+//        Quest(
+//                id = QuestId.fromString("00000000-0000-0000-0000-000000000000"),
+//                title = "Hallo Xaver!",
+//                description = null
+//        )
+//)

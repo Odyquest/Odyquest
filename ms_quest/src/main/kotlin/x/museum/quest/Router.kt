@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.hateoas.MediaTypes.HAL_JSON
 import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.server.coRouter // webflux
+import x.museum.quest.rest.ChaseHandler
 import x.museum.quest.rest.QuestHandler
 
 /**
@@ -30,17 +31,20 @@ interface Router {
 
     @Bean
     fun router(
-            handler: QuestHandler
+            questHandler: QuestHandler,
+            chaseHandler: ChaseHandler
     ) = coRouter {
 
         val questPath = "${apiPath}/quest"
+        val chasePath = "${apiPath}/chase"
 
         accept(HAL_JSON).nest {
-            GET(apiPath, handler::findAll)
+            GET(questPath, questHandler::findAll)
+            GET(chasePath, chaseHandler::findAll)
         }
 
         contentType(MediaType.APPLICATION_JSON).nest {
-            POST(apiPath, handler::create)
+            POST(apiPath, questHandler::create)
         }
     }
 
