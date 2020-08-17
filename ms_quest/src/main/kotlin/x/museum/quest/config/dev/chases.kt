@@ -15,29 +15,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest.entity
+package x.museum.quest.config.dev
 
+import kotlinx.coroutines.flow.flowOf
 import x.museum.quest.config.security.CustomUser
-import java.util.*
+import x.museum.quest.entity.*
+import java.time.LocalDateTime
 
-/**
- * @author [Florian Göbel](mailto:florian.goebel@outlook.de)
- */
+// import x.museum.quest.config.dev.adminUser
 
-data class Quest(
-
-        val id: QuestId?,
-        val version: Int? = null,
-        val title: String,
-        val description: Description?,
-        val requirement: Requirement,
-        val tags: List<Tag>,
-        val lastEdited: Date,
-        val lastEditor: CustomUser?,
-        val author: CustomUser,
-        val creationDate: Date
-
-) {
-}
-
-typealias QuestId = UUID
+val chases = flowOf(
+        Chase(
+                id = ChaseId.fromString("10000000-0000-0000-0000-000000000000"),
+                title = "Helfe Xaver im Museum",
+                comment = null,
+                quests = emptyList<Quest>(),
+                path = null,
+                tags = emptyList<Tag>(),
+                lastEdited = LocalDateTime.now(),
+                lastEditor = adminUser,
+                creationDate = LocalDateTime.now()
+        )
+)

@@ -26,10 +26,18 @@ import java.util.*
 private val passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
 private val password = passwordEncoder.encode("Admin123")
 
-val users = flowOf(
+val adminUser =
         CustomUser(
                 id = UUID.fromString("10000000-0000-0000-0000-000000000000"),
                 username = "admin",
+                password = password,
+                authorities = listOf(adminAuthority)
+        )
+
+val users = flowOf(
+        CustomUser(
+                id = UUID.fromString("10000000-0000-0000-0000-000000000001"),
+                username = "admin2",
                 password = password,
                 authorities = listOf(adminAuthority)
         )

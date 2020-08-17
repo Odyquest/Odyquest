@@ -46,7 +46,6 @@ import javax.validation.ValidatorFactory
 class QuestService(
         private val mongo: ReactiveFluentMongoOperations,
         @Lazy private val mongoTemplate: ReactiveMongoTemplate,
-        @Lazy private val tm: ReactiveTransactionManager,
         @Lazy private val validatorFactory: ValidatorFactory
         ) {
         private val validator by lazy { validatorFactory.validator }
