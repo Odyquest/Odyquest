@@ -39,12 +39,13 @@ interface Router {
         val chasePath = "${apiPath}/chase"
 
         accept(HAL_JSON).nest {
-            GET(questPath, questHandler::findAll)
             GET(chasePath, chaseHandler::findAll)
+            GET(questPath, questHandler::findAll)
         }
 
         contentType(MediaType.APPLICATION_JSON).nest {
-            POST(apiPath, questHandler::create)
+            POST(chasePath, chaseHandler::create)
+            POST(questPath, questHandler::create)
         }
     }
 

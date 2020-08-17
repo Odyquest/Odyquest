@@ -22,6 +22,7 @@ import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.beans
 import x.museum.quest.config.db.customConversions
+import x.museum.quest.config.db.generateChaseId
 import x.museum.quest.config.db.generateQuestId
 import x.museum.quest.config.db.writeConcernResolver
 import x.museum.quest.config.security.passwordEncoder
@@ -37,6 +38,7 @@ class BeansInitializer : ApplicationContextInitializer<GenericApplicationContext
 val beans = beans {
     bean(::passwordEncoder)
     bean(::customConversions)
+    bean(::generateChaseId)
     bean(::generateQuestId)
     bean(::writeConcernResolver)
 }

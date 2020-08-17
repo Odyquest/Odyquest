@@ -4,4 +4,4 @@ Content-Type: application/json
 Authorization: {{basic-auth-admin}}
 ALPN: h2
 
-< data/quest-dev.json
+< data/example-chase.json

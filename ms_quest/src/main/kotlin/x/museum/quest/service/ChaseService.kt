@@ -8,7 +8,9 @@ import org.springframework.data.mongodb.core.*
 import org.springframework.data.mongodb.core.ReactiveFluentMongoOperations
 import org.springframework.data.mongodb.core.oneAndAwait
 import org.springframework.stereotype.Service
+import x.museum.quest.config.dev.adminUser
 import x.museum.quest.entity.Chase
+import java.time.LocalDateTime
 import javax.validation.ConstraintValidatorFactory
 import javax.validation.ValidatorFactory
 
@@ -26,7 +28,15 @@ class ChaseService(
 
     suspend fun create(chase: Chase): Chase {
 
-        val newChase = chase
+        val newChase = chase.copy(
+                quests = emptyList(),
+                creationDate = LocalDateTime.now(),
+                lastEdited = LocalDateTime.now(),
+                lastEditor = adminUser
+        )
+
+
+
 
         logger.trace { "Create new chase: $chase" }
         return withTimeout(timeoutShort) { mongo.insert<Chase>().oneAndAwait(newChase)}

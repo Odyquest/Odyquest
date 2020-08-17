@@ -29,7 +29,7 @@ data class Chase (
         val comment: String?,
         val quests: List<Quest>?,
         val path:Map<Int, QuestId>?, // TODO: macht das Sinn?
-        val tags: List<Tag>,
+        val tags: List<Tag>?,
         val lastEdited: LocalDateTime?,
         val lastEditor: CustomUser?,
         val creationDate: LocalDateTime?
