@@ -1,8 +1,6 @@
 {
   "title": "Was braucht Xaver jetzt schon wieder?",
-  "description": "Diese Quest wurde via. REST Client angelegt.",
-  "user": {
-    "username": "xaver",
-    "password": "Xaver123"
-  }
+  "comment": "Diese Chase wird toll.",
+  "path": null,
+  "tags": null
 }

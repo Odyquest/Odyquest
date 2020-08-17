@@ -152,14 +152,14 @@ class QuestHandler(
             return badRequest().buildAndAwait()
         }
 
-        val issueViolations = violations.map { violation ->
+        val questViolations = violations.map { violation ->
             QuestConstraintViolation(
                     property = violation.propertyPath.toString(),
                     message = violation.message
             )
         }
-        logger.trace { "violations: $issueViolations" }
-        return badRequest().bodyValueAndAwait(issueViolations)
+        logger.trace { "violations: $questViolations" }
+        return badRequest().bodyValueAndAwait(questViolations)
     }
 
     fun getBaseUri(headers: HttpHeaders, uri: URI, id: QuestId? = null): String {
