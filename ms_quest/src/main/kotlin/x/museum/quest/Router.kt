@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.hateoas.MediaTypes.HAL_JSON
 import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.server.coRouter // webflux
+import x.museum.quest.entity.Chase
 import x.museum.quest.rest.ChaseHandler
 import x.museum.quest.rest.QuestHandler
 
@@ -35,21 +36,33 @@ interface Router {
             chaseHandler: ChaseHandler
     ) = coRouter {
 
+        // Quest
         val questPath = "${apiPath}/quest"
+
+        // Chase
         val chasePath = "${apiPath}/chase"
+        val chaseIdPathPattern = "{$idPathVar:${Chase.ID_PATTERN}}"
+        val chaseIdPath = "$chasePath/id"
+
+        println("ROUTER: $chaseIdPath")
 
         accept(HAL_JSON).nest {
             GET(chasePath, chaseHandler::findAll)
+            GET(chaseIdPath, chaseHandler::findById)
             GET(questPath, questHandler::findAll)
         }
 
         contentType(MediaType.APPLICATION_JSON).nest {
             POST(chasePath, chaseHandler::create)
+            PUT(chasePath, chaseHandler::update)
             POST(questPath, questHandler::create)
+
         }
     }
 
     companion object {
+
+        const val idPathVar = "id"
 
         const val apiPath = "/api"
 
