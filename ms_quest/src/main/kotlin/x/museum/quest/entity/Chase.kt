@@ -34,6 +34,13 @@ data class Chase (
         val lastEditor: CustomUser?,
         val creationDate: LocalDateTime?
 
-)
+) {
+    companion object {
+        private const val HEX_PATTERN = "[\\dA-Fa-f]"
+        const val ID_PATTERN =
+                "$HEX_PATTERN{8}-$HEX_PATTERN{4}-$HEX_PATTERN{4}-" +
+                        "$HEX_PATTERN{4}-$HEX_PATTERN{12}"
+    }
+}
 
 typealias ChaseId = UUID
