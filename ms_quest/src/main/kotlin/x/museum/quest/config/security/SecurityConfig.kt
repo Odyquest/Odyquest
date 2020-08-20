@@ -37,16 +37,17 @@ interface SecurityConfig {
     fun securityWebFilterChain(http: ServerHttpSecurity, context: ApplicationContext) : SecurityWebFilterChain = http
             .authorizeExchange { exchanges ->
                 val questPath = "$apiPath/quest/*"
-                val chasePath = "$apiPath/chase/*"
-                val chasePathId = "$apiPath/chase/id/*"
+                val chasePath = "$apiPath/chase"
+                val chasePathId = "$chasePath/*"
 
 
                 exchanges
                         .pathMatchers(GET, questPath).permitAll()
                         .pathMatchers(POST, questPath).permitAll()
+                        .pathMatchers(GET, chasePath).permitAll()
                         .pathMatchers(GET, chasePathId).permitAll()
                         .pathMatchers(POST, chasePath).permitAll()
-                        .pathMatchers(PUT, chasePath).permitAll()
+                        .pathMatchers(PUT, chasePathId).permitAll()
             }
             .httpBasic{}
             .formLogin{ form -> form.disable() }
