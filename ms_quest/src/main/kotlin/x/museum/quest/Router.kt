@@ -42,7 +42,7 @@ interface Router {
         // Chase
         val chasePath = "${apiPath}/chase"
         val chaseIdPathPattern = "{$idPathVar:${Chase.ID_PATTERN}}"
-        val chaseIdPath = "$chasePath/id"
+        val chaseIdPath = "$chasePath/$chaseIdPathPattern"
 
         println("ROUTER: $chaseIdPath")
 
@@ -54,7 +54,7 @@ interface Router {
 
         contentType(MediaType.APPLICATION_JSON).nest {
             POST(chasePath, chaseHandler::create)
-            PUT(chasePath, chaseHandler::update)
+            PUT(chaseIdPath, chaseHandler::update)
             POST(questPath, questHandler::create)
 
         }
