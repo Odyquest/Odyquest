@@ -64,14 +64,20 @@ class QuestHandler(
     suspend fun create(request: ServerRequest): ServerResponse {
 
         val quest = try {
+            println("################ 1")
             request.awaitBody<Quest>()
         } catch (e: DecodingException) {
+            println("################ 2")
             return handleDecodingException(e)
         }
 
+
         val newQuest = try {
+            println("################ 3")
             service.create(quest)
+
         }catch (e: ConstraintViolationException) {
+            println("################ 4")
             return handleConstraintViolation(e)
         }
 

@@ -18,6 +18,7 @@
 package x.museum.quest.entity
 
 import x.museum.quest.config.security.CustomUser
+import java.time.LocalDateTime
 import java.util.*
 
 /**
@@ -28,14 +29,14 @@ data class Quest(
 
         val id: QuestId?,
         val version: Int? = null,
-        val title: String,
+        val title: String?,
         val description: Description?,
-        val requirement: Requirement,
-        val tags: List<Tag>,
-        val lastEdited: Date,
+        val requirement: Requirement?,
+        val tags: List<Tag>?,
+        val lastEdited: LocalDateTime?,
         val lastEditor: CustomUser?,
-        val author: CustomUser,
-        val creationDate: Date
+        val author: CustomUser?,
+        val creationDate: LocalDateTime?
 
 ) {
 }

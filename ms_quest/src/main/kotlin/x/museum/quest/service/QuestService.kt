@@ -31,6 +31,8 @@ import org.springframework.transaction.reactive.executeAndAwait
 import org.springframework.context.annotation.Lazy
 import org.springframework.data.mongodb.core.*
 import org.springframework.transaction.annotation.Transactional
+import x.museum.quest.config.dev.adminUser
+import java.time.LocalDateTime
 import javax.validation.ConstraintViolationException
 import javax.validation.ValidatorFactory
 
@@ -58,7 +60,17 @@ class QuestService(
 
                 // validate(quest)
 
-                val newQuest = quest
+                println("neue quest anlegen")
+                println(quest)
+
+                val newQuest = quest.copy(
+                        creationDate = LocalDateTime.now(),
+                        lastEdited = LocalDateTime.now(),
+                        author = adminUser,
+                        lastEditor = adminUser
+                )
+
+
 
                 // https://spring.io/blog/2019/05/16/reactive-transactions-with-spring
 //                mongoTemplate.setSessionSynchronization(SessionSynchronization.ALWAYS)

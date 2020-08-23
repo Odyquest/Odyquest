@@ -36,7 +36,7 @@ interface SecurityConfig {
     @Bean
     fun securityWebFilterChain(http: ServerHttpSecurity, context: ApplicationContext) : SecurityWebFilterChain = http
             .authorizeExchange { exchanges ->
-                val questPath = "$apiPath/quest/*"
+                val questPath = "$apiPath/quest"
                 val chasePath = "$apiPath/chase"
                 val chasePathId = "$chasePath/*"
 
