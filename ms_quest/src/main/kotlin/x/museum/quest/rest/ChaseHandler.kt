@@ -190,6 +190,19 @@ class ChaseHandler(
     }
 
     /*******************************************
+     *                 DELETE
+     *******************************************/
+
+    suspend fun deleteById(request: ServerRequest): ServerResponse {
+        val idStr = request.pathVariable(idPathVar)
+        val id = ChaseId.fromString(idStr)
+        val deleteResult = service.deleteById(id)
+        logger.debug { "deleteById(): $deleteResult" }
+
+        return noContent().buildAndAwait()
+    }
+
+    /*******************************************
      *            Utility Functions
      *******************************************/
 

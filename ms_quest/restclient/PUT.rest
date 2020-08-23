@@ -5,4 +5,4 @@ Content-Type: application/json
 Authorization: {{basic-auth-admin}}
 ALPN: h2
 
-< data/chase-put.json
+< data/chase-put.jsonm1m
