@@ -48,6 +48,7 @@ interface SecurityConfig {
                         .pathMatchers(GET, chasePathId).permitAll()
                         .pathMatchers(POST, chasePath).permitAll()
                         .pathMatchers(PUT, chasePathId).permitAll()
+                        .pathMatchers(DELETE).permitAll()
             }
             .httpBasic{}
             .formLogin{ form -> form.disable() }

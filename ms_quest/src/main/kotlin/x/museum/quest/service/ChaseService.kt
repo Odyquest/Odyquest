@@ -99,6 +99,15 @@ class ChaseService(
      *                 DELETE
      *******************************************/
 
+    suspend fun deleteById(id: ChaseId) = withTimeout(timeoutShort) {
+        logger.debug { "deleteById(): id = $id" }
+        val result = mongo.remove<Chase>()
+                .matching(Chase::id isEqualTo id)
+                .allAndAwait()
+        logger.debug { "deleteById(): Deleted items = ${result.deletedCount}" }
+        return@withTimeout result
+    }
+
     /*******************************************
      *            Utility Functions
      *******************************************/

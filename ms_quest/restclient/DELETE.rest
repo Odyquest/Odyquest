@@ -1,0 +1,5 @@
+DELETE https://{{host}}/8a017c9b-9509-4eaf-bb56-fdc23fc1a601
+Authorization: {{basic-auth-admin}}
+ALPN: h2
+
+###

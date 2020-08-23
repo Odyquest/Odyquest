@@ -58,6 +58,8 @@ interface Router {
             POST(questPath, questHandler::create)
 
         }
+
+        DELETE(chaseIdPath, chaseHandler::deleteById)
     }
 
     companion object {
