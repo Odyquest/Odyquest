@@ -1,0 +1,27 @@
+version: "2"
+services:
+    mongo:
+        image: mongo:latest
+        container_name: mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./mongod.conf:/etc/mongod.conf
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=Admin123
+            - MONGO_INITDB_DATABASE=museumX
+    # quest:
+    #     image: quest:0.0.1
+    #     container_name: quest
+    #     ports:
+    #         - "8444:8444"
+    #     networks:
+    #         - xaver-net
+    #     depends_on:
+    #         - mongo
+
+networks:
+    default:
+        external:
+            name: xaver-net

@@ -56,8 +56,15 @@ interface DbPopulate {
         logger.warn("The collection 'Chases' will be reloaded.")
 
         runBlocking {
+            mongo.dropCollection<Quest>().awaitFirstOrNull()
             mongo.dropCollection<Chase>().awaitFirstOrNull()
-            createCollectionAndSchema(mongo, logger)
+
+            createCollectionAndSchemaForQuest(mongo, logger)
+            createCollectionAndSchemaForChase(mongo, logger)
+
+
+            quests.onEach { quest -> mongo.insert<Quest>().oneAndAwait(quest) }
+                    .collect { quest -> logger.warn { quest } }
 
             chases.onEach { chase -> mongo.insert<Chase>().oneAndAwait(chase) }
                     .collect { chase -> logger.warn { chase } }
@@ -68,12 +75,12 @@ interface DbPopulate {
      * Creates a Schema for MongoDB and then creates a collection with the schema.
      * @param mongo Template for MongoDB
      */
-    private suspend fun createCollectionAndSchema(
+    private suspend fun createCollectionAndSchemaForChase(
             mongo: ReactiveMongoOperations,
             logger: KLogger
     ): MongoCollection<Document> {
 
-        val schema = MongoJsonSchema.builder()
+        val chaseSchema = MongoJsonSchema.builder()
                 .required("title")
                 .properties(
                         string("title"),
@@ -87,7 +94,31 @@ interface DbPopulate {
 
                 ).build()
 
-        logger.info { "Created JSON Schema for Chase: ${schema.toDocument().toJson()}"}
-        return mongo.createCollection<Chase>(CollectionOptions.empty().schema(schema)).awaitFirst()
+        logger.info { "Created JSON Schema for Chase: ${chaseSchema.toDocument().toJson()}"}
+        return mongo.createCollection<Chase>(CollectionOptions.empty().schema(chaseSchema)).awaitFirst()
+
+    }
+
+    private suspend fun createCollectionAndSchemaForQuest(
+            mongo: ReactiveMongoOperations,
+            logger: KLogger
+    ): MongoCollection<Document> {
+
+        val questSchema = MongoJsonSchema.builder()
+                .required("title")
+                .properties(
+                        string("title"),
+                        `object`("description"),
+                        `object`("requirement"),
+                        array("tags"),
+                        date("lastEdited"),
+                        `object`("lastEditor"),
+                        `object`("author"),
+                        date("creationDate")
+                ).build()
+
+        logger.info { "Created JSON Schema for Quest: ${questSchema.toDocument().toJson()}"}
+        return mongo.createCollection<Quest>(CollectionOptions.empty().schema(questSchema)).awaitFirst()
+
     }
 }
