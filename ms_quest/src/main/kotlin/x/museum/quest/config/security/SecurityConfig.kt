@@ -39,15 +39,22 @@ interface SecurityConfig {
                 val questPath = "$apiPath/quest"
                 val chasePath = "$apiPath/chase"
                 val chasePathId = "$chasePath/*"
+                val questPathId = "$questPath/*"
 
 
                 exchanges
-                        .pathMatchers(GET, questPath).permitAll()
-                        .pathMatchers(POST, questPath).permitAll()
+                        // Chase
                         .pathMatchers(GET, chasePath).permitAll()
                         .pathMatchers(GET, chasePathId).permitAll()
                         .pathMatchers(POST, chasePath).permitAll()
                         .pathMatchers(PUT, chasePathId).permitAll()
+
+                        // Quest
+                        .pathMatchers(GET, questPath).permitAll()
+                        .pathMatchers(GET, questPathId).permitAll()
+                        .pathMatchers(POST, questPath).permitAll()
+                        .pathMatchers(PUT, questPathId).permitAll()
+
                         .pathMatchers(DELETE).permitAll()
             }
             .httpBasic{}
