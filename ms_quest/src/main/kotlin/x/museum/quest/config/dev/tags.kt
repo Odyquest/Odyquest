@@ -15,21 +15,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package x.museum.quest.config.security
+package x.museum.quest.config.security.dev
 
-import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.authority.SimpleGrantedAuthority
+import x.museum.quest.entity.Tag
 
-object Roles {
-    const val admin = "ADMIN"
 
-    const val adminStr = "ROLE_$admin"
-
-    val adminAuthority: GrantedAuthority = SimpleGrantedAuthority(adminStr)
-
-    const val employee = "EMPLOYEE"
-
-    const val employeeStr = "ROlE_$employee"
-
-    val emloyeeAuthority: GrantedAuthority = SimpleGrantedAuthority(employeeStr)
-}
+val antike = Tag(
+        name = "Antike",
+        description = "Diese Quest ist Teil der Antike."
+)

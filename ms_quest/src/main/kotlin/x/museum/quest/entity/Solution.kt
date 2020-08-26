@@ -19,6 +19,7 @@ package x.museum.quest.entity
 
 class Solution(
         val dataType: SolutionDataType,
-        val fulfilled: Boolean
+        val fulfilled: Boolean,
+        val possibilities: List<String>
 ) {
 }
