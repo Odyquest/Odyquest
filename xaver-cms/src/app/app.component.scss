@@ -6,17 +6,6 @@
     height: 100%;
 }
 
-.chase_selector {
-    display: flex;
-    flex-direction: column;
-    background: #5e9be3;
-    width: 15%;
-    height: 100%;
-    align-items: center;
-    padding: 5px;
-    border: 1px solid black;
-
-}
 
 .quest_selector {
     display: flex;
@@ -30,21 +19,7 @@
 
 }
 
-.selector_content {
-    display: flex;
-    flex-direction: column;
-    background: #3b6faa;
-    width: 100%;
-    height: 30px;
-    text-align: center;
-    text-justify: middle;
-    font-size: 20px;
-    border: 1px solid black;
-}
 
-.selector_content:hover {
-    background: white;
-}
 
 .quest_connections {
     display: flex;
