@@ -26,4 +26,10 @@ object Roles {
     const val adminStr = "ROLE_$admin"
 
     val adminAuthority: GrantedAuthority = SimpleGrantedAuthority(adminStr)
+
+    const val employee = "EMPLOYEE"
+
+    const val employeeStr = "ROlE_$employee"
+
+    val emloyeeAuthority: GrantedAuthority = SimpleGrantedAuthority(employeeStr)
 }

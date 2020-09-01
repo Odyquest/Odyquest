@@ -29,18 +29,33 @@ import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.web.server.SecurityWebFilterChain
 import x.museum.quest.Router.Companion.apiPath
 import x.museum.quest.Router.Companion.authPath
-import x.museum.quest.config.security.dev.quests
+//import x.museum.quest.config.security.dev.quest
 
 interface SecurityConfig {
 
     @Bean
     fun securityWebFilterChain(http: ServerHttpSecurity, context: ApplicationContext) : SecurityWebFilterChain = http
             .authorizeExchange { exchanges ->
-                val questPath = "$apiPath/*"
+                val questPath = "$apiPath/quest"
+                val chasePath = "$apiPath/chase"
+                val chasePathId = "$chasePath/*"
+                val questPathId = "$questPath/*"
+
 
                 exchanges
-                        .pathMatchers(GET, apiPath).permitAll()
-                        .pathMatchers(POST, apiPath).permitAll()
+                        // Chase
+                        .pathMatchers(GET, chasePath).permitAll()
+                        .pathMatchers(GET, chasePathId).permitAll()
+                        .pathMatchers(POST, chasePath).permitAll()
+                        .pathMatchers(PUT, chasePathId).permitAll()
+
+                        // Quest
+                        .pathMatchers(GET, questPath).permitAll()
+                        .pathMatchers(GET, questPathId).permitAll()
+                        .pathMatchers(POST, questPath).permitAll()
+                        .pathMatchers(PUT, questPathId).permitAll()
+
+                        .pathMatchers(DELETE).permitAll()
             }
             .httpBasic{}
             .formLogin{ form -> form.disable() }

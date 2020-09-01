@@ -19,3 +19,9 @@ package x.museum.quest.service
 
 open class UsernameExistsException(username: String) :
         RuntimeException("Username $username already exists!")
+
+abstract class ChaseServiceException(msg: String) : RuntimeException(msg)
+
+class InvalidVersionException(version: String) : ChaseServiceException("Version mismatch $version")
+
+class AccessForbiddenException(roles: Collection<String>) : ChaseServiceException("Insufficient roles: $roles")

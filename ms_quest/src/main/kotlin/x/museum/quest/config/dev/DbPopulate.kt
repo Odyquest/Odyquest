@@ -31,7 +31,6 @@ import org.springframework.context.annotation.Description
 import org.springframework.data.mongodb.core.CollectionOptions
 import org.springframework.data.mongodb.core.ReactiveMongoOperations
 import org.springframework.data.mongodb.core.createCollection
-import org.springframework.data.mongodb.core.schema.JsonSchemaProperty.string
 import org.springframework.data.mongodb.core.schema.MongoJsonSchema
 import org.springframework.data.mongodb.core.dropCollection
 import x.museum.quest.entity.Quest
@@ -39,6 +38,9 @@ import x.museum.quest.entity.Quest
 import kotlinx.coroutines.flow.collect
 import org.springframework.data.mongodb.core.oneAndAwait
 import org.springframework.data.mongodb.core.insert
+import org.springframework.data.mongodb.core.schema.JsonSchemaProperty.*
+import x.museum.quest.config.dev.chases
+import x.museum.quest.entity.Chase
 
 /**
  * Interface to reload the test database, if the development profile is active.
@@ -51,14 +53,21 @@ interface DbPopulate {
     @Description("Reloading Developing-DB")
     fun dbPopulate(mongo: ReactiveMongoOperations) = CommandLineRunner {
         val logger = KotlinLogging.logger {}
-        logger.warn("The collection 'Quests' will be reloaded.")
+        logger.warn("The collection 'Chases' will be reloaded.")
 
         runBlocking {
             mongo.dropCollection<Quest>().awaitFirstOrNull()
-            createCollectionAndSchema(mongo, logger)
+            mongo.dropCollection<Chase>().awaitFirstOrNull()
+
+            createCollectionAndSchemaForQuest(mongo, logger)
+            createCollectionAndSchemaForChase(mongo, logger)
+
 
             quests.onEach { quest -> mongo.insert<Quest>().oneAndAwait(quest) }
                     .collect { quest -> logger.warn { quest } }
+
+            chases.onEach { chase -> mongo.insert<Chase>().oneAndAwait(chase) }
+                    .collect { chase -> logger.warn { chase } }
         }
     }
 
@@ -66,19 +75,50 @@ interface DbPopulate {
      * Creates a Schema for MongoDB and then creates a collection with the schema.
      * @param mongo Template for MongoDB
      */
-    private suspend fun createCollectionAndSchema(
+    private suspend fun createCollectionAndSchemaForChase(
             mongo: ReactiveMongoOperations,
             logger: KLogger
     ): MongoCollection<Document> {
 
-        val schema = MongoJsonSchema.builder()
+        val chaseSchema = MongoJsonSchema.builder()
                 .required("title")
                 .properties(
-                        string("username"),
-                        string("title")
+                        string("title"),
+                        string("comment"),
+                        array("quests"),
+                        string("path"), // TODO: replace String
+                        array("tags"),
+                        date("lastEdited"),
+                        `object`("lastEditor"),
+                        date("creationDate")
+
                 ).build()
 
-        logger.info { "Created JSON Schema for Quest: ${schema.toDocument().toJson()}"}
-        return mongo.createCollection<Quest>(CollectionOptions.empty().schema(schema)).awaitFirst()
+        logger.info { "Created JSON Schema for Chase: ${chaseSchema.toDocument().toJson()}"}
+        return mongo.createCollection<Chase>(CollectionOptions.empty().schema(chaseSchema)).awaitFirst()
+
+    }
+
+    private suspend fun createCollectionAndSchemaForQuest(
+            mongo: ReactiveMongoOperations,
+            logger: KLogger
+    ): MongoCollection<Document> {
+
+        val questSchema = MongoJsonSchema.builder()
+                .required("title")
+                .properties(
+                        string("title"),
+                        `object`("description"),
+                        `object`("requirement"),
+                        array("tags"),
+                        date("lastEdited"),
+                        `object`("lastEditor"),
+                        `object`("author"),
+                        date("creationDate")
+                ).build()
+
+        logger.info { "Created JSON Schema for Quest: ${questSchema.toDocument().toJson()}"}
+        return mongo.createCollection<Quest>(CollectionOptions.empty().schema(questSchema)).awaitFirst()
+
     }
 }

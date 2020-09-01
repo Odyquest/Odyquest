@@ -21,6 +21,9 @@ import org.springframework.context.annotation.Bean
 import org.springframework.hateoas.MediaTypes.HAL_JSON
 import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.server.coRouter // webflux
+import x.museum.quest.entity.Chase
+import x.museum.quest.entity.Quest
+import x.museum.quest.rest.ChaseHandler
 import x.museum.quest.rest.QuestHandler
 
 /**
@@ -30,21 +33,50 @@ interface Router {
 
     @Bean
     fun router(
-            handler: QuestHandler
+            questHandler: QuestHandler,
+            chaseHandler: ChaseHandler
     ) = coRouter {
 
+        // Quest
         val questPath = "${apiPath}/quest"
+        val questIdPathPattern = "{$idPathVar:${Quest.ID_PATTERN}}"
+        val questIdPath = "$questPath/$questIdPathPattern"
+
+        // Chase
+        val chasePath = "${apiPath}/chase"
+        val chaseIdPathPattern = "{$idPathVar:${Chase.ID_PATTERN}}"
+        val chaseIdPath = "$chasePath/$chaseIdPathPattern"
+
+        println("ROUTER: $chaseIdPath")
 
         accept(HAL_JSON).nest {
-            GET(apiPath, handler::findAll)
+            // Chase
+            GET(chasePath, chaseHandler::findAll)
+            GET(chaseIdPath, chaseHandler::findById)
+
+            // Quest
+            GET(questPath, questHandler::findAll)
+            GET(questIdPath, questHandler::findById)
         }
 
         contentType(MediaType.APPLICATION_JSON).nest {
-            POST(apiPath, handler::create)
+            // Chase
+            POST(chasePath, chaseHandler::create)
+            PUT(chaseIdPath, chaseHandler::update)
+
+            // Quest
+            POST(questPath, questHandler::create)
+            PUT(questIdPath, questHandler::update)
+
         }
+
+        DELETE(chaseIdPath, chaseHandler::deleteById)
+        DELETE(questIdPath, questHandler::deleteById)
     }
 
     companion object {
+
+        const val idPathVar = "id"
 
         const val apiPath = "/api"
 

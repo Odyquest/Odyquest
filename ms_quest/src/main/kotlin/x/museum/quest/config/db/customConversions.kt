@@ -19,9 +19,14 @@ package x.museum.quest.config.db
 
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions
 import x.museum.quest.config.security.CustomUser
+import x.museum.quest.entity.Chase
 
 fun customConversions() = MongoCustomConversions(
         listOf(
+                // Chases
+                ChaseIdConverter.ReadConverter(),
+                ChaseIdConverter.WriteConverter(),
+
                 // Quests
                 QuestIdConverter.ReadConverter(),
                 QuestIdConverter.WriteConverter(),

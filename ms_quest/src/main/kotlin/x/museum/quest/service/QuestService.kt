@@ -23,6 +23,7 @@ import x.museum.quest.entity.Quest
 import kotlinx.coroutines.flow.Flow
 import mu.KotlinLogging
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.withTimeout
 import org.springframework.data.mongodb.SessionSynchronization
 import org.springframework.transaction.ReactiveTransactionManager
@@ -30,9 +31,15 @@ import org.springframework.transaction.reactive.TransactionalOperator
 import org.springframework.transaction.reactive.executeAndAwait
 import org.springframework.context.annotation.Lazy
 import org.springframework.data.mongodb.core.*
+import org.springframework.data.mongodb.core.query.isEqualTo
 import org.springframework.transaction.annotation.Transactional
+import x.museum.quest.config.dev.adminUser
+import x.museum.quest.entity.Chase
+import x.museum.quest.entity.QuestId
+import java.time.LocalDateTime
 import javax.validation.ConstraintViolationException
 import javax.validation.ValidatorFactory
+import kotlin.reflect.full.isSubclassOf
 
 
 /**
@@ -46,7 +53,6 @@ import javax.validation.ValidatorFactory
 class QuestService(
         private val mongo: ReactiveFluentMongoOperations,
         @Lazy private val mongoTemplate: ReactiveMongoTemplate,
-        @Lazy private val tm: ReactiveTransactionManager,
         @Lazy private val validatorFactory: ValidatorFactory
         ) {
         private val validator by lazy { validatorFactory.validator }
@@ -59,7 +65,14 @@ class QuestService(
 
                 // validate(quest)
 
-                val newQuest = quest
+                val newQuest = quest.copy(
+                        creationDate = LocalDateTime.now(),
+                        lastEdited = LocalDateTime.now(),
+                        author = adminUser,
+                        lastEditor = adminUser
+                )
+
+
 
                 // https://spring.io/blog/2019/05/16/reactive-transactions-with-spring
 //                mongoTemplate.setSessionSynchronization(SessionSynchronization.ALWAYS)
@@ -77,6 +90,17 @@ class QuestService(
          *                  READ
          *******************************************/
 
+        suspend fun findById(id: QuestId): Quest? {
+                println("service findById")
+                val quest = withTimeout(QuestService.timeoutShort) {
+                        mongo.query<Quest>()
+                                .matching(Quest::id isEqualTo id)
+                                .awaitOneOrNull()
+                }
+                QuestService.logger.debug { "findById: $quest" }
+                return quest
+        }
+
         /**
          * Find and return all quests.
          */
@@ -90,10 +114,42 @@ class QuestService(
          *                 UPDATE
          *******************************************/
 
+        private suspend fun update(quest: Quest, questDb: Quest, version: Int): Quest {
+                check(mongo::class.isSubclassOf(ReactiveMongoTemplate::class)) {
+                        "TODO"
+                }
+                mongo as ReactiveMongoTemplate
+                val questCache: MutableCollection<*> = mongo.converter.mappingContext.persistentEntities
+                questCache.remove(questDb)
+
+                val newQuest = quest.copy(id = questDb.id, version = version)
+                QuestService.logger.trace { "update: newQuest = $newQuest" }
+
+                return withTimeout(QuestService.timeoutShort) { mongo.save(newQuest).awaitFirst() }
+        }
+
+        suspend fun update(quest: Quest, id: QuestId, versionStr: String): Quest? {
+
+                val questDb = findById(id) ?: return null
+
+                QuestService.logger.trace { "update: version=$versionStr, questDB=$questDb" }
+                val version = versionStr.toIntOrNull() ?: throw InvalidVersionException(versionStr)
+                return  update(quest, questDb, version)
+        }
+
 
         /*******************************************
          *                 DELETE
          *******************************************/
+
+        suspend fun deleteById(id: QuestId) = withTimeout(timeoutShort) {
+                logger.debug { "deleteById(): id = $id" }
+                val result = mongo.remove<Quest>()
+                        .matching(Quest::id isEqualTo id)
+                        .allAndAwait()
+                logger.debug { "deleteById(): Deleted items = ${result.deletedCount}" }
+                return@withTimeout result
+        }
 
         /*******************************************
          *            Utility Functions

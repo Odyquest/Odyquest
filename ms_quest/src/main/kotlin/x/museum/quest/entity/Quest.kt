@@ -18,6 +18,7 @@
 package x.museum.quest.entity
 
 import x.museum.quest.config.security.CustomUser
+import java.time.LocalDateTime
 import java.util.*
 
 /**
@@ -28,16 +29,22 @@ data class Quest(
 
         val id: QuestId?,
         val version: Int? = null,
-        val title: String,
-        val description: Description,
-        val requirement: Requirement,
-        val tags: List<Tag>,
-        val lastEdited: Date,
+        val title: String?,
+        val description: Description?,
+        val requirement: Requirement?,
+        val tags: List<Tag>?,
+        val lastEdited: LocalDateTime?,
         val lastEditor: CustomUser?,
-        val author: CustomUser,
-        val creationDate: Date
+        val author: CustomUser?,
+        val creationDate: LocalDateTime?
 
 ) {
+    companion object {
+        private const val HEX_PATTERN = "[\\dA-Fa-f]"
+        const val ID_PATTERN =
+                "$HEX_PATTERN{8}-$HEX_PATTERN{4}-$HEX_PATTERN{4}-" +
+                        "$HEX_PATTERN{4}-$HEX_PATTERN{12}"
+    }
 }
 
 typealias QuestId = UUID
