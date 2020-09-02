@@ -44,7 +44,8 @@ import { ChaseEditorComponent } from './components/chase-editor/chase-editor.com
 // TODO: add resolver
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'chase', component: ChaseEditorComponent }
+  { path: 'chase', component: ChaseEditorComponent },
+  { path: 'login', component: LoginComponent }
 ]
 
 @NgModule({
