@@ -22,7 +22,5 @@ export class ChaseEditorComponent implements OnInit {
     })
   }
 
-  getQuests() {
-    this.chaseService.getAllChases().subscribe(chases => this.chaseService.chases.next(chases))
-  }
+  
 }

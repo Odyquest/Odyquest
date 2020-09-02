@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-create-chase-dialog',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateChaseDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<CreateChaseDialogComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  public closeDialog() {
+    console.log('closeDialog')
+    this.dialogRef.close()
   }
 
 }
