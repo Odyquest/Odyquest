@@ -39,12 +39,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator'; import { CreateChaseDialogComponent } from './components/create-chase-dialog/create-chase-dialog.component';
-import { ChaseEditorComponent } from './components/chase-editor/chase-editor.component'
+import { MainEditorComponent } from './components/main-editor/main-editor.component';
+import { QuestEditorComponent } from './quest-editor/quest-editor.component'
 
 // TODO: add resolver
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'chase', component: ChaseEditorComponent },
+  { path: 'chase', component: MainEditorComponent },
   { path: 'login', component: LoginComponent }
 ]
 
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     SidebarComponent,
     ChaseSelectorComponent,
     CreateChaseDialogComponent,
-    ChaseEditorComponent
+    MainEditorComponent,
+    QuestEditorComponent
   ],
   imports: [
     BrowserModule,

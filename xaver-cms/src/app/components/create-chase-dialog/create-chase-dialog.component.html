@@ -1,7 +1,7 @@
-<h2>Gib deiner Schnitzeljagd einen Namen!</h2>
+<h2>Gib Deiner Schnitzeljagd einen Namen!</h2>
 <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
     <input matInput>
 </mat-form-field>
 
-<button routerLink="/chase" routerLinkActive="active" mat-raised-button color="primary">Erstellen</button>
+<button routerLink="/chase" routerLinkActive="active" mat-raised-button color="primary" (click)="closeDialog()">Erstellen</button>
