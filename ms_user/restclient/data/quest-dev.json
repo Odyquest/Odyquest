@@ -1,0 +1,27 @@
+{
+  "title": "Neue Quest",
+  "description": {
+    "text": "Diese Quest wurde via. REST Client angelegt.",
+    "image": null
+  },
+  "requirement": {
+    "fulfilled": false,
+    "logicType": "OR",
+    "solutions": [
+      {
+        "dataType": "TEXT",
+        "fulfilled": false
+      },
+      {
+        "dataType": "TEXT",
+        "fulfilled": true
+      }
+    ],
+    "tags": [
+      {
+        "name": "Archäologie in Baden",
+        "description": "Teil der Ausstellung Archäologie in Baden"
+      }
+    ]
+  }
+}
