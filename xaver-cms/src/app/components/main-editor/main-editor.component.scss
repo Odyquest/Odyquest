@@ -1,21 +1,21 @@
+@import "src/styles";
+
 .main_body {
     display: flex;
     flex-direction: row;
-    background: #5ec3ad;
     width: 100%;
     height: 100%;
+    color: $text_color_unselected;
 }
 
 .quest_selector {
     display: flex;
     flex-direction: column;
-    background: #5e9be3;
+    background: $background_color_content_darker;
     width: 100%;
     height: 100%;
     align-items: center;
-    //padding: 5px;
-    border: 1px solid black;
-
+    //border: 3px solid black;
 }
 
 .quest_connections {
@@ -23,7 +23,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #3b6faa;
+    background: $background_color_selectable;
     width: 100%;
     height: 50px;
     text-align: center;
@@ -36,22 +36,13 @@
     background: white;
 }
 
-.chase_info_quest_selector_container {
+.quest_selector_container {
     display: flex;
     flex-direction: column;
-    background: #e35e5e;
     width: 15%;
     height: 100%;
     align-items: center;
-}
-
-.chase_info {
-    display: flex;
-    flex-direction: column;
-    background: #5ec4e3;
-    width: 100%;
-    height: 40%;
-    align-items: center;
+    border: 2px solid black;
 }
 
 label {
@@ -63,15 +54,52 @@ label {
 .selector_content {
     display: flex;
     flex-direction: column;
-    background: #3b6faa;
-    width: 100%;
+    justify-content: center;
+    background: $background_color_selectable;
+    width: 90%;
     height: 30px;
+    margin: 2px;
     text-align: center;
     text-justify: middle;
     font-size: 20px;
-    border: 1px solid black;
+    border: 2px solid grey;
+    cursor: pointer;
 }
 
 .selector_content:hover {
-    background: white;
+    color: $text_color;
+    border: 2px solid $text_color;
+}
+
+h1 {
+    font-weight: bold;
+    color: $text_color;
+    margin-bottom: 0px;
+}
+
+#quest_connections_selector {
+    margin-top: 15px;
+}
+
+#add_quest_button {
+    background-color: $form_color;
+    border: 2px solid grey;
+    color: grey;
+    padding: 6px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 10px 2px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+}
+
+#add_quest_button:hover {
+    background-color: rgb(20, 20, 20);
+    border: 2px solid $text_color;
+    color: $text_color;
 }

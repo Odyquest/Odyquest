@@ -1,17 +1,10 @@
 <div class="main_body">
-    <div class="chase_info_quest_selector_container">
-        <div class="quest_connections">
-            <div class="quest_connections_content">Quest Connections</div>
-        </div>
-        <!--<div class="chase_info">
-            <h1>Chase Info</h1>
-            <label for="fname">Chase Name</label>
-            <input type="text" id="chase_name" name="chase_name"><br><br>
-            <label for="fname">Author</label>
-            <input type="text" id="chase_author" name="chase_author"><br><br>
-        </div> -->
+    <div class="quest_selector_container">
         <div class="quest_selector">
-            <h1>Available Quests</h1>
+            <div class="selector_content" id="quest_connections_selector">
+                <div class="quest_connections_content">Quest Connections</div>
+            </div>
+            <h1>Available Quests:</h1>
             <div class="selector_content">
                 <span>Finde spuren</span>
             </div>
@@ -21,7 +14,7 @@
             <div class="selector_content">
                 <span>Wooot</span>
             </div>
-            <button type="button" class="add_button">Add Quest</button>
+            <button type="button" class="add_button" id="add_quest_button">+ New Quest</button>
         </div>
     </div>
     <app-quest-editor></app-quest-editor>
