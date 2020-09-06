@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ChaseService } from 'src/app/services/chase.service';
+//import { QuestEditorComponent} from './quest-editor/quest-editor.component';
 
 @Component({
-  selector: 'app-chase-editor',
-  templateUrl: './chase-editor.component.html',
-  styleUrls: ['./chase-editor.component.scss']
+  selector: 'main-chase-editor',
+  templateUrl: './main-editor.component.html',
+  styleUrls: ['./main-editor.component.scss']
 })
-export class ChaseEditorComponent implements OnInit {
+export class MainEditorComponent implements OnInit {
 
   public chases;
 
