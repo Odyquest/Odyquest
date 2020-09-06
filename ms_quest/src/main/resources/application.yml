@@ -25,6 +25,7 @@ spring:
     # https://docs.mongodb.com/manual/reference/connection-string
 
 
+
 server:
   compression:
     enabled: true

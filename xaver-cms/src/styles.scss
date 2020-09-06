@@ -31,3 +31,7 @@ $xaver-cms-theme: mat-light-theme($xaver-cms-primary, $xaver-cms-accent, $xaver-
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+.mat-button-wrapper {
+    color: white;
+}

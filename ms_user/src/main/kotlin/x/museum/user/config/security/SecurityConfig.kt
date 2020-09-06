@@ -43,7 +43,7 @@ interface SecurityConfig {
 
 
                 exchanges
-                        .pathMatchers(GET).permitAll()
+                        .pathMatchers(GET).authenticated()
 
                         .pathMatchers(DELETE).permitAll()
                         .pathMatchers(OPTIONS, questPath).permitAll()

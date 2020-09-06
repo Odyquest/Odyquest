@@ -27,7 +27,7 @@ import java.net.InetAddress
 object Settings {
 
     const val DEV = "dev"
-    private const val version = "0.0.1"
+    private const val version = "0.0.3"
 
     val banner = Banner { _, _, out ->
 

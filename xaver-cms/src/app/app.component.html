@@ -31,4 +31,10 @@
   </div>
 </div> -->
 
-<router-outlet></router-outlet>
+<ng-container *ngIf="router.url !== '/login'">
+  <app-topbar></app-topbar>
+</ng-container>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

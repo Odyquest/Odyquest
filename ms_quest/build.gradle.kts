@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "x.museum"
-version = "0.0.1"
+version = "0.0.3"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -24,6 +24,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-hateoas")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+//	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+//	implementation("org.springframework.cloud:spring-cloud-starter-oauth2")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")

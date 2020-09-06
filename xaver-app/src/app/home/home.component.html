@@ -1,6 +1,7 @@
 <p>Welcome to Xaver Im Museum!</p>
 <div><button routerLink="/chase">Start default chase</button></div>
 <div><button (click)="onInputUrl()">Enter URL</button></div>
+<button (click)="getAllChases()">GET_CHASES</button>
 
 <div *ngIf="inputUrl">
   <app-url-input></app-url-input>

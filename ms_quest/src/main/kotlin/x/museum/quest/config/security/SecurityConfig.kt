@@ -56,12 +56,15 @@ interface SecurityConfig {
                         .pathMatchers(PUT, questPathId).permitAll()
 
                         .pathMatchers(DELETE).permitAll()
+                        .pathMatchers(OPTIONS, questPath).permitAll()
+                        .pathMatchers(OPTIONS).permitAll()
             }
             .httpBasic{}
             .formLogin{ form -> form.disable() }
-            .headers { headers -> headers.contentSecurityPolicy("default-src 'self'") }
+            //.headers { headers -> headers.contentSecurityPolicy("default-src 'self'") }
             // Cross-Site-Request-Forgery (TODO: Check if we need to enable it)
             .csrf { csrf -> csrf.disable() }
+            .cors().and()
             .build()
 
 
