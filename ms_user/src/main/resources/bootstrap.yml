@@ -1,0 +1,8 @@
+#spring:
+#  application.name: quest
+#  cloud:
+#    config:
+#      fail-fast: true
+#      username: config
+#      password: p
+#      uri: https://teiwaz:8888
