@@ -1,0 +1,13 @@
+management:
+  endpoint:
+    env.enabled: true
+    health.show-details: ALWAYS
+    mappings.enabled: true
+  endpoint.web.cors:
+    allowed-origins: "*"
+    allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+    allowed-headers: Origin,Content-Type,Accept,Authorization,Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Headers,Access-Control-Expose-Headers,Allow,Content-Length,Date,If-None-Match,If-Match,Last-Modified,If-Modified-Since
+    exposed-headers: Location,ETag,Access-Control-Allow-Origin,Access-Control-Allow-Headers
+
+quest:
+  password: p
