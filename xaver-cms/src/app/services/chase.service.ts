@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
 export class ChaseService {
 
   // TODO: Replace SERVER_ADR
-  readonly SERVER_ADR = 'https://example.de:';
+  readonly SERVER_ADR = 'https://goebelcloud.de:';
   readonly SERVER_PORT = '8444';
   readonly CHASE_IDENTIFIER = '/api/quest'
   readonly SERVER_BASE_URI = this.SERVER_ADR + this.SERVER_PORT + this.CHASE_IDENTIFIER;

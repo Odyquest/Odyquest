@@ -35,3 +35,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 .mat-button-wrapper {
     color: white;
 }
+//global color defs
+$form_color: rgb(15, 29, 32);
+$text_color: rgb(114, 176, 218);
+$text_color_unselected: rgb(219, 219, 219);
+$background_color_content: rgb(23, 39, 44); 
+$background_color_content_darker: rgb(22, 34, 37);
+$background_color_selectable: rgb(36, 45, 47);

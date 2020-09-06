@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChaseEditorComponent } from './chase-editor.component';
+import { MainEditorComponent } from './main-editor.component';
 
-describe('ChaseEditorComponent', () => {
-  let component: ChaseEditorComponent;
-  let fixture: ComponentFixture<ChaseEditorComponent>;
+describe('MainEditorComponent', () => {
+  let component: MainEditorComponent;
+  let fixture: ComponentFixture<MainEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChaseEditorComponent ]
+      declarations: [ MainEditorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChaseEditorComponent);
+    fixture = TestBed.createComponent(MainEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
