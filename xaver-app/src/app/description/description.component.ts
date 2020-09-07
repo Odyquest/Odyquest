@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+
 import { Description } from '../chase';
 
 @Component({
@@ -7,7 +9,7 @@ import { Description } from '../chase';
   styleUrls: ['./description.component.scss']
 })
 export class DescriptionComponent implements OnInit {
-  description: Description
+  description: Description;
 
   constructor() { }
 

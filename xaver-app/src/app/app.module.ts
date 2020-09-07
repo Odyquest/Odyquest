@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
@@ -33,6 +34,7 @@ import { QrcodeInputComponent } from './qrcode-input/qrcode-input.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
   ],

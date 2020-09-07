@@ -8,7 +8,7 @@ import { Chase } from '../chase';
   styleUrls: ['./chase.component.scss']
 })
 export class ChaseComponent implements OnInit {
-  chase: Chase
+  chase: Chase;
 
   constructor() { }
 
