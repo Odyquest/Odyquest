@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChaseService } from "./../services/chase.service"
 import { Subscription } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
