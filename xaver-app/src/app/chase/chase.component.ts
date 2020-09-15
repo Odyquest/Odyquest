@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Chase } from '../chase';
+import { Chase, ChaseElement } from '../chase';
 
 @Component({
   selector: 'app-chase',
@@ -9,10 +9,20 @@ import { Chase } from '../chase';
 })
 export class ChaseComponent implements OnInit {
   chase: Chase;
+  displayElement: ChaseElement;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnLoad(): void {
+    // load current chase/description
+  }
+
+  ngOnNext(): void {
+    // which element is next?
+    this.displayElement = this.chase.get_next();
   }
 
 }

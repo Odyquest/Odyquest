@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ChaseListComponent } from './chase-list/chase-list.component';
 import { QrcodeInputComponent } from './qrcode-input/qrcode-input.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { QrcodeInputComponent } from './qrcode-input/qrcode-input.component';
     WelcomeComponent,
     ChaseListComponent,
     QrcodeInputComponent,
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
