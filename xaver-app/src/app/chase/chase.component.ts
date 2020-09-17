@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Chase, ChaseElement, Description, Task, Solution } from '../chase';
+import { Chase, ChaseElement, Description, Quest, Solution } from '../chase';
 
 @Component({
   selector: 'app-chase',
@@ -40,8 +40,8 @@ export class ChaseComponent implements OnInit {
     return element instanceof Description;
   }
 
-  isTask(element: ChaseElement): boolean {
-    return element instanceof Task;
+  isQuest(element: ChaseElement): boolean {
+    return element instanceof Quest;
   }
 
   isSolution(element: ChaseElement): boolean {

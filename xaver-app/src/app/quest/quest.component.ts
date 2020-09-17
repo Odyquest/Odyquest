@@ -1,23 +1,23 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Task } from '../chase';
+import { Quest } from '../chase';
 
 @Component({
-  selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss']
+  selector: 'app-quest',
+  templateUrl: './quest.component.html',
+  styleUrls: ['./quest.component.scss']
 })
-export class TaskComponent implements OnInit {
-  @Input() task: Task;
+export class QuestComponent implements OnInit {
+  @Input() quest: Quest;
   @Output() selection: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.task = new Task();
-    this.task.title = 'Task title';
-    this.task.text = 'Task text';
+    this.quest = new Quest();
+    this.quest.title = 'Quest title';
+    this.quest.text = 'Quest text';
   }
 
   select(button: string): void {

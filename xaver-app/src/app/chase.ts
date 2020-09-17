@@ -15,7 +15,7 @@ export class Chase {
     const second = new Description();
     second.title = 'Description two';
     second.text = 'Text of description';
-    const third = new Task();
+    const third = new Quest();
     third.title = 'Description one';
     third.text = 'Text of description';
     const four = new Solution();
@@ -50,7 +50,7 @@ export class Description extends ChaseElement {
   image: string;
 }
 
-export class Task extends ChaseElement {
+export class Quest extends ChaseElement {
   title: string;
   text: string;
   image: string;

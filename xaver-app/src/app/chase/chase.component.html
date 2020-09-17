@@ -5,11 +5,11 @@
     [description]="this.displayElement"
     (selection)="onSelection($event)">
   </app-description>
-  <app-task
-    *ngIf="isTask(this.displayElement)"
-    [task]="this.displayElement"
+  <app-quest
+    *ngIf="isQuest(this.displayElement)"
+    [quest]="this.displayElement"
     (selection)="onSelection($event)">
-  </app-task>
+  </app-quest>
   <app-solution
     *ngIf="isSolution(this.displayElement)"
     [solution]="this.displayElement"
