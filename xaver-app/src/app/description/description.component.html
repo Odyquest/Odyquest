@@ -1,3 +1,4 @@
+  <h3>Description: {{description.title}}</h3>
   <div>
     <img src="{{description.image}}"/>
   </div>
@@ -5,8 +6,6 @@
     <p>{{description.text}}</p>
   </div>
   <div>
-    <!-- if description -->
-    <button mat-flat-button color="primary">go on</button>
-    <!-- else if quest -->
-    <!-- else if solution -->
+    <button mat-flat-button color="primary"
+      (click)="select('next')">go on</button>
   </div>

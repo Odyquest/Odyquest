@@ -1,1 +1,11 @@
-<p>task works!</p>
+  <h3>Task: {{task.title}}</h3>
+  <div>
+    <img src="{{task.image}}"/>
+  </div>
+  <div>
+    <p>{{task.text}}</p>
+  </div>
+  <div>
+    <button mat-flat-button color="primary"
+      (click)="select('next')">go on</button>
+  </div>

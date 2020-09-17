@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 import { Description } from '../chase';
@@ -9,11 +9,18 @@ import { Description } from '../chase';
   styleUrls: ['./description.component.scss']
 })
 export class DescriptionComponent implements OnInit {
-  description: Description;
+  @Input() description: Description;
+  @Output() selection: EventEmitter<number> = new EventEmitter();
+
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  select(button: string): void {
+    // TODO set output selection
+    this.selection.emit(0);
   }
 
 }
