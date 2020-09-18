@@ -56,15 +56,9 @@ interface DbPopulate {
         logger.warn("The collection 'Chases' will be reloaded.")
 
         runBlocking {
-            mongo.dropCollection<Quest>().awaitFirstOrNull()
             mongo.dropCollection<Chase>().awaitFirstOrNull()
 
-            createCollectionAndSchemaForQuest(mongo, logger)
             createCollectionAndSchemaForChase(mongo, logger)
-
-
-            quests.onEach { quest -> mongo.insert<Quest>().oneAndAwait(quest) }
-                    .collect { quest -> logger.warn { quest } }
 
             chases.onEach { chase -> mongo.insert<Chase>().oneAndAwait(chase) }
                     .collect { chase -> logger.warn { chase } }
@@ -86,7 +80,6 @@ interface DbPopulate {
                         string("title"),
                         string("comment"),
                         array("quests"),
-                        string("path"), // TODO: replace String
                         array("tags"),
                         date("lastEdited"),
                         `object`("lastEditor"),

@@ -1,0 +1,13 @@
+### Einen neuen Kunden anlegen
+POST https://{{host}}
+Content-Type: application/json
+
+< data/kunde-neu.json
+
+### Einen neuen Kunden mit fehlerhaften Daten anlegen
+POST https://{{host}}
+Content-Type: application/json
+
+< data/kunde-neu-invalid.json
+
+###

@@ -28,6 +28,7 @@ import org.springframework.http.HttpMethod.PUT
 import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.web.server.SecurityWebFilterChain
 import x.museum.quest.Router.Companion.apiPath
+import x.museum.quest.config.security.CorsFilter
 import x.museum.quest.Router.Companion.authPath
 //import x.museum.quest.config.security.dev.quest
 
@@ -35,20 +36,13 @@ interface SecurityConfig {
 
     @Bean
     fun securityWebFilterChain(http: ServerHttpSecurity, context: ApplicationContext) : SecurityWebFilterChain = http
+            .cors().and()
             .authorizeExchange { exchanges ->
                 val questPath = "$apiPath/quest"
-                val chasePath = "$apiPath/chase"
-                val chasePathId = "$chasePath/*"
                 val questPathId = "$questPath/*"
 
 
                 exchanges
-                        // Chase
-                        .pathMatchers(GET, chasePath).permitAll()
-                        .pathMatchers(GET, chasePathId).permitAll()
-                        .pathMatchers(POST, chasePath).permitAll()
-                        .pathMatchers(PUT, chasePathId).permitAll()
-
                         // Quest
                         .pathMatchers(GET, questPath).permitAll()
                         .pathMatchers(GET, questPathId).permitAll()
@@ -56,15 +50,14 @@ interface SecurityConfig {
                         .pathMatchers(PUT, questPathId).permitAll()
 
                         .pathMatchers(DELETE).permitAll()
-                        .pathMatchers(OPTIONS, questPath).permitAll()
-                        .pathMatchers(OPTIONS).permitAll()
+//                        .pathMatchers(OPTIONS, questPath).permitAll()
+//                        .pathMatchers(OPTIONS).permitAll()
             }
             .httpBasic{}
             .formLogin{ form -> form.disable() }
-            //.headers { headers -> headers.contentSecurityPolicy("default-src 'self'") }
+            .headers { headers -> headers.contentSecurityPolicy("default-src 'self'") }
             // Cross-Site-Request-Forgery (TODO: Check if we need to enable it)
             .csrf { csrf -> csrf.disable() }
-            .cors().and()
             .build()
 
 

@@ -1,0 +1,43 @@
+### Suche alle Bestellungen
+https://{{host}}
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit vorhandener Bestellung-ID
+https://{{host}}/10000000-0000-0000-0000-000000000001
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit nicht-vorhandener Bestellung-ID
+https://{{host}}/99999999-9999-9999-9999-999999999999
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit ungueltiger Bestellung-ID
+https://{{host}}/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit vorhandener Bestellung-ID und If-None-Match
+https://{{host}}/10000000-0000-0000-0000-000000000001
+Accept: application/hal+json
+If-None-Match: 0
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit vorhandener Kunde-ID
+https://{{host}}?kundeId=00000000-0000-0000-0000-000000000001
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche mit vorhandener Bestellung-ID, aber fehlendem Kunden
+https://{{host}}/10000000-0000-0000-0000-000000000010
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+ALPN: h2
+
+###

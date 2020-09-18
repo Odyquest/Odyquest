@@ -1,8 +1,16 @@
-#spring:
-#  application.name: quest
-#  cloud:
+spring:
+  application.name: quest
+  cloud:
 #    config:
 #      fail-fast: true
 #      username: config
 #      password: p
 #      uri: https://teiwaz:8888
+
+  consul.discovery:
+    # default: 10s
+    health-check-interval: 120s
+    health-check-tls-skip-verify: true
+    #prefer-ip-address: true
+    #register-health-check: true
+    scheme: https

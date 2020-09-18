@@ -1,0 +1,16 @@
+### Eine neue Bestellung anlegen
+POST https://{{host}}
+Content-Type: application/json
+Authorization: {{basic-auth}}
+ALPN: h2
+
+< data/bestellung-neu.json
+
+### Eine neue Bestellung ohne Authentifizierung anlegen
+POST https://{{host}}
+Content-Type: application/json
+ALPN: h2
+
+< data/bestellung-neu.json
+
+###

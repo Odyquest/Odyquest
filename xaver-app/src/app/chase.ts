@@ -1,6 +1,7 @@
 export interface Chase {
   title: string;
   progress: string;
+  quests: Array<String>;
 }
 export interface Description {
   title: string;

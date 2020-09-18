@@ -57,17 +57,13 @@ interface DbPopulate {
 
         runBlocking {
             mongo.dropCollection<Quest>().awaitFirstOrNull()
-            mongo.dropCollection<Chase>().awaitFirstOrNull()
 
             createCollectionAndSchemaForQuest(mongo, logger)
-            createCollectionAndSchemaForChase(mongo, logger)
 
 
             quests.onEach { quest -> mongo.insert<Quest>().oneAndAwait(quest) }
                     .collect { quest -> logger.warn { quest } }
 
-            chases.onEach { chase -> mongo.insert<Chase>().oneAndAwait(chase) }
-                    .collect { chase -> logger.warn { chase } }
         }
     }
 

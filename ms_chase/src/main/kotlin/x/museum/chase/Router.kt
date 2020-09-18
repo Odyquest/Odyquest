@@ -33,7 +33,6 @@ interface Router {
 
     @Bean
     fun router(
-            questHandler: QuestHandler,
             chaseHandler: ChaseHandler
     ) = coRouter {
 

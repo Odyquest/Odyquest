@@ -1,0 +1,106 @@
+server:
+  compression:
+    enabled: true
+    mime-types: application/json
+  #forward-headers-strategy: none
+  http2.enabled: true
+  port: 8443
+  ssl:
+    enabled: true
+    enabled-protocols: TLSv1.3,TLSv1.2
+    trust-store: classpath:truststore.p12
+    trust-store-password: Admin123
+    trust-store-type: PKCS12
+    key-alias: microservice
+    key-password: Admin123
+    key-store: classpath:keystore.p12
+    key-store-password: Admin123
+    key-store-type: PKCS12
+
+spring:
+  application.name: api-gateway
+  cloud:
+    consul.discovery:
+      registerHealthCheck: false
+      scheme: https
+    gateway:
+      discovery.locator.enabled: true
+      # https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.0.RC1/reference/html/#tls-ssl
+      httpclient:
+        response-timeout: 10s
+        #ssl.useInsecureTrustManager: true
+        ssl.trustedX509Certificates:
+          - classpath:certificate.cer
+      # https://github.com/spring-cloud/spring-cloud-gateway/commit/6f8f0449ee04c82822b7a6f79ccaf6dfceaff908
+      globalcors.corsConfigurations:
+        '[/**]':
+          allowedOrigins: "https://localhost"
+          allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+          allowedHeaders:
+            - Origin
+            - Content-Type
+            - Accept
+            - Authorization
+            - Access-Control-Allow-Origin
+            - Access-Control-Allow-Methods
+            - Access-Control-Allow-Headers
+            - Access-Control-Expose-Headers
+            - Allow
+            - Content-Length
+            - Date
+            - If-None-Match
+            - If-Match
+            - Last-Lodified
+            - If-Modified-Since
+          exposedHeaders:
+            - Location
+            - ETag
+            - Access-Control-Allow-Origin
+            - Access-Control-Allow-Headers
+      routes:
+        - id: chases
+          uri: lb://chase
+          predicates:
+            - Path=/chases
+          filters:
+            - StripPrefix=1
+        - id: chase
+          uri: lb://chase
+          predicates:
+            - Path=/chases/**
+          filters:
+            - StripPrefix=1
+        - id: quests
+          uri: lb://quest
+          predicates:
+            - Path=/quests
+          filters:
+            - StripPrefix=1
+        - id: quest
+          uri: lb://quest
+          predicates:
+            - Path=/quests/**
+          filters:
+            - StripPrefix=1
+  data.redis.repositories.enabled: false
+  security.user.password: p
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health.enabled: true
+    shutdown.enabled: true
+
+
+logging:
+  file.name: build/logs/application.log
+  level:
+    org.springframework.security.core.userdetails.User: ERROR

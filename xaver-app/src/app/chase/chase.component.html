@@ -1,6 +1,12 @@
-<h1>{{chase.title}}</h1>
+<!-- <h1>{{chase.title}}</h1> -->
 <div>
   <!--body-->
-  <app-description></app-description>
-  <app-solution></app-solution>
+  <!-- <app-description></app-description>
+  <app-solution></app-solution> -->
 </div>
+
+
+
+<ng-container *ngFor="let quest of chase.quests">
+  <div>quest</div>
+</ng-container>

@@ -10,13 +10,14 @@ import { ChaseService } from 'src/app/services/chase.service';
 })
 export class ChaseSelectorComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private chaseService: ChaseService) {}
+  constructor(private dialog: MatDialog, private chaseService: ChaseService) { }
 
   ngOnInit(): void {
   }
 
   getQuests() {
-    this.chaseService.getAllChases().subscribe(chases => this.chaseService.chases.next(chases))
+    // this.chaseService.chases.next(chases)
+    this.chaseService.getAllChases().subscribe(chases => console.log('chases:', chases))
   }
 
   openCreateChaseDialog() {

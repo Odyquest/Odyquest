@@ -27,8 +27,7 @@ data class Chase (
         val author: CustomUser? = null,
         val title: String,
         val comment: String?,
-        val quests: List<Quest>?,
-        val path:Map<Int, QuestId>?, // TODO: macht das Sinn?
+        val quests:List<Map<QuestId, QuestId>>?,
         val tags: List<Tag>?,
         val lastEdited: LocalDateTime?,
         val lastEditor: CustomUser?,

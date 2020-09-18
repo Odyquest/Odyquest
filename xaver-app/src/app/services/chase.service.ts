@@ -8,8 +8,8 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ChaseService {
 
-  readonly SERVER_ADR = 'https://goebelcloud.de:';
-  readonly SERVER_PORT = '8444';
+  readonly SERVER_ADR = 'https://localhost:';
+  readonly SERVER_PORT = '8445';
   readonly CHASE_IDENTIFIER = '/api/quest'
   readonly SERVER_BASE_URI = this.SERVER_ADR + this.SERVER_PORT + this.CHASE_IDENTIFIER;
 
@@ -35,6 +35,18 @@ export class ChaseService {
       .pipe(
         map(chases => {
           return chases;
+        }),
+        catchError(error => {
+          return error;
+        })
+      )
+  }
+
+  public getDefaultChase() {
+    return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
+      .pipe(
+        map(chase => {
+          return chase;
         }),
         catchError(error => {
           return error;
