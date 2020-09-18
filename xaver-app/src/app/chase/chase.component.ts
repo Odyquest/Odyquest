@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Chase } from '../chase';
+import { Chase, ChaseElement, Description, Quest, Solution } from '../chase';
 
 @Component({
   selector: 'app-chase',
@@ -8,11 +8,44 @@ import { Chase } from '../chase';
   styleUrls: ['./chase.component.scss']
 })
 export class ChaseComponent implements OnInit {
-  chase: Chase
+  chase: Chase;
+  displayElement: ChaseElement;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.chase = new Chase();
+    this.chase.title = 'demo chase';
+    this.displayElement = this.chase.get_next('null');
+     // const element = new Description();
+     // element.title = 'example';
+     // this.displayElement = element;
+
+  }
+
+  ngOnLoad(): void {
+    // load current chase/description
+  }
+
+  onSelection(button: string): void {
+    this.displayElement = this.chase.get_next(button);
+  }
+
+  ngOnNext(): void {
+    // which element is next?
+    this.displayElement = this.chase.get_next('null');
+  }
+
+  isDescription(element: ChaseElement): boolean {
+    return element instanceof Description;
+  }
+
+  isQuest(element: ChaseElement): boolean {
+    return element instanceof Quest;
+  }
+
+  isSolution(element: ChaseElement): boolean {
+    return element instanceof Solution;
   }
 
 }
