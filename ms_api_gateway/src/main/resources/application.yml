@@ -63,32 +63,15 @@ spring:
             - Access-Control-Allow-Origin
             - Access-Control-Allow-Headers
       routes:
-        - id: chases
-          uri: lb://chase
-          predicates:
-            - Path=/chases
-          filters:
-            - StripPrefix=1
         - id: chase
           uri: lb://chase
           predicates:
-            - Path=/chases/**
+            - Path=/chase
           filters:
             - StripPrefix=1
-        - id: quests
-          uri: lb://quest
-          predicates:
-            - Path=/quests
-          filters:
-            - StripPrefix=1
-        - id: quest
-          uri: lb://quest
-          predicates:
-            - Path=/quests/**
-          filters:
-            - StripPrefix=1
+
   data.redis.repositories.enabled: false
-  security.user.password: p
+#  security.user.password: p
 
 management:
   endpoints:

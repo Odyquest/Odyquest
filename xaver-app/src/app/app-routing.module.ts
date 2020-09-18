@@ -8,12 +8,14 @@ import { ChaseResolverService } from './services/chase-resolver.service';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {
-    path: 'chase', component: ChaseComponent, resolve: {
-      chase: ChaseResolverService
-    }
+    path: 'chase', component: ChaseComponent,
   }
 ];
 
+
+// resolve: {
+//   chase: ChaseResolverService
+// }
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

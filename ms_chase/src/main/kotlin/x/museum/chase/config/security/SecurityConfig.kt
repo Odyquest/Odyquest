@@ -36,12 +36,15 @@ interface SecurityConfig {
     @Bean
     fun securityWebFilterChain(http: ServerHttpSecurity, context: ApplicationContext) : SecurityWebFilterChain = http
             .authorizeExchange { exchanges ->
-                val chasePath = "$apiPath/chase"
+                val chasePath = "/chase$apiPath"
                 val chasePathId = "$chasePath/*"
 
 
                 exchanges
                         // Chase
+                        .pathMatchers(GET, "/chase/api").permitAll()
+                        .pathMatchers(GET, "/api/*").permitAll()
+                        .pathMatchers(GET, "/*").permitAll()
                         .pathMatchers(GET, chasePath).permitAll()
                         .pathMatchers(GET, chasePathId).permitAll()
                         .pathMatchers(POST, chasePath).permitAll()
