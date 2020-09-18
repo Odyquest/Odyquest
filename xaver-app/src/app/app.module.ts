@@ -13,6 +13,7 @@ import { SolutionComponent } from './solution/solution.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ChaseListComponent } from './chase-list/chase-list.component';
 import { QrcodeInputComponent } from './qrcode-input/qrcode-input.component';
+import { QuestComponent } from './quest/quest.component';
 
 //Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -58,6 +59,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     WelcomeComponent,
     ChaseListComponent,
     QrcodeInputComponent,
+    QuestComponent,
   ],
   imports: [
     BrowserAnimationsModule,

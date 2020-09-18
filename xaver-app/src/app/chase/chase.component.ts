@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { Chase } from '../chase';
 import { QuestService } from '../services/quest.service';
 
+import { Chase, ChaseElement, Description, Quest, Solution } from '../chase';
+
 @Component({
   selector: 'app-chase',
   templateUrl: './chase.component.html',
@@ -11,6 +13,7 @@ import { QuestService } from '../services/quest.service';
 })
 export class ChaseComponent implements OnInit {
   chase: Chase;
+  displayElement: ChaseElement;
 
   constructor(private activatedRoute: ActivatedRoute, public questService: QuestService) {
     console.log('data?', this.activatedRoute.snapshot.data.chase);
@@ -33,6 +36,38 @@ export class ChaseComponent implements OnInit {
     Object.keys(quest)
     // this.questService.getQuestById()
 
+    this.chase = new Chase();
+    this.chase.title = 'demo chase';
+    this.displayElement = this.chase.get_next('null');
+    // const element = new Description();
+    // element.title = 'example';
+    // this.displayElement = element;
+
+  }
+
+  ngOnLoad(): void {
+    // load current chase/description
+  }
+
+  onSelection(button: string): void {
+    this.displayElement = this.chase.get_next(button);
+  }
+
+  ngOnNext(): void {
+    // which element is next?
+    this.displayElement = this.chase.get_next('null');
+  }
+
+  isDescription(element: ChaseElement): boolean {
+    return element instanceof Description;
+  }
+
+  isQuest(element: ChaseElement): boolean {
+    return element instanceof Quest;
+  }
+
+  isSolution(element: ChaseElement): boolean {
+    return element instanceof Solution;
   }
 
 }

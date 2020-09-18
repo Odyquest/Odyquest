@@ -1,21 +1,23 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Description } from '../chase';
+import { Quest } from '../chase';
 
 @Component({
-  selector: 'app-description',
-  templateUrl: './description.component.html',
-  styleUrls: ['./description.component.scss']
+  selector: 'app-quest',
+  templateUrl: './quest.component.html',
+  styleUrls: ['./quest.component.scss']
 })
-export class DescriptionComponent implements OnInit {
-  @Input() description: Description;
+export class QuestComponent implements OnInit {
+  @Input() quest: Quest;
   @Output() selection: EventEmitter<number> = new EventEmitter();
-
 
   constructor() { }
 
   ngOnInit(): void {
+    this.quest = new Quest();
+    this.quest.title = 'Quest title';
+    this.quest.text = 'Quest text';
   }
 
   select(button: string): void {

@@ -1,8 +1,14 @@
-<!-- <h1>{{chase.title}}</h1> -->
+<h1>{{this.chase.title}}</h1>
 <div>
   <!--body-->
-  <!-- <app-description></app-description>
-  <app-solution></app-solution> -->
+  <app-description *ngIf="isDescription(this.displayElement)" [description]="this.displayElement"
+    (selection)="onSelection($event)">
+  </app-description>
+  <app-quest *ngIf="isQuest(this.displayElement)" [quest]="this.displayElement" (selection)="onSelection($event)">
+  </app-quest>
+  <app-solution *ngIf="isSolution(this.displayElement)" [solution]="this.displayElement"
+    (selection)="onSelection($event)">
+  </app-solution>
 </div>
 
 
