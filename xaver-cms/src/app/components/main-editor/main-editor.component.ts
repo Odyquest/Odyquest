@@ -15,13 +15,15 @@ export class MainEditorComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
     this.chaseService.chases.subscribe(chases => {
       this.chases = chases;
       console.log('CHASES: ', this.chases);
     })
   }
 
-  
+  selectQuest(value: String) {
+    console.log(value)
+  }
+
+
 }

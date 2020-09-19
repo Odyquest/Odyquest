@@ -56,19 +56,23 @@ label {
     flex-direction: column;
     justify-content: center;
     background: $background_color_selectable;
+    color: $text_color;
     width: 90%;
     height: 30px;
     margin: 2px;
     text-align: center;
     text-justify: middle;
     font-size: 20px;
-    border: 2px solid grey;
+    //color: $selector_color_inactive;
+    //border: 2px solid $selector_color_inactive;
+    border: 2px solid $text_color;
     cursor: pointer;
 }
 
 .selector_content:hover {
-    color: $text_color;
-    border: 2px solid $text_color;
+    color: $background_color_content_darker;
+    //border: 2px solid $background_color_content_darker;
+    background: $text_color;
 }
 
 h1 {
@@ -82,9 +86,9 @@ h1 {
 }
 
 #add_quest_button {
-    background-color: $form_color;
-    border: 2px solid grey;
-    color: grey;
+    background: $background_color_selectable;
+    color: $text_color;
+    border: 2px solid $text_color;
     padding: 6px 16px;
     text-align: center;
     text-decoration: none;
@@ -99,7 +103,7 @@ h1 {
 }
 
 #add_quest_button:hover {
-    background-color: rgb(20, 20, 20);
-    border: 2px solid $text_color;
-    color: $text_color;
+    color: $background_color_content_darker;
+    //border: 2px solid $background_color_content_darker;
+    background: $text_color;
 }
