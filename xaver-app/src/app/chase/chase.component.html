@@ -1,15 +1,18 @@
-<h1>{{chase.title}}</h1>
+<h1>{{this.chase.title}}</h1>
 <div> <!--body-->
-  <div>
-    <img src="{{description.image}}"/>
-  </div>
-  <div>
-    <p>{{description.text}}</p>
-  </div>
-  <div>
-    <!-- if description -->
-    <button>go on</button>
-    <!-- else if quest -->
-    <!-- else if solution -->
-  </div>
+  <app-description
+    *ngIf="isDescription(this.displayElement)"
+    [description]="this.displayElement"
+    (selection)="onSelection($event)">
+  </app-description>
+  <app-quest
+    *ngIf="isQuest(this.displayElement)"
+    [quest]="this.displayElement"
+    (selection)="onSelection($event)">
+  </app-quest>
+  <app-solution
+    *ngIf="isSolution(this.displayElement)"
+    [solution]="this.displayElement"
+    (selection)="onSelection($event)">
+  </app-solution>
 </div>
