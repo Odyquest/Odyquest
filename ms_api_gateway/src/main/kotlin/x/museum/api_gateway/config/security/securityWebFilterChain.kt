@@ -35,10 +35,10 @@ import x.museum.api_gateway.config.security.Roles.actuator
 
     fun securityWebFilterChain(http: ServerHttpSecurity) : SecurityWebFilterChain = http
             .authorizeExchange { exchanges ->
-                val chasePath = "/chase/api"
-                val chasePathId = "/chase/api/*"
-                val questPath = "/quest/api"
-                val questPathId = "quest/api/*"
+                val chasePath = "/chases/api"
+                val chasePathId = "/chases/api/*"
+                val questPath = "/quests/api"
+                val questPathId = "quests/api/*"
 
                 exchanges
                         // Chase

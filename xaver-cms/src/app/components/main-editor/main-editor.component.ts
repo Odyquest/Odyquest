@@ -10,6 +10,7 @@ import { ChaseService } from 'src/app/services/chase.service';
 export class MainEditorComponent implements OnInit {
 
   public chases;
+  questList: string[] = ['Quest1', 'Quest2', 'Quest3', 'Quest4', 'Quest5'];
 
   constructor(private chaseService: ChaseService) { }
 

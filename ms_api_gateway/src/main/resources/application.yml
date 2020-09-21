@@ -63,10 +63,16 @@ spring:
             - Access-Control-Allow-Origin
             - Access-Control-Allow-Headers
       routes:
-        - id: chase
+        - id: chases
           uri: lb://chase
           predicates:
-            - Path=/chase
+            - Path=/chases
+          filters:
+            - StripPrefix=1
+        - id: kunde
+          uri: lb://chase
+          predicates:
+            - Path=/chases/**
           filters:
             - StripPrefix=1
 
