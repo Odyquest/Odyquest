@@ -33,44 +33,26 @@ interface Router {
 
     @Bean
     fun router(
-            questHandler: QuestHandler,
-            chaseHandler: ChaseHandler
-    ) = coRouter {
+            questHandler: QuestHandler) = coRouter {
 
         // Quest
         val questPath = "${apiPath}/quest"
         val questIdPathPattern = "{$idPathVar:${Quest.ID_PATTERN}}"
         val questIdPath = "$questPath/$questIdPathPattern"
 
-        // Chase
-        val chasePath = "${apiPath}/chase"
-        val chaseIdPathPattern = "{$idPathVar:${Chase.ID_PATTERN}}"
-        val chaseIdPath = "$chasePath/$chaseIdPathPattern"
-
-        println("ROUTER: $chaseIdPath")
-
         accept(HAL_JSON).nest {
-            // Chase
-            GET(chasePath, chaseHandler::findAll)
-            GET(chaseIdPath, chaseHandler::findById)
-
             // Quest
             GET(questPath, questHandler::findAll)
             GET(questIdPath, questHandler::findById)
         }
 
         contentType(MediaType.APPLICATION_JSON).nest {
-            // Chase
-            POST(chasePath, chaseHandler::create)
-            PUT(chaseIdPath, chaseHandler::update)
-
             // Quest
             POST(questPath, questHandler::create)
             PUT(questIdPath, questHandler::update)
 
         }
 
-        DELETE(chaseIdPath, chaseHandler::deleteById)
         DELETE(questIdPath, questHandler::deleteById)
     }
 

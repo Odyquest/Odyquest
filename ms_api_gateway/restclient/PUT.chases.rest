@@ -1,0 +1,31 @@
+### Einen Kunden aktualisieren
+PUT https://{{host}}/00000000-0000-0000-0000-000000000001
+If-Match: "0"
+Content-Type: application/json
+Authorization: {{basic-auth}}
+
+< data/kunde-1-put.json
+
+### Einen Kunden ohne Versionsnr. aktualisieren
+PUT https://{{host}}/00000000-0000-0000-0000-000000000001
+Content-Type: application/json
+Authorization: {{basic-auth}}
+
+< data/kunde-1-put.json
+
+### Einen Kunden mit fehlerhaften Werten aktualisieren
+PUT https://{{host}}/00000000-0000-0000-0000-000000000001
+If-Match: "0"
+Content-Type: application/json
+Authorization: {{basic-auth}}
+
+< data/kunde-1-put-invalid.json
+
+### Einen Kunden ohne Authentifizierung aktualisieren
+PUT https://{{host}}/00000000-0000-0000-0000-000000000001
+If-Match: "0"
+Content-Type: application/json
+
+< data/kunde-1-put.json
+
+###

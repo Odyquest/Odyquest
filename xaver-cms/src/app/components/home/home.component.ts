@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  userName: string;
 
-  ngOnInit(): void {
+  constructor(public oktaAuth: OktaAuthService) { }
+
+  async ngOnInit() {
+    // returns an array of claims
+    const userClaims = await this.oktaAuth.getUser();
+
+    console.log('GET_USER', await this.oktaAuth.getUser());
+    // user name is exposed directly as property
+    this.userName = userClaims.name;
+
   }
 
 }

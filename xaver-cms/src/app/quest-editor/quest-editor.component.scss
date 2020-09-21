@@ -1,134 +1,130 @@
 @import "src/styles";
 
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 85%;
-    height: 100%;
-    text-align: center;
-    text-justify: center;
-    background: $background_color_content;
-    color: $text_color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+  height: 100%;
+  text-align: center;
+  text-justify: center;
+
 }
 
 
 .quest-editor-top-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 35%;
-    background: $background_color_content_darker;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 35%;
+
 }
 
 .quest-editor-top-right-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 100%;
-    //background: rgb(26, 41, 46);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
 }
 
 .quest-editor-top-right-container-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    height: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 30%;
 }
 
 
 .quest-image-container {
-    width: 20%;
-    height: 90%;
-    margin: 10px;
-    border: 3px solid grey;
+  width: 20%;
+  height: 90%;
+  margin: 10px;
+  border: 3px solid grey;
 }
 
 label {
-    margin: 10px;
+  margin: 10px;
 }
 
 input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 3px solid grey;
-    border-radius: 4px;
-    background-color: $form_color;
-    color: $text_color;
-    font-size: 13pt;
-    margin-bottom: 40px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid grey;
+  border-radius: 4px;
+
+  font-size: 13pt;
+  margin-bottom: 40px;
 }
 
 textarea {
-    width: 90%;
-    height: 17%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 3px solid grey;
-    border-radius: 4px;
-    background-color: $form_color;
-    color: $text_color;
-    margin-bottom: 40px;
-    //font-size: 30;
+  width: 90%;
+  height: 17%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid grey;
+  border-radius: 4px;
+
+  margin-bottom: 40px;
+  //font-size: 30;
 }
 
 textarea:focus {
-    border: 3px solid $text_color;
+  border: 3px solid $text_color;
 }
 
 select {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 
-    width: 100%;
-    height: 40px;
-    -moz-padding-start: calc(10px - 3px);
-    padding-left: 10px;
-    color: $text_color;
-    font-size: 16px;
-    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
-    border-radius: 3px;
-    border: 3px solid grey;
-    background: $form_color;
-    cursor: pointer;
+  width: 100%;
+  height: 40px;
+  -moz-padding-start: calc(10px - 3px);
+  padding-left: 10px;
+
+  font-size: 16px;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  border: 3px solid grey;
+
+  cursor: pointer;
 }
 
 .quest-name-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
 }
 
 .quest-type-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
 }
 
 #quest-name {
-    width: 80%;
-    height: 10%;
-    margin: 3px;
-    margin-left: 20px;
-    margin-right: 20px;
+  width: 80%;
+  height: 10%;
+  margin: 3px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 #quest-type-selector {
-    width: 70%;
+  width: 70%;
 }
 
 .switchable-quest-content {
-    width: 100%;
-    height: 70%;
+  width: 100%;
+  height: 70%;
 }

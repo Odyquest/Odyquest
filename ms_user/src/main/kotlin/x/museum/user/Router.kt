@@ -35,7 +35,7 @@ interface Router {
     ) = coRouter {
 
         // User
-        val userPath = "${apiPath}/user"
+        val userPath = "${apiPath}"
 //        val userIdPathPattern = "{$idPathVar:${CustomUser.ID_PATTERN}}"
         val usernamePath = "$userPath/{username:[a-z]+}"
 

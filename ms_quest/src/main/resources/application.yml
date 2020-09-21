@@ -1,4 +1,4 @@
-server.port: 8444
+server.port: 8445
 
 # https://github.com/sdeleuze/spring-kotlin-functional/blob/boot/src/main/resources/application.properties
 context.initializer.classes: x.museum.quest.BeansInitializer
@@ -23,6 +23,7 @@ spring:
     username: admin
     uuid-representation: standard
     # https://docs.mongodb.com/manual/reference/connection-string
+
 
 
 server:

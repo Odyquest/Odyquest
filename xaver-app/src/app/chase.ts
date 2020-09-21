@@ -1,6 +1,7 @@
 export class Chase {
   title: string;
   progress: string;
+  quests: Array<String>;
   testingCounter = 0;
 
   /** creates object from json */

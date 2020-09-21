@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
-import { RouterModule, Routes } from '@angular/router'
+import { Router, RouterModule, Routes } from '@angular/router'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -42,12 +42,45 @@ import { MatPaginatorModule } from '@angular/material/paginator'; import { Creat
 import { MainEditorComponent } from './components/main-editor/main-editor.component';
 import { QuestEditorComponent } from './quest-editor/quest-editor.component'
 
+import {
+  OKTA_CONFIG,
+  OktaAuthModule,
+  OktaCallbackComponent,
+  OktaAuthGuard
+} from '@okta/okta-angular';
+import { LoggedOutComponent } from './components/logged-out/logged-out.component';
+
+const config = {
+  issuer: 'https://dev-379215.okta.com/oauth2/default',
+  redirectUri: 'http://localhost:4200/login/callback',
+  clientId: '0oa10p9e5b5UyMNao4x7',
+  pkce: true,
+  scopes: ['profile']
+}
+
+export function onAuthRequired(oktaAuth, injector) {
+  const router = injector.get(Router);
+
+  // Redirect the user to your custom login page
+  router.navigate(['/login']);
+}
+
 // TODO: add resolver
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'chase', component: MainEditorComponent },
-  { path: 'login', component: LoginComponent }
+  { path: '', component: HomeComponent, canActivate: [OktaAuthGuard], data: { onAuthRequired } },
+  { path: 'home', component: HomeComponent, canActivate: [OktaAuthGuard], data: { onAuthRequired } },
+
+  { path: 'chase', component: MainEditorComponent, canActivate: [OktaAuthGuard], data: { onAuthRequired } },
+  {
+    path: 'login/callback',
+    component: OktaCallbackComponent
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'logged-out', component: LoggedOutComponent }
+
 ]
+
+
 
 @NgModule({
   declarations: [
@@ -58,7 +91,8 @@ const appRoutes: Routes = [
     ChaseSelectorComponent,
     CreateChaseDialogComponent,
     MainEditorComponent,
-    QuestEditorComponent
+    QuestEditorComponent,
+    LoggedOutComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +129,7 @@ const appRoutes: Routes = [
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    OktaAuthModule,
     RouterModule.forRoot(
       appRoutes, { enableTracing: true }
     )
@@ -103,7 +138,7 @@ const appRoutes: Routes = [
     CreateChaseDialogComponent
   ],
   providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
-  { provide: MatDialogRef, useValue: {} }],
+  { provide: MatDialogRef, useValue: {} }, { provide: OKTA_CONFIG, useValue: config }],
 
   bootstrap: [AppComponent]
 })
