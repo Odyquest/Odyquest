@@ -1,10 +1,10 @@
-import { Chase } from '../model/chase';
-import { Description } from '../model/description';
-import { Narrative } from '../model/narrative';
-import { Quest } from '../model/quest';
-import { RequirementCombination } from '../model/requirementCombination';
-import { Solution } from '../model/solution';
-import { XButton } from '../model/xButton';
+import { Chase } from '../chase';
+import { Description } from '../description';
+import { Narrative } from '../narrative';
+import { Quest } from '../quest';
+import { RequirementCombination } from '../requirementCombination';
+import { Solution } from '../solution';
+import { XButton } from '../xButton';
 
 export function getExample(): Chase {
   const chase = new Chase();
@@ -39,5 +39,5 @@ export function getExample(): Chase {
   right.destination = 2;
   chase.gameElements.set(1, quest);
 
-  return chase
+  return chase;
 }
