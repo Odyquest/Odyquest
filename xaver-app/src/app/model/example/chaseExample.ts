@@ -40,6 +40,16 @@ export function getExample(): Chase {
   right.description = new Description();
   right.description.text = 'You are right, according to Deep Thought it is 42!';
   right.destination = 2;
+  const wrong = new Solution();
+  wrong.requiredItems = [true, false];
+  // logicType = whatever
+  wrong.description = new Description();
+  wrong.description.text = 'You loose!';
+  wrong.destination = 2;
+  combination.combinationMap = [right, wrong];
+  quest.requirementCombination = combination;
+
+
   chase.gameElements[1] = quest;
 
   return chase;
