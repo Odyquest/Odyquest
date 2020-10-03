@@ -29,25 +29,9 @@ export class ChaseComponent implements OnInit {
   ngOnInit(): void {
 
     // this.chase.quests.forEach(quest =>
-
-
     //   // console.log('quest: ', this.questService.getQuestById(Object.keys(quest)[0]))
-
     // );
     // console.log('quest: ', this.questService.getQuestById("00000000-0000-0000-0000-000000000004").subscribe(quest => (console.log('lol?', quest))))
-
-  }
-
-  getNextQuest(quest): void {
-    Object.keys(quest)
-    // this.questService.getQuestById()
-
-    //this.chase = new Chase();
-    //this.chase.title = 'demo chase';
-    //this.displayElement = this.chase.get_next('null');
-    // const element = new Description();
-    // element.title = 'example';
-    // this.displayElement = element;
 
   }
 
@@ -55,13 +39,15 @@ export class ChaseComponent implements OnInit {
     // load current chase/description
   }
 
-  onSelection(button: string): void {
-    this.displayElement = this.game.get_next_element(button);
+  selectDestination(destination: number): void {
+    this.displayElement = this.game.chase.getElement(destination);
+    console.log('Select next element "' + this.displayElement.title + '" (' + destination + ')');
   }
 
-  ngOnNext(): void {
-    // which element is next?
-    this.displayElement = this.game.get_next_element('null');
+  selectSolution(solution: number): void {
+    const currentQuest = this.displayElement as Quest;
+    this.displayElement = currentQuest.getElement(solution);
+    console.log('Select solution "' + this.displayElement.title + '" (' + solution + ')');
   }
 
   isNarrative(element: GameElement): boolean {

@@ -16,4 +16,8 @@ export class Chase {
 	initialGameElement: number; // GameElementID
 	tags?: Array<string>;
 
+  getElement(destination: number): GameElement {
+    return this.gameElements[destination];
+  }
+
 }
