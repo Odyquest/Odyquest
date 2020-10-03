@@ -18,9 +18,9 @@ export class NarrativeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  select(button: string): void {
-    // TODO set output selection
-    this.selection.emit(0);
+  select(button: number): void {
+    // console.log('narrative: ' + button + ' selected');
+    this.selection.emit(button);
   }
 
 }

@@ -6,6 +6,8 @@
     <p>{{narrative.description.text}}</p>
   </div>
   <div>
-    <button mat-flat-button color="primary"
-      (click)="select('next')">go on</button>
+    <button  *ngFor="let button of narrative.buttons"
+        mat-flat-button
+        color="primary"
+        (click)="select(button.destination)">{{button.name}}</button>
   </div>
