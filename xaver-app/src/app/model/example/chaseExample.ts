@@ -1,5 +1,6 @@
 import { Chase } from '../chase';
 import { Description } from '../description';
+import { GameElement } from '../gameElement';
 import { Narrative } from '../narrative';
 import { Quest } from '../quest';
 import { RequirementCombination } from '../requirementCombination';
@@ -10,6 +11,7 @@ export function getExample(): Chase {
   const chase = new Chase();
   chase.title = 'This is a chase to the galaxy';
   chase.description = 'Description of the galaxy chase!';
+  chase.gameElements = new Map<number, GameElement>();
 
   const narrative = new Narrative();
   narrative.title = 'Hitchhiking to the galaxy';
@@ -18,8 +20,9 @@ export function getExample(): Chase {
   const forward = new XButton();
   forward.name = 'Enter the Heart of Gold';
   forward.destination = 1;
+  narrative.buttons = new Array<XButton>();
   narrative.buttons.push(forward);
-  chase.gameElements.set(0, narrative);
+  chase.gameElements[0] = narrative;
   chase.initialGameElement = 0;
 
   const quest = new Quest();
@@ -37,7 +40,7 @@ export function getExample(): Chase {
   right.description = new Description();
   right.description.text = 'You are right, according to Deep Thought it is 42!';
   right.destination = 2;
-  chase.gameElements.set(1, quest);
+  chase.gameElements[1] = quest;
 
   return chase;
 }

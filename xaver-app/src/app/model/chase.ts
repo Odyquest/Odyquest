@@ -1,5 +1,6 @@
 import { Preview } from './preview';
-import { Quest } from "./quest";
+import { Quest } from './quest';
+import { GameElement } from './gameElement';
 export class Chase {
 
 	id?: number;
@@ -7,7 +8,7 @@ export class Chase {
 	title: string;
 	description: string;
 	preview: Preview;
-	author: Author;
+  author: string; //Author;
 	lastEdited: Date;
 	creationDate: Date;
 	comment?: string;
