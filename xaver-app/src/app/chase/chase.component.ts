@@ -3,7 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { QuestService } from '../services/quest.service';
 
-import { Chase, ChaseElement, Description, Quest, Solution } from '../chase';
+import { GameEngine } from '../control/gameEngine';
+import { GameElement } from '../model/gameElement';
+import { Description } from '../model/description';
+import { Narrative } from '../model/narrative';
+import { Quest } from '../model/quest';
+import { Solution } from '../model/solution';
 
 @Component({
   selector: 'app-chase',
@@ -11,12 +16,14 @@ import { Chase, ChaseElement, Description, Quest, Solution } from '../chase';
   styleUrls: ['./chase.component.scss']
 })
 export class ChaseComponent implements OnInit {
-  chase: Chase;
-  displayElement: ChaseElement;
+  game: GameEngine;
+  displayElement: GameElement;
 
   constructor(private activatedRoute: ActivatedRoute, public questService: QuestService) {
-    console.log('data?', this.activatedRoute.snapshot.data.chase);
-    this.chase = this.activatedRoute.snapshot.data.chase;
+    // FIXME console.log('data?', this.activatedRoute.snapshot.data.chase);
+    // FIXME this.chase = this.activatedRoute.snapshot.data.chase;
+    this.game = new GameEngine();
+    this.displayElement = this.game.get_next_element('null');
   }
 
   ngOnInit(): void {
@@ -31,13 +38,13 @@ export class ChaseComponent implements OnInit {
 
   }
 
-  getNextQuest(quest) {
+  getNextQuest(quest): void {
     Object.keys(quest)
     // this.questService.getQuestById()
 
-    this.chase = new Chase();
-    this.chase.title = 'demo chase';
-    this.displayElement = this.chase.get_next('null');
+    //this.chase = new Chase();
+    //this.chase.title = 'demo chase';
+    //this.displayElement = this.chase.get_next('null');
     // const element = new Description();
     // element.title = 'example';
     // this.displayElement = element;
@@ -49,23 +56,23 @@ export class ChaseComponent implements OnInit {
   }
 
   onSelection(button: string): void {
-    this.displayElement = this.chase.get_next(button);
+    this.displayElement = this.game.get_next_element(button);
   }
 
   ngOnNext(): void {
     // which element is next?
-    this.displayElement = this.chase.get_next('null');
+    this.displayElement = this.game.get_next_element('null');
   }
 
-  isDescription(element: ChaseElement): boolean {
-    return element instanceof Description;
+  isNarrative(element: GameElement): boolean {
+    return element instanceof Narrative;
   }
 
-  isQuest(element: ChaseElement): boolean {
+  isQuest(element: GameElement): boolean {
     return element instanceof Quest;
   }
 
-  isSolution(element: ChaseElement): boolean {
+  isSolution(element: GameElement): boolean {
     return element instanceof Solution;
   }
 

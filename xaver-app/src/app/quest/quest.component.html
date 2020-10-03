@@ -1,11 +1,11 @@
   <h3>Quest: {{quest.title}}</h3>
   <div>
-    <img src="{{quest.image}}"/>
+    <p>{{quest.description.text}}</p>
   </div>
   <div>
-    <p>{{quest.text}}</p>
+    <img src="{{quest.description.image}}"/>
   </div>
   <div>
     <button mat-flat-button color="primary"
-      (click)="select('next')">go on</button>
+      (click)="select('next')">submit solution</button>
   </div>

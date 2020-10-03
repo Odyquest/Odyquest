@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Description } from '../chase';
+import { Narrative } from '../model/narrative';
 
 @Component({
-  selector: 'app-description',
-  templateUrl: './description.component.html',
-  styleUrls: ['./description.component.scss']
+  selector: 'app-narrative',
+  templateUrl: './narrative.component.html',
+  styleUrls: ['./narrative.component.scss']
 })
-export class DescriptionComponent implements OnInit {
-  @Input() description: Description;
+export class NarrativeComponent implements OnInit {
+  @Input() narrative: Narrative;
   @Output() selection: EventEmitter<number> = new EventEmitter();
 
 

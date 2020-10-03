@@ -1,9 +1,9 @@
 <!-- <h1>{{this.chase.title}}</h1> -->
 <div>
   <!--body-->
-  <app-description *ngIf="isDescription(this.displayElement)" [description]="this.displayElement"
+  <app-narrative *ngIf="isNarrative(this.displayElement)" [narrative]="this.displayElement"
     (selection)="onSelection($event)">
-  </app-description>
+  </app-narrative>
   <app-quest *ngIf="isQuest(this.displayElement)" [quest]="this.displayElement" (selection)="onSelection($event)">
   </app-quest>
   <app-solution *ngIf="isSolution(this.displayElement)" [solution]="this.displayElement"

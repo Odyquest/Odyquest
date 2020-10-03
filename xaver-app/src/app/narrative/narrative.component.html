@@ -1,0 +1,11 @@
+  <h3>Narrative: {{narrative.title}}</h3>
+  <div class="narrative_image">
+    <img src="{{narrative.description.image}}"/>
+  </div>
+  <div class="narrative_text">
+    <p>{{narrative.description.text}}</p>
+  </div>
+  <div>
+    <button mat-flat-button color="primary"
+      (click)="select('next')">go on</button>
+  </div>

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Quest } from '../chase';
+import { Quest } from '../model/quest';
+import { Description } from '../model/description';
 
 @Component({
   selector: 'app-quest',
@@ -15,9 +16,6 @@ export class QuestComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.quest = new Quest();
-    this.quest.title = 'Quest title';
-    this.quest.text = 'Quest text';
   }
 
   select(button: string): void {
