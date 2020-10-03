@@ -17,9 +17,8 @@ export class SolutionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  select(button: string): void {
-    // TODO set output selection
-    this.selection.emit(0);
+  select(button: number): void {
+    this.selection.emit(button);
   }
 
 }
