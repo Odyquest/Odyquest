@@ -11,8 +11,8 @@ export class Chase {
 	lastEdited: Date;
 	creationDate: Date;
 	comment?: string;
-	quests: Map<number, Quest>;
-	initialQuest: number; // QuestID
+	gameElements: Map<number, GameElement>;
+	initialGameElement: number; // GameElementID
 	tags?: Array<string>;
 
 }

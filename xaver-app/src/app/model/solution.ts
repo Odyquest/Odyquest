@@ -1,4 +1,4 @@
-import { Description } from './../chase';
+import { Description } from './chase';
 export class Solution {
 
 	requiredItems: Array<boolean>;
