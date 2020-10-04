@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { Quest, QuestType } from '../model/quest';
 import { Description } from '../model/description';
+import { QuestStatus } from '../control/gameEngine';
 
 @Component({
   selector: 'app-quest',
@@ -11,6 +12,7 @@ import { Description } from '../model/description';
 })
 export class QuestComponent implements OnInit {
   @Input() quest: Quest;
+  @Input() questStatus: QuestStatus;
   @Output() selection: EventEmitter<number> = new EventEmitter();
 
   constructor() { }

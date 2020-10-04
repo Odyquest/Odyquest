@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { QuestService } from '../services/quest.service';
 
-import { GameEngine } from '../control/gameEngine';
+import { GameEngine, QuestStatus } from '../control/gameEngine';
 import { GameElement } from '../model/gameElement';
 import { Description } from '../model/description';
 import { Narrative } from '../model/narrative';
@@ -42,6 +42,11 @@ export class ChaseComponent implements OnInit {
   selectDestination(destination: number): void {
     this.displayElement = this.game.chase.getElement(destination);
     console.log('Select next element "' + this.displayElement.title + '" (' + destination + ')');
+
+    if (this.displayElement instanceof Quest) {
+      const quest = this.displayElement as Quest;
+      this.game.startQuest(quest);
+    }
   }
 
   selectSolution(solution: number): void {

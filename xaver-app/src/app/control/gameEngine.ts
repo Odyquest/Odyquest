@@ -1,8 +1,22 @@
 import { Chase } from '../model/chase';
 import { GameElement } from '../model/gameElement';
+import { Quest } from '../model/quest';
 import { getExample } from '../model/example/chaseExample';
 
+export class QuestStatus {
+  remainingTries: number;
+  remainingTime: Date;
+
+  constructor(quest: Quest) {
+    this.remainingTries = quest.maxTries;
+    this.remainingTime = quest.maxTime;
+  }
+}
+
 export class GameEngine {
+  currentQuest: Quest;
+  currentQuestStatus: QuestStatus;
+
   title: string;
   progress: string;
   quests: Array<string>;
@@ -13,6 +27,15 @@ export class GameEngine {
     console.log('create example data');
     this.chase = getExample();
     console.log(this.chase);
+  }
+
+  startQuest(quest: Quest): void {
+    this.currentQuestStatus = new QuestStatus(quest);
+    this.currentQuest = quest;
+  }
+
+  getQuestStatus(): QuestStatus {
+    return this.currentQuestStatus;
   }
 
   get_next_element(button: string): GameElement {
