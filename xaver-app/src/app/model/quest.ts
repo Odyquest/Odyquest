@@ -10,7 +10,7 @@ export enum QuestType {
 export class Quest extends GameElement {
 
 	questType: QuestType; // enum
-	maxTrys: number;
+	maxTries: number;
 	maxTime: Date; //mm:ss
 	displayImageFirst: boolean;
 	requirementCombination: RequirementCombination;
