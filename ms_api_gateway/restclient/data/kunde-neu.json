@@ -1,0 +1,26 @@
+{
+    "nachname": "Test",
+    "email": "Theo@Test.de",
+    "kategorie" : 1,
+    "newsletter": true,
+    "geburtsdatum": "2017-01-31",
+    "umsatz": {
+        "betrag": 0,
+        "waehrung": "EUR"
+    },
+    "homepage": "https://www.test.de",
+    "geschlecht": "W",
+    "familienstand": "L",
+    "interessen": [
+        "R",
+        "L"
+    ],
+    "adresse": {
+        "plz": "12345",
+        "ort": "Testort"
+    },
+    "user": {
+        "username": "test",
+        "password": "p"
+    }
+}

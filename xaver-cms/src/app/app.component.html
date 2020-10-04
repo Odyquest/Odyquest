@@ -1,1 +1,32 @@
-<router-outlet></router-outlet>
+<ng-container *ngIf="isAuthenticated">
+  <mat-toolbar id="mainToolbar" color="primary">
+
+
+    <mat-icon id="navigateToHomeButton" (click)="navigateTo('home')">home</mat-icon>
+
+
+    <div>
+
+      <button id="userMenuButton" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User Menu">
+        <span id="userMenuButtonContent">
+          {{userName}}
+          <mat-icon>account_box</mat-icon>
+        </span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>input</mat-icon>
+          <span (click)="logout()">Ausloggen</span>
+        </button>
+      </mat-menu>
+    </div>
+
+
+  </mat-toolbar>
+</ng-container>
+
+
+<div id="content">
+  <router-outlet></router-outlet>
+
+</div>

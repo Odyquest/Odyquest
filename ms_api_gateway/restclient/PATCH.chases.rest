@@ -1,0 +1,45 @@
+### Einen Kunden aktualisieren
+PATCH https://{{host}}/00000000-0000-0000-0000-000000000001
+If-Match: "0"
+Content-Type: application/json
+Authorization: {{basic-auth}}
+
+[
+    { "op": "replace", "path": "/nachname", "value": "Neuername" },
+    { "op": "replace", "path": "/email", "value": "new.email@test.de" },
+    { "op": "add", "path": "/interessen", "value": "S" },
+    { "op": "remove", "path": "/interessen", "value": "L" }
+]
+
+### Einen Kunden mit fehlerhaften Daten aktualisieren
+PATCH https://{{host}}/00000000-0000-0000-0000-000000000001
+If-Match: "0"
+Content-Type: application/json
+Authorization: {{basic-auth}}
+
+[
+    { "op": "replace", "path": "/nachname", "value": "?!" },
+    { "op": "replace", "path": "/email", "value": "email" },
+    { "op": "add", "path": "/interessen", "value": "S" },
+    { "op": "remove", "path": "/interessen", "value": "L" }
+]
+
+### Einen Kunden mit fehlerhaften Interessen aktualisieren
+PATCH https://{{host}}/00000000-0000-0000-0000-000000000001
+If-Match: "0"
+Content-Type: application/json
+Authorization: {{basic-auth}}
+
+[
+    { "op": "replace", "path": "/nachname", "value": "Neuername" },
+    { "op": "replace", "path": "/email", "value": "new.email@test.de" },
+    { "op": "add", "path": "/interessen", "value": "R" },
+    { "op": "remove", "path": "/interessen", "value": "L" }
+]
+
+### Einen Kunden ohne Authentifizierung aktualisieren
+PATCH https://{{host}}/00000000-0000-0000-0000-000000000001
+If-Match: "0"
+Content-Type: application/json
+
+###

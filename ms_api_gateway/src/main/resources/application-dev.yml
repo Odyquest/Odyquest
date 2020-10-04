@@ -1,0 +1,18 @@
+spring:
+  jackson.serialization.indent-output: true
+  # -Dreactor.trace.operatorStacktrace=true
+  reactor.debug-agent.enabled: true
+
+management.endpoint:
+  env.enabled: true
+  health.show-details: ALWAYS
+  mappings.enabled: true
+
+logging.level:
+  com.acme: TRACE
+  org.springframework:
+    #cloud.gateway.route.RouteDefinitionRouteLocator: DEBUG
+    #cloud.gateway.handler.RoutePredicateHandlerMapping: DEBUG
+    #cloud.gateway.handler.predicate.RoutePredicateFactory: DEBUG
+    http.codec.json.Jackson2JsonEncoder: DEBUG
+    web.server.adapter.HttpWebHandlerAdapter: DEBUG

@@ -1,0 +1,67 @@
+### Suche alle Kunden
+https://{{host}}
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche alle Kunden mit falschem Passwort
+https://{{host}}
+Accept: application/hal+json
+Authorization: {{basic-auth-falsch}}
+
+### Suche mit vorhandener Kunde-ID
+https://{{host}}/00000000-0000-0000-0000-000000000001
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche mit vorhandener Kunde-ID und If-None-Match
+https://{{host}}/00000000-0000-0000-0000-000000000001
+If-None-Match: "0"
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche mit nicht-vorhandener Kunde-ID
+https://{{host}}/f9999999-9999-9999-9999-999999999999
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche mit ungueltiger Kunde-ID
+https://{{host}}/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche mit vorhandenem Nachnamen
+https://{{host}}?nachname=Delta
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche mit nicht-vorhandenem Nachnamen
+https://{{host}}?nachname=Nichtvorhanden
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche mit vorhandener Email
+https://{{host}}?email=alpha%40acme.edu
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche mit nicht-vorhandener Email
+https://{{host}}?email=nicht%40vorhanden.com
+Accept: application/hal+json
+Authorization: {{basic-auth}}
+
+### Suche Nachnamen mit Praefix
+https://{{host}}/nachname/a
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche Emailadressen mit Praefix
+https://{{host}}/email/al
+Authorization: {{basic-auth}}
+ALPN: h2
+
+### Suche Version zu Kunde-ID
+https://{{host}}/version/00000000-0000-0000-0000-000000000001
+Authorization: {{basic-auth}}
+ALPN: h2
+
+###

@@ -1,14 +1,63 @@
-<button (click)="getQuests()">Get Quests</button>
-<div class="chase_selector">
-    <h1>Chases</h1>
-    <div class="selector_content">
-        <span>Die Goldene Brosche</span>
-    </div>
-    <div class="selector_content">
-        <span>Xaver und die Gang</span>
-    </div>
-    <div class="selector_content">
-        <span>Nachts im MuseumX</span>
-    </div>
-    <button type="button" (click)="openCreateChaseDialog()" class="add_button">Add Chase</button>
+<div class=" chaseList">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Rätselhafte Sphinx</mat-card-title>
+      <mat-card-subtitle>Julia L.</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="./../../../assets/example_thumbnails/xaver_sphinx.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. At risus viverra adipiscing at in.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Zeitreise mit Xaver</mat-card-title>
+      <mat-card-subtitle>Silke H.</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="./../../../assets/example_thumbnails/xaver_zeitreise.png" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. At risus viverra adipiscing at in.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Ausmisten im Museum</mat-card-title>
+      <mat-card-subtitle>Christiane L.</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="./../../../assets/example_thumbnails/xaver_museum.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. At risus viverra adipiscing at in.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <button color="primary" mat-fab (click)="openCreateChaseDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+
 </div>

@@ -5,7 +5,7 @@ Authorization: {{basic-auth-admin}}
 ALPN: h2
 
 ### Search with ID
-https://{{host}}/f8f9279c-6ad0-45d7-b4da-dc7615b4f7be
+https://{{host}}/00000000-0000-0000-0000-000000000002
 Accept: application/hal+json
 Authorization: {{basic-auth-admin}}
 ALPN: h2

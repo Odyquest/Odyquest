@@ -35,19 +35,10 @@ interface SecurityConfig {
     @Bean
     fun securityWebFilterChain(http: ServerHttpSecurity, context: ApplicationContext) : SecurityWebFilterChain = http
             .authorizeExchange { exchanges ->
-                val questPath = "$apiPath/quest"
-                val chasePath = "$apiPath/chase"
-                val chasePathId = "$chasePath/*"
-                val questPathId = "$questPath/*"
-                val userPath = "$apiPath/user"
-
+                val userPath = "$apiPath"
 
                 exchanges
-                        .pathMatchers(GET).permitAll()
-
-                        .pathMatchers(DELETE).permitAll()
-                        .pathMatchers(OPTIONS, questPath).permitAll()
-                        .pathMatchers(OPTIONS).permitAll()
+                        .pathMatchers(GET, userPath).permitAll()
             }
             .httpBasic{}
             .formLogin{ form -> form.disable() }

@@ -1,54 +1,52 @@
 @import "src/styles";
 
 .main_body {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    color: $text_color_unselected;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background: #eee;
 }
 
 .quest_selector {
-    display: flex;
-    flex-direction: column;
-    background: $background_color_content_darker;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    //border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  //border: 3px solid black;
 }
 
 .quest_connections {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: $background_color_selectable;
-    width: 100%;
-    height: 50px;
-    text-align: center;
-    text-justify: middle;
-    font-size: 20px;
-    border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  text-justify: middle;
+  font-size: 20px;
+  border: 1px solid black;
 }
 
 .quest_connections:hover {
-    background: white;
+  background: white;
 }
 
 .quest_selector_container {
-    display: flex;
-    flex-direction: column;
-    width: 15%;
-    height: 100%;
-    align-items: center;
-    border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  height: 100%;
+  align-items: center;
+  border-right: 2px solid rgba(0, 0, 0, 0.6);
 }
 
 label {
-    margin-top: 10px;
-    font-size: 20px;
-    margin-bottom: 5px;
+  margin-top: 10px;
+  font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .selector_content {
@@ -76,13 +74,20 @@ label {
 }
 
 h1 {
-    font-weight: bold;
-    color: $text_color;
-    margin-bottom: 0px;
+  font-weight: bold;
+  margin-bottom: 0px;
 }
 
 #quest_connections_selector {
-    margin-top: 15px;
+  margin-top: 15px;
+}
+
+
+// ================================================================================= GFLOW
+
+mat-selection-list {
+  background: white;
+  width: 100%;
 }
 
 #add_quest_button {
@@ -106,4 +111,12 @@ h1 {
     color: $background_color_content_darker;
     //border: 2px solid $background_color_content_darker;
     background: $text_color;
+}
+mat-list-option {
+  background: white;
+  width: 100%;
+}
+
+#addQuestButton {
+  margin-top: 15px;
 }

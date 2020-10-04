@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "x.museum"
-version = "0.0.1"
+version = "0.0.3"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -33,6 +33,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("io.github.microutils:kotlin-logging:1.8.3")
+	implementation("org.springframework.cloud:spring-cloud-starter-consul-discovery")
+
 
 //	implementation("org.springframework.cloud:spring-cloud-starter-config")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

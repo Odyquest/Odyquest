@@ -1,80 +1,120 @@
 .main_body {
-    display: flex;
-    flex-direction: row;
-    background: #5ec3ad;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  background: #5ec3ad;
+  width: 100%;
+  height: 100%;
 }
-
 
 .quest_selector {
-    display: flex;
-    flex-direction: column;
-    background: #5e9be3;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    //padding: 5px;
-    border: 1px solid black;
-
+  display: flex;
+  flex-direction: column;
+  background: #5e9be3;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  border: 1px solid black;
 }
 
-
-
 .quest_connections {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #3b6faa;
-    width: 100%;
-    height: 50px;
-    text-align: center;
-    text-justify: middle;
-    font-size: 20px;
-    border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #3b6faa;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  text-justify: middle;
+  font-size: 20px;
+  border: 1px solid black;
 }
 
 .quest_connections:hover {
-    background: white;
+  background: white;
 }
 
-
-
 .chase_info_quest_selector_container {
-    display: flex;
-    flex-direction: column;
-    background: #e35e5e;
-    width: 15%;
-    height: 100%;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  background: #e35e5e;
+  width: 15%;
+  height: 100%;
+  align-items: center;
 }
 
 .chase_info {
-    display: flex;
-    flex-direction: column;
-    background: #5ec4e3;
-    width: 100%;
-    height: 40%;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  background: #5ec4e3;
+  width: 100%;
+  height: 40%;
+  align-items: center;
 }
 
 label {
-    margin-top: 10px;
-    font-size: 20px;
-    margin-bottom: 5px;
+  margin-top: 10px;
+  font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .add_button {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .quest_editor {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: #204955;
-    width: 70%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: #204955;
+  width: 70%;
+  height: 100%;
+}
+
+.content {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.mat-button-wrapper {
+  color: black !important;
+}
+
+#mainToolbar {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+}
+
+#content {
+  position: absolute;
+  top: 32px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}
+
+#userMenuButton {
+  width: fit-content;
+}
+
+#userMenuButtonContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-icon {
+    margin-left: 5px;
+  }
+}
+
+#navigateToHomeButton {
+  color: white;
+  cursor: pointer;
 }

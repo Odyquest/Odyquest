@@ -7,7 +7,7 @@ ALPN: h2
 ### Search with ID
 https://{{host}}/randomuser
 Accept: application/hal+json
-Authorization: {{basic-auth-admin}}
+Authorization: {{basic-auth}}
 ALPN: h2
 
 ###
