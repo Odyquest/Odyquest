@@ -2,7 +2,21 @@
 <div class="game_element_columns">
   <div class="game_element_text">
     <p>{{quest.description.text}}</p>
-    <p>please submit your solution<p>
+    <ul *ngIf="isText()">
+      <li *ngFor="let item of quest.requirementCombination.solutionItems">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Solution">
+        </mat-form-field>
+      </li>
+    </ul>
+    <ul *ngIf="isMultipleChoice()">
+      <li *ngFor="let item of quest.requirementCombination.solutionItems">
+        <mat-checkbox >
+          <!--[(ngModel)]="subtask.completed" (ngModelChange)="updateAllComplete()"-->
+          {{item}}
+        </mat-checkbox>
+      </li>
+    </ul>
   </div>
   <div class="game_element_image">
     <img src="{{quest.description.image}}"/>

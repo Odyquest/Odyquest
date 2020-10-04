@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Quest } from '../model/quest';
+import { Quest, QuestType } from '../model/quest';
 import { Description } from '../model/description';
 
 @Component({
@@ -21,6 +21,14 @@ export class QuestComponent implements OnInit {
   select(button: string): void {
     // TODO set output selection
     this.selection.emit(0);
+  }
+
+  isText(): boolean {
+    return this.quest.questType === QuestType.Text;
+  }
+
+  isMultipleChoice(): boolean {
+    return this.quest.questType === QuestType.MultipleChoice;
   }
 
 }
