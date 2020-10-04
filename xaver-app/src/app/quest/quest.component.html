@@ -1,12 +1,16 @@
-  <h3>Quest: {{quest.title}}</h3>
-  <div>
+<h3 class="game_element_title">Quest: {{quest.title}}</h3>
+<div class="game_element_columns">
+  <div class="game_element_text">
     <p>{{quest.description.text}}</p>
     <p>please submit your solution<p>
   </div>
-  <div>
+  <div class="game_element_image">
     <img src="{{quest.description.image}}"/>
   </div>
-  <div>
-    <button mat-flat-button color="primary"
-      (click)="select('next')">submit solution</button>
-  </div>
+</div>
+<div class="game_element_buttons">
+  <button 
+     mat-flat-button
+     color="primary"
+     (click)="select('next')">submit solution</button>
+</div>
