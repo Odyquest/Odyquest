@@ -2,7 +2,7 @@ import { Chase } from '../chase';
 import { Description } from '../description';
 import { GameElement } from '../gameElement';
 import { Narrative } from '../narrative';
-import { Quest } from '../quest';
+import { Quest, QuestType } from '../quest';
 import { RequirementCombination } from '../requirementCombination';
 import { Solution } from '../solution';
 import { XButton } from '../xButton';
@@ -29,7 +29,7 @@ export function getExample(): Chase {
   quest.title = 'The Ultimate Question';
   quest.description = new Description();
   quest.description.text = 'What is the answer to the Ultimate Question to Life, the Universe, and Everything?';
-  // quest.type = something like Multiple Choice
+  quest.questType = QuestType.MultipleChoice;
   // quest.maxTrys = 7;
   // quest.maxTime = something like 42 minutes
   const combination = new RequirementCombination();

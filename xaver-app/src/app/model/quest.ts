@@ -2,9 +2,14 @@ import { Description } from './description';
 import { GameElement } from './gameElement';
 import { RequirementCombination } from './requirementCombination';
 
+export enum QuestType {
+  Text = 0,
+  MultipleChoice = 1,
+}
+
 export class Quest extends GameElement {
 
-	type: string; // enum
+	questType: QuestType; // enum
 	maxTrys: number;
 	maxTime: Date; //mm:ss
 	displayImageFirst: boolean;
