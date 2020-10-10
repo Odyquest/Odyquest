@@ -1,7 +1,7 @@
-import { Chase } from '../model/chase';
-import { GameElement } from '../model/gameElement';
-import { Quest } from '../model/quest';
-import { getExample } from '../model/example/chaseExample';
+import { Chase } from '../../shared/models/chase';
+import { GameElement } from '../../shared/models/gameElement';
+import { Quest } from '../../shared/models/quest';
+import { getExample } from '../../shared/models/example/chaseExample';
 
 export class QuestStatus {
   remainingTries: number;

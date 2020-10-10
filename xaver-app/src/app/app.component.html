@@ -12,7 +12,21 @@
 
 
 <mat-toolbar color="primary">
-  <mat-icon id="home" routerLink="/">home</mat-icon> {{title}}
+  <mat-icon id="homeButton" routerLink="/">home</mat-icon>
+  {{title}}
+
+
+
+  <button mat-icon-button id="menuButton" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Einstellungen</span>
+    </button>
+
+  </mat-menu>
 </mat-toolbar>
 
 

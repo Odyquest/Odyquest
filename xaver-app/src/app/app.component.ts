@@ -1,6 +1,5 @@
-import { UiService } from './services/ui.service';
+import { UiService } from './core/services/ui.service';
 import { Component, OnInit } from '@angular/core';
-import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',

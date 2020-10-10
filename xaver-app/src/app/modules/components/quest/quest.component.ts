@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Quest, QuestType } from '../model/quest';
-import { Description } from '../model/description';
-import { QuestStatus } from '../control/gameEngine';
+import { Quest, QuestType } from '../../../shared/models/quest';
+import { Description } from '../../../shared/models/description';
+import { QuestStatus } from '../../../core/services/gameEngine';
 
 @Component({
   selector: 'app-quest',
