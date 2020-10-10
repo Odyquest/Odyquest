@@ -1,7 +1,10 @@
+import { UiService } from './../services/ui.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ChaseService } from "./../services/chase.service"
 import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home',
@@ -11,16 +14,19 @@ import { MatButtonModule } from '@angular/material/button';
 export class HomeComponent implements OnInit {
   inputUrl: boolean;
   chases;
+loading = false;
 
   subscritptions = new Array<Subscription>();
 
-  constructor(private chaseService: ChaseService) { }
+  constructor(private chaseService: ChaseService, private router: Router, private uiService: UiService) { }
 
   ngOnInit(): void {
     this.chaseService.chases.subscribe(chases => {
       this.chases = chases;
       console.log('CHASES: ', this.chases);
     })
+
+    this.uiService.toolbarTitle.next("Wähle eine Schnitzeljagd")
   }
 
   onInputUrl(): void {
@@ -30,6 +36,17 @@ export class HomeComponent implements OnInit {
 
   public getAllChases() {
     this.chaseService.getAllChases().subscribe(chases => this.chaseService.chases.next(chases))
+  }
+
+  public startChase() {
+
+    this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+        this.router.navigateByUrl('/chase');
+      }, 1500);
+  
+
   }
 
   ngOnDestroy() {
