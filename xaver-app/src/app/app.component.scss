@@ -1,0 +1,21 @@
+mat-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white !important;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+#home {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}

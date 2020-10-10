@@ -1,3 +1,4 @@
+import { UiService } from './../services/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -19,11 +20,12 @@ export class ChaseComponent implements OnInit {
   game: GameEngine;
   displayElement: GameElement;
 
-  constructor(private activatedRoute: ActivatedRoute, public questService: QuestService) {
+  constructor(private activatedRoute: ActivatedRoute, public questService: QuestService, private uiService: UiService) {
     // FIXME console.log('data?', this.activatedRoute.snapshot.data.chase);
     // FIXME this.chase = this.activatedRoute.snapshot.data.chase;
     this.game = new GameEngine();
     this.displayElement = this.game.get_next_element('null');
+    this.uiService.toolbarTitle.next("Beispiel Schnitzeljagd");
   }
 
   ngOnInit(): void {
