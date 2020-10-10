@@ -8,7 +8,7 @@ import { ChaseComponent } from './chase/chase.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { UrlInputComponent } from './url-input/url-input.component';
-import { DescriptionComponent } from './description/description.component';
+import { NarrativeComponent } from './narrative/narrative.component';
 import { SolutionComponent } from './solution/solution.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ChaseListComponent } from './chase-list/chase-list.component';
@@ -54,7 +54,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ChaseComponent,
     HomeComponent,
     UrlInputComponent,
-    DescriptionComponent,
+    NarrativeComponent,
     SolutionComponent,
     WelcomeComponent,
     ChaseListComponent,

@@ -1,18 +1,13 @@
-<!-- <h1>{{this.chase.title}}</h1> -->
-<div>
-  <!--body-->
-  <app-description *ngIf="isDescription(this.displayElement)" [description]="this.displayElement"
-    (selection)="onSelection($event)">
-  </app-description>
-  <app-quest *ngIf="isQuest(this.displayElement)" [quest]="this.displayElement" (selection)="onSelection($event)">
-  </app-quest>
-  <app-solution *ngIf="isSolution(this.displayElement)" [solution]="this.displayElement"
-    (selection)="onSelection($event)">
-  </app-solution>
-</div>
-
-
-
-<!-- <ng-container *ngFor="let quest of chase.quests">
-  <div>quest</div>
-</ng-container> -->
+<app-narrative *ngIf="isNarrative(this.displayElement)"
+  [narrative]="this.displayElement"
+  (selection)="selectDestination($event)">
+</app-narrative>
+<app-quest *ngIf="isQuest(this.displayElement)"
+  [quest]="this.displayElement"
+  [questStatus]="this.game.getQuestStatus()"
+  (selection)="selectSolution($event)">
+</app-quest>
+<app-solution *ngIf="isSolution(this.displayElement)"
+  [solution]="this.displayElement"
+  (selection)="selectDestination($event)">
+</app-solution>

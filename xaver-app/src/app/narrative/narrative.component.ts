@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Solution } from '../model/solution';
+import { Narrative } from '../model/narrative';
 
 @Component({
-  selector: 'app-solution',
-  templateUrl: './solution.component.html',
-  styleUrls: ['./solution.component.scss']
+  selector: 'app-narrative',
+  templateUrl: './narrative.component.html',
+  styleUrls: ['./narrative.component.scss']
 })
-export class SolutionComponent implements OnInit {
-  @Input() solution: Solution;
+export class NarrativeComponent implements OnInit {
+  @Input() narrative: Narrative;
   @Output() selection: EventEmitter<number> = new EventEmitter();
+
 
   constructor() { }
 
@@ -18,6 +19,7 @@ export class SolutionComponent implements OnInit {
   }
 
   select(button: number): void {
+    // console.log('narrative: ' + button + ' selected');
     this.selection.emit(button);
   }
 
