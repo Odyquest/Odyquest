@@ -11,7 +11,7 @@
     </ul>
     <ul *ngIf="isMultipleChoice()">
       <li *ngFor="let item of quest.requirementCombination.solutionItems">
-        <mat-checkbox >
+        <mat-checkbox color="primary">
           <!--[(ngModel)]="subtask.completed" (ngModelChange)="updateAllComplete()"-->
           {{item}}
         </mat-checkbox>
@@ -19,14 +19,11 @@
     </ul>
   </div>
   <div class="game_element_image">
-    <img src="{{quest.description.image}}"/>
+    <img src="{{quest.description.image}}" />
   </div>
 </div>
 <div class="game_element_buttons">
   <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span>
-  <button 
-     mat-flat-button
-     color="primary"
-     (click)="select('next')">submit solution</button>
+  <button mat-flat-button color="primary" (click)="select('next')">submit solution</button>
   <span class="quest_time">{{questStatus.remainingTime}} remaining time</span>
 </div>
