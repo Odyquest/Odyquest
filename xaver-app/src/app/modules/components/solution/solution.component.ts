@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Solution } from '../model/solution';
+import { Solution } from '../../../shared/models/solution';
 
 @Component({
   selector: 'app-solution',

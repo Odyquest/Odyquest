@@ -14,8 +14,13 @@ mat-toolbar {
   overflow: auto;
 }
 
-#home {
+#homeButton {
   position: absolute;
   left: 15px;
   top: 15px;
+}
+
+#menuButton {
+  position: absolute;
+  right: 15px;
 }

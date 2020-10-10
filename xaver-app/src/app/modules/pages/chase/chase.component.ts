@@ -1,15 +1,15 @@
-import { UiService } from './../services/ui.service';
+import { UiService } from './../../../core/services/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { QuestService } from '../services/quest.service';
+import { QuestService } from './../../../core/services/quest.service';
 
-import { GameEngine, QuestStatus } from '../control/gameEngine';
-import { GameElement } from '../model/gameElement';
-import { Description } from '../model/description';
-import { Narrative } from '../model/narrative';
-import { Quest } from '../model/quest';
-import { Solution } from '../model/solution';
+import { GameEngine, QuestStatus } from '../../../core/services/gameEngine';
+import { GameElement } from '../../../shared/models/gameElement';
+import { Description } from '../../../shared/models/description';
+import { Narrative } from '../../../shared/models/narrative';
+import { Quest } from '../../../shared/models/quest';
+import { Solution } from '../../../shared/models/solution';
 
 @Component({
   selector: 'app-chase',

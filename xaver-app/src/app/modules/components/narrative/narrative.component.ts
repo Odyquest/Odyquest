@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { Narrative } from '../model/narrative';
+import { Narrative } from '../../../shared/models/narrative';
 
 @Component({
   selector: 'app-narrative',
