@@ -4,6 +4,7 @@ import { QuestComponent } from './modules/components/quest/quest.component';
 import { QrcodeInputComponent } from './modules/components/qrcode-input/qrcode-input.component';
 import { ChaseListComponent } from './modules/components/chase-list/chase-list.component';
 import { UrlInputComponent } from './modules/components/url-input/url-input.component';
+import { SubmitSolutionComponent } from './modules/components/submit-solution/submit-solution.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -59,6 +60,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ChaseListComponent,
     QrcodeInputComponent,
     QuestComponent,
+    SubmitSolutionComponent,
+  ],
+  entryComponents: [
+    SubmitSolutionComponent,
   ],
   imports: [
     BrowserAnimationsModule,

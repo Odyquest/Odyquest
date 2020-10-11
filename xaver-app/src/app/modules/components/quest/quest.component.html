@@ -19,11 +19,14 @@
     </ul>
   </div>
   <div class="game_element_image">
-    <img src="{{quest.description.image}}" />
+      <img src="{{quest.description.image}}" />
+    <button (click)="select('next')">
+      go on
+    </button>
   </div>
 </div>
 <div class="game_element_buttons">
   <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span>
-  <button mat-flat-button color="primary" (click)="select('next')">submit solution</button>
+  <button mat-flat-button color="primary" (click)="submit()">submit solution</button>
   <span class="quest_time">{{questStatus.remainingTime}} remaining time</span>
 </div>

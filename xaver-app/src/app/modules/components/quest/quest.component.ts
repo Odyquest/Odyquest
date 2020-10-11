@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Quest, QuestType } from '../../../shared/models/quest';
 import { Description } from '../../../shared/models/description';
 import { QuestStatus } from '../../../core/services/gameEngine';
+import { SubmitSolutionComponent } from '../submit-solution/submit-solution.component';
 
 @Component({
   selector: 'app-quest',
@@ -15,7 +17,7 @@ export class QuestComponent implements OnInit {
   @Input() questStatus: QuestStatus;
   @Output() selection: EventEmitter<number> = new EventEmitter();
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +25,16 @@ export class QuestComponent implements OnInit {
   select(button: string): void {
     // TODO set output selection
     this.selection.emit(0);
+  }
+
+  submit(): void {
+    const dialogRef = this.dialog.open(SubmitSolutionComponent, {
+      height: '400px',
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Submitted: ${result}`); // Pizza!
+    });
   }
 
   isText(): boolean {
