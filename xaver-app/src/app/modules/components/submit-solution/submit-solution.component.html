@@ -1,7 +1,23 @@
 <h2 mat-dialog-title>Enter solution</h2>
-<mat-dialog-content>Add our answer here.</mat-dialog-content>
+<mat-dialog-content>
+    <ul *ngIf="isText()">
+      <li *ngFor="let item of quest.requirementCombination.solutionItems">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Solution">
+        </mat-form-field>
+      </li>
+    </ul>
+    <ul *ngIf="isMultipleChoice()">
+      <li *ngFor="let item of quest.requirementCombination.solutionItems">
+        <mat-checkbox color="primary">
+          <!--[(ngModel)]="subtask.completed" (ngModelChange)="updateAllComplete()"-->
+          {{item}}
+        </mat-checkbox>
+      </li>
+    </ul>
+</mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button mat-dialog-close>Cancel</button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button [mat-dialog-close]="true">Submit</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true">Submit</button>
 </mat-dialog-actions>

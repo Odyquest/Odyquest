@@ -31,18 +31,11 @@ export class QuestComponent implements OnInit {
     const dialogRef = this.dialog.open(SubmitSolutionComponent, {
       height: '400px',
       width: '600px',
+      data: {quest: this.quest},
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Submitted: ${result}`); // Pizza!
     });
-  }
-
-  isText(): boolean {
-    return this.quest.questType === QuestType.Text;
-  }
-
-  isMultipleChoice(): boolean {
-    return this.quest.questType === QuestType.MultipleChoice;
   }
 
 }
