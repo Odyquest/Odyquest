@@ -16,6 +16,7 @@ export class QuestComponent implements OnInit {
   @Input() quest: Quest;
   @Input() questStatus: QuestStatus;
   @Output() selection: EventEmitter<number> = new EventEmitter();
+  validSolution: number | undefined = undefined;
 
   constructor(public dialog: MatDialog) { }
 
@@ -23,8 +24,13 @@ export class QuestComponent implements OnInit {
   }
 
   select(button: string): void {
-    // TODO set output selection
-    this.selection.emit(0);
+    if (this.validSolution !== undefined) {
+      this.selection.emit(this.validSolution);
+    } else {
+      console.log('There is no valid solution!');
+      // TODO
+      this.selection.emit(0);
+    }
   }
 
   submit(): void {
@@ -35,7 +41,14 @@ export class QuestComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Submitted: ${result}`); // Pizza!
+      const solution = this.quest.requirementCombination.getSolution(result);
+      if (solution !== undefined) {
+        this.validSolution = solution;
+      } else {
+        // TODO
+      }
     });
   }
+
 
 }
