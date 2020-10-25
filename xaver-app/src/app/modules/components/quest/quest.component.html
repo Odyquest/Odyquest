@@ -5,7 +5,7 @@
   </div>
   <div class="game_element_image">
       <img src="{{quest.description.image}}" />
-    <button (click)="select('next')">
+    <button *ngIf="hasSolution()" (click)="select('next')">
       go on
     </button>
   </div>

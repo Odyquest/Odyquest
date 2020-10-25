@@ -51,4 +51,7 @@ export class QuestComponent implements OnInit {
   }
 
 
+  hasSolution(): boolean {
+    return this.validSolution !== undefined;
+  }
 }
