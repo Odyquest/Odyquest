@@ -6,6 +6,7 @@ import { Quest, QuestType } from '../../../shared/models/quest';
 import { Description } from '../../../shared/models/description';
 import { QuestStatus } from '../../../core/services/gameEngine';
 import { SubmitSolutionComponent } from '../submit-solution/submit-solution.component';
+import { HelpComponent } from '../help/help.component';
 
 @Component({
   selector: 'app-quest',
@@ -50,6 +51,16 @@ export class QuestComponent implements OnInit {
     });
   }
 
+  help(): void {
+    const dialogRef = this.dialog.open(HelpComponent, {
+      height: '400px',
+      width: '600px',
+      data: {quest: this.quest},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Submitted: ${result}`);
+    });
+  }
 
   hasSolution(): boolean {
     return this.validSolution !== undefined;

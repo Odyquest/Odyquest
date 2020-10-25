@@ -49,6 +49,12 @@ export function getExample(): Chase {
   combination.combinationMap = [right, wrong];
   quest.requirementCombination = combination;
 
+  const firstHelp = new Description();
+  firstHelp.text = 'It is 42!';
+  const secondHelp = new Description();
+  secondHelp.text = 'Not 3!';
+  quest.help = [firstHelp, secondHelp];
+
   chase.gameElements[1] = quest;
 
   return chase;

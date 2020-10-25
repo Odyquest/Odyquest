@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Enter solution</h2>
+<mat-dialog-content>
+  <p>{{help[index].text}}</p>
+  <!-- TODO image -->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button (click)="previous()">Previous</button>
+  <button mat-flat-button (click)="next()">Next</button>
+  <button mat-flat-button mat-dialog-close>Back to quest</button>
+</mat-dialog-actions>
