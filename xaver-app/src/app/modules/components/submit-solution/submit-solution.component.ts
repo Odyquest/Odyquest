@@ -12,15 +12,23 @@ import { Quest, QuestType } from '../../../shared/models/quest';
 })
 export class SubmitSolutionComponent {
   quest = new Quest();
+  textResult = '';
 
   constructor(public dialogRef: MatDialogRef<SubmitSolutionComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.quest = this.data.quest;
   }
 
-  closeDialog(): void  {
-    console.log('closeDialog() pass Pizza');
-    this.dialogRef.close('Pizza!');
+  submit(): void {
+    const result = new Array<string>();
+    if (this.isText()) {
+      result.push(this.textResult);
+    } else if (this.isMultipleChoice()) {
+      // TODO collect data
+      console.log('TODO process submitted solution');
+    }
+    // FIXME cover other cases
+    this.dialogRef.close(result);
   }
 
   isText(): boolean {

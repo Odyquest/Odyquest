@@ -12,10 +12,7 @@ export class RequirementCombination {
     for (const given of solutions) {
       const i = this.solutionItems.indexOf(given);
       if (i < this.solutionItems.length) {
-        console.log('found match ' + given + ' and ' + this.solutionItems[i]);
         solutionArray[i] = true;
-      } else {
-        console.log('not match ' + given + ' and ' + this.solutionItems[i]);
       }
     }
 

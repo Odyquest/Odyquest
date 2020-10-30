@@ -30,7 +30,6 @@ export class QuestComponent implements OnInit {
     } else {
       console.log('There is no valid solution!');
       // TODO
-      this.selection.emit(0);
     }
   }
 
@@ -41,12 +40,18 @@ export class QuestComponent implements OnInit {
       data: {quest: this.quest},
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Submitted: ${result}`); // Pizza!
+      console.log(`Submitted: ${result}`);
       const solution = this.quest.requirementCombination.getSolution(result);
       if (solution !== undefined) {
         this.validSolution = solution;
       } else {
-        // TODO
+        if (result.length > 0) {
+          this.questStatus.remainingTries--;
+          console.log('remaining tries: ' + this.questStatus.remainingTries);
+          if (this.questStatus.remainingTries === 0) {
+            // TODO
+          }
+        }
       }
     });
   }
