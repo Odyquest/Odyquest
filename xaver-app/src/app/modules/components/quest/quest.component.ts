@@ -60,7 +60,7 @@ export class QuestComponent implements OnInit {
     const dialogRef = this.dialog.open(HelpComponent, {
       height: '400px',
       width: '600px',
-      data: {quest: this.quest},
+      data: {quest: this.quest, status: this.questStatus},
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Submitted: ${result}`);

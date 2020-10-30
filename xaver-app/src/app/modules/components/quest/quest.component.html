@@ -1,10 +1,15 @@
-<h3 class="game_element_title">Quest: {{quest.title}}</h3>
+<div class="title_column">
+  <button mat-flat-button color="primary" (click)="help()">?</button>
+  <h3 class="game_element_title">Quest: {{quest.title}}</h3>
+</div>
 <div class="game_element_columns">
   <div class="game_element_text">
     <p>{{quest.description.text}}</p>
   </div>
   <div class="game_element_image">
-      <img src="{{quest.description.image}}" />
+    <a (click)="select('next')">
+      <img  *ngIf="hasSolution()" (click)="select('next')" src="{{quest.description.image}}" />
+    </a>
     <button *ngIf="hasSolution()" (click)="select('next')">
       go on
     </button>
@@ -13,6 +18,5 @@
 <div class="game_element_buttons">
   <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span>
   <button mat-flat-button color="primary" (click)="submit()">submit solution</button>
-  <button mat-flat-button color="primary" (click)="help()">help</button>
   <span class="quest_time">{{questStatus.remainingTime}} remaining time</span>
 </div>

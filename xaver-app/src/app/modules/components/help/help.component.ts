@@ -5,6 +5,7 @@ import { Inject } from '@angular/core';
 
 import { Description } from '../../../shared/models/description';
 import { Quest, QuestType } from '../../../shared/models/quest';
+import { QuestStatus } from '../../../core/services/gameEngine';
 
 @Component({
   selector: 'app-help',
@@ -13,11 +14,13 @@ import { Quest, QuestType } from '../../../shared/models/quest';
 })
 export class HelpComponent {
   help = new Array<Description>();
+  questStatus = new QuestStatus(new Quest());
   index = 0;
 
   constructor(public dialogRef: MatDialogRef<HelpComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.help = this.data.quest.help;
+    this.questStatus = this.data.status;
     if (this.help.length < 1) {
       console.log('No help available, close immediately');
       this.closeDialog();
