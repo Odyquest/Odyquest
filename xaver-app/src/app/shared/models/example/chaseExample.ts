@@ -29,7 +29,8 @@ export function getExample(): Chase {
   quest.title = 'The Ultimate Question';
   quest.description = new Description();
   quest.description.text = 'What is the answer to the Ultimate Question to Life, the Universe, and Everything?';
-  quest.questType = QuestType.MultipleChoice;
+  // quest.questType = QuestType.MultipleChoice;
+  quest.questType = QuestType.Text;
   quest.maxTries = 7;
   // quest.maxTime = something like 42 minutes
   const combination = new RequirementCombination();
