@@ -60,6 +60,9 @@ export function getExample(): Chase {
   const secondHelp = new Description();
   secondHelp.text = 'Not 3!';
   secondHelp.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
+  const thirdHelp = new Description();
+  thirdHelp.text = 'Type letters instead of numbers';
+  thirdHelp.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
   quest.help = [firstHelp, secondHelp];
 
   chase.gameElements[1] = quest;
