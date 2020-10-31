@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Help</h2>
+<mat-dialog-content>
+<div class="game_element_columns">
+  <div class="game_element_text">
+    <p>{{help[index].text}}</p>
+  </div>
+  <div class="game_element_image">
+    <img src="{{help[index].image}}" />
+  </div>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span>
+  <button mat-flat-button (click)="previous()">Previous</button>
+  <button mat-flat-button (click)="next()">Next</button>
+  <button mat-flat-button mat-dialog-close>Close</button>
+  <span class="quest_time">{{questStatus.remainingTime}} remaining time</span>
+</mat-dialog-actions>

@@ -1,29 +1,19 @@
-<h3 class="game_element_title">Quest: {{quest.title}}</h3>
+<div class="title_column">
+  <button mat-flat-button color="primary" (click)="help()">?</button>
+  <h3 class="game_element_title">Quest: {{quest.title}}</h3>
+</div>
 <div class="game_element_columns">
   <div class="game_element_text">
     <p>{{quest.description.text}}</p>
-    <ul *ngIf="isText()">
-      <li *ngFor="let item of quest.requirementCombination.solutionItems">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Solution">
-        </mat-form-field>
-      </li>
-    </ul>
-    <ul *ngIf="isMultipleChoice()">
-      <li *ngFor="let item of quest.requirementCombination.solutionItems">
-        <mat-checkbox color="primary">
-          <!--[(ngModel)]="subtask.completed" (ngModelChange)="updateAllComplete()"-->
-          {{item}}
-        </mat-checkbox>
-      </li>
-    </ul>
   </div>
   <div class="game_element_image">
-    <img src="{{quest.description.image}}" />
+    <a (click)="select('next')">
+      <img src="{{quest.description.image}}" />
+    </a>
   </div>
 </div>
 <div class="game_element_buttons">
   <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span>
-  <button mat-flat-button color="primary" (click)="select('next')">submit solution</button>
+  <button mat-flat-button color="primary" (click)="submit()">submit solution</button>
   <span class="quest_time">{{questStatus.remainingTime}} remaining time</span>
 </div>
