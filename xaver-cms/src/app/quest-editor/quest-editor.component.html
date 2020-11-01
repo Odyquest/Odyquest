@@ -1,0 +1,72 @@
+<div class="quest-editor-top-container">
+    <div class="quest-image-container">hier sollte ein bild rein</div>
+    <div class="quest-editor-top-right-container">
+        <div class="quest-editor-top-right-container-header">
+            <div class="quest-name-container">
+                <label for="fname">Quest Name:</label>
+                <input type="text" id="quest-name" name="quest_name"><br><br>
+            </div>
+            <div class="quest-type-container">
+                <label for="quest-type">Quest Type:</label>
+                <select name="quest-type" id="quest-type-selector" (change)="onQuestTypeChange($event.target.value)">
+                    <option value="object-search">Object Search</option>
+                    <option value="input-term">Input Term</option>
+                    <option value="multiple-choice">Multiple Choice</option>
+                </select>
+            </div>
+        </div>
+        <div [hidden]="hide_object_search" class="switchable-quest-content">
+            <div class="content-for-object-search">
+                <div class="object-select-container">
+                    <div class="object-select-container-single">
+                        <label for="quest-type">Search Object 1:</label>
+                        <select name="search-object-1"
+                            (change)="onQuestTypeChange($event.target.value)">
+                            <option value="object-1">Some Object 1</option>
+                            <option value="object-2">Some Object 2</option>
+                            <option value="object-3">Some Object 3</option>
+                        </select>
+                    </div>
+                    <div class="object-select-container-single">
+                        <label for="quest-type">Search Object 2:</label>
+                        <select name="search-object-2"
+                            (change)="onQuestTypeChange($event.target.value)">
+                            <option value="object-1">Some Object 1</option>
+                            <option value="object-2">Some Object 2</option>
+                            <option value="object-3">Some Object 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="object-misc-container">
+                    <div class="object-select-container-single">
+                        <label for="solution-type">Solution Type</label>
+                        <select name="solution-type"
+                            (change)="onQuestTypeChange($event.target.value)">
+                            <option value="object-1">Find All Objects</option>
+                            <option value="object-2">Find Any Object</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div [hidden]="hide_input_term" class="switchable-quest-content">
+            <div class="content-for-input-term">
+                input term
+            </div>
+        </div>
+        <div [hidden]="hide_multiple_choice" class="switchable-quest-content">
+            <div class="content-for-multiple-choice">
+                multiple choice
+            </div>
+        </div>
+    </div>
+</div>
+<label for="fname">Quest Description:</label>
+<textarea type="text" id="bug_brief" placeholder="Here goes all relevant information to solve the quest ..."
+    name="fname" class="input_field_big"></textarea>
+<label for="fname">Solution 1 Description:</label>
+<textarea type="text" id="bug_brief" placeholder="This will be shown to the users as they solve with solution 1 ..."
+    name="fname" class="input_field_big"></textarea>
+<label for="fname">Solution 2 Description:</label>
+<textarea type="text" id="bug_brief" placeholder="This will be shown to the users as they solve with solution 2 ..."
+    name="fname" class="input_field_big"></textarea>

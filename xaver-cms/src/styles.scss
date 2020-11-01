@@ -1,1 +1,56 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@import '~material-design-icons/iconfont/material-icons.css';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
 /* You can add global styles to this file, and also import other style files */
+
+//global color defs
+$form_color: rgb(15, 29, 32);
+$text_color: rgb(114, 176, 218);
+$text_color_unselected: rgb(219, 219, 219);
+$background_color: #262527;
+$background_color_content: rgb(23, 39, 44);
+$background_color_content_darker: rgb(22, 34, 37);
+$background_color_selectable: rgb(33, 43, 46);
+$selector_color_inactive: rgb(0, 0, 0);
+$background_color_selectable: rgb(36, 45, 47);
+
+
+html,
+body {
+  height: 100%;
+  background: $background_color;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-button-wrapper {
+  color: white;
+}
+
+
+
+
+#okta-signin-submit {
+  background: #a88a49 !important;
+  border: none !important;
+}
+
+#okta-sign-in {
+  margin-top: 0px !important;
+}
+
+.cdk-overlay-container {
+  background: rgba($color: #000000, $alpha: 0.75) !important;
+}

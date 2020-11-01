@@ -1,0 +1,15 @@
+### Create a new quest
+POST https://{{host}}
+Content-Type: application/json
+Authorization: {{basic-auth-admin}}
+ALPN: h2
+
+< data/quest-dev.json
+
+### Create a new chase
+POST https://{{host}}
+Content-Type: application/json
+Authorization: {{basic-auth-admin}}
+ALPN: h2
+
+< data/example-chase.json

@@ -1,0 +1,17 @@
+@import "../game_element";
+
+.title_column {
+  display: flex;
+}
+
+.quest_tries {
+  float: left;
+}
+
+.quest_time {
+  float: right;
+}
+
+ul {
+  list-style-type: none;
+}

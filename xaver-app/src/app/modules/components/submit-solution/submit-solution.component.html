@@ -1,0 +1,17 @@
+<mat-dialog-content>
+    <mat-form-field *ngIf="isText()" class="example-full-width">
+      <input matInput placeholder="Solution" [(ngModel)]="textResult">
+    </mat-form-field>
+    <ul *ngIf="isMultipleChoice()" [(ngModel)]="data.result">
+      <li *ngFor="let item of quest.requirementCombination.solutionItems">
+        <mat-checkbox color="primary">
+          <!--[(ngModel)]="subtask.completed" (ngModelChange)="updateAllComplete()"-->
+          {{item}}
+        </mat-checkbox>
+      </li>
+    </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" (click)="submit()">Submit</button>
+</mat-dialog-actions>

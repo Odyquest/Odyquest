@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+mat-icon {
+  width: 54px;
+  height: 54px;
+  font-size: 54px;
+}
+
+.logoutContainer {
+  display: flex;
+  background: white;
+  padding: 25px;
+  flex-direction: column;
+}
+
+.headlineWrapper {
+  display: flex;
+  flex-direction: row;
+}
