@@ -1,12 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialog} from '@angular/material/dialog';
+import * as moment from 'moment';
+import {Subscription, TimeInterval} from 'rxjs';
 
-import { Quest, QuestType } from '../../../shared/models/quest';
-import { Description } from '../../../shared/models/description';
-import { QuestStatus } from '../../../core/services/gameEngine';
-import { SubmitSolutionComponent } from '../submit-solution/submit-solution.component';
-import { HelpComponent } from '../help/help.component';
+import {QuestStatus} from '../../../core/services/gameEngine';
+import {Description} from '../../../shared/models/description';
+import {Quest, QuestType} from '../../../shared/models/quest';
+import {HelpComponent} from '../help/help.component';
+import {SubmitSolutionComponent} from '../submit-solution/submit-solution.component';
+
+import {TimeService} from './../../../core/services/time.service';
+
 
 @Component({
   selector: 'app-quest',
@@ -17,11 +22,30 @@ export class QuestComponent implements OnInit {
   @Input() quest: Quest;
   @Input() questStatus: QuestStatus;
   @Output() selection: EventEmitter<number> = new EventEmitter();
-  validSolution: number | undefined = undefined;
+  validSolution: number|undefined = undefined;
+  futureTimeEvent;
+  remainingTime = {hours: 0, minutes: 0, seconds: 0};
 
-  constructor(public dialog: MatDialog) { }
+  subscriptions = new Array<Subscription>();
+  timeTicker;
+  timerSet = false;
+  constructor(public dialog: MatDialog, public timeService: TimeService) {}
 
   ngOnInit(): void {
+    this.subscriptions.push(
+        this.timeService.exampleTimer.subscribe(futureTimeEvent => {
+          this.futureTimeEvent = futureTimeEvent;
+          this.timeTicker = setInterval(() => {
+            const diff = futureTimeEvent.diff(moment());
+            const duration = moment.duration(diff);
+
+            this.remainingTime.hours = duration.hours();
+            this.remainingTime.minutes = duration.minutes();
+            this.remainingTime.seconds = duration.seconds();
+            this.timerSet = true;
+          }, 1000);
+        }));
+    this.timeService.setTimer(0, 10, 0);
   }
 
   select(button: string): void {
@@ -35,8 +59,6 @@ export class QuestComponent implements OnInit {
 
   submit(): void {
     const dialogRef = this.dialog.open(SubmitSolutionComponent, {
-      height: '400px',
-      width: '600px',
       data: {quest: this.quest},
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -58,8 +80,8 @@ export class QuestComponent implements OnInit {
 
   help(): void {
     const dialogRef = this.dialog.open(HelpComponent, {
-      height: '400px',
-      width: '600px',
+      height: '90vh',
+      width: '90vw',
       data: {quest: this.quest, status: this.questStatus},
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -69,5 +91,10 @@ export class QuestComponent implements OnInit {
 
   hasSolution(): boolean {
     return this.validSolution !== undefined;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    clearInterval(this.timeTicker);
   }
 }

@@ -15,5 +15,6 @@
 <div class="game_element_buttons">
   <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span>
   <button mat-flat-button color="primary" (click)="submit()">submit solution</button>
-  <span class="quest_time">{{questStatus.remainingTime}} remaining time</span>
+  <span *ngIf="timerSet" class="quest_time"><span
+      *ngIf="remainingTime.hours > 0">{{remainingTime.hours}}:</span>{{remainingTime.minutes}}:{{remainingTime.seconds}}</span>
 </div>

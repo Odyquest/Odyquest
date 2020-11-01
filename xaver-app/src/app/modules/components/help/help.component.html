@@ -1,18 +1,23 @@
-<h2 mat-dialog-title>Help</h2>
+<mat-toolbar color="primary"><span class="dialogHeadline">Help</span><button target="_blank" mat-icon-button
+    mat-dialog-close>
+    <mat-icon target="_blank">close</mat-icon>
+  </button></mat-toolbar>
 <mat-dialog-content>
-<div class="game_element_columns">
-  <div class="game_element_text">
-    <p>{{help[index].text}}</p>
+  <div class="game_element_columns">
+    <div class="game_element_text">
+      <p>{{help[index].text}}</p>
+    </div>
+    <div class="game_element_image">
+      <img src="{{help[index].image}}" />
+    </div>
   </div>
-  <div class="game_element_image">
-    <img src="{{help[index].image}}" />
-  </div>
-</div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span>
-  <button mat-flat-button (click)="previous()">Previous</button>
-  <button mat-flat-button (click)="next()">Next</button>
-  <button mat-flat-button mat-dialog-close>Close</button>
-  <span class="quest_time">{{questStatus.remainingTime}} remaining time</span>
+  <!-- <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span> -->
+  <div class="buttonWrapper">
+    <button color="primary" mat-flat-button (click)="previous()">Previous</button>
+    <button color="primary" mat-flat-button (click)="next()">Next</button>
+  </div>
+
+  <!-- <span class="quest_time">{{questStatus.remainingTime}} remaining time</span> -->
 </mat-dialog-actions>

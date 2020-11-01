@@ -1,5 +1,18 @@
 @import "../game_element";
 
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.game_element_title {
+  padding-left: 15px;
+}
+
 .title_column {
   display: flex;
 }

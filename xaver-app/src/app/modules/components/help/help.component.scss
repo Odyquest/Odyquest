@@ -10,8 +10,21 @@
   /* applies to mobiles in portrait mode */
 
   .game_element_columns {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
+
+
+
+}
+
+:host {
+  // background: red !important;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 .game_element_columns {
@@ -24,11 +37,45 @@
 }
 
 .game_element_image {
-  float: left;
-  width: 30%;
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
 }
 
 .game_element_text {
-  float: left;
-  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  color: white !important;
+}
+
+mat-dialog-content {
+  // background: blue;
+  padding: 15px;
+  margin: 0 !important;
+  height: 100%;
+}
+
+mat-dialog-actions {
+  // background: green;
+  margin-bottom: 0 !important;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px 0 15px;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
