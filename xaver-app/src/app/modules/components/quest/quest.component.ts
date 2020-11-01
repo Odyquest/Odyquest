@@ -59,8 +59,6 @@ export class QuestComponent implements OnInit {
 
   submit(): void {
     const dialogRef = this.dialog.open(SubmitSolutionComponent, {
-      height: '400px',
-      width: '600px',
       data: {quest: this.quest},
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -83,7 +81,7 @@ export class QuestComponent implements OnInit {
   help(): void {
     const dialogRef = this.dialog.open(HelpComponent, {
       height: '90vh',
-      width: '95vw',
+      width: '90vw',
       data: {quest: this.quest, status: this.questStatus},
     });
     dialogRef.afterClosed().subscribe(result => {
