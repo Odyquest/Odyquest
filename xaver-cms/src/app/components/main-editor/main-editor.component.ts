@@ -16,23 +16,30 @@ export class MainEditorComponent implements OnInit {
 
   // the chase
   public chase: Chase;
+  selectedQuest: number;
 
   // these values are filled with info from the chase
   questList: string[] = ['Quest1', 'Quest2', 'Quest3', 'Quest4', 'Quest56'];
 
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
-    console.log("getDataFromChase()");
+    this.selectedQuest = 1;
+    console.log("Selected Quest Id: " + this.selectedQuest);
+
+    console.log("Loading values from Chase", this.chase.title);
 
     //write questList string
-    this.questList = [];
-    console.log("Loading values from Chase", this.chase.title);
     console.log("Contained GameElements (" + this.chase.gameElements.size + "):");
+    this.questList = [];
     this.chase.gameElements.forEach((value: GameElement, key: Number) => {
       console.log("   " + value.title);
       this.questList.push(value.title);
     });
+  }
 
+  // forwards the selected quest to the QuestEditorComponent
+  selectQuest(itemID: number): void {
+    
   }
 
   constructor(private chaseService: ChaseService) { }
