@@ -8,7 +8,7 @@ export class Chase {
 	title: string;
 	description: string;
 	preview: Preview;
-  author: string; //Author;
+	author: string; //Author;
 	lastEdited: Date;
 	creationDate: Date;
 	comment?: string;
@@ -16,8 +16,8 @@ export class Chase {
 	initialGameElement: number; // GameElementID
 	tags?: Array<string>;
 
-  getElement(destination: number): GameElement {
-    return this.gameElements[destination];
-  }
+	getElement(destination: number): GameElement {
+		return this.gameElements[destination];
+	}
 
 }

@@ -65,7 +65,7 @@ export function getExample(): Chase {
   thirdHelp.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
   quest.help = [firstHelp, secondHelp];
 
-  chase.gameElements[1] = quest;
+  chase.gameElements.set(1, quest);
 
   return chase;
 }
