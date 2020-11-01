@@ -30,6 +30,7 @@ export class MainEditorComponent implements OnInit {
     console.log("Contained GameElements (" + this.chase.gameElements.size + "):");
     this.chase.gameElements.forEach((value: GameElement, key: Number) => {
       console.log("   " + value.title);
+      this.questList.push(value.title);
     });
 
   }
