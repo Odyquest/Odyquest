@@ -15,14 +15,49 @@
                 </select>
             </div>
         </div>
-        <div [hidden]="hide_object_search" id="content-for-object-search" class="switchable-quest-content">
-            object
+        <div [hidden]="hide_object_search" class="switchable-quest-content">
+            <div class="content-for-object-search">
+                <div class="object-select-container">
+                    <div class="object-select-container-single">
+                        <label for="quest-type">Search Object 1:</label>
+                        <select name="search-object-1"
+                            (change)="onQuestTypeChange($event.target.value)">
+                            <option value="object-1">Some Object 1</option>
+                            <option value="object-2">Some Object 2</option>
+                            <option value="object-3">Some Object 3</option>
+                        </select>
+                    </div>
+                    <div class="object-select-container-single">
+                        <label for="quest-type">Search Object 2:</label>
+                        <select name="search-object-2"
+                            (change)="onQuestTypeChange($event.target.value)">
+                            <option value="object-1">Some Object 1</option>
+                            <option value="object-2">Some Object 2</option>
+                            <option value="object-3">Some Object 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="object-misc-container">
+                    <div class="object-select-container-single">
+                        <label for="solution-type">Solution Type</label>
+                        <select name="solution-type"
+                            (change)="onQuestTypeChange($event.target.value)">
+                            <option value="object-1">Find All Objects</option>
+                            <option value="object-2">Find Any Object</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div [hidden]="hide_input_term" id="content-for-input-term" class="switchable-quest-content">
-            input term
+        <div [hidden]="hide_input_term" class="switchable-quest-content">
+            <div class="content-for-input-term">
+                input term
+            </div>
         </div>
-        <div [hidden]="hide_multiple_choice" id="content-for-multiple-choice" class="switchable-quest-content">
-            multiple choice
+        <div [hidden]="hide_multiple_choice" class="switchable-quest-content">
+            <div class="content-for-multiple-choice">
+                multiple choice
+            </div>
         </div>
     </div>
 </div>
