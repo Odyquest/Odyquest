@@ -31,8 +31,8 @@ export function getExample(): Chase {
   quest.description = new Description();
   quest.description.text = 'What is the answer to the Ultimate Question to Life, the Universe, and Everything?';
   quest.description.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
-  // quest.questType = QuestType.MultipleChoice;
-  quest.questType = QuestType.Text;
+  quest.questType = QuestType.MultipleChoice;
+  // quest.questType = QuestType.Text;
   quest.maxTries = 7;
   // quest.maxTime = something like 42 minutes
   const combination = new RequirementCombination();
