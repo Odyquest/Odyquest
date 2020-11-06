@@ -46,7 +46,7 @@ export function getExample(): Chase {
   right.destination = 0;
   const wrong = new Solution();
   wrong.requiredItems = [true, false];
-  right.logicType = LogicType.And;
+  wrong.logicType = LogicType.And;
   wrong.description = new Description();
   wrong.description.text = 'You loose!';
   wrong.description.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
