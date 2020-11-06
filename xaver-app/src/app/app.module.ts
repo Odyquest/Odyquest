@@ -49,6 +49,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { WelcomeComponent } from './modules/pages/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     QrcodeInputComponent,
     QuestComponent,
     SubmitSolutionComponent,
+    WelcomeComponent,
   ],
   entryComponents: [
     SubmitSolutionComponent,
