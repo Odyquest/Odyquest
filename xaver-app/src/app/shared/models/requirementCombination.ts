@@ -1,4 +1,4 @@
-import { Solution } from "./solution";
+import { LogicType, Solution } from "./solution";
 
 export class RequirementCombination {
 
@@ -7,7 +7,10 @@ export class RequirementCombination {
 
   getSolution(solutions: Array<string>): number | undefined {
     const solutionArray = new Array<boolean>(this.solutionItems.length);
-    solutionArray.forEach(function (value) { value = false; });
+    for (let i = 0; i < this.solutionItems.length; i++) {
+      solutionArray[i] = false;
+    }
+
 
     for (const given of solutions) {
       const i = this.solutionItems.indexOf(given);
@@ -26,19 +29,19 @@ export class RequirementCombination {
       return value === true;
     }
     for (const combination of this.combinationMap) {
-      // TODO use logicType
-      // match any
-      const fullfilled = combination.requiredItems.map(matchAny);
-      if (fullfilled.some(isTrue)) {
-        console.log('Given solution is valid.');
-        return this.combinationMap.indexOf(combination);
+      if (combination.logicType === LogicType.Or) {
+        const fullfilled = combination.requiredItems.map(matchAny);
+        if (fullfilled.some(isTrue)) {
+          console.log('Given solution is valid.');
+          return this.combinationMap.indexOf(combination);
+        }
+      } else if (combination.logicType === LogicType.And) {
+        const fullfilled = combination.requiredItems.map(matchAll);
+        if (fullfilled.every(isTrue)) {
+          console.log('Given solution is valid.');
+          return this.combinationMap.indexOf(combination);
+        }
       }
-      // match all
-      // const fullfilled = combination.requiredItems.map(matchAll);
-      // if (fullfilled.every(isTrue)) {
-      //   console.log('Given solution is valid.');
-      //   return this.combinationMap.indexOf(combination);
-      // }
     }
     console.log('Given solution is not valid.');
     return; // no valid solution

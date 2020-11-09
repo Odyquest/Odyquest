@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChaseComponent } from './modules/pages/chase/chase.component';
 import { HomeComponent } from './modules/pages/home/home.component';
+import { WelcomeComponent } from './modules/pages/welcome/welcome.component';
 import { ChaseResolverService } from './core/services/chase-resolver.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  {
-    path: 'chase', component: ChaseComponent,
-  }
+  { path: '', component: WelcomeComponent },
+  { path: 'list', component: HomeComponent },
+  { path: 'chase', component: ChaseComponent }
 ];
 
 

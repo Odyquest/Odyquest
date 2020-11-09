@@ -14,7 +14,7 @@ import { Title } from "@angular/platform-browser";
 export class HomeComponent implements OnInit {
   inputUrl: boolean;
   chases;
-loading = false;
+  loading = false;
 
   subscritptions = new Array<Subscription>();
 
