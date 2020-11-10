@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GameElement } from '../../../../xaver-app/src/app/shared/models/gameElement';
 
 @Component({
@@ -9,12 +9,16 @@ import { GameElement } from '../../../../xaver-app/src/app/shared/models/gameEle
 export class QuestEditorComponent implements OnInit {
 
   gameElement: GameElement;
+  
+  //current state of the form:
+  title: string;
+  description: string;
 
   hide_object_search = false
   hide_input_term = true
   hide_multiple_choice = true
 
-  constructor() { }
+  constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -41,9 +45,26 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
+  // hardly a sexy solution...
+  // input forms can't read directly from GE?
+  gameElementToLocal(): void {
+    this.title = this.gameElement.title;
+    this.description = this.gameElement.description.text;
+  }
+
+  localToGameElement(): void {
+    this.gameElement.title = this.title;
+
+  }
+
   setGameElementToEdit(gm: GameElement): void {
     this.gameElement = gm;
     console.log("Set Game Element to: " + this.gameElement.title);
+
+    this.gameElementToLocal();
+
+    //we need to manually tell angular that changes occured:
+    this.cd.detectChanges();
   }
 
 }
