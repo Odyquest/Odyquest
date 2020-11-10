@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameElement } from '../../../../xaver-app/src/app/shared/models/gameElement';
 
 @Component({
   selector: 'app-quest-editor',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quest-editor.component.scss']
 })
 export class QuestEditorComponent implements OnInit {
+
+  gameElement: GameElement;
 
   hide_object_search = false
   hide_input_term = true
@@ -36,6 +39,11 @@ export class QuestEditorComponent implements OnInit {
         this.hide_multiple_choice = true
         break;
     }
+  }
+
+  setGameElementToEdit(gm: GameElement): void {
+    this.gameElement = gm;
+    console.log("Set Game Element to: " + this.gameElement.title);
   }
 
 }
