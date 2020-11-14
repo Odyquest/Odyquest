@@ -1,4 +1,4 @@
-import { LogicType, Solution } from "./solution";
+import { LogicType, Solution } from './solution';
 
 export class RequirementCombination {
 
@@ -7,14 +7,17 @@ export class RequirementCombination {
 
   getSolution(solutions: Array<string>): number | undefined {
     const solutionArray = new Array<boolean>(this.solutionItems.length);
+    const expectedItems = new Array<string>(this.solutionItems.length);
     for (let i = 0; i < this.solutionItems.length; i++) {
+      // prepare solution items
+      expectedItems[i] = this.solutionItems[i].trim().toLowerCase();
+      // create comparison entry
       solutionArray[i] = false;
     }
 
-
     for (const given of solutions) {
-      const i = this.solutionItems.indexOf(given);
-      if (i < this.solutionItems.length) {
+      const i = expectedItems.indexOf(given.trim().toLowerCase());
+      if (i < expectedItems.length) {
         solutionArray[i] = true;
       }
     }
