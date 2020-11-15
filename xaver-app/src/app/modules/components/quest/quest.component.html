@@ -8,7 +8,7 @@
   </div>
   <div class="game_element_image" [ngClass]="{'solved' : hasSolution(), 'not_solved' : !hasSolution()}">
     <a (click)="select('next')">
-      <img src="{{quest.description.image}}" />
+      <img  [src]="getImage()" />
     </a>
   </div>
 </div>
