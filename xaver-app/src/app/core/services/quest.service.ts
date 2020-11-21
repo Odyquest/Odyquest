@@ -1,6 +1,6 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -43,8 +43,10 @@ export class QuestService {
       )
   }
 
-  public getDefaultChase() {
-    return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
+  public getDefaultChase(): Observable<any> {
+    //console.log('call server at ' + this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000");
+    //return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
+    return this.httpClient.get('assets/examples/chase.json')
       .pipe(
         map(chase => {
           return chase;
