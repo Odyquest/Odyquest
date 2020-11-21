@@ -7,6 +7,28 @@ import { RequirementCombination } from '../requirementCombination';
 import { LogicType, Solution } from '../solution';
 import { XButton } from '../xButton';
 
+export function getSimpleExample(): Chase {
+  const chase = new Chase();
+  chase.title = 'This is an example chase!';
+  chase.description = 'This chase has no content';
+  chase.gameElements = new Map<number, GameElement>();
+
+  const narrative = new Narrative();
+  narrative.title = 'Error occured!';
+  narrative.description = new Description();
+  narrative.description.text = 'If you can see this, something went wrong.';
+  narrative.description.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
+  const forward = new XButton();
+  forward.name = 'stay';
+  forward.destination = 0;
+  narrative.buttons = new Array<XButton>();
+  narrative.buttons.push(forward);
+  chase.gameElements[0] = narrative;
+  chase.initialGameElement = 0;
+
+  return chase;
+}
+
 export function getExample(): Chase {
   const chase = new Chase();
   chase.title = 'This is a chase to the galaxy';

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { QuestService } from './../../../core/services/quest.service';
+import { deserialize, serialize } from 'typescript-json-serializer';
 
 import { GameEngine, QuestStatus } from '../../../core/services/gameEngine';
 import { GameElement } from '../../../shared/models/gameElement';
@@ -10,6 +11,9 @@ import { Description } from '../../../shared/models/description';
 import { Narrative } from '../../../shared/models/narrative';
 import { Quest } from '../../../shared/models/quest';
 import { Solution } from '../../../shared/models/solution';
+import { Chase } from '../../../shared/models/chase';
+
+import { getSimpleExample } from '../../../shared/models/example/chaseExample';
 
 @Component({
   selector: 'app-chase',
@@ -23,22 +27,20 @@ export class ChaseComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, public questService: QuestService, private uiService: UiService) {
     // FIXME console.log('data?', this.activatedRoute.snapshot.data.chase);
     // FIXME this.chase = this.activatedRoute.snapshot.data.chase;
-    this.game = new GameEngine();
-    this.displayElement = this.game.get_next_element('null');
+    this.game = new GameEngine(getSimpleExample());
+    this.displayElement = this.game.get_initial_element();
     this.uiService.toolbarTitle.next("Beispiel Schnitzeljagd");
   }
 
-  ngOnInit(): void {
-
-    // this.chase.quests.forEach(quest =>
-    //   // console.log('quest: ', this.questService.getQuestById(Object.keys(quest)[0]))
-    // );
-    // console.log('quest: ', this.questService.getQuestById("00000000-0000-0000-0000-000000000004").subscribe(quest => (console.log('lol?', quest))))
-
+  start_game(chase: Chase): void {
+    console.log('start new game: ' + chase.title);
+    this.game = new GameEngine(chase);
+    this.displayElement = this.game.get_initial_element();
+    this.uiService.toolbarTitle.next(this.game.title);
   }
 
-  ngOnLoad(): void {
-    // load current chase/description
+  ngOnInit(): void {
+    this.questService.getDefaultChase().subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
   }
 
   selectDestination(destination: number): void {
