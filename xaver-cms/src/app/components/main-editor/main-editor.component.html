@@ -2,12 +2,12 @@
   <div class="quest_selector_container">
     <div class="quest_selector">
       <mat-selection-list #shoes [multiple]="false">
-        <mat-list-option *ngFor="let quest of questList" [value]="quest" (click)="questSelectorClicked()">
+        <mat-list-option *ngFor="let quest of questList" [value]="selectedQuest" (click)="questSelectorClicked()">
           {{quest}}
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary">Neue Quest</button>
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addQuest()">Neue Quest</button>
     </div>
   </div>
   <app-quest-editor #quest_editor></app-quest-editor>

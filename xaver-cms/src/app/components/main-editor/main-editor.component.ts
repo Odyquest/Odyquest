@@ -4,6 +4,7 @@ import { ChaseService } from 'src/app/services/chase.service';
 ///home/frot/XaverImMuseum/xaver-app/src/app/shared/models/example/chaseExample.ts
 import { getExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
 import { Chase } from '../../../../../xaver-app/src/app/shared/models/chase';
+import { Quest } from '../../../../../xaver-app/src/app/shared/models/quest';
 import { GameElement } from '../../../../../xaver-app/src/app/shared/models/gameElement';
 
 @Component({
@@ -67,7 +68,30 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   }
 
   questSelectorClicked() {
-    console.log("Quest Selector Clicked");
+    console.log("Quest Selector Clicked", this.selectedQuest);
+
+  }
+
+  addQuest() {
+    console.log("addQuest()");
+
+    const quest = new Quest();
+    quest.title = 'New Quest';
+    this.chase.gameElements.set(this.getNextFreeMapKey(), quest);
+
+    this.getDataFromChase();
+  }
+
+  getNextFreeMapKey(): number {
+    let key = 1;
+
+    while (true) {
+      if (!this.chase.gameElements.has(key)) {
+        console.log("Found next free key: ", key);
+        return key;
+      }
+      key++;
+    }
   }
 
 }
