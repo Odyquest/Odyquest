@@ -1,0 +1,37 @@
+{
+  "chases":[
+    {
+      "id":"example",
+      "title":"This is a chase to the galaxy",
+      "description":"Description of the galaxy chase!",
+      "preview":{
+        "description":{
+          "text":"The galaxy chase!",
+          "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+        }
+      }
+    },
+    {
+      "id":"julia",
+      "title":"Rätselhafte Sphinx",
+      "description":"Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+      "preview":{
+        "description":{
+          "text":"Gehe mit Xaver auf eine Schnitzeljagt durch das Badische Landesmuseum!",
+          "image":"assets/examples/julia/images/sphinx.jpg"
+        }
+      }
+    },
+    {
+      "id":"silke",
+      "title":"Zeitreise mit Xaver",
+      "description":"Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+      "preview":{
+        "description":{
+          "text":"Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
+          "image":"assets/examples/silke/images/xaver.png"
+        }
+      }
+    }
+  ]
+}
