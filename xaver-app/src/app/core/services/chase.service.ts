@@ -43,6 +43,19 @@ export class ChaseService {
       )
   }
 
+  public getChase(id: string): Observable<any> {
+    //return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
+    return this.httpClient.get('assets/examples/' + id + '/chase.json')
+      .pipe(
+        map(chase => {
+          return chase;
+        }),
+        catchError(error => {
+          return error;
+        })
+      )
+  }
+
   public getDefaultChase() {
     return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
       .pipe(

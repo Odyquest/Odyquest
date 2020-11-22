@@ -38,16 +38,11 @@ export class HomeComponent implements OnInit {
     this.inputUrl = true;
   }
 
-  public getAllChases() {
-    this.chaseService.getAllChases().subscribe(chases => this.chaseService.chases.next(chases))
-  }
-
-  public startChase() {
-
+  public startChase(id: string): void {
     this.loading = true;
       setTimeout(() => {
         this.loading = false;
-        this.router.navigateByUrl('/chase');
+        this.router.navigateByUrl('/chase?id=' + id);
       }, 1500);
   
 

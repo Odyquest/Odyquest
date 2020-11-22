@@ -2,7 +2,7 @@
 
 <div *ngIf="!loading" class="chaseList">
 <div *ngFor="let chase of chaseList.chases">
-  <mat-card class="example-card" (click)="startChase()">
+  <mat-card class="example-card" (click)="startChase(chase.id)">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{chase.title}}</mat-card-title>
