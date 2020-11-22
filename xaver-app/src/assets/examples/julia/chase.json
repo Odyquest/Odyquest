@@ -106,7 +106,7 @@
             "text":"Um mich zu befreien, musst du zuerst in mein Heimatland, nach Ägypten gehen. \nDer menschliche Kopf auf meinem Löwenkörper stellte in Ägypten übrigens den Pharao dar, deswegen habe ich dort oft einen Bart. In Ägypten wache ich vor Grabmälern, Pyramiden und Tempeln. Ich beschütze die Toten. Ist das nicht nett? Wir Sphingen sind sehr nett.\n Tritt durch das riesige graue Tor ein nach Ägypten – auf der linken Seite wirst du dann sehen, was  dem Tier, das meinen Körper bildet, fehlt. Was ist es?",
             "image":"assets/examples/julia/images/sphinx.jpg"
          },
-         "questType":0,
+         "questType":"text",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -122,7 +122,7 @@
                      true,
                      true
                   ],
-                  "logicType":0,
+                  "logicType":"or",
                   "description":{
                      "text":"Richtig, du schlauer Löwe! Meinem Löwenkörper fehlt der Löwenkopf. \nDiese Platte mit dem Löwenkopf ist ein Bildhauermodell. Es war also eine Vorlage, die ägyptische Steinmetze benutzten, wenn sie Reliefs anfertigten. Witzigerweise sind die überlieferten Modelle fast immer Köpfe – tatsächlich weiß nicht einmal ich, wie die Bildhauer die Körper gearbeitet haben. Obwohl ich so schlau bin. Wir Sphingen sind überaus schlau.",
                      "image":"assets/examples/julia/images/loewenkopf.png"
@@ -148,7 +148,7 @@
             "text":"Den größten Ruhm habe ich mir wohl bei den alten Griechen erworben. Dort wohnte ich auf dem Berg Phikeon und hielt – ebenso wie in Ägypten – Wache. Brav, nicht? Wir Sphingen sind gute Wächter und sehr brav. \nIm antiken Griechenland und auch im alten Italien bei den Römern, stellte man mich übrigens so gut wie immer weiblich und mit Frauenköpfen dar. \nIch bin auf zwei sehr kleine Gefäßchen gemalt. Zwei kopflose Menschen habe ich stets im Blick. Menschköpfe hab ich übrigens sehr gern!\n Welche Farbe haben die Gefäßchen, auf die man mich gemalt hat?",
             "image":"assets/examples/julia/images/xaver.png"
          },
-         "questType":0,
+         "questType":"text",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -159,7 +159,7 @@
                   "requiredItems":[
                      true
                   ],
-                  "logicType":1,
+                  "logicType":"or",
                   "description":{
                      "text":"Ja, schwarz! Das kleine Ölfläschchen gehört nämlich zu einem bestimmten Stil der griechischen Vasenmalerei, den die Menschen rotfigurige Vasenmalerei nennen – mit dem schwarz bemalten Grund werden die Figuren ausgespart, die dann rot hervortreten. \nSchau mich an: Bin ich nicht hübsch? Und so anmutig! Wie zart geschwungen meine Flügel sind, wie fein meine Federn. Und wie kräftig elegant meine Hinterläufe. Und erst meine Frisur! Kunstvoll, nicht wahr? Und mein sanftes Lächeln, so wissend, denn ich bin klug. Wir Sphingen sind bekannt dafür, sehr klug zu sein.",
                      "image":"assets/examples/julia/images/vase.png"
@@ -185,7 +185,7 @@
             "text":"Ich war in der Antike ein beliebtes Motiv für Gefäße. Für mich völlig unverständlich bekam ich dort manchmal keine besondere Stellung, sondern wurde zusammen mit ganz gewöhnlichen Tieren auf die Pötte gemalt. Durchschreite zwei Tore und gehe entlang der Grabsteine der Verstorbenen. Wenn du dann, Jupiter sei Dank!, nicht nur um die Ecke denkst, sondern auch gehst, siehst du diese – ich möchte fast sagen – Herabsetzung meiner Sphingen-Besonderheit auf einer etruskischen Kanne. Was für ein Tier läuft vor mir?",
             "image":"assets/examples/julia/images/sphinx.jpg"
          },
-         "questType":0,
+         "questType":"text",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -199,7 +199,7 @@
                      true,
                      true
                   ],
-                  "logicType":0,
+                  "logicType":"or",
                   "description":{
                      "text":"Ja, es ist Geflügel! Ist das zu fassen? Immerhin sind die anderen Tiere in der Reihe doch irgendwie ähnlich besonders wie wir Sphingen, ein Löwe und ein Panther, wahre Könige des Tierreichs. Natürlich sind sie lange nicht so besonders wie ich! Mit hoch erhobenem Haupte schreite ich voran.\n Wir Sphingen waren bei den Etruskern als Wächter gegen Böses vor allem bei Gräbern gefragt. Denn wir beschützten die Toten vor allem Übel. Ich bin also sehr tapfer und mutig. Und wachsam. Wir Sphingen sind sehr wachsam.",
                      "image":"assets/examples/julia/images/vase-2.png"
@@ -225,7 +225,7 @@
             "text":"Als geflügelte Schutzdämonin spielte ich auch bei den alten Römern eine große Rolle im Begräbniskult – nämlich als Grabwächterin. Wenn du dich auf der Gräberstraße mit all den Grabsteinen und Sarkophagen näher umsiehst, findest du ein bleischweres Objekt, auf dem ich – ziemlich gut getroffen in meiner wachsamen Eleganz – zusammen Delphinen und Medusen dargestellt bin. Wie viele Bilder von mir sind auf der Vorderseite?",
             "image":"assets/examples/julia/images/xaver.png"
          },
-         "questType":0,
+         "questType":"text",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -237,7 +237,7 @@
                      true,
                      true
                   ],
-                  "logicType":0,
+                  "logicType":"or",
                   "description":{
                      "text":"Richtig, du kannst zählen! Das ist ja sehr beeindruckend. Das konnten damals nicht alle.\n Außer mir ist auf dem Sarkophag auch noch meine gute Freundin, die Medusa, abgebildet. Wir haben viel gemeinsam (auch wenn sie nicht ganz so hübsch ist wie ich, mit ihren Schlangenhaaren). Du solltest sie aber besser nicht so anstarren, denn unter ihrem Blick erstarren Menschen zu Stein. Gehen wir weiter, zurück nach Griechenland. \nIn Griechenland war ich auch als Rätselstellerin bekannt. Das wundert dich jetzt wahrscheinlich nicht. Ich bin rätselhaft. Wir Sphingen sind bekannt dafür, sehr rätselhaft zu sein.",
                      "image":"assets/examples/julia/images/sarkophag.png"
@@ -263,7 +263,7 @@
             "text":"Ich bewachte ja den Berg Phikeon und stellte den Reisenden, die über den Berg gehen wollten, ein Rätsel. Wer aber mein Rätsel nicht beantworten konnten, den habe ich... ähm… nicht durchgelassen. So geht das ja nicht. Wir Sphingen sind nämlich auch sehr konsequent. \nGehe den Weg zurück, woher du kamst, und halte dich nach dem zweiten Tor links. Dort kannst du das Heim einer Griechin betreten. Darin gibt es ein Objekt, das zeigt, was ich mit den Unwissenden tue. Einst konnte sich in diesem Objekt jeder und jede, die hineinsah, wiedererkennen. Heute hat es etwas von seinem Glanz verloren. Aus welchem Material ist es?",
             "image":"assets/examples/julia/images/sphinx.jpg"
          },
-         "questType":0,
+         "questType":"text",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -300,7 +300,7 @@
             "text":"Ich hatte auch ein Lieblings-Rätsel, das Reisende beantwortet mussten: „Was geht am Morgen auf vier Füßen, am Mittag auf zweien und am Abend auf dreien?“\n Der einzige Mensch, der das Rätsel bislang lösen konnte, war Ödipus. Dieser Ödipus… Wenn du ihn finden möchtest, auf seinem Stein, musst du hinunter gehen, in die Unterwelt. Gehe zur römischen Provinz am Oberrhein und dann Richtung „ad Deos“ am Wald aus Meilensteinen vorbei. Ödipus, der einzige Bezwinger der mächtigen Sphinx, steht neben mir… Was halte ich in meinen Händen?",
             "image":"assets/examples/julia/images/xaver.png"
          },
-         "questType":0,
+         "questType":"text",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -314,7 +314,7 @@
                      true,
                      true
                   ],
-                  "logicType":0,
+                  "logicType":"or",
                   "description":{
                      "text":"Du hast Ödipus tatsächlich gefunden – wirklich sehr beeindruckend, Mensch! Und ja, das ist ein Kopf in meiner Hand… Kuck nicht so vorwurfsvoll, bitte. Dem Menschen den Kopf abzureißen war keine Überreaktion. Der konnte mein Rätsel eben nicht beantworten – diese Unwissenheit! Das ertrage ich einfach nicht! Ab mit seinem Kopf! \nIch bin doch etwas impulsiv. Wir Sphingen können unter bestimmten Umständen recht impulsiv sein.",
                      "image":"assets/examples/julia/images/oedipus.png"
@@ -340,7 +340,7 @@
             "text":"Na, hast du den Mensch im weißen Kittel gefunden, Meisterrätsellöser*in? Und hast du mich befreit und blickst in mein Antlitz – in das Antlitz der mächtigen Sphinx? Wir Sphingen sind bekannt dafür, sehr mächtig zu sein!  Wer ist es nun also, am Morgen auf vier Füßen, am Mittag auf zweien und am Abend auf dreien geht – und die Sphinx befreit hat?",
             "image":"assets/examples/julia/images/zierplatte.png"
          },
-         "questType":0,
+         "questType":"text",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -352,7 +352,7 @@
                      true,
                      true
                   ],
-                  "logicType":0,
+                  "logicType":"or",
                   "description":{
                      "text":"Ja, der Mensch! Und ihr Menschen seid so naiv! Selbst du, Meisterrätsellöser*in. Du hast mich befreit. Mich, die mächtige Sphinx! \nIch fresse Menschen! Wir Sphingen sind bekannt dafür, dass wir Menschen erwürgen und fressen! Jetzt kann ich weiterflattern, Rätsel stellen und unwissende Menschen fressen!!! Wuahahaha!",
                      "image":"assets/examples/julia/images/xaver.png"

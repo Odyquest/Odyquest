@@ -33,7 +33,7 @@
             "text":"What is the answer to the Ultimate Question to Life, the Universe, and Everything?",
             "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
          },
-         "questType":1,
+         "questType":"multiple_choice",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -46,7 +46,7 @@
                      false,
                      true
                   ],
-                  "logicType":1,
+                  "logicType":"and",
                   "description":{
                      "text":"You are right, according to Deep Thought it is 42!",
                      "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
@@ -58,7 +58,7 @@
                      true,
                      false
                   ],
-                  "logicType":1,
+                  "logicType":"and",
                   "description":{
                      "text":"You loose!",
                      "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"

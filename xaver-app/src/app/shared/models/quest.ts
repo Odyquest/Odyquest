@@ -5,8 +5,8 @@ import { GameElement } from './gameElement';
 import { RequirementCombination } from './requirementCombination';
 
 export enum QuestType {
-  Text = 0,
-  MultipleChoice = 1,
+  Text = 'text',
+  MultipleChoice = 'multiple_choice',
 }
 
 @Serializable()

@@ -4,8 +4,8 @@ import { Description } from './description';
 import { GameElement } from './gameElement';
 
 export enum LogicType {
-  Or = 0,
-  And = 1,
+  Or = "or",
+  And = "and",
 }
 
 @Serializable()

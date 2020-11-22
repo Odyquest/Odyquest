@@ -241,7 +241,7 @@
             "text":"Weißt du, was es damals noch nicht gegeben hat und an der Statue des Sokrates ergänzt wurde? Nenne nur ein Wort!",
             "image":"assets/examples/silke/images/xaver.png"
          },
-         "questType":1,
+         "questType":"multiple_choice",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -256,7 +256,7 @@
                      true,
                      true
                   ],
-                  "logicType":0,
+                  "logicType":"or",
                   "description":{
                      "text":"Damals gab es noch keine Bücher, wie wir sie heute kennen. Man verwendete im Alltag Ton- oder Wachstafeln. Und man schrieb Bücher auf Papyrusbögen und rollte sie auf.  Schau dir die rechte Hand des Sokrates an! Darin hat er mal eine solche Schriftrolle gehalten.<br/> Die ersten Bücher, bei denen man rechteckige Blätter aus Pergament oder Papier zusammengebunden hat, stammen übrigens aus dem 5. Jahrhundert nach Christus.",
                      "image":"assets/examples/silke/images/papyrus.png"
@@ -278,7 +278,7 @@
             "text":"Sokrates fragt: „Was ist Mut?“ Welche Antwort würdest du ihm geben?",
             "image":"assets/examples/silke/images/sokrates.png"
          },
-         "questType":1,
+         "questType":"multiple_choice",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -293,7 +293,7 @@
                      false,
                      false
                   ],
-                  "logicType":1,
+                  "logicType":"and",
                   "description":{
                      "text":"„Aber Starrsinnige geben doch auch nie auf. Sind die mutig?“",
                      "image":"assets/examples/silke/images/sokrates.png"
@@ -306,7 +306,7 @@
                      true,
                      false
                   ],
-                  "logicType":1,
+                  "logicType":"and",
                   "description":{
                      "text":"„Ausdauer kann aus der Weisheit wie aus der Torheit erwachsen. In diesem Fall ist es wahrscheinlich tadelnswert. Mut dagegen ist immer gut und lobenswert. Daher kann Mut nicht Ausdauer sein.“",
                      "image":"assets/examples/silke/images/sokrates.png"
@@ -319,7 +319,7 @@
                      false,
                      true
                   ],
-                  "logicType":1,
+                  "logicType":"and",
                   "description":{
                      "text":"zu 3: „Wenn Mut eine Art von Wissen ist, was ist das Wissen? Weisheit ist etwas anderes als Mut. Aber ja, Mut ist Wissen.“",
                      "image":"assets/examples/silke/images/sokrates.png"
@@ -336,7 +336,7 @@
             "text":"Du hilfst doch gerne. Wie viele Gefäße siehst du in dieser Vitrine? Hinweis: Schaue genau hin und zähle auch die abgebildeten Vasen…",
             "image":"assets/examples/silke/images/xaver.png"
          },
-         "questType":1,
+         "questType":"multiple_choice",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -349,7 +349,7 @@
                      true,
                      false
                   ],
-                  "logicType":1,
+                  "logicType":"and",
                   "description":{
                      "text":"Der Töpfer freut sich. „Elf Stück sind es! Großartig. Das genügt und ich kann rechtzeitig meinen Kunden mit Vorratsgefäßen, Trinkschalen, Bechern und Trinkhörnern beliefern. Er will nämlich ein großes Trinkgelage veranstalten, ein Symposion! Die Schalen wurden mit Wein und Wasser gefüllt und herumgereicht. Eine solche möchte ich dir zum Dank schenken!“ Finde nun dein Geschenk.",
                      "image":"assets/examples/silke/images/toepferei-2.jpg"
@@ -366,7 +366,7 @@
             "text":"[Xaver erwartet deine Eingabe]",
             "image":"assets/examples/silke/images/xaver.png"
          },
-         "questType":1,
+         "questType":"multiple_choice",
          "maxTries":7,
          "requirementCombination":{
             "solutionItems":[
@@ -383,7 +383,7 @@
                      true,
                      true
                   ],
-                  "logicType":0,
+                  "logicType":"or",
                   "description":{
                      "text":"Ich bin dir sehr dankbar, dass du schon ein Objekt gefunden hast! Die anderen finden wir auch! Das von dir gefundene Codewort löst wieder eine Zeitreise aus. Und zwar reisen wir… in die RÖMERZEIT!",
                      "image":"assets/examples/silke/images/sokrates.png"
