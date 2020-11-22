@@ -5,6 +5,9 @@ import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
+import { deserialize } from 'typescript-json-serializer';
+
+import { ChaseList } from './../../../shared/models/chase';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +17,7 @@ import { Title } from "@angular/platform-browser";
 export class HomeComponent implements OnInit {
   inputUrl: boolean;
   chases;
+  chaseList = new ChaseList();
   loading = false;
 
   subscritptions = new Array<Subscription>();
@@ -21,12 +25,12 @@ export class HomeComponent implements OnInit {
   constructor(private chaseService: ChaseService, private router: Router, private uiService: UiService) { }
 
   ngOnInit(): void {
-    this.chaseService.chases.subscribe(chases => {
-      this.chases = chases;
-      console.log('CHASES: ', this.chases);
-    })
-
+    // this.chaseService.chases.subscribe(chases => {
+    //   this.chases = chases;
+    //   console.log('CHASES: ', this.chases);
+    // })
     this.uiService.toolbarTitle.next("Wähle eine Schnitzeljagd")
+    this.chaseService.getAllChases().subscribe(chases => this.chaseList = deserialize<ChaseList>(chases, ChaseList));
   }
 
   onInputUrl(): void {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -29,9 +29,10 @@ export class ChaseService {
 
   ) { }
 
-  public getAllChases() {
-    console.log('Service: getAllChases()', this.SERVER_BASE_URI);
-    return this.httpClient.get(this.SERVER_BASE_URI)
+  public getAllChases(): Observable<any> {
+    // console.log('Service: getAllChases()', this.SERVER_BASE_URI);
+    // return this.httpClient.get(this.SERVER_BASE_URI)
+    return this.httpClient.get('assets/examples/chase-list.json')
       .pipe(
         map(chases => {
           return chases;
