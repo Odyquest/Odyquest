@@ -1,6 +1,15 @@
 {
-   "title":"Zeitreise mit Xaver",
-   "description":"Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+   "metaData":{
+      "id":"silke",
+      "title":"Zeitreise mit Xaver",
+      "description":"Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+      "preview":{
+         "description":{
+            "text":"Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
+            "image":"assets/examples/silke/images/xaver.png"
+         }
+      }
+   },
    "_narratives":{
       "1":{
          "title":"Zeitreise mit Xaver",

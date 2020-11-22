@@ -24,7 +24,7 @@ export class GameEngine {
   testingCounter = 0;
 
   constructor(chase: Chase) {
-    console.log('create game from ' + chase.title);
+    console.log('create game from ' + chase.metaData.title);
     this.chase = chase;
     console.log(this.chase);
   }

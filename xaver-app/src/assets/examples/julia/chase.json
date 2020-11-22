@@ -1,6 +1,15 @@
 {
-   "title":"Rätselhafte Sphinx",
-   "description":"Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+   "metaData":{
+      "id":"julia",
+      "title":"Rätselhafte Sphinx",
+      "description":"Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+      "preview":{
+         "description":{
+            "text":"Gehe mit Xaver auf eine Schnitzeljagt durch das Badische Landesmuseum!",
+            "image":"assets/examples/julia/images/sphinx.jpg"
+         }
+      }
+   },
    "_narratives":{
       "1":{
          "title":"Rätselhafte Sphinx",

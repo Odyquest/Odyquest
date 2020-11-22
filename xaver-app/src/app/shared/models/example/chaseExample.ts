@@ -1,4 +1,4 @@
-import { Chase } from '../chase';
+import { Chase, ChaseMetaData } from '../chase';
 import { Description } from '../description';
 import { GameElement } from '../gameElement';
 import { Narrative } from '../narrative';
@@ -9,8 +9,10 @@ import { XButton } from '../xButton';
 
 export function getSimpleExample(): Chase {
   const chase = new Chase();
-  chase.title = 'This is an example chase!';
-  chase.description = 'This chase has no content';
+  const metaData = new ChaseMetaData();
+  metaData.title = 'This is an example chase!';
+  metaData.description = 'This chase has no content';
+  chase.metaData = metaData;
   chase.gameElements = new Map<number, GameElement>();
 
   const narrative = new Narrative();
@@ -31,8 +33,10 @@ export function getSimpleExample(): Chase {
 
 export function getExample(): Chase {
   const chase = new Chase();
-  chase.title = 'This is a chase to the galaxy';
-  chase.description = 'Description of the galaxy chase!';
+  const metaData = new ChaseMetaData();
+  metaData.title = 'This is a chase to the galaxy';
+  metaData.description = 'Description of the galaxy chase!';
+  chase.metaData = metaData;
   chase.gameElements = new Map<number, GameElement>();
 
   const narrative = new Narrative();

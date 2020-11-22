@@ -33,7 +33,7 @@ export class ChaseComponent implements OnInit {
   }
 
   start_game(chase: Chase): void {
-    console.log('start new game: ' + chase.title);
+    console.log('start new game: ' + chase.metaData.title);
     this.game = new GameEngine(chase);
     this.displayElement = this.game.get_initial_element();
     this.uiService.toolbarTitle.next(this.game.title);

@@ -7,8 +7,7 @@ import { Solution } from './solution';
 import { GameElement } from './gameElement';
 
 @Serializable()
-export class Chase {
-
+export class ChaseMetaData {
 	@JsonProperty() id?: number;
 	@JsonProperty() version?: number; // nein bred, nicht was du denkst
 	@JsonProperty() title: string;
@@ -18,6 +17,11 @@ export class Chase {
 	@JsonProperty() lastEdited: Date;
 	@JsonProperty() creationDate: Date;
 	@JsonProperty() comment?: string;
+}
+
+@Serializable()
+export class Chase {
+	@JsonProperty() metaData: ChaseMetaData;
 	@JsonProperty({
     names: ['_narratives', '_quests', '_solutions'],
     isDictionary: true,
