@@ -8,7 +8,7 @@ import { GameElement } from './gameElement';
 
 @Serializable()
 export class ChaseMetaData {
-	@JsonProperty() id?: number;
+	@JsonProperty() id?: string;
 	@JsonProperty() version?: number; // nein bred, nicht was du denkst
 	@JsonProperty() title: string;
 	@JsonProperty() description: string;
@@ -17,6 +17,15 @@ export class ChaseMetaData {
 	@JsonProperty() lastEdited: Date;
 	@JsonProperty() creationDate: Date;
 	@JsonProperty() comment?: string;
+}
+
+@Serializable()
+export class ChaseList {
+  @JsonProperty({type: ChaseMetaData}) chases: Array<ChaseMetaData>;
+
+  constructor() {
+    this.chases = new Array<ChaseMetaData>();
+  }
 }
 
 @Serializable()
