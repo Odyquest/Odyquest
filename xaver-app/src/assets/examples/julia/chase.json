@@ -95,8 +95,13 @@
             {
                "name":"Noch mal!!!",
                "destination":1
+            },
+            {
+               "name":"Zum Glück nicht gefressen worden",
+               "destination":1
             }
-         ]
+         ],
+         "narrativeStatus":"win"
       }
    },
    "_quests":{
@@ -274,7 +279,7 @@
                   "requiredItems":[
                      true
                   ],
-                  "logicType":1,
+                  "logicType":"and",
                   "description":{
                      "text":"Sehr gut, du hast den Bronzespiegel gefunden! Fein poliert konnte man sich in dessen Oberfläche bewundern. Vielleicht wunderst du dich, dass ich hier den jungen Mann angreife. Aber es ist so: Er konnte mein Rätsel nicht lösen.\n Das mag dir jetzt etwas dünnhäutig erscheinen, aber mit Unwissenheit kann ich einfach nicht gut umgehen… Vielleicht bin ich etwas reizbar. Man sagt uns Sphingen tatsächlich nach, ein klein wenig reizbar zu sein.\n Du brauchst vor mir aber gar keine Angst zu haben, denn du bist ja wahrhaft meisterlich im Rätsellösen und ich tue dir nichts. Vorerst.",
                      "image":"assets/examples/julia/images/spiegel.png"

@@ -228,10 +228,15 @@
          },
          "buttons":[
             {
-               "name":"nochmal von vorne starten :-)",
+               "name":"Neugierig auf die Fortsetzung warten",
+               "destination":1
+            },
+            {
+               "name":"Gelangweilt beenden",
                "destination":1
             }
-         ]
+         ],
+         "narrativeStatus":"win"
       }
    },
    "_quests":{

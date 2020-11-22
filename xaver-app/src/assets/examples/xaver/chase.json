@@ -24,6 +24,20 @@
                "destination":1
             }
          ]
+      },
+      "2":{
+         "title":"Hitchhiking to the galaxy",
+         "description":{
+            "text":"I hope you enjoyed your travel through the galaxy.",
+            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+         },
+         "buttons":[
+            {
+               "name":"Bye!",
+               "destination":1
+            }
+         ],
+         "narrativeStatus":"win"
       }
    },
    "_quests":{
@@ -51,7 +65,7 @@
                      "text":"You are right, according to Deep Thought it is 42!",
                      "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
                   },
-                  "destination":0
+                  "destination":2
                },
                {
                   "requiredItems":[

@@ -50,6 +50,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { WelcomeComponent } from './modules/pages/welcome/welcome.component';
+import { FinishedComponent } from './modules/pages/finished/finished.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { WelcomeComponent } from './modules/pages/welcome/welcome.component';
     QuestComponent,
     SubmitSolutionComponent,
     WelcomeComponent,
+    FinishedComponent,
   ],
   entryComponents: [
     SubmitSolutionComponent,
