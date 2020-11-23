@@ -1,7 +1,7 @@
 <h3 class="game_element_title">{{narrative.title}}</h3>
 <div class="game_element_columns">
   <div class="game_element_image">
-    <img src="{{narrative.description.image}}"/>
+    <img [src]="getImage()"/>
   </div>
   <div class="game_element_text">
     <p>{{narrative.description.text}}</p>

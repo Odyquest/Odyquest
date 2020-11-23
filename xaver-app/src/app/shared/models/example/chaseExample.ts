@@ -6,6 +6,7 @@ import { Quest, QuestType } from '../quest';
 import { RequirementCombination } from '../requirementCombination';
 import { LogicType, Solution } from '../solution';
 import { XButton } from '../xButton';
+import { base64_encoded_image } from './imageExample';
 
 export function getSimpleExample(): Chase {
   const chase = new Chase();
@@ -56,7 +57,7 @@ export function getExample(): Chase {
   quest.title = 'The Ultimate Question';
   quest.description = new Description();
   quest.description.text = 'What is the answer to the Ultimate Question to Life, the Universe, and Everything?';
-  quest.description.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
+  quest.description.image = base64_encoded_image;
   quest.questType = QuestType.MultipleChoice;
   // quest.questType = QuestType.Text;
   quest.maxTries = 7;

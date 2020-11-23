@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+
 
 import { Narrative } from '../../../shared/models/narrative';
 
@@ -14,7 +16,9 @@ export class NarrativeComponent implements OnInit {
   @Output() selection: EventEmitter<number> = new EventEmitter();
 
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router, private sanitizer:DomSanitizer) { }
+
 
   ngOnInit(): void {
   }
@@ -29,4 +33,7 @@ export class NarrativeComponent implements OnInit {
     }
   }
 
+  getImage(): SafeResourceUrl {
+     return this.sanitizer.bypassSecurityTrustUrl(this.narrative.description.image);
+  }
 }
