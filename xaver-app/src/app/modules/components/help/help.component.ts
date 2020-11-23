@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 import { Description } from '../../../shared/models/description';
 import { Quest, QuestType } from '../../../shared/models/quest';
@@ -18,7 +19,7 @@ export class HelpComponent {
   index = 0;
 
   constructor(public dialogRef: MatDialogRef<HelpComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any, private sanitizer:DomSanitizer) {
     this.help = this.data.quest.help;
     this.questStatus = this.data.status;
     if (this.help.length < 1) {
@@ -46,4 +47,7 @@ export class HelpComponent {
     }
   }
 
+  getImage(): SafeResourceUrl {
+     return this.sanitizer.bypassSecurityTrustUrl(this.help[this.index].image);
+  }
 }
