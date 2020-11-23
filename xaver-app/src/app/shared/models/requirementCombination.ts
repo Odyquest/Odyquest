@@ -1,9 +1,12 @@
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { LogicType, Solution } from './solution';
 
+
+@Serializable()
 export class RequirementCombination {
 
-  solutionItems: Array<string>;
-  combinationMap: Array<Solution>;
+  @JsonProperty() solutionItems: Array<string>;
+  @JsonProperty({ type: Solution, }) combinationMap: Array<Solution>;
 
   getSolution(solutions: Array<string>): number | undefined {
     const solutionArray = new Array<boolean>(this.solutionItems.length);

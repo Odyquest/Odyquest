@@ -1,6 +1,6 @@
-export class Description {
-	text: string;
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
-	/** image can either be an url or base64 encoded binary data starting with mime information */
-	image: string;
-}
+@Serializable()
+export class Description {
+	@JsonProperty('text') text: string;
+	@JsonProperty('image') image: string;

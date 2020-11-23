@@ -1,15 +1,18 @@
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
+
 import { Description } from './description';
 import { GameElement } from './gameElement';
 
 export enum LogicType {
-  Or = 0,
-  And = 1,
+  Or = "or",
+  And = "and",
 }
 
+@Serializable()
 export class Solution extends GameElement {
 
-	requiredItems: Array<boolean>;
-	logicType: LogicType;
-	description: Description;
-	destination: number; // GameElementId
+	@JsonProperty() requiredItems: Array<boolean>;
+	@JsonProperty() logicType: LogicType;
+	@JsonProperty() description: Description;
+	@JsonProperty() destination: number; // GameElementId
 }

@@ -1,5 +1,7 @@
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
+
+@Serializable()
 export class XButton {
-	
-	name: string;
-	destination: number; // GameElementID
+	@JsonProperty() name: string;
+	@JsonProperty() destination: number; // GameElementID
 }
