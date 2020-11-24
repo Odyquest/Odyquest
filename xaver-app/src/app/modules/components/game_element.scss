@@ -55,6 +55,9 @@
 .game_element_image {
   float: left;
 }
+.game_element_image img {
+  display:block;
+}
 
 .game_element_text {
   float: left;
