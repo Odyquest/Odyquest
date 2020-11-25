@@ -74,47 +74,47 @@ class ChaseHandler(
      * @param request The incoming request
      * @return A server response with status code
      */
-    suspend fun create(request: ServerRequest): ServerResponse {
-
-        val chase = try {
-            request.awaitBody<Chase>()
-        } catch (e: DecodingException) {
-            return handleDecodingException(e)
-        }
-
-        val newChase = try {
-            service.create(chase)
-        }catch (e: ConstraintViolationException) {
-            return handleConstraintViolation(e)
-        }
-
-        logger.trace { "Saved chase: $newChase" }
-        val baseUri = getBaseUri(request.headers().asHttpHeaders(), request.uri())
-        val location = URI("$baseUri/${newChase.id}")
-        return created(location).buildAndAwait()
-    }
+//    suspend fun create(request: ServerRequest): ServerResponse {
+//
+//        val chase = try {
+//            request.awaitBody<Chase>()
+//        } catch (e: DecodingException) {
+//            return handleDecodingException(e)
+//        }
+//
+//        val newChase = try {
+//            service.create(chase)
+//        }catch (e: ConstraintViolationException) {
+//            return handleConstraintViolation(e)
+//        }
+//
+//        logger.trace { "Saved chase: $newChase" }
+//        val baseUri = getBaseUri(request.headers().asHttpHeaders(), request.uri())
+//        val location = URI("$baseUri/${newChase.id}")
+//        return created(location).buildAndAwait()
+//    }
 
     /*******************************************
      *                  READ
      *******************************************/
 
-    suspend fun findById(request: ServerRequest): ServerResponse {
-        println("Handler: findById")
-        val idStr = request.pathVariable(idPathVar)
-        val id = ChaseId.fromString(idStr)
-
-        // val username = getUsername(request)
-
-        // TODO: Implement security check with username
-
-        val chase = try {
-            service.findById(id) ?: return notFound().buildAndAwait()
-        } catch (e: AccessForbiddenException) {
-            return status(FORBIDDEN).buildAndAwait()
-        }
-        logger.debug { "findById: $chase" }
-        return toResponse(chase, request)
-    }
+//    suspend fun findById(request: ServerRequest): ServerResponse {
+//        println("Handler: findById")
+//        val idStr = request.pathVariable(idPathVar)
+//        val id = ChaseId.fromString(idStr)
+//
+//        // val username = getUsername(request)
+//
+//        // TODO: Implement security check with username
+//
+//        val chase = try {
+//            service.findById(id) ?: return notFound().buildAndAwait()
+//        } catch (e: AccessForbiddenException) {
+//            return status(FORBIDDEN).buildAndAwait()
+//        }
+//        logger.debug { "findById: $chase" }
+//        return toResponse(chase, request)
+//    }
 
 
     /**
@@ -139,68 +139,68 @@ class ChaseHandler(
      *                 UPDATE
      *******************************************/
 
-    /**
-     * @param chase The chase with updated data
-     * @param id The id of the chase
-     * @param version Version for ETag
-     * @return A server response with status code
-     */
-    private suspend fun update(chase: Chase, id: ChaseId, version: String): ServerResponse {
-        val updatedChase = try {
-            //TODO
-            service.update(chase, id, version) ?: return notFound().buildAndAwait()
-        } catch (e: ConstraintViolationException) {
-            return handleConstraintViolation(e)
-        } catch (e: InvalidVersionException) {
-            val msg = e.message ?: ""
-            logger.trace { "InvalidVersionException: $msg" }
-            return status(PRECONDITION_FAILED).bodyValueAndAwait(msg)
-        }
-
-        logger.trace { "Chase updated: $updatedChase" }
-        return noContent().eTag("\"${updatedChase.version}\"").buildAndAwait()
-    }
-
-    /**
-     * @param request The incoming request
-     * @return A server response with status code
-     */
-    suspend fun update(request: ServerRequest): ServerResponse {
-
-        var version = getIfMatch(request)
-                ?: return status(PRECONDITION_REQUIRED).bodyValueAndAwait("Missing version")
-        logger.trace { "Version: $version" }
-
-        if (version.length < 3) {
-            return status(PRECONDITION_FAILED).bodyValueAndAwait("Version mismatch $version")
-        }
-
-        version = version.substring(1, version.length -1 )
-
-        val idStr = request.pathVariable("id")
-        val id = ChaseId.fromString(idStr)
-
-        val chase = try {
-            request.awaitBody<Chase>()
-        } catch (e: DecodingException) {
-            return handleDecodingException(e)
-        }
-
-        return update(chase, id, version)
-    }
+//    /**
+//     * @param chase The chase with updated data
+//     * @param id The id of the chase
+//     * @param version Version for ETag
+//     * @return A server response with status code
+//     */
+//    private suspend fun update(chase: Chase, id: ChaseId, version: String): ServerResponse {
+//        val updatedChase = try {
+//            //TODO
+//            service.update(chase, id, version) ?: return notFound().buildAndAwait()
+//        } catch (e: ConstraintViolationException) {
+//            return handleConstraintViolation(e)
+//        } catch (e: InvalidVersionException) {
+//            val msg = e.message ?: ""
+//            logger.trace { "InvalidVersionException: $msg" }
+//            return status(PRECONDITION_FAILED).bodyValueAndAwait(msg)
+//        }
+//
+//        logger.trace { "Chase updated: $updatedChase" }
+//        return noContent().eTag("\"${updatedChase.version}\"").buildAndAwait()
+//    }
+//
+//    /**
+//     * @param request The incoming request
+//     * @return A server response with status code
+//     */
+//    suspend fun update(request: ServerRequest): ServerResponse {
+//
+//        var version = getIfMatch(request)
+//                ?: return status(PRECONDITION_REQUIRED).bodyValueAndAwait("Missing version")
+//        logger.trace { "Version: $version" }
+//
+//        if (version.length < 3) {
+//            return status(PRECONDITION_FAILED).bodyValueAndAwait("Version mismatch $version")
+//        }
+//
+//        version = version.substring(1, version.length -1 )
+//
+//        val idStr = request.pathVariable("id")
+//        val id = ChaseId.fromString(idStr)
+//
+//        val chase = try {
+//            request.awaitBody<Chase>()
+//        } catch (e: DecodingException) {
+//            return handleDecodingException(e)
+//        }
+//
+//        return update(chase, id, version)
+//    }
 
     /*******************************************
      *                 DELETE
      *******************************************/
 
-    suspend fun deleteById(request: ServerRequest): ServerResponse {
-        val idStr = request.pathVariable(idPathVar)
-        val id = ChaseId.fromString(idStr)
-        val deleteResult = service.deleteById(id)
-        logger.debug { "deleteById(): $deleteResult" }
-
-        return noContent().buildAndAwait()
-    }
+//    suspend fun deleteById(request: ServerRequest): ServerResponse {
+//        val idStr = request.pathVariable(idPathVar)
+//        val id = ChaseId.fromString(idStr)
+//        val deleteResult = service.deleteById(id)
+//        logger.debug { "deleteById(): $deleteResult" }
+//
+//        return noContent().buildAndAwait()
+//    }
 
     /*******************************************
      *            Utility Functions
@@ -208,7 +208,7 @@ class ChaseHandler(
 
     private suspend fun toResponse(chase: Chase, request: ServerRequest): ServerResponse {
         val versionHeader = getIfNoneMatch(request)
-        val versionStr = "\"${chase.version}\""
+        val versionStr = "\"${chase.metaData.version}\""
         if (versionStr == versionHeader) {
             return status(NOT_MODIFIED).buildAndAwait()
         }

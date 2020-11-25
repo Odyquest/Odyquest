@@ -22,33 +22,24 @@ import x.museum.chase.config.security.CustomUser
 import x.museum.chase.entity.*
 import java.time.LocalDateTime
 
-// import x.museum.chase.config.dev.adminUser
-
 val chases = flowOf(
         Chase(
-                id = ChaseId.fromString("10000000-0000-0000-0000-000000000000"),
-                title = "Helfe Xaver im Museum",
-                comment = null,
-                quests = listOf(
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000000") to QuestId.fromString("00000000-0000-0000-0000-000000000001")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000001") to QuestId.fromString("00000000-0000-0000-0000-000000000002")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000002") to QuestId.fromString("00000000-0000-0000-0000-000000000003")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000003") to QuestId.fromString("00000000-0000-0000-0000-000000000004")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000004") to QuestId.fromString("00000000-0000-0000-0000-000000000005")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000005") to QuestId.fromString("00000000-0000-0000-0000-000000000006")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000006") to QuestId.fromString("00000000-0000-0000-0000-000000000007")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000007") to QuestId.fromString("00000000-0000-0000-0000-000000000008")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000007") to QuestId.fromString("00000000-0000-0000-0000-000000000009")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000008") to QuestId.fromString("00000000-0000-0000-0000-000000000009")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000009") to QuestId.fromString("00000000-0000-0000-0000-000000000010")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000010") to QuestId.fromString("00000000-0000-0000-0000-000000000011")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000011") to QuestId.fromString("00000000-0000-0000-0000-000000000012")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000012") to QuestId.fromString("00000000-0000-0000-0000-000000000013")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000013") to QuestId.fromString("00000000-0000-0000-0000-000000000014"))
-                ),
-                tags = emptyList<Tag>(),
-                lastEdited = LocalDateTime.now(),
-                lastEditor = adminUser,
-                creationDate = LocalDateTime.now()
+                ChaseMetaData(
+                        id = ChaseId.fromString("10000000-0000-0000-0000-000000000000"),
+                        version = 1,
+                        title = "Zeitreise mit Xaver",
+                        description = "Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+                        author = "Silke",
+                        preview = Preview (
+                                Description (
+                                        text = "Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
+                                        image = "assets/examples/silke/images/xaver.png"
+                                )
+                        ),
+                        lastEdited = LocalDateTime.now(),
+                        creationDate = LocalDateTime.now(),
+                        comment = "no comment"
+                )
+
         )
 )

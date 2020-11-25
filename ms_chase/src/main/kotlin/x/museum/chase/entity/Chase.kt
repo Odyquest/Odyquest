@@ -22,16 +22,10 @@ import java.time.LocalDateTime
 import java.util.*
 
 data class Chase (
-        val id: ChaseId?,
-        val version: Int? = null,
-        val author: CustomUser? = null,
-        val title: String,
-        val comment: String?,
-        val quests:List<Map<QuestId, QuestId>>?,
-        val tags: List<Tag>?,
-        val lastEdited: LocalDateTime?,
-        val lastEditor: CustomUser?,
-        val creationDate: LocalDateTime?
+        val metaData: ChaseMetaData,
+        val gameElements:Map<GameElementId, GameElement>?,
+        val initialGameElement: GameElementId,
+        val tags: List<Tag>?
 
 ) {
     companion object {
