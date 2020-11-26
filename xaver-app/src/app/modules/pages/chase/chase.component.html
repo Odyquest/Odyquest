@@ -5,7 +5,7 @@
 <app-quest *ngIf="isQuest(this.displayElement)"
   [quest]="this.displayElement"
   [questStatus]="this.game.getQuestStatus()"
-  (selection)="selectSolution($event)">
+  (selection)="selectDestination($event)">
 </app-quest>
 <app-solution *ngIf="isSolution(this.displayElement)"
   [solution]="this.displayElement"

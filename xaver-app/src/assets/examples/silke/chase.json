@@ -262,11 +262,7 @@
                      true
                   ],
                   "logicType":"or",
-                  "description":{
-                     "text":"Damals gab es noch keine Bücher, wie wir sie heute kennen. Man verwendete im Alltag Ton- oder Wachstafeln. Und man schrieb Bücher auf Papyrusbögen und rollte sie auf.  Schau dir die rechte Hand des Sokrates an! Darin hat er mal eine solche Schriftrolle gehalten.<br/> Die ersten Bücher, bei denen man rechteckige Blätter aus Pergament oder Papier zusammengebunden hat, stammen übrigens aus dem 5. Jahrhundert nach Christus.",
-                     "image":"assets/examples/silke/images/papyrus.png"
-                  },
-                  "destination":11
+                  "destination":10
                }
             ]
          },
@@ -299,11 +295,7 @@
                      false
                   ],
                   "logicType":"and",
-                  "description":{
-                     "text":"„Aber Starrsinnige geben doch auch nie auf. Sind die mutig?“",
-                     "image":"assets/examples/silke/images/sokrates.png"
-                  },
-                  "destination":13
+                  "destination":121
                },
                {
                   "requiredItems":[
@@ -312,11 +304,7 @@
                      false
                   ],
                   "logicType":"and",
-                  "description":{
-                     "text":"„Ausdauer kann aus der Weisheit wie aus der Torheit erwachsen. In diesem Fall ist es wahrscheinlich tadelnswert. Mut dagegen ist immer gut und lobenswert. Daher kann Mut nicht Ausdauer sein.“",
-                     "image":"assets/examples/silke/images/sokrates.png"
-                  },
-                  "destination":13
+                  "destination":122
                },
                {
                   "requiredItems":[
@@ -325,11 +313,7 @@
                      true
                   ],
                   "logicType":"and",
-                  "description":{
-                     "text":"zu 3: „Wenn Mut eine Art von Wissen ist, was ist das Wissen? Weisheit ist etwas anderes als Mut. Aber ja, Mut ist Wissen.“",
-                     "image":"assets/examples/silke/images/sokrates.png"
-                  },
-                  "destination":13
+                  "destination":123
                }
             ]
          },
@@ -355,11 +339,7 @@
                      false
                   ],
                   "logicType":"and",
-                  "description":{
-                     "text":"Der Töpfer freut sich. „Elf Stück sind es! Großartig. Das genügt und ich kann rechtzeitig meinen Kunden mit Vorratsgefäßen, Trinkschalen, Bechern und Trinkhörnern beliefern. Er will nämlich ein großes Trinkgelage veranstalten, ein Symposion! Die Schalen wurden mit Wein und Wasser gefüllt und herumgereicht. Eine solche möchte ich dir zum Dank schenken!“ Finde nun dein Geschenk.",
-                     "image":"assets/examples/silke/images/toepferei-2.jpg"
-                  },
-                  "destination":19
+                  "destination":18
                }
             ]
          },
@@ -389,11 +369,7 @@
                      true
                   ],
                   "logicType":"or",
-                  "description":{
-                     "text":"Ich bin dir sehr dankbar, dass du schon ein Objekt gefunden hast! Die anderen finden wir auch! Das von dir gefundene Codewort löst wieder eine Zeitreise aus. Und zwar reisen wir… in die RÖMERZEIT!",
-                     "image":"assets/examples/silke/images/sokrates.png"
-                  },
-                  "destination":24
+                  "destination":23
                }
             ]
          },
@@ -401,6 +377,48 @@
       }
    },
    "_solutions":{
+     "10":{
+          "description":{
+            "text":"Damals gab es noch keine Bücher, wie wir sie heute kennen. Man verwendete im Alltag Ton- oder Wachstafeln. Und man schrieb Bücher auf Papyrusbögen und rollte sie auf.  Schau dir die rechte Hand des Sokrates an! Darin hat er mal eine solche Schriftrolle gehalten.<br/> Die ersten Bücher, bei denen man rechteckige Blätter aus Pergament oder Papier zusammengebunden hat, stammen übrigens aus dem 5. Jahrhundert nach Christus.",
+            "image":"assets/examples/silke/images/papyrus.png"
+         },
+         "destination":11
+     },
+     "121":{
+         "description":{
+            "text":"„Aber Starrsinnige geben doch auch nie auf. Sind die mutig?“",
+            "image":"assets/examples/silke/images/sokrates.png"
+         },
+         "destination":13
+     },
+     "122":{
+         "description":{
+            "text":"„Ausdauer kann aus der Weisheit wie aus der Torheit erwachsen. In diesem Fall ist es wahrscheinlich tadelnswert. Mut dagegen ist immer gut und lobenswert. Daher kann Mut nicht Ausdauer sein.“",
+            "image":"assets/examples/silke/images/sokrates.png"
+         },
+         "destination":13
+     },
+     "123":{
+         "description":{
+            "text":"zu 3: „Wenn Mut eine Art von Wissen ist, was ist das Wissen? Weisheit ist etwas anderes als Mut. Aber ja, Mut ist Wissen.“",
+            "image":"assets/examples/silke/images/sokrates.png"
+         },
+         "destination":13
+     },
+     "18":{
+         "description":{
+            "text":"Der Töpfer freut sich. „Elf Stück sind es! Großartig. Das genügt und ich kann rechtzeitig meinen Kunden mit Vorratsgefäßen, Trinkschalen, Bechern und Trinkhörnern beliefern. Er will nämlich ein großes Trinkgelage veranstalten, ein Symposion! Die Schalen wurden mit Wein und Wasser gefüllt und herumgereicht. Eine solche möchte ich dir zum Dank schenken!“ Finde nun dein Geschenk.",
+            "image":"assets/examples/silke/images/toepferei-2.jpg"
+         },
+         "destination":19
+     },
+     "23":{
+         "description":{
+            "text":"Ich bin dir sehr dankbar, dass du schon ein Objekt gefunden hast! Die anderen finden wir auch! Das von dir gefundene Codewort löst wieder eine Zeitreise aus. Und zwar reisen wir… in die RÖMERZEIT!",
+            "image":"assets/examples/silke/images/sokrates.png"
+         },
+         "destination":24
+     }
 
    },
    "initialGameElement":1

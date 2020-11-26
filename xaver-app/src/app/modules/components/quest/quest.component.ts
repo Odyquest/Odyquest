@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import * as moment from 'moment';
 import {Subscription, TimeInterval} from 'rxjs';
+import { Router } from '@angular/router';
 
 import {QuestStatus} from '../../../core/services/gameEngine';
 import {Description} from '../../../shared/models/description';
@@ -30,7 +31,7 @@ export class QuestComponent implements OnInit {
   subscriptions = new Array<Subscription>();
   timeTicker;
   timerSet = false;
-  constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer:DomSanitizer) {}
+  constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer: DomSanitizer, private router: Router) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -44,6 +45,12 @@ export class QuestComponent implements OnInit {
             this.remainingTime.minutes = duration.minutes();
             this.remainingTime.seconds = duration.seconds();
             this.timerSet = true;
+            if (this.remainingTime.hours === 0
+              && this.remainingTime.minutes === 0
+              && this.remainingTime.seconds === 0) {
+              console.log('failed quest by timeout');
+              this.loose();
+            }
           }, 1000);
         }));
     this.timeService.setTimer(0, 10, 0);
@@ -58,6 +65,11 @@ export class QuestComponent implements OnInit {
     }
   }
 
+  loose(): void {
+    // TODO display popup
+    setTimeout(() => { this.router.navigateByUrl('/finished'); }, 1500);
+  }
+
   submit(): void {
     const dialogRef = this.dialog.open(SubmitSolutionComponent, {
       data: {quest: this.quest},
@@ -66,13 +78,14 @@ export class QuestComponent implements OnInit {
       console.log(`Submitted: ${result}`);
       const solution = this.quest.requirementCombination.getSolution(result);
       if (solution !== undefined) {
-        this.validSolution = solution;
+        this.validSolution = solution.destination;
       } else {
         if (result.length > 0) {
           this.questStatus.remainingTries--;
           console.log('remaining tries: ' + this.questStatus.remainingTries);
           if (this.questStatus.remainingTries === 0) {
-            // TODO
+            console.log('failed quest by run out of tries');
+            this.loose();
           }
         }
       }

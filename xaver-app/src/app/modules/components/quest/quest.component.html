@@ -6,7 +6,7 @@
   <div class="game_element_text">
     <p>{{quest.description.text}}</p>
   </div>
-  <div class="game_element_image" [ngClass]="{'solved' : hasSolution(), 'not_solved' : !hasSolution()}">
+  <div class="game_element_image" [ngClass]="{'solved' : hasSolution(), 'not_solved' : !hasSolution()}" >
     <a (click)="select('next')">
       <img  [src]="getImage()" />
     </a>
@@ -16,5 +16,6 @@
   <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span>
   <button mat-flat-button color="primary" (click)="submit()">submit solution</button>
   <span *ngIf="timerSet" class="quest_time"><span
-      *ngIf="remainingTime.hours > 0">{{remainingTime.hours}}:</span>{{remainingTime.minutes}}:{{remainingTime.seconds}}</span>
+      *ngIf="remainingTime.hours >
+      0">{{remainingTime.hours}}:</span>{{remainingTime.minutes | number:'2.0-0'}}:{{remainingTime.seconds | number:'2.0-0'}}</span>
 </div>

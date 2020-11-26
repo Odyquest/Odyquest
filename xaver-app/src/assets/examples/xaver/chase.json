@@ -61,11 +61,7 @@
                      true
                   ],
                   "logicType":"and",
-                  "description":{
-                     "text":"You are right, according to Deep Thought it is 42!",
-                     "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
-                  },
-                  "destination":2
+                  "destination":3
                },
                {
                   "requiredItems":[
@@ -73,11 +69,7 @@
                      false
                   ],
                   "logicType":"and",
-                  "description":{
-                     "text":"You loose!",
-                     "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
-                  },
-                  "destination":1
+                  "destination":4
                }
             ]
          },
@@ -94,7 +86,20 @@
       }
    },
    "_solutions":{
-
+      "3":{
+         "description":{
+            "text":"You are right, according to Deep Thought it is 42!",
+            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+         },
+         "destination":2
+      },
+      "4":{
+         "description":{
+            "text":"You loose!",
+            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+         },
+         "destination":1
+      }
    },
    "initialGameElement":0
 }

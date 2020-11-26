@@ -1,14 +1,14 @@
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
-import { LogicType, Solution } from './solution';
+import { LogicType, SolutionTerm } from './solution_term';
 
 
 @Serializable()
 export class RequirementCombination {
 
   @JsonProperty() solutionItems: Array<string>;
-  @JsonProperty({ type: Solution, }) combinationMap: Array<Solution>;
+  @JsonProperty({ type: SolutionTerm, }) combinationMap: Array<SolutionTerm>;
 
-  getSolution(solutions: Array<string>): number | undefined {
+  getSolution(solutions: Array<string>): SolutionTerm | undefined {
     const solutionArray = new Array<boolean>(this.solutionItems.length);
     const expectedItems = new Array<string>(this.solutionItems.length);
     for (let i = 0; i < this.solutionItems.length; i++) {
@@ -39,13 +39,13 @@ export class RequirementCombination {
         const fullfilled = combination.requiredItems.map(matchAny);
         if (fullfilled.some(isTrue)) {
           console.log('Given solution is valid.');
-          return this.combinationMap.indexOf(combination);
+          return combination;
         }
       } else if (combination.logicType === LogicType.And) {
         const fullfilled = combination.requiredItems.map(matchAll);
         if (fullfilled.every(isTrue)) {
           console.log('Given solution is valid.');
-          return this.combinationMap.indexOf(combination);
+          return combination;
         }
       }
     }
