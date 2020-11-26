@@ -54,12 +54,6 @@ export class ChaseComponent implements OnInit {
     }
   }
 
-  selectSolution(solution: number): void {
-    const currentQuest = this.displayElement as Quest;
-    this.displayElement = currentQuest.getElement(solution);
-    console.log('Select solution "' + this.displayElement.title + '" (' + solution + ')');
-  }
-
   isNarrative(element: GameElement): boolean {
     return element instanceof Narrative;
   }

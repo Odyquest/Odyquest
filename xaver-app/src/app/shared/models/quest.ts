@@ -19,7 +19,4 @@ export class Quest extends GameElement {
 	@JsonProperty() requirementCombination: RequirementCombination;
 	@JsonProperty({ type: Description }) help: Array<Description>;
 
-  getElement(solution: number): GameElement {
-    return this.requirementCombination.combinationMap[solution];
-  }
 }

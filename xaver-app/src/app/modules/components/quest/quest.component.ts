@@ -66,7 +66,7 @@ export class QuestComponent implements OnInit {
       console.log(`Submitted: ${result}`);
       const solution = this.quest.requirementCombination.getSolution(result);
       if (solution !== undefined) {
-        this.validSolution = solution;
+        this.validSolution = solution.destination;
       } else {
         if (result.length > 0) {
           this.questStatus.remainingTries--;

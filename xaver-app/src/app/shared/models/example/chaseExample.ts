@@ -4,7 +4,7 @@ import { GameElement } from '../gameElement';
 import { Narrative } from '../narrative';
 import { Quest, QuestType } from '../quest';
 import { RequirementCombination } from '../requirementCombination';
-import { LogicType, Solution } from '../solution';
+import { LogicType, SolutionTerm } from '../solution_term';
 import { XButton } from '../xButton';
 import { base64_encoded_image } from './imageExample';
 
