@@ -30,8 +30,8 @@ val chases = flowOf(
                         title = "Zeitreise mit Xaver",
                         description = "Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
                         author = "Silke",
-                        preview = Preview (
-                                Description (
+                        preview = Preview(
+                                Description(
                                         text = "Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
                                         image = "assets/examples/silke/images/xaver.png"
                                 )
@@ -39,7 +39,81 @@ val chases = flowOf(
                         lastEdited = LocalDateTime.now(),
                         creationDate = LocalDateTime.now(),
                         comment = "no comment"
+                ),
+                narratives = listOf(
+                        mapOf(1 to Narrative(
+                            id = GameElementId.fromString("20000000-0000-0000-0000-000000000000"),
+                            version = 1,
+                            title = "Zeitreise mit Xaver",
+                            description = Description(
+                                    text = "Oh nein, ich stecke völlig im Schlamassel. Ich habe mich hier im Museum umgesehen und wollte Fotos von den hübschen Kunstwerken machen, doch dabei habe ich wohl etwas falsch gemacht. Statt Fotos zu machen, habe ich irgendwie mehrere Objekte aus den verschiedenen Räumen des Museums verschwinden lassen! Keine Ahnung, wie das passieren konnte!",
+                                    image = "assets/examples/silke/images/xaver.png"
+                            ),
+                            buttons = arrayOf(
+                                    XButton(
+                                            name = "weiter",
+                                            destination = GameElementId.fromString("20000000-0000-0000-0000-000000000001")
+                                    )
+                            )
+
+                )),
+                        mapOf(2 to Narrative(
+                                id = GameElementId.fromString("20000000-0000-0000-0000-000000000001"),
+                                version = 1,
+                                title = "Zeitreise mit Xaver",
+                                description = Description(
+                                        text = "Oh nein, ich stecke völlig im Schlamassel. Ich habe mich hier im Museum umgesehen und wollte Fotos von den hübschen Kunstwerken machen, doch dabei habe ich wohl etwas falsch gemacht. Statt Fotos zu machen, habe ich irgendwie mehrere Objekte aus den verschiedenen Räumen des Museums verschwinden lassen! Keine Ahnung, wie das passieren konnte!",
+                                        image = "assets/examples/silke/images/xaver.png"
+                                ),
+                                buttons = arrayOf(
+                                        XButton(
+                                                name = "weiter",
+                                                destination = GameElementId.fromString("20000000-0000-0000-0000-000000000001")
+                                        )
+                                )
+
+                        ))),
+                quests = listOf(
+                        mapOf(9 to Quest(
+                                id = GameElementId.fromString("30000000-0000-0000-0000-000000000000"),
+                                version = 1,
+                                title = "Zeitreise mit Xaver",
+                                description = Description(
+                                        "Weißt du, was es damals noch nicht gegeben hat und an der Statue des Sokrates ergänzt wurde? Nenne nur ein Wort!",
+                                        image = "assets/examples/silke/images/xaver.png"
+                                ),
+                                questType = QuestType.MULTIPLE_CHOICE,
+                                maxTries = 7,
+                                requirementCombination = RequirementCombination(
+                                        solutionItems = arrayOf("Buch", "Bücher", "Papier"),
+                                        combinationMap = arrayOf(SolutionTerm(
+                                                requiredItems = arrayOf(
+                                                        true,
+                                                        false,
+                                                        false
+                                                ),
+                                                logicType = LogicType.AND,
+                                                destination = GameElementId.fromString("")
+                                        ),
+                                        SolutionTerm(
+                                                requiredItems = arrayOf(
+                                                        false,
+                                                        true,
+                                                        false
+                                                ),
+                                                logicType = LogicType.AND,
+                                                destination = GameElementId.fromString("")
+                                        ))
+                                )
+
+                        ))
+                ),
+                solutions = listOf(
+                        mapOf(10 to Solution(
+
+                        ))
                 )
+
 
         )
 )

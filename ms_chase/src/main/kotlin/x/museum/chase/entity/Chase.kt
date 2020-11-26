@@ -25,7 +25,10 @@ data class Chase (
         val metaData: ChaseMetaData,
         val gameElements:Map<GameElementId, GameElement>?,
         val initialGameElement: GameElementId,
-        val tags: List<Tag>?
+        val tags: List<Tag>?,
+        val narratives: List<Map<Int, Narrative>>?,
+        val quests: List<Map<Int, Quest>>?,
+        val solutions: List<Map<Int, Solution>>?
 
 ) {
     companion object {

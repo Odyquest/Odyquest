@@ -2,6 +2,6 @@ package x.museum.chase.entity
 
 class RequirementCombination(
         val solutionItems: Array<String>,
-        val combinationMap: Array<Solution>
+        val combinationMap: Array<SolutionTerm>
 ) {
 }
