@@ -132,7 +132,7 @@
                      "text":"Richtig, du schlauer Löwe! Meinem Löwenkörper fehlt der Löwenkopf. \nDiese Platte mit dem Löwenkopf ist ein Bildhauermodell. Es war also eine Vorlage, die ägyptische Steinmetze benutzten, wenn sie Reliefs anfertigten. Witzigerweise sind die überlieferten Modelle fast immer Köpfe – tatsächlich weiß nicht einmal ich, wie die Bildhauer die Körper gearbeitet haben. Obwohl ich so schlau bin. Wir Sphingen sind überaus schlau.",
                      "image":"assets/examples/julia/images/loewenkopf.png"
                   },
-                  "destination":5
+                  "destination":4
                }
             ]
          },
@@ -165,11 +165,7 @@
                      true
                   ],
                   "logicType":"or",
-                  "description":{
-                     "text":"Ja, schwarz! Das kleine Ölfläschchen gehört nämlich zu einem bestimmten Stil der griechischen Vasenmalerei, den die Menschen rotfigurige Vasenmalerei nennen – mit dem schwarz bemalten Grund werden die Figuren ausgespart, die dann rot hervortreten. \nSchau mich an: Bin ich nicht hübsch? Und so anmutig! Wie zart geschwungen meine Flügel sind, wie fein meine Federn. Und wie kräftig elegant meine Hinterläufe. Und erst meine Frisur! Kunstvoll, nicht wahr? Und mein sanftes Lächeln, so wissend, denn ich bin klug. Wir Sphingen sind bekannt dafür, sehr klug zu sein.",
-                     "image":"assets/examples/julia/images/vase.png"
-                  },
-                  "destination":7
+                  "destination":6
                }
             ]
          },
@@ -205,11 +201,7 @@
                      true
                   ],
                   "logicType":"or",
-                  "description":{
-                     "text":"Ja, es ist Geflügel! Ist das zu fassen? Immerhin sind die anderen Tiere in der Reihe doch irgendwie ähnlich besonders wie wir Sphingen, ein Löwe und ein Panther, wahre Könige des Tierreichs. Natürlich sind sie lange nicht so besonders wie ich! Mit hoch erhobenem Haupte schreite ich voran.\n Wir Sphingen waren bei den Etruskern als Wächter gegen Böses vor allem bei Gräbern gefragt. Denn wir beschützten die Toten vor allem Übel. Ich bin also sehr tapfer und mutig. Und wachsam. Wir Sphingen sind sehr wachsam.",
-                     "image":"assets/examples/julia/images/vase-2.png"
-                  },
-                  "destination":9
+                  "destination":8
                }
             ]
          },
@@ -243,11 +235,7 @@
                      true
                   ],
                   "logicType":"or",
-                  "description":{
-                     "text":"Richtig, du kannst zählen! Das ist ja sehr beeindruckend. Das konnten damals nicht alle.\n Außer mir ist auf dem Sarkophag auch noch meine gute Freundin, die Medusa, abgebildet. Wir haben viel gemeinsam (auch wenn sie nicht ganz so hübsch ist wie ich, mit ihren Schlangenhaaren). Du solltest sie aber besser nicht so anstarren, denn unter ihrem Blick erstarren Menschen zu Stein. Gehen wir weiter, zurück nach Griechenland. \nIn Griechenland war ich auch als Rätselstellerin bekannt. Das wundert dich jetzt wahrscheinlich nicht. Ich bin rätselhaft. Wir Sphingen sind bekannt dafür, sehr rätselhaft zu sein.",
-                     "image":"assets/examples/julia/images/sarkophag.png"
-                  },
-                  "destination":11
+                  "destination":10
                }
             ]
          },
@@ -280,11 +268,7 @@
                      true
                   ],
                   "logicType":"and",
-                  "description":{
-                     "text":"Sehr gut, du hast den Bronzespiegel gefunden! Fein poliert konnte man sich in dessen Oberfläche bewundern. Vielleicht wunderst du dich, dass ich hier den jungen Mann angreife. Aber es ist so: Er konnte mein Rätsel nicht lösen.\n Das mag dir jetzt etwas dünnhäutig erscheinen, aber mit Unwissenheit kann ich einfach nicht gut umgehen… Vielleicht bin ich etwas reizbar. Man sagt uns Sphingen tatsächlich nach, ein klein wenig reizbar zu sein.\n Du brauchst vor mir aber gar keine Angst zu haben, denn du bist ja wahrhaft meisterlich im Rätsellösen und ich tue dir nichts. Vorerst.",
-                     "image":"assets/examples/julia/images/spiegel.png"
-                  },
-                  "destination":1111
+                  "destination":111
                }
             ]
          },
@@ -320,11 +304,7 @@
                      true
                   ],
                   "logicType":"or",
-                  "description":{
-                     "text":"Du hast Ödipus tatsächlich gefunden – wirklich sehr beeindruckend, Mensch! Und ja, das ist ein Kopf in meiner Hand… Kuck nicht so vorwurfsvoll, bitte. Dem Menschen den Kopf abzureißen war keine Überreaktion. Der konnte mein Rätsel eben nicht beantworten – diese Unwissenheit! Das ertrage ich einfach nicht! Ab mit seinem Kopf! \nIch bin doch etwas impulsiv. Wir Sphingen können unter bestimmten Umständen recht impulsiv sein.",
-                     "image":"assets/examples/julia/images/oedipus.png"
-                  },
-                  "destination":13
+                  "destination":12
                }
             ]
          },
@@ -358,11 +338,7 @@
                      true
                   ],
                   "logicType":"or",
-                  "description":{
-                     "text":"Ja, der Mensch! Und ihr Menschen seid so naiv! Selbst du, Meisterrätsellöser*in. Du hast mich befreit. Mich, die mächtige Sphinx! \nIch fresse Menschen! Wir Sphingen sind bekannt dafür, dass wir Menschen erwürgen und fressen! Jetzt kann ich weiterflattern, Rätsel stellen und unwissende Menschen fressen!!! Wuahahaha!",
-                     "image":"assets/examples/julia/images/xaver.png"
-                  },
-                  "destination":16
+                  "destination":15
                }
             ]
          },
@@ -370,6 +346,55 @@
       }
    },
    "_solutions":{
+     "4":{
+         "description":{
+            "text":"Richtig, du schlauer Löwe! Meinem Löwenkörper fehlt der Löwenkopf. \nDiese Platte mit dem Löwenkopf ist ein Bildhauermodell. Es war also eine Vorlage, die ägyptische Steinmetze benutzten, wenn sie Reliefs anfertigten. Witzigerweise sind die überlieferten Modelle fast immer Köpfe – tatsächlich weiß nicht einmal ich, wie die Bildhauer die Körper gearbeitet haben. Obwohl ich so schlau bin. Wir Sphingen sind überaus schlau.",
+            "image":"assets/examples/julia/images/loewenkopf.png"
+         },
+         "destination":5
+     },
+     "6":{
+         "description":{
+            "text":"Ja, schwarz! Das kleine Ölfläschchen gehört nämlich zu einem bestimmten Stil der griechischen Vasenmalerei, den die Menschen rotfigurige Vasenmalerei nennen – mit dem schwarz bemalten Grund werden die Figuren ausgespart, die dann rot hervortreten. \nSchau mich an: Bin ich nicht hübsch? Und so anmutig! Wie zart geschwungen meine Flügel sind, wie fein meine Federn. Und wie kräftig elegant meine Hinterläufe. Und erst meine Frisur! Kunstvoll, nicht wahr? Und mein sanftes Lächeln, so wissend, denn ich bin klug. Wir Sphingen sind bekannt dafür, sehr klug zu sein.",
+            "image":"assets/examples/julia/images/vase.png"
+         },
+         "destination":7
+     },
+     "8":{
+         "description":{
+            "text":"Ja, es ist Geflügel! Ist das zu fassen? Immerhin sind die anderen Tiere in der Reihe doch irgendwie ähnlich besonders wie wir Sphingen, ein Löwe und ein Panther, wahre Könige des Tierreichs. Natürlich sind sie lange nicht so besonders wie ich! Mit hoch erhobenem Haupte schreite ich voran.\n Wir Sphingen waren bei den Etruskern als Wächter gegen Böses vor allem bei Gräbern gefragt. Denn wir beschützten die Toten vor allem Übel. Ich bin also sehr tapfer und mutig. Und wachsam. Wir Sphingen sind sehr wachsam.",
+            "image":"assets/examples/julia/images/vase-2.png"
+         },
+         "destination":9
+     },
+     "10":{
+        "description":{
+           "text":"Richtig, du kannst zählen! Das ist ja sehr beeindruckend. Das konnten damals nicht alle.\n Außer mir ist auf dem Sarkophag auch noch meine gute Freundin, die Medusa, abgebildet. Wir haben viel gemeinsam (auch wenn sie nicht ganz so hübsch ist wie ich, mit ihren Schlangenhaaren). Du solltest sie aber besser nicht so anstarren, denn unter ihrem Blick erstarren Menschen zu Stein. Gehen wir weiter, zurück nach Griechenland. \nIn Griechenland war ich auch als Rätselstellerin bekannt. Das wundert dich jetzt wahrscheinlich nicht. Ich bin rätselhaft. Wir Sphingen sind bekannt dafür, sehr rätselhaft zu sein.",
+           "image":"assets/examples/julia/images/sarkophag.png"
+        },
+       "destination":11
+     },
+     "111":{
+         "description":{
+            "text":"Sehr gut, du hast den Bronzespiegel gefunden! Fein poliert konnte man sich in dessen Oberfläche bewundern. Vielleicht wunderst du dich, dass ich hier den jungen Mann angreife. Aber es ist so: Er konnte mein Rätsel nicht lösen.\n Das mag dir jetzt etwas dünnhäutig erscheinen, aber mit Unwissenheit kann ich einfach nicht gut umgehen… Vielleicht bin ich etwas reizbar. Man sagt uns Sphingen tatsächlich nach, ein klein wenig reizbar zu sein.\n Du brauchst vor mir aber gar keine Angst zu haben, denn du bist ja wahrhaft meisterlich im Rätsellösen und ich tue dir nichts. Vorerst.",
+            "image":"assets/examples/julia/images/spiegel.png"
+         },
+         "destination":1111
+     },
+     "12":{
+         "description":{
+            "text":"Du hast Ödipus tatsächlich gefunden – wirklich sehr beeindruckend, Mensch! Und ja, das ist ein Kopf in meiner Hand… Kuck nicht so vorwurfsvoll, bitte. Dem Menschen den Kopf abzureißen war keine Überreaktion. Der konnte mein Rätsel eben nicht beantworten – diese Unwissenheit! Das ertrage ich einfach nicht! Ab mit seinem Kopf! \nIch bin doch etwas impulsiv. Wir Sphingen können unter bestimmten Umständen recht impulsiv sein.",
+            "image":"assets/examples/julia/images/oedipus.png"
+         },
+         "destination":13
+     },
+     "15":{
+        "description":{
+           "text":"Ja, der Mensch! Und ihr Menschen seid so naiv! Selbst du, Meisterrätsellöser*in. Du hast mich befreit. Mich, die mächtige Sphinx! \nIch fresse Menschen! Wir Sphingen sind bekannt dafür, dass wir Menschen erwürgen und fressen! Jetzt kann ich weiterflattern, Rätsel stellen und unwissende Menschen fressen!!! Wuahahaha!",
+           "image":"assets/examples/julia/images/xaver.png"
+        },
+        "destination":16
+     }
 
    },
    "initialGameElement":1
