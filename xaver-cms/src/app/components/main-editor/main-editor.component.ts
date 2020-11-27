@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ChaseService } from 'src/app/services/chase.service';
 //import { QuestEditorComponent} from './quest-editor/quest-editor.component';
 ///home/frot/XaverImMuseum/xaver-app/src/app/shared/models/example/chaseExample.ts
-import { getExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
+import { getSimpleExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
 import { Chase } from '../../../../../xaver-app/src/app/shared/models/chase';
 import { Quest } from '../../../../../xaver-app/src/app/shared/models/quest';
 import { GameElement } from '../../../../../xaver-app/src/app/shared/models/gameElement';
@@ -29,7 +29,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.selectedQuest = 1;
     console.log("Selected Quest Id: " + this.selectedQuest);
 
-    console.log("Loading values from Chase", this.chase.title);
+    console.log("Loading values from Chase", this.chase.metaData.title);
 
     //write questList string
     console.log("Contained GameElements (" + this.chase.gameElements.size + "):");
@@ -49,7 +49,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    this.chase = getExample();
+    this.chase = getSimpleExample();
 
     this.getDataFromChase();
 
@@ -67,9 +67,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     console.log(value)
   }
 
-  questSelectorClicked() {
-    console.log("Quest Selector Clicked", this.selectedQuest);
-
+  questSelectorClicked(event, value) {
+    console.log("Quest Selector Clicked", event.value);
   }
 
   addQuest() {

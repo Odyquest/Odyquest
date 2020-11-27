@@ -9,7 +9,7 @@ import { GameElement } from './gameElement';
 @Serializable()
 export class ChaseMetaData {
 	@JsonProperty() id?: string;
-	@JsonProperty() version?: number; // nein bred, nicht was du denkst
+	@JsonProperty() version?: number;
 	@JsonProperty() title: string;
 	@JsonProperty() description: string;
 	@JsonProperty() preview: Preview;

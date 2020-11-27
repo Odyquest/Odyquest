@@ -1,8 +1,8 @@
 <div class="main_body">
   <div class="quest_selector_container">
     <div class="quest_selector">
-      <mat-selection-list #shoes [multiple]="false">
-        <mat-list-option *ngFor="let quest of questList" [value]="selectedQuest" (click)="questSelectorClicked()">
+      <mat-selection-list #selected [multiple]="false" (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
+        <mat-list-option *ngFor="let quest of questList" [(ngModel)]="selectedQuest">
           {{quest}}
         </mat-list-option>
       </mat-selection-list>
