@@ -25,20 +25,20 @@ import java.util.*
  * @author [Florian Göbel](mailto:florian.goebel@outlook.de)
  */
 
-data class Quest(
+class Quest(
+        val questType: QuestType,
+        val maxTries: Int,
+        val maxTime: Date,
+        val displayImageFirst: Boolean,
+        val requirementCombination: RequirementCombination,
+        val help: Array<Description>,
+        id: UUID,
+        version: Int,
+        title: String,
+        description: Description
+) : GameElement(id, version, title, description) {
 
-        val id: QuestId?,
-        val version: Int? = null,
-        val title: String?,
-        val description: Description?,
-        val requirement: Requirement?,
-        val tags: List<Tag>?,
-        val lastEdited: LocalDateTime?,
-        val lastEditor: CustomUser?,
-        val author: CustomUser?,
-        val creationDate: LocalDateTime?
 
-) {
     companion object {
         private const val HEX_PATTERN = "[\\dA-Fa-f]"
         const val ID_PATTERN =

@@ -1,10 +1,10 @@
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
+
 import { Description } from './description';
 import { GameElement } from './gameElement';
 
+@Serializable()
 export class Solution extends GameElement {
 
-	requiredItems: Array<boolean>;
-	logicType: string; // TODO: enum logic types
-	description: Description;
-	destination: number; // GameElementId
+	@JsonProperty() destination: number; // GameElementId
 }

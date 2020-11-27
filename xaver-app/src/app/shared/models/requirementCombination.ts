@@ -1,17 +1,26 @@
-import { Solution } from "./solution";
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
+import { LogicType, SolutionTerm } from './solution_term';
 
+
+@Serializable()
 export class RequirementCombination {
 
-  solutionItems: Array<string>;
-  combinationMap: Array<Solution>;
+  @JsonProperty() solutionItems: Array<string>;
+  @JsonProperty({ type: SolutionTerm, }) combinationMap: Array<SolutionTerm>;
 
-  getSolution(solutions: Array<string>): number | undefined {
+  getSolution(solutions: Array<string>): SolutionTerm | undefined {
     const solutionArray = new Array<boolean>(this.solutionItems.length);
-    solutionArray.forEach(function (value) { value = false; });
+    const expectedItems = new Array<string>(this.solutionItems.length);
+    for (let i = 0; i < this.solutionItems.length; i++) {
+      // prepare solution items
+      expectedItems[i] = this.solutionItems[i].trim().toLowerCase();
+      // create comparison entry
+      solutionArray[i] = false;
+    }
 
     for (const given of solutions) {
-      const i = this.solutionItems.indexOf(given);
-      if (i < this.solutionItems.length) {
+      const i = expectedItems.indexOf(given.trim().toLowerCase());
+      if (i < expectedItems.length) {
         solutionArray[i] = true;
       }
     }
@@ -26,19 +35,19 @@ export class RequirementCombination {
       return value === true;
     }
     for (const combination of this.combinationMap) {
-      // TODO use logicType
-      // match any
-      const fullfilled = combination.requiredItems.map(matchAny);
-      if (fullfilled.some(isTrue)) {
-        console.log('Given solution is valid.');
-        return this.combinationMap.indexOf(combination);
+      if (combination.logicType === LogicType.Or) {
+        const fullfilled = combination.requiredItems.map(matchAny);
+        if (fullfilled.some(isTrue)) {
+          console.log('Given solution is valid.');
+          return combination;
+        }
+      } else if (combination.logicType === LogicType.And) {
+        const fullfilled = combination.requiredItems.map(matchAll);
+        if (fullfilled.every(isTrue)) {
+          console.log('Given solution is valid.');
+          return combination;
+        }
       }
-      // match all
-      // const fullfilled = combination.requiredItems.map(matchAll);
-      // if (fullfilled.every(isTrue)) {
-      //   console.log('Given solution is valid.');
-      //   return this.combinationMap.indexOf(combination);
-      // }
     }
     console.log('Given solution is not valid.');
     return; // no valid solution

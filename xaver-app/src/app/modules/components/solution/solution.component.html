@@ -1,10 +1,10 @@
-<h3 class="game_element_title">Solution: {{solution.title}}</h3>
+<h3 class="game_element_title">{{solution.title}}</h3>
 <div class="game_element_columns">
   <div class="game_element_text">
     <p>{{solution.description.text}}</p>
   </div>
   <div class="game_element_image">
-    <img src="{{solution.description.image}}"/>
+    <img [src]="getImage()"/>
   </div>
 </div>
 <div class="game_element_buttons">

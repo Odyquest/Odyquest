@@ -4,14 +4,17 @@
   .game_element_columns {
     flex-direction: row;
   }
+
   .game_element_image {
     width: 30%;
   }
+
   .game_element_image img {
     //width: 100%;
-    max-width:100%;
-    max-height:100%;
+    max-width: 100%;
+    max-height: 100%;
   }
+
   .game_element_text {
     width: 70%;
   }
@@ -23,15 +26,18 @@
   .game_element_columns {
     flex-direction: column;
   }
+
   .game_element_image {
-    height: 30%;
+    // height: 30%;
     text-align: center;
   }
+
   .game_element_image img {
     //height: 100%;
-    max-width:100%;
-    max-height:100%;
+    max-width: 100%;
+    max-height: 100%;
   }
+
   .game_element_text {
     width: 100%;
   }
@@ -48,6 +54,9 @@
 
 .game_element_image {
   float: left;
+}
+.game_element_image img {
+  display:block;
 }
 
 .game_element_text {

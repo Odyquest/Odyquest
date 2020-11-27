@@ -1,5 +1,18 @@
 @import "../game_element";
 
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.game_element_title {
+  padding-left: 15px;
+}
+
 .title_column {
   display: flex;
 }
@@ -15,3 +28,14 @@
 ul {
   list-style-type: none;
 }
+
+.solved {
+  border: 8px #00ff00 solid;
+  // border: 8px mat-color($primary, default) solid;
+  border-radius: 8px;
+
+  animation: blink 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blink { 50% { border-color:#eee ; }  }

@@ -1,9 +1,10 @@
+import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { Description } from './description';
 
+@Serializable()
 export class GameElement {
-	id?: number;
-	version?: number;
-	title: string;
-	description: Description;
-	
+	@JsonProperty() id?: number;
+	@JsonProperty() version?: number;
+	@JsonProperty() title: string;
+	@JsonProperty() description: Description;
 }

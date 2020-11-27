@@ -22,33 +22,98 @@ import x.museum.chase.config.security.CustomUser
 import x.museum.chase.entity.*
 import java.time.LocalDateTime
 
-// import x.museum.chase.config.dev.adminUser
-
 val chases = flowOf(
         Chase(
-                id = ChaseId.fromString("10000000-0000-0000-0000-000000000000"),
-                title = "Helfe Xaver im Museum",
-                comment = null,
-                quests = listOf(
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000000") to QuestId.fromString("00000000-0000-0000-0000-000000000001")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000001") to QuestId.fromString("00000000-0000-0000-0000-000000000002")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000002") to QuestId.fromString("00000000-0000-0000-0000-000000000003")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000003") to QuestId.fromString("00000000-0000-0000-0000-000000000004")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000004") to QuestId.fromString("00000000-0000-0000-0000-000000000005")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000005") to QuestId.fromString("00000000-0000-0000-0000-000000000006")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000006") to QuestId.fromString("00000000-0000-0000-0000-000000000007")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000007") to QuestId.fromString("00000000-0000-0000-0000-000000000008")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000007") to QuestId.fromString("00000000-0000-0000-0000-000000000009")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000008") to QuestId.fromString("00000000-0000-0000-0000-000000000009")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000009") to QuestId.fromString("00000000-0000-0000-0000-000000000010")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000010") to QuestId.fromString("00000000-0000-0000-0000-000000000011")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000011") to QuestId.fromString("00000000-0000-0000-0000-000000000012")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000012") to QuestId.fromString("00000000-0000-0000-0000-000000000013")),
-                        mapOf(QuestId.fromString("00000000-0000-0000-0000-000000000013") to QuestId.fromString("00000000-0000-0000-0000-000000000014"))
+                ChaseMetaData(
+                        id = ChaseId.fromString("10000000-0000-0000-0000-000000000000"),
+                        version = 1,
+                        title = "Zeitreise mit Xaver",
+                        description = "Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+                        author = "Silke",
+                        preview = Preview(
+                                Description(
+                                        text = "Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
+                                        image = "assets/examples/silke/images/xaver.png"
+                                )
+                        ),
+                        lastEdited = LocalDateTime.now(),
+                        creationDate = LocalDateTime.now(),
+                        comment = "no comment"
                 ),
-                tags = emptyList<Tag>(),
-                lastEdited = LocalDateTime.now(),
-                lastEditor = adminUser,
-                creationDate = LocalDateTime.now()
+                narratives = listOf(
+                        mapOf(1 to Narrative(
+                            id = GameElementId.fromString("20000000-0000-0000-0000-000000000000"),
+                            version = 1,
+                            title = "Zeitreise mit Xaver",
+                            description = Description(
+                                    text = "Oh nein, ich stecke völlig im Schlamassel. Ich habe mich hier im Museum umgesehen und wollte Fotos von den hübschen Kunstwerken machen, doch dabei habe ich wohl etwas falsch gemacht. Statt Fotos zu machen, habe ich irgendwie mehrere Objekte aus den verschiedenen Räumen des Museums verschwinden lassen! Keine Ahnung, wie das passieren konnte!",
+                                    image = "assets/examples/silke/images/xaver.png"
+                            ),
+                            buttons = arrayOf(
+                                    XButton(
+                                            name = "weiter",
+                                            destination = GameElementId.fromString("20000000-0000-0000-0000-000000000001")
+                                    )
+                            )
+
+                )),
+                        mapOf(2 to Narrative(
+                                id = GameElementId.fromString("20000000-0000-0000-0000-000000000001"),
+                                version = 1,
+                                title = "Zeitreise mit Xaver",
+                                description = Description(
+                                        text = "Oh nein, ich stecke völlig im Schlamassel. Ich habe mich hier im Museum umgesehen und wollte Fotos von den hübschen Kunstwerken machen, doch dabei habe ich wohl etwas falsch gemacht. Statt Fotos zu machen, habe ich irgendwie mehrere Objekte aus den verschiedenen Räumen des Museums verschwinden lassen! Keine Ahnung, wie das passieren konnte!",
+                                        image = "assets/examples/silke/images/xaver.png"
+                                ),
+                                buttons = arrayOf(
+                                        XButton(
+                                                name = "weiter",
+                                                destination = GameElementId.fromString("20000000-0000-0000-0000-000000000001")
+                                        )
+                                )
+
+                        ))),
+                quests = listOf(
+                        mapOf(9 to Quest(
+                                id = GameElementId.fromString("30000000-0000-0000-0000-000000000000"),
+                                version = 1,
+                                title = "Zeitreise mit Xaver",
+                                description = Description(
+                                        "Weißt du, was es damals noch nicht gegeben hat und an der Statue des Sokrates ergänzt wurde? Nenne nur ein Wort!",
+                                        image = "assets/examples/silke/images/xaver.png"
+                                ),
+                                questType = QuestType.MULTIPLE_CHOICE,
+                                maxTries = 7,
+                                requirementCombination = RequirementCombination(
+                                        solutionItems = arrayOf("Buch", "Bücher", "Papier"),
+                                        combinationMap = arrayOf(SolutionTerm(
+                                                requiredItems = arrayOf(
+                                                        true,
+                                                        false,
+                                                        false
+                                                ),
+                                                logicType = LogicType.AND,
+                                                destination = GameElementId.fromString("")
+                                        ),
+                                        SolutionTerm(
+                                                requiredItems = arrayOf(
+                                                        false,
+                                                        true,
+                                                        false
+                                                ),
+                                                logicType = LogicType.AND,
+                                                destination = GameElementId.fromString("")
+                                        ))
+                                )
+
+                        ))
+                ),
+                solutions = listOf(
+                        mapOf(10 to Solution(
+
+                        ))
+                )
+
+
         )
 )
