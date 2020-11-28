@@ -23,9 +23,11 @@
     "@angular/router": "~9.1.1",
     "@okta/okta-angular": "^2.2.0",
     "@okta/okta-signin-widget": "^4.4.4",
+    "help": "^3.0.2",
     "material-design-icons": "^3.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "typescript-json-serializer": "^2.5.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

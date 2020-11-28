@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ChaseService } from 'src/app/services/chase.service';
+//import { ChaseService } from 'src/app/services/chase.service';
 //import { QuestEditorComponent} from './quest-editor/quest-editor.component';
 ///home/frot/XaverImMuseum/xaver-app/src/app/shared/models/example/chaseExample.ts
-import { getSimpleExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
+//import { getSimpleExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
 import { Chase } from '../../../../../xaver-app/src/app/shared/models/chase';
 import { Quest } from '../../../../../xaver-app/src/app/shared/models/quest';
 import { GameElement } from '../../../../../xaver-app/src/app/shared/models/gameElement';
+import { ChaseService } from '../../../../../xaver-app/src/app/core/services/chase.service'
+import { deserialize, serialize } from 'typescript-json-serializer';
+import { Inject } from '@angular/core'
 
 @Component({
   selector: 'main-chase-editor',
@@ -15,14 +18,15 @@ import { GameElement } from '../../../../../xaver-app/src/app/shared/models/game
 
 export class MainEditorComponent implements OnInit, AfterViewInit {
 
-  // the chase
   public chase: Chase;
   selectedQuest: number;
+  chaseID = "xaver"; //{"xaver", "julia", "silke"}
 
   @ViewChild('quest_editor') questEditor;
 
   // these values are filled with info from the chase
-  questList: string[] = ['Quest1', 'Quest2', 'Quest3', 'Quest4', 'Quest56'];
+  // todo use actual questList
+  questList: string[];
 
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
@@ -49,7 +53,13 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    this.chase = getSimpleExample();
+
+    //this.chase = this.chaseService.getChase("example"); //"example", "julia", "pepper", "silke"
+    //this.chase = getSimpleExample();
+
+    this.chaseService.getChase(this.chaseID).subscribe(chase_to_get => (this.chase = (deserialize<Chase>(chase_to_get, Chase))));
+    //this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
+
 
     this.getDataFromChase();
 
