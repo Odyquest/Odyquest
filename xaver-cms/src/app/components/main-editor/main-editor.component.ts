@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-//import { ChaseService } from 'src/app/services/chase.service';
 //import { QuestEditorComponent} from './quest-editor/quest-editor.component';
 ///home/frot/XaverImMuseum/xaver-app/src/app/shared/models/example/chaseExample.ts
 //import { getSimpleExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
 import { Chase } from '../../../../../xaver-app/src/app/shared/models/chase';
 import { Quest } from '../../../../../xaver-app/src/app/shared/models/quest';
 import { GameElement } from '../../../../../xaver-app/src/app/shared/models/gameElement';
-import { ChaseService } from '../../../../../xaver-app/src/app/core/services/chase.service'
+import { ChaseService } from 'src/app/shared/services/chase.service';
 import { deserialize, serialize } from 'typescript-json-serializer';
-import { Inject } from '@angular/core'
 
 @Component({
   selector: 'main-chase-editor',

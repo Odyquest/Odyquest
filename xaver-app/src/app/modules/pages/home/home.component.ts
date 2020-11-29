@@ -1,6 +1,6 @@
 import { UiService } from './../../../core/services/ui.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { ChaseService } from "./../../../core/services/chase.service"
+import { ChaseService } from 'src/app/shared/services/chase.service';
 import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from "@angular/router";
