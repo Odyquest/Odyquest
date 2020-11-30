@@ -8,7 +8,7 @@ import { Quest } from '../../../../../xaver-app/src/app/shared/models/quest';
 import { GameElement } from '../../../../../xaver-app/src/app/shared/models/gameElement';
 import { ChaseService } from '../../../../../xaver-app/src/app/core/services/chase.service'
 import { deserialize, serialize } from 'typescript-json-serializer';
-import { Inject } from '@angular/core'
+import { Injectable } from '@angular/core'
 
 @Component({
   selector: 'main-chase-editor',
@@ -57,16 +57,16 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     //this.chase = this.chaseService.getChase("example"); //"example", "julia", "pepper", "silke"
     //this.chase = getSimpleExample();
 
-    this.chaseService.getChase(this.chaseID).subscribe(chase_to_get => (this.chase = (deserialize<Chase>(chase_to_get, Chase))));
+    //this.chaseService.getChase(this.chaseID).subscribe(chase_to_get => (this.chase = (deserialize<Chase>(chase_to_get, Chase))));
     //this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
 
 
     this.getDataFromChase();
 
-    this.chaseService.chases.subscribe(chases => {
+    //this.chaseService.chases.subscribe(chases => {
       //this.chases = chases;
       //console.log('CHASES: ', this.chases);
-    })
+    //})
   }
 
   ngAfterViewInit(): void {
