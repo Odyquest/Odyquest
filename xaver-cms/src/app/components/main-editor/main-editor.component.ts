@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ChaseService } from 'src/app/services/chase.service';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 //import { QuestEditorComponent} from './quest-editor/quest-editor.component';
 ///home/frot/XaverImMuseum/xaver-app/src/app/shared/models/example/chaseExample.ts
-import { getExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
+//import { getSimpleExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
 import { Chase } from '../../../../../xaver-app/src/app/shared/models/chase';
+import { Quest } from '../../../../../xaver-app/src/app/shared/models/quest';
 import { GameElement } from '../../../../../xaver-app/src/app/shared/models/gameElement';
+import { ChaseService } from 'src/app/shared/services/chase.service';
+import { deserialize, serialize } from 'typescript-json-serializer';
 
 @Component({
   selector: 'main-chase-editor',
@@ -12,26 +14,36 @@ import { GameElement } from '../../../../../xaver-app/src/app/shared/models/game
   styleUrls: ['./main-editor.component.scss']
 })
 
-export class MainEditorComponent implements OnInit {
+export class MainEditorComponent implements OnInit, AfterViewInit {
 
-  // the chase
   public chase: Chase;
+  selectedQuest: number;
+  chaseID = "xaver"; //{"xaver", "julia", "silke"}
+
+  @ViewChild('quest_editor') questEditor;
 
   // these values are filled with info from the chase
-  questList: string[] = ['Quest1', 'Quest2', 'Quest3', 'Quest4', 'Quest56'];
+  // todo use actual questList
+  questList: string[];
 
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
-    console.log("getDataFromChase()");
+    this.selectedQuest = 1;
+    console.log("Selected Quest Id: " + this.selectedQuest);
+
+    console.log("Loading values from Chase", this.chase.metaData.title);
 
     //write questList string
-    this.questList = [];
-    console.log("Loading values from Chase", this.chase.title);
     console.log("Contained GameElements (" + this.chase.gameElements.size + "):");
+    this.questList = [];
     this.chase.gameElements.forEach((value: GameElement, key: Number) => {
       console.log("   " + value.title);
       this.questList.push(value.title);
     });
+  }
+
+  // forwards the selected quest to the QuestEditorComponent
+  selectQuestByNumber(itemID: number): void {
 
   }
 
@@ -39,11 +51,15 @@ export class MainEditorComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.chase = getExample();
+
+    //this.chase = this.chaseService.getChase("example"); //"example", "julia", "pepper", "silke"
+    //this.chase = getSimpleExample();
+
+    this.chaseService.getChase(this.chaseID).subscribe(chase_to_get => (this.chase = (deserialize<Chase>(chase_to_get, Chase))));
+    //this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
+
 
     this.getDataFromChase();
-
-    //console.log(this.chase);
 
     this.chaseService.chases.subscribe(chases => {
       //this.chases = chases;
@@ -51,9 +67,38 @@ export class MainEditorComponent implements OnInit {
     })
   }
 
-  selectQuest(value: String) {
+  ngAfterViewInit(): void {
+    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest));
+  }
+
+  selectQuestByName(value: String) {
     console.log(value)
   }
 
+  questSelectorClicked(event, value) {
+    console.log("Quest Selector Clicked", event.value);
+  }
+
+  addQuest() {
+    console.log("addQuest()");
+
+    const quest = new Quest();
+    quest.title = 'New Quest';
+    this.chase.gameElements.set(this.getNextFreeMapKey(), quest);
+
+    this.getDataFromChase();
+  }
+
+  getNextFreeMapKey(): number {
+    let key = 1;
+
+    while (true) {
+      if (!this.chase.gameElements.has(key)) {
+        console.log("Found next free key: ", key);
+        return key;
+      }
+      key++;
+    }
+  }
 
 }

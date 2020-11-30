@@ -3,8 +3,8 @@
     <div class="quest-editor-top-right-container">
         <div class="quest-editor-top-right-container-header">
             <div class="quest-name-container">
-                <label for="fname">Quest Name:</label>
-                <input type="text" id="quest-name" name="quest_name"><br><br>
+                <label for="fname">GameElement Name:</label>
+                <input type="text" id="quest-name" name="quest_name" [(ngModel)]="title"><br><br>
             </div>
             <div class="quest-type-container">
                 <label for="quest-type">Quest Type:</label>
@@ -63,7 +63,7 @@
 </div>
 <label for="fname">Quest Description:</label>
 <textarea type="text" id="bug_brief" placeholder="Here goes all relevant information to solve the quest ..."
-    name="fname" class="input_field_big"></textarea>
+    name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
 <label for="fname">Solution 1 Description:</label>
 <textarea type="text" id="bug_brief" placeholder="This will be shown to the users as they solve with solution 1 ..."
     name="fname" class="input_field_big"></textarea>
