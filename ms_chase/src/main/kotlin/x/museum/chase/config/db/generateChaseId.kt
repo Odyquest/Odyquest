@@ -25,8 +25,9 @@ import java.util.*
 
 fun generateChaseId() = ReactiveBeforeConvertCallback<Chase> {
     chase, _ ->
-    if (chase.id == null) {
-        chase.copy(id = UUID.randomUUID())
+    if (chase.metaData.id == null) {
+        val mData = chase.metaData.copy(id = chase.metaData.id)
+        chase.copy(metaData = mData)
     } else {
         chase
     }.toMono()

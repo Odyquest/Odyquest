@@ -23,7 +23,7 @@ import java.util.*
 
 data class Chase (
         val metaData: ChaseMetaData,
-        val gameElements:Map<GameElementId, GameElement>?,
+//        val gameElements:Map<GameElementId, GameElement>?,
         val initialGameElement: GameElementId,
         val tags: List<Tag>?,
         val narratives: List<Map<Int, Narrative>>?,

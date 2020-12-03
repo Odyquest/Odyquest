@@ -75,15 +75,15 @@ interface DbPopulate {
     ): MongoCollection<Document> {
 
         val chaseSchema = MongoJsonSchema.builder()
-                .required("title")
+                .required("chaseMetaData")
                 .properties(
-                        string("title"),
-                        string("comment"),
+                        `object`("chaseMetaData"),
+                        array("narratives"),
                         array("quests"),
-                        array("tags"),
-                        date("lastEdited"),
-                        `object`("lastEditor"),
-                        date("creationDate")
+                        array("solutions"),
+                        string("initialGameElement"),
+                        array("tags")
+
 
                 ).build()
 

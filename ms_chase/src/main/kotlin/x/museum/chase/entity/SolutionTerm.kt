@@ -1,8 +1,8 @@
 package x.museum.chase.entity
 
 class SolutionTerm(
-        requiredItems: Array<Boolean>,
-        logicType: LogicType,
-        destination: GameElementId
+        val requiredItems: Array<Boolean>,
+        val logicType: LogicType,
+        val destination: GameElementId
 ) {
 }

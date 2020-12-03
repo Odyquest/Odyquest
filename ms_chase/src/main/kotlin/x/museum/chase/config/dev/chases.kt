@@ -93,7 +93,7 @@ val chases = flowOf(
                                                         false
                                                 ),
                                                 logicType = LogicType.AND,
-                                                destination = GameElementId.fromString("")
+                                                destination = GameElementId.fromString("50000000-0000-0000-0000-000000000000")
                                         ),
                                         SolutionTerm(
                                                 requiredItems = arrayOf(
@@ -102,18 +102,33 @@ val chases = flowOf(
                                                         false
                                                 ),
                                                 logicType = LogicType.AND,
-                                                destination = GameElementId.fromString("")
+                                                destination = GameElementId.fromString("60000000-0000-0000-0000-000000000000")
                                         ))
-                                )
-
+                                ),
+                                displayImageFirst = false,
+                                maxTime = 10,
+                                help = arrayOf(Description(
+                                        text = "text",
+                                        image = ""
+                                ))
                         ))
                 ),
                 solutions = listOf(
                         mapOf(10 to Solution(
-
+                                destination = GameElementId.fromString("20000000-0000-0000-0000-000000000001"),
+                                description = Description(
+                                        text = "Damals gab es noch keine Bücher",
+                                        image = "assets/examples/silke/images/xaver.png"
+                                ),
+                                id = GameElementId.fromString("40000000-0000-0000-0000-000000000001"),
+                                version = 1,
+                                title = "Hmm tbd"
                         ))
-                )
-
-
+                ),
+                initialGameElement = GameElementId.fromString("10000000-0000-0000-0000-000000000001"),
+                tags = listOf(Tag(
+                        name = "Tag1",
+                        description = "sinnvolle Beschreibung"
+                ))
         )
 )

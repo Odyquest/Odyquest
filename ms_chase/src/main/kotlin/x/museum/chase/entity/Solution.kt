@@ -17,8 +17,12 @@
 
 package x.museum.chase.entity
 
-class Solution(
-        val dataType: SolutionDataType,
-        val fulfilled: Boolean
-) {
-}
+import java.util.*
+
+class Solution (
+        val destination: GameElementId,
+        id: UUID,
+        version: Int,
+        title: String,
+        description: Description
+) : GameElement(id, version, title, description) {}
