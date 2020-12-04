@@ -32,7 +32,8 @@
               "src/styles.scss",
               "src/assets/color-theme.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "preserveSymlinks": true
           },
           "configurations": {
             "production": {

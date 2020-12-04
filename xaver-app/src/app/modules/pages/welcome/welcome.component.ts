@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { ChaseService } from "./../../../core/services/chase.service"
 import { UiService } from './../../../core/services/ui.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { UiService } from './../../../core/services/ui.service';
 export class WelcomeComponent implements OnInit {
   loading = false;
 
-  constructor(private chaseService: ChaseService, private router: Router, private uiService: UiService) { }
+  constructor(private router: Router, private uiService: UiService) { }
 
   ngOnInit(): void {
   }

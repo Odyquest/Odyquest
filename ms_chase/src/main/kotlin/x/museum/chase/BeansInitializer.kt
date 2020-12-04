@@ -23,7 +23,7 @@ import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.beans
 import x.museum.chase.config.db.customConversions
 import x.museum.chase.config.db.generateChaseId
-import x.museum.chase.config.db.generateQuestId
+//import x.museum.chase.config.db.generateQuestId
 import x.museum.chase.config.db.writeConcernResolver
 import x.museum.chase.config.security.passwordEncoder
 
@@ -39,6 +39,5 @@ val beans = beans {
     bean(::passwordEncoder)
     bean(::customConversions)
     bean(::generateChaseId)
-    bean(::generateQuestId)
     bean(::writeConcernResolver)
 }

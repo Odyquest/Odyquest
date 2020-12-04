@@ -24,7 +24,7 @@ import org.springframework.web.reactive.function.server.coRouter // webflux
 import x.museum.chase.entity.Chase
 import x.museum.chase.entity.Quest
 import x.museum.chase.rest.ChaseHandler
-import x.museum.chase.rest.QuestHandler
+//import x.museum.chase.rest.QuestHandler
 
 /**
  * @author [Florian Göbel](mailto:alfiron.begoel@gmail.com)
@@ -49,12 +49,12 @@ interface Router {
 //            GET(chaseIdPath, chaseHandler::findById)
         }
 
-        contentType(MediaType.APPLICATION_JSON).nest {
-            // Chase
-//            POST(chasePath, chaseHandler::create)
-//            PUT(chaseIdPath, chaseHandler::update)
-
-        }
+//        contentType(MediaType.APPLICATION_JSON).nest {
+//            // Chase
+////            POST(chasePath, chaseHandler::create)
+////            PUT(chaseIdPath, chaseHandler::update)
+//
+//        }
     }
 
     companion object {

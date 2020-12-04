@@ -28,10 +28,10 @@ import java.util.*
 class Quest(
         val questType: QuestType,
         val maxTries: Int,
-        val maxTime: Date,
+        val maxTime: Int,
         val displayImageFirst: Boolean,
         val requirementCombination: RequirementCombination,
-        val help: Array<Description>,
+        val help: Array<Description>?,
         id: UUID,
         version: Int,
         title: String,

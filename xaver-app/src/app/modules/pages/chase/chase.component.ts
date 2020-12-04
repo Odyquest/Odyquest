@@ -2,9 +2,9 @@ import { UiService } from './../../../core/services/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { ChaseService } from './../../../core/services/chase.service';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
+import { ChaseService } from 'src/app/shared/services/chase.service';
 import { GameEngine, QuestStatus } from '../../../core/services/gameEngine';
 import { GameElement } from '../../../shared/models/gameElement';
 import { Description } from '../../../shared/models/description';
