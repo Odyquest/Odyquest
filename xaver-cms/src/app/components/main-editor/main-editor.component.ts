@@ -7,6 +7,7 @@ import { Quest } from '../../../../../xaver-app/src/app/shared/models/quest';
 import { GameElement } from '../../../../../xaver-app/src/app/shared/models/gameElement';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { deserialize, serialize } from 'typescript-json-serializer';
+import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
 
 @Component({
   selector: 'main-chase-editor',
@@ -29,9 +30,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
     this.selectedQuest = 1;
-    console.log("Selected Quest Id: " + this.selectedQuest);
 
-    console.log("Loading values from Chase", this.chase.metaData.title);
+    //console.log("Selected Quest Id: " + this.selectedQuest);
+    //console.log("Loading values from Chase", this.chase.metaData.title);
 
     //write questList string
     console.log("Contained GameElements (" + this.chase.gameElements.size + "):");
@@ -50,25 +51,18 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   constructor(private chaseService: ChaseService) { }
 
   ngOnInit(): void {
-
-
-    //this.chase = this.chaseService.getChase("example"); //"example", "julia", "pepper", "silke"
-    //this.chase = getSimpleExample();
-
-    //this.chaseService.getChase(this.chaseID).subscribe(chase_to_get => (this.chase = (deserialize<Chase>(chase_to_get, Chase))));
+    console.log("ngOnInit()");
     //this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
+    this.chaseService.getChase(this.chaseID).subscribe(chase => {
+      this.chase = deserialize<Chase>(chase, Chase)
+      this.getDataFromChase();
+      this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest));
+    });
 
-
-    this.getDataFromChase();
-
-    //this.chaseService.chases.subscribe(chases => {
-      //this.chases = chases;
-      //console.log('CHASES: ', this.chases);
-    //})
   }
 
   ngAfterViewInit(): void {
-    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest));
+    console.log("ngAfterViewInit()");
   }
 
   selectQuestByName(value: String) {
