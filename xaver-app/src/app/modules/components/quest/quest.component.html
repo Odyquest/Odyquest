@@ -13,10 +13,10 @@
   </div>
 </div>
 <div class="game_element_buttons">
-  <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span> <!--TODO i18n -->
+  <span class="quest_tries" i18n>{{questStatus.remainingTries}} remaining tries</span>
   <button mat-flat-button color="primary" (click)="submit()" i18n>Enter solution</button>
   <span *ngIf="timerSet" class="quest_time"><span
       *ngIf="remainingTime.hours >
       0">{{remainingTime.hours}}:</span>{{remainingTime.minutes | number:'2.0-0'}}:{{remainingTime.seconds |
-    number:'2.0-0'}}</span><!--TODO i18n -->
+    number:'2.0-0'}}</span>
 </div>

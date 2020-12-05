@@ -9,13 +9,6 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
-        <source>Close</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="680d5c75b7fd8d37961083608b9fcdc4167b4c43" datatype="html">
         <source>Previous</source>
         <context-group purpose="location">
@@ -37,6 +30,13 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="29442d33577634d5bb7a8716954281be8955ff30" datatype="html">
+        <source>Solution</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
         <source>Cancel</source>
         <context-group purpose="location">
@@ -49,6 +49,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context>
           <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="44f7ca7c2cbd510b91439b2b892fb47c25b6edbc" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="64fcaa5616fa99535c2d4debbfbf7bdb62391481" datatype="html">
