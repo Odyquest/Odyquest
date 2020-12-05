@@ -45,12 +45,15 @@ export class ChaseService {
 
   public getChase(id: string): Observable<any> {
     //return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
+    console.log("getChase() with id: ",  id);
     return this.httpClient.get('assets/examples/' + id + '/chase.json')
       .pipe(
         map(chase => {
+          console.log("Success");
           return chase;
         }),
         catchError(error => {
+          console.log("Failure");
           return error;
         })
       )

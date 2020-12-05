@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { GameElement } from '../../../../xaver-app/src/app/shared/models/gameElement';
+import { GameElement } from 'src/app/shared/models/gameElement';
 
 @Component({
   selector: 'app-quest-editor',

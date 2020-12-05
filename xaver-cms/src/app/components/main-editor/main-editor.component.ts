@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-//import { QuestEditorComponent} from './quest-editor/quest-editor.component';
-///home/frot/XaverImMuseum/xaver-app/src/app/shared/models/example/chaseExample.ts
-//import { getSimpleExample } from '../../../../../xaver-app/src/app/shared/models/example/chaseExample'
-import { Chase } from '../../../../../xaver-app/src/app/shared/models/chase';
-import { Quest } from '../../../../../xaver-app/src/app/shared/models/quest';
-import { GameElement } from '../../../../../xaver-app/src/app/shared/models/gameElement';
+import { Chase } from 'src/app/shared/models/chase';
+import { Quest } from 'src/app/shared/models/quest';
+import { GameElement } from 'src/app/shared/models/gameElement';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
