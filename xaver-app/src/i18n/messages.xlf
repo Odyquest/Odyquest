@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="85b79c9064aed1ead31ace985f31aa1363f6bdaf" datatype="html">
+        <source>Help</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="680d5c75b7fd8d37961083608b9fcdc4167b4c43" datatype="html">
+        <source>Previous</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f732c304c7433e5a83ffcd862c3dce709a0f4982" datatype="html">
+        <source>Next</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="15195b9ebf128fe19def2cce8aa8d59cb985c4ea" datatype="html">
+        <source>Go on</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/solution/solution.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="27c7bfba7033cc8dbf4caf42b40b6b3c87197838" datatype="html">
+        <source>Verify</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="64fcaa5616fa99535c2d4debbfbf7bdb62391481" datatype="html">
+        <source>Enter solution</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b0d0d08f7f96436a386c3ae7086f3b68e1d6af68" datatype="html">
+        <source>Welcome to scavenger hunts with Xaver!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d5bc41cd357590aa84e706af0e39b055c354e0a7" datatype="html">
+        <source>Select scavenger hunt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="55c2cb64c6dc7e99fbd797167ec544aab838615f" datatype="html">
+        <source> Congratulations :tada: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8bea71d0c72dcf7d91ec1ea7aa1c67638ac64930" datatype="html">
+        <source> Maybe next time :fingers_crossed: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
