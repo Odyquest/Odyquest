@@ -13,6 +13,7 @@ import {HelpComponent} from '../help/help.component';
 import {SubmitSolutionComponent} from '../submit-solution/submit-solution.component';
 
 import {TimeService} from './../../../core/services/time.service';
+import {FinishStatus} from './../../../core/models/finish_status';
 
 
 @Component({
@@ -67,7 +68,7 @@ export class QuestComponent implements OnInit {
 
   loose(): void {
     // TODO display popup
-    setTimeout(() => { this.router.navigateByUrl('/finished'); }, 1500);
+    setTimeout(() => { this.router.navigateByUrl('/finished?status=' + FinishStatus.Failed); }, 1500);
   }
 
   submit(): void {

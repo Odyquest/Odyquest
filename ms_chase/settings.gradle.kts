@@ -11,4 +11,4 @@ pluginManagement {
 		}
 	}
 }
-rootProject.name = "quest"
+rootProject.name = "ms_chase"

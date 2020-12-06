@@ -11,6 +11,12 @@
         }
       },
       "root": "",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "de": "src/i18n/messages.de.xlf"
+        }
+      },
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
@@ -62,6 +68,11 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "de": {
+              "localize": [
+                "de"
+              ]
             }
           }
         },
@@ -73,6 +84,9 @@
           "configurations": {
             "production": {
               "browserTarget": "xaver-app:build:production"
+            },
+            "de": {
+              "browserTarget": "xaver-app:build:de"
             }
           }
         },

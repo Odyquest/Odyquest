@@ -20,6 +20,8 @@ package x.museum.chase.rest
 import x.museum.chase.service.ChaseService
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.handleCoroutineException
@@ -47,11 +49,8 @@ import org.springframework.web.reactive.function.server.bodyValueAndAwait
 import org.springframework.web.reactive.function.server.buildAndAwait
 import x.museum.chase.Router.Companion.apiPath
 import x.museum.chase.Router.Companion.idPathVar
-import x.museum.chase.entity.Chase
-import x.museum.chase.entity.ChaseId
+import x.museum.chase.entity.*
 import java.net.URI
-import x.museum.chase.entity.Quest
-import x.museum.chase.entity.QuestId
 import x.museum.chase.service.AccessForbiddenException
 import x.museum.chase.service.InvalidVersionException
 //import x.museum.chase.service.QuestService
@@ -123,16 +122,18 @@ class ChaseHandler(
     suspend fun findAll(request: ServerRequest): ServerResponse {
 
         val chases = mutableListOf<Chase>()
+        val chasesMetaData = mutableListOf<ChaseMetaData>()
 
         service.findAll()
                 .toList(chases)
 
+        chases.forEach{ chase -> chasesMetaData.add(chase.metaData) }
         // Check if list is empty
-        if(chases.isEmpty())
+        if(chasesMetaData.isEmpty())
             return notFound().buildAndAwait()
 
         // If list is not empty, return with OK and all chases.
-        return ok().bodyValueAndAwait(chases)
+        return ok().bodyValueAndAwait(chasesMetaData)
     }
 
     /*******************************************

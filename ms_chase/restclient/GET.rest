@@ -1,11 +1,11 @@
 ### Get all quests
-https://{{host}}
+http://{{host}}
 Accept: application/hal+json
 Authorization: {{basic-auth-admin}}
 ALPN: h2
 
 ### Search with ID
-https://{{host}}/10000000-0000-0000-0000-000000000000
+http://{{host}}/10000000-0000-0000-0000-000000000000
 Accept: application/hal+json
 Authorization: {{basic-auth-admin}}
 ALPN: h2

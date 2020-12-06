@@ -14,15 +14,12 @@ spring:
     #port: 27017
     repositories.type: none
     database: museumX
+    # for docker use "mongo", for local db use "localhost" as host
     host: localhost
-    # For encryption: http://www.baeldung.com/spring-cloud-configuration#Encryption
-    # curl --tlsv1.3 --insecure https://localhost:8888/encrypt --data [password]
-    # curl --tlsv1.3 --insecure https://localhost:8888/decrypt --data ...
     password: 'Admin123'
     #replicaSetName: replicaSet
     username: admin
     uuid-representation: standard
-    # https://docs.mongodb.com/manual/reference/connection-string
 
 
 server:
@@ -33,16 +30,16 @@ server:
   error.whitelabel.enabled: false
   http2.enabled: true
   ssl:
-    enabled: true
-    enabled-protocols: TLSv1.3,TLSv1.2
-    trust-store: classpath:truststore.p12
-    trust-store-password: Admin123
-    trust-store-type: PKCS12
-    key-alias: microservice
-    key-password: Admin123
-    key-store: classpath:keystore.p12
-    key-store-password: Admin123
-    key-store-type: PKCS12
+    enabled: false
+#    enabled-protocols: TLSv1.3,TLSv1.2
+#    trust-store: classpath:truststore.p12
+#    trust-store-password: Admin123
+#    trust-store-type: PKCS12
+#    key-alias: microservice
+#    key-password: Admin123
+#    key-store: classpath:keystore.p12
+#    key-store-password: Admin123
+#    key-store-type: PKCS12
 
   shutdown: graceful
 

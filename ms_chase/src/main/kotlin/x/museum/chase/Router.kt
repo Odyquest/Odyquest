@@ -37,7 +37,7 @@ interface Router {
     ) = coRouter {
 
         // Chase
-        val chasePath = "${apiPath}"
+        val chasePath = "${apiPath}/chase"
         val chaseIdPathPattern = "{$idPathVar:${Chase.ID_PATTERN}}"
         val chaseIdPath = "$chasePath/$chaseIdPathPattern"
 

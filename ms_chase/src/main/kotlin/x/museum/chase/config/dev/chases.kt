@@ -24,7 +24,7 @@ import java.time.LocalDateTime
 
 val chases = flowOf(
         Chase(
-                ChaseMetaData(
+                metaData =  ChaseMetaData(
                         id = ChaseId.fromString("10000000-0000-0000-0000-000000000000"),
                         version = 1,
                         title = "Zeitreise mit Xaver",
