@@ -14,15 +14,12 @@ spring:
     #port: 27017
     repositories.type: none
     database: museumX
-    host: mongo
-    # For encryption: http://www.baeldung.com/spring-cloud-configuration#Encryption
-    # curl --tlsv1.3 --insecure https://localhost:8888/encrypt --data [password]
-    # curl --tlsv1.3 --insecure https://localhost:8888/decrypt --data ...
+    # for docker use "mongo", for local db use "localhost" as host
+    host: localhost
     password: 'Admin123'
     #replicaSetName: replicaSet
     username: admin
     uuid-representation: standard
-    # https://docs.mongodb.com/manual/reference/connection-string
 
 
 server:
