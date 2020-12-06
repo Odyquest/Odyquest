@@ -1,6 +1,6 @@
 <mat-dialog-content>
   <mat-form-field *ngIf="isText()" class="example-full-width">
-    <input matInput placeholder="Solution" [(ngModel)]="textResult">
+    <input matInput i18n-placeholder placeholder="Solution" [(ngModel)]="textResult">
   </mat-form-field>
   <ul *ngIf="isMultipleChoice()" [(ngModel)]="data.result">
     <li *ngFor="let item of items">
@@ -11,6 +11,6 @@
   </ul>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-flat-button mat-dialog-close>Cancel</button>
-  <button mat-flat-button color="primary" (click)="submit()">Submit</button>
+  <button mat-flat-button mat-dialog-close i18n>Cancel</button>
+  <button mat-flat-button color="primary" (click)="submit()" i18n>Verify</button>
 </mat-dialog-actions>

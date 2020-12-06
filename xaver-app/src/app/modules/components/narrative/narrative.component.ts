@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 
-import { Narrative } from '../../../shared/models/narrative';
+import { Narrative, NarrativeStatus } from '../../../shared/models/narrative';
+import { FinishStatus } from '../../../core/models/finish_status';
 
 @Component({
   selector: 'app-narrative',
@@ -27,7 +28,16 @@ export class NarrativeComponent implements OnInit {
     // console.log('narrative: ' + button + ' selected');
     if (this.narrative.isFinal()) {
       console.log('Finished final narrative');
-      setTimeout(() => { this.router.navigateByUrl('/finished'); }, 1500);
+      let finishStatus: FinishStatus;
+      switch (this.narrative.narrativeStatus) {
+          case NarrativeStatus.Win:
+          finishStatus = FinishStatus.Success;
+          break;
+          case NarrativeStatus.Loose:
+          finishStatus = FinishStatus.Failed;
+          break;
+      }
+      setTimeout(() => { this.router.navigateByUrl('/finished?status=' + finishStatus); }, 1500);
     } else {
       this.selection.emit(button);
     }
