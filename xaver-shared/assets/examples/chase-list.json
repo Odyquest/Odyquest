@@ -20,7 +20,7 @@
       "preview":{
         "description":{
           "text":"Gehe mit Xaver auf eine Schnitzeljagt durch das Badische Landesmuseum!",
-          "image":"assets/examples/julia/images/sphinx.jpg"
+          "image":"assets-shared/examples/julia/images/sphinx.jpg"
         }
       }
     },
@@ -32,7 +32,7 @@
       "preview":{
         "description":{
           "text":"Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
-          "image":"assets/examples/silke/images/xaver.png"
+          "image":"assets-shared/examples/silke/images/xaver.png"
         }
       }
     }
