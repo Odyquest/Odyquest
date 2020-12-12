@@ -2,9 +2,8 @@
   <div class="quest_selector_container">
     <div class="quest_selector_header">Quests</div>
     <div class="quest_selector">
-      <mat-selection-list #selected [multiple]="false"
-        (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
-        <mat-list-option *ngFor="let quest of questList" [(ngModel)]="selectedQuest">
+      <mat-selection-list #selected [multiple]="false" #questlist>
+        <mat-list-option *ngFor="let quest of questList" (click)="questSelectorClicked(quest)">
           {{quest}}
         </mat-list-option>
       </mat-selection-list>
@@ -13,9 +12,8 @@
     </div>
     <div class="quest_selector_header">Narratives</div>
     <div class="quest_selector">
-      <mat-selection-list #selected [multiple]="false"
-        (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
-        <mat-list-option *ngFor="let quest of narrativeList" [(ngModel)]="selectedQuest">
+      <mat-selection-list #selected [multiple]="false" #questlist>
+        <mat-list-option *ngFor="let quest of narrativeList" (click)="questSelectorClicked(quest)">
           {{quest}}
         </mat-list-option>
       </mat-selection-list>
@@ -24,9 +22,8 @@
     </div>
     <div class="quest_selector_header">Solutions</div>
     <div class="quest_selector">
-      <mat-selection-list #selected [multiple]="false"
-        (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
-        <mat-list-option *ngFor="let quest of solutionList" [(ngModel)]="selectedQuest">
+      <mat-selection-list #selected [multiple]="false" #questlist>
+        <mat-list-option *ngFor="let quest of solutionList" (click)="questSelectorClicked(quest)">
           {{quest}}
         </mat-list-option>
       </mat-selection-list>

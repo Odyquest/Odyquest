@@ -42,15 +42,16 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.solutionList = [];
 
     this.chase.gameElements.forEach((value: GameElement, key: Number) => {
+      let title_with_id = value.title + ' (' + key + ')' 
       if((value instanceof Quest)){
-        console.log("Quest:" + value.title);
-        this.questList.push(value.title);
+        console.log("Quest:" + title_with_id);
+        this.questList.push(title_with_id);
       } else if ((value instanceof Narrative)){
-        console.log("Narrative:" + value.title);
-        this.narrativeList.push(value.title);
+        console.log("Narrative:" + title_with_id);
+        this.narrativeList.push(title_with_id);
       } else if ((value instanceof Solution)){
-        console.log("Solution:" + value.title);
-        this.solutionList.push(value.title);
+        console.log("Solution:" + title_with_id);
+        this.solutionList.push(title_with_id);
       }
     });
   }
@@ -77,12 +78,19 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     console.log("ngAfterViewInit()");
   }
 
-  selectQuestByName(value: String) {
-    console.log(value)
-  }
+  // selectQuestByName(value: String) {
+  //   console.log(value)
+  // }
 
-  questSelectorClicked(event, value) {
-    console.log("Quest Selector Clicked", event.value);
+  questSelectorClicked(text: string) {
+    console.log("Quest Selector Clicked", text);
+
+    //parse id from name, not so pretty a solution TBH
+    let id_text = text.substr(text.lastIndexOf( "(" ) + 1); //)
+    id_text = id_text.substr(0, id_text.length - 1);
+
+    this.selectedQuest = +id_text;
+    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest));
   }
 
   addQuest() {
