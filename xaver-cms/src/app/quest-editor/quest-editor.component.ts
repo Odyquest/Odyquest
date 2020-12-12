@@ -1,5 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GameElement } from 'src/app/shared/models/gameElement';
+import { Quest } from 'src/app/shared/models/quest';
+import { Narrative } from 'src/app/shared/models/narrative';
+import { Solution } from 'src/app/shared/models/solution';
 
 @Component({
   selector: 'app-quest-editor',
@@ -13,6 +16,10 @@ export class QuestEditorComponent implements OnInit {
   //current state of the form:
   title: string;
   description: string;
+
+  is_quest: boolean;
+  is_narrative: boolean;
+  is_solution: boolean;
 
   hide_object_search = false
   hide_input_term = true
@@ -50,16 +57,33 @@ export class QuestEditorComponent implements OnInit {
   gameElementToLocal(): void {
     this.title = this.gameElement.title;
     this.description = this.gameElement.description.text;
+    console.log("Description: ", this.gameElement.description);
   }
 
   localToGameElement(): void {
     this.gameElement.title = this.title;
-
   }
 
   setGameElementToEdit(gm: GameElement): void {
     this.gameElement = gm;
-    console.log("Set Game Element to: " + this.gameElement.title);
+    
+    if((gm instanceof Quest)){
+      console.log("Loading Quest in Editor");
+      this.is_quest = true;
+      this.is_narrative = false;
+      this.is_solution = false;
+    } else if ((gm instanceof Narrative)){
+      console.log("Loaidng Narrative in Editor");
+      this.is_quest = false;
+      this.is_narrative = true;
+      this.is_solution = false;
+    } else if ((gm instanceof Solution)){
+      console.log("Loading Solution in Editor");
+      this.is_quest = false;
+      this.is_narrative = false;
+      this.is_solution = true;
+    }
+    console.log("Title: " + this.gameElement.title);
 
     this.gameElementToLocal();
 
