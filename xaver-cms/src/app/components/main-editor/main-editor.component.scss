@@ -12,22 +12,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  //height: 100%;
+  padding-bottom: 20px;
   align-items: center;
   //border: 3px solid black;
-}
-
-.quest_connections {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  text-justify: middle;
-  font-size: 20px;
-  border: 1px solid black;
 }
 
 .quest_connections:hover {
@@ -40,6 +28,7 @@
   width: 15%;
   height: 100%;
   align-items: center;
+  justify-content: flex-start;
   border-right: 2px solid rgba(0, 0, 0, 0.6);
 }
 
@@ -119,4 +108,10 @@ mat-list-option {
 
 #addQuestButton {
   margin-top: 15px;
+}
+
+.quest_selector_header {
+  text-align: center;
+  width: 100%;
+  background: lightgrey;
 }

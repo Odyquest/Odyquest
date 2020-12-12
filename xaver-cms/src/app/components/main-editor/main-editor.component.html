@@ -1,13 +1,37 @@
 <div class="main_body">
   <div class="quest_selector_container">
+    <div class="quest_selector_header">Quests</div>
     <div class="quest_selector">
-      <mat-selection-list #selected [multiple]="false" (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
+      <mat-selection-list #selected [multiple]="false"
+        (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
         <mat-list-option *ngFor="let quest of questList" [(ngModel)]="selectedQuest">
           {{quest}}
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addQuest()">Neues GameElement</button>
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addQuest()">Neue Quest</button>
+    </div>
+    <div class="quest_selector_header">Narratives</div>
+    <div class="quest_selector">
+      <mat-selection-list #selected [multiple]="false"
+        (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
+        <mat-list-option *ngFor="let quest of narrativeList" [(ngModel)]="selectedQuest">
+          {{quest}}
+        </mat-list-option>
+      </mat-selection-list>
+
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">Neue Narrative</button>
+    </div>
+    <div class="quest_selector_header">Solutions</div>
+    <div class="quest_selector">
+      <mat-selection-list #selected [multiple]="false"
+        (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
+        <mat-list-option *ngFor="let quest of solutionList" [(ngModel)]="selectedQuest">
+          {{quest}}
+        </mat-list-option>
+      </mat-selection-list>
+
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addSolution()">Neue Solution</button>
     </div>
   </div>
   <app-quest-editor #quest_editor></app-quest-editor>

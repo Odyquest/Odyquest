@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Chase } from 'src/app/shared/models/chase';
 import { Quest } from 'src/app/shared/models/quest';
+import { Narrative } from 'src/app/shared/models/narrative';
+import { Solution } from 'src/app/shared/models/solution';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { deserialize, serialize } from 'typescript-json-serializer';
@@ -23,6 +25,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   // these values are filled with info from the chase
   // todo use actual questList
   questList: string[];
+  narrativeList: string[];
+  solutionList: string[];
 
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
@@ -34,9 +38,20 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     //write questList string
     console.log("Contained GameElements (" + this.chase.gameElements.size + "):");
     this.questList = [];
+    this.narrativeList = [];
+    this.solutionList = [];
+
     this.chase.gameElements.forEach((value: GameElement, key: Number) => {
-      console.log("   " + value.title);
-      this.questList.push(value.title);
+      if((value instanceof Quest)){
+        console.log("Quest:" + value.title);
+        this.questList.push(value.title);
+      } else if ((value instanceof Narrative)){
+        console.log("Narrative:" + value.title);
+        this.narrativeList.push(value.title);
+      } else if ((value instanceof Solution)){
+        console.log("Solution:" + value.title);
+        this.solutionList.push(value.title);
+      }
     });
   }
 
@@ -76,6 +91,26 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     const quest = new Quest();
     quest.title = 'New Quest';
     this.chase.gameElements.set(this.getNextFreeMapKey(), quest);
+
+    this.getDataFromChase();
+  }
+
+  addNarrative() {
+    console.log("addNarrative()");
+
+    const narrative = new Narrative();
+    narrative.title = 'New Narrative';
+    this.chase.gameElements.set(this.getNextFreeMapKey(), narrative);
+
+    this.getDataFromChase();
+  }
+
+  addSolution() {
+    console.log("addSolution()");
+
+    const solution = new Solution();
+    solution.title = 'New Solution';
+    this.chase.gameElements.set(this.getNextFreeMapKey(), solution);
 
     this.getDataFromChase();
   }
