@@ -87,6 +87,7 @@
    },
    "_solutions":{
       "3":{
+         "title" : "Solution Right",
          "description":{
             "text":"You are right, according to Deep Thought it is 42!",
             "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
@@ -94,6 +95,7 @@
          "destination":2
       },
       "4":{
+         "title" : "Solution Wrong",
          "description":{
             "text":"You loose!",
             "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
