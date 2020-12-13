@@ -15,7 +15,7 @@ export class GameElement {
 	@JsonProperty() id?: number;
 	@JsonProperty() version?: number;
 	@JsonProperty() title: string;
-	@JsonProperty() description: Description;
+	@JsonProperty() description = new Description();
 
 	/** Url to external presenter of this element like Xaver
 	 * if variable is defined, the given presenter will be used

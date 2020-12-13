@@ -7,6 +7,7 @@ import { GameElement } from 'src/app/shared/models/gameElement';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
+import { Description } from 'src/app/shared/models/description';
 
 @Component({
   selector: 'main-chase-editor',

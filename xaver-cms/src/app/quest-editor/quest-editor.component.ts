@@ -53,7 +53,7 @@ export class QuestEditorComponent implements OnInit {
   }
 
   // hardly a sexy solution...
-  // input forms can't read directly from GE?
+  // input forms can't read directly from GameElement?
   gameElementToLocal(): void {
     this.title = this.gameElement.title;
     this.description = this.gameElement.description.text;
