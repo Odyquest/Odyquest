@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { Quest } from 'src/app/shared/models/quest';
-import { Narrative } from 'src/app/shared/models/narrative';
+import { Narrative, NarrativeType } from 'src/app/shared/models/narrative';
 import { Solution } from 'src/app/shared/models/solution';
 
 @Component({
@@ -22,9 +22,11 @@ export class QuestEditorComponent implements OnInit {
   is_narrative: boolean;
   is_solution: boolean;
 
-  hide_object_search = false
-  hide_input_term = true
-  hide_multiple_choice = true
+  hide_object_search = false;
+  hide_input_term = true;
+  hide_multiple_choice = true;
+
+  narrative_type: NarrativeType;
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -53,18 +55,45 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
+  onNarrativeTypeChange(value: String) {
+    console.log("Narrative type to " + value);
+    switch (value) {
+      case "text":
+        this.narrative_type = NarrativeType.Text;
+        break;
+      case "panorama":
+        this.narrative_type = NarrativeType.Panorama;
+        break;
+    }
+  }
+
   // hardly a sexy solution...
   // input forms can't read directly from GameElement?
   gameElementToLocal(): void {
+    //common to all GameElements
     this.title = this.gameElement.title;
     this.description = this.gameElement.description.text;
     this.image_url = this.gameElement.description.image;
+
+    //Individual stuff
+    if ((this.gameElement instanceof Quest)) {
+    } else if ((this.gameElement instanceof Narrative)) {
+      this.narrative_type = this.gameElement.narrativeType;
+      console.log("loaded narrative type as: ", this.narrative_type);
+    } else if ((this.gameElement instanceof Solution)) {
+    }
   }
 
   localToGameElement(): void {
     this.gameElement.title = this.title;
     this.gameElement.description.text = this.description;
     this.gameElement.description.image = this.image_url;
+
+    if ((this.gameElement instanceof Quest)) {
+    } else if ((this.gameElement instanceof Narrative)) {
+      this.gameElement.narrativeType = this.narrative_type;
+    } else if ((this.gameElement instanceof Solution)) {
+    }
   }
 
   setGameElementToEdit(gm: GameElement): void {
@@ -105,3 +134,5 @@ export class QuestEditorComponent implements OnInit {
   }
 
 }
+
+

@@ -1,6 +1,6 @@
 <div class="quest-editor-top-container">
   <div class="quest-image-container">
-    <img [src]="image_url" alt="Place image title">
+    <img [src]="image_url">
   </div>
   <div class="quest-editor-top-right-container">
     <div class="quest-editor-top-right-container-header">
@@ -73,7 +73,11 @@
 
 
 <div class=content-type-narrative [hidden]="!is_narrative">
-  NARRATIVE CONTENT
+  <label for="narrative-type">Narrative Type:</label>
+    <select name="narrative-type" id="narrative-type-selector" (change)="onNarrativeTypeChange($event.target.value)">
+      <option value="text">Text</option>
+      <option value="panorama">Panorama</option>
+    </select>
 </div>
 
 <div class=content-type-solution [hidden]="!is_solution">
