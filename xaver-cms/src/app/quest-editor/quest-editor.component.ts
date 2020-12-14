@@ -12,7 +12,7 @@ import { Solution } from 'src/app/shared/models/solution';
 export class QuestEditorComponent implements OnInit {
 
   gameElement: GameElement;
-  
+
   //current state of the form:
   title: string;
   description: string;
@@ -66,18 +66,18 @@ export class QuestEditorComponent implements OnInit {
 
   setGameElementToEdit(gm: GameElement): void {
     this.gameElement = gm;
-    
-    if((gm instanceof Quest)){
+
+    if ((gm instanceof Quest)) {
       console.log("Loading Quest in Editor");
       this.is_quest = true;
       this.is_narrative = false;
       this.is_solution = false;
-    } else if ((gm instanceof Narrative)){
+    } else if ((gm instanceof Narrative)) {
       console.log("Loaidng Narrative in Editor");
       this.is_quest = false;
       this.is_narrative = true;
       this.is_solution = false;
-    } else if ((gm instanceof Solution)){
+    } else if ((gm instanceof Solution)) {
       console.log("Loading Solution in Editor");
       this.is_quest = false;
       this.is_narrative = false;
@@ -89,6 +89,16 @@ export class QuestEditorComponent implements OnInit {
 
     //we need to manually tell angular that changes occured:
     this.cd.detectChanges();
+  }
+
+  save(): void {
+    console.log("save");
+    //todo
+  }
+
+  reset(): void {
+    console.log("reset");
+    this.gameElementToLocal();
   }
 
 }
