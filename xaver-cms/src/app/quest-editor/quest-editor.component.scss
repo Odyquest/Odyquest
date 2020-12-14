@@ -39,6 +39,9 @@
 
 
 .quest-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 25%;
   height: 90%;
   margin: 10px;
@@ -190,9 +193,13 @@ label {
 
 .content-type-quest {
   width: 100%;
-  height: 100%;
+  height: 65%;
 }
 
 .saveCancelButton {
   margin: 10px;
+}
+
+img {
+  width: 100%;
 }

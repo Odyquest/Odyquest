@@ -16,6 +16,7 @@ export class QuestEditorComponent implements OnInit {
   //current state of the form:
   title: string;
   description: string;
+  image_url: string;
 
   is_quest: boolean;
   is_narrative: boolean;
@@ -57,11 +58,13 @@ export class QuestEditorComponent implements OnInit {
   gameElementToLocal(): void {
     this.title = this.gameElement.title;
     this.description = this.gameElement.description.text;
-    console.log("Description: ", this.gameElement.description);
+    this.image_url = this.gameElement.description.image;
   }
 
   localToGameElement(): void {
     this.gameElement.title = this.title;
+    this.gameElement.description.text = this.description;
+    this.gameElement.description.image = this.image_url;
   }
 
   setGameElementToEdit(gm: GameElement): void {
