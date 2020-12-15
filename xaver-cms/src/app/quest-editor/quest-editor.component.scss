@@ -193,10 +193,30 @@ label {
     white-space: nowrap;
 }
 
-.content-type-quest {
+.content-all-types {
   width: 100%;
   height: 65%;
+  margin: 10px;
 }
+
+.content-type-narrative {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.narrative-status {
+  width: 30%;
+}
+
+.button-array-container {
+  padding-top: 30px;
+  width: 50%;
+}
+
 
 .saveCancelButton {
   margin: 10px;

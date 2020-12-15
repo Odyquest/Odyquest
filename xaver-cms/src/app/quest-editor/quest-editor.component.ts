@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { Quest } from 'src/app/shared/models/quest';
-import { Narrative, NarrativeType } from 'src/app/shared/models/narrative';
+import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models/narrative';
 import { Solution } from 'src/app/shared/models/solution';
 
 @Component({
@@ -26,7 +26,8 @@ export class QuestEditorComponent implements OnInit {
   hide_input_term = true;
   hide_multiple_choice = true;
 
-  narrative_type: NarrativeType;
+  narrative_status: NarrativeStatus;
+  public selected_narrative_status_int = 1; //"Continue" = 1, "Win" = 2, "Loose" = 3
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -55,14 +56,20 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
-  onNarrativeTypeChange(value: String) {
-    console.log("Narrative type to " + value);
+  onNarrativeStatusChange(value: String) {
+    console.log("Narrative status to " + value);
     switch (value) {
-      case "text":
-        this.narrative_type = NarrativeType.Text;
+      case "1": // "Continue"
+        this.narrative_status = NarrativeStatus.Continue;
+        console.log(this.selected_narrative_status_int);
         break;
-      case "panorama":
-        this.narrative_type = NarrativeType.Panorama;
+      case "2": // "Win"
+        this.narrative_status = NarrativeStatus.Win;
+        console.log(this.selected_narrative_status_int);
+        break;
+      case "3": // "Loose"
+        this.narrative_status = NarrativeStatus.Loose;
+        console.log(this.selected_narrative_status_int);
         break;
     }
   }
@@ -78,8 +85,15 @@ export class QuestEditorComponent implements OnInit {
     //Individual stuff
     if ((this.gameElement instanceof Quest)) {
     } else if ((this.gameElement instanceof Narrative)) {
-      this.narrative_type = this.gameElement.narrativeType;
-      console.log("loaded narrative type as: ", this.narrative_type);
+      this.narrative_status = this.gameElement.narrativeStatus;
+      if (this.narrative_status == NarrativeStatus.Continue) {
+        this.selected_narrative_status_int = 1;
+      } else if (this.narrative_status == NarrativeStatus.Win) {
+        this.selected_narrative_status_int = 2;
+      } else {
+        this.selected_narrative_status_int = 3;
+      }
+      console.log("loaded narrative status as: ", this.narrative_status);
     } else if ((this.gameElement instanceof Solution)) {
     }
   }
@@ -91,7 +105,7 @@ export class QuestEditorComponent implements OnInit {
 
     if ((this.gameElement instanceof Quest)) {
     } else if ((this.gameElement instanceof Narrative)) {
-      this.gameElement.narrativeType = this.narrative_type;
+      this.gameElement.narrativeStatus = this.narrative_status;
     } else if ((this.gameElement instanceof Solution)) {
     }
   }
@@ -105,7 +119,7 @@ export class QuestEditorComponent implements OnInit {
       this.is_narrative = false;
       this.is_solution = false;
     } else if ((gm instanceof Narrative)) {
-      console.log("Loaidng Narrative in Editor");
+      console.log("Loading Narrative in Editor");
       this.is_quest = false;
       this.is_narrative = true;
       this.is_solution = false;

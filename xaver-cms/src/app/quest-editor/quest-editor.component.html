@@ -20,7 +20,7 @@
 
 
 
-<div class=content-type-quest [hidden]="!is_quest">
+<div class="content-type-quest content-all-types" [hidden]="!is_quest">
   <div class="quest-type-container">
     <label for="quest-type">Quest Type:</label>
     <select name="quest-type" id="quest-type-selector" (change)="onQuestTypeChange($event.target.value)">
@@ -72,15 +72,26 @@
 </div>
 
 
-<div class=content-type-narrative [hidden]="!is_narrative">
-  <label for="narrative-type">Narrative Type:</label>
-    <select name="narrative-type" id="narrative-type-selector" (change)="onNarrativeTypeChange($event.target.value)">
-      <option value="text">Text</option>
-      <option value="panorama">Panorama</option>
-    </select>
+<div class="content-all-types" [hidden]="!is_narrative">
+  <div class=content-type-narrative>
+    <div class=narrative-status>
+      <label for="narrative-status">Narrative Type:</label>
+      <select name="narrative-status" id="narrative-status-selector" [(ngModel)]="selected_narrative_status_int"
+        (change)="onNarrativeStatusChange($event.target.value)">
+        <option [value]="1">Continue</option>
+        <option [value]="2">Win</option>
+        <option [value]="3">Loose</option>
+      </select>
+    </div>
+    <div class=button-array-container>
+      <div>
+        Available Buttons:
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class=content-type-solution [hidden]="!is_solution">
+<div class="content-type-solution content-all-types" [hidden]="!is_solution">
   SOLUTION CONTENT
 </div>
 
