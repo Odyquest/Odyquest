@@ -39,7 +39,7 @@ export class GameEngine {
   }
 
   get_initial_element(): GameElement {
-    return this.chase.gameElements[this.chase.initialGameElement];
+    return this.chase.gameElements.get(this.chase.initialGameElement);
   }
 }
 
