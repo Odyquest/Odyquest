@@ -17,12 +17,12 @@ export class WelcomeComponent implements OnInit {
   }
 
 
-  public showList() {
+  public showList(): void {
     this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-        this.router.navigateByUrl('/list');
-      }, 1500);
+    setTimeout(() => {
+      this.loading = false;
+      this.router.navigateByUrl('/list');
+    }, 1500);
   }
 
 }
