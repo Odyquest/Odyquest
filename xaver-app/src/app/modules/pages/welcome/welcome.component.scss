@@ -1,0 +1,14 @@
+.pageWrapper {
+    // background: white;
+    position: absolute;
+    top: max(10%,20px);
+    left: max(10%,50px);
+    bottom: max(10%,80px);
+    right: max(10%,50px);
+    padding: 20px;
+    background-image: url(../../../../assets/images/title_background.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
