@@ -71,6 +71,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
       this.chase = deserialize<Chase>(chase, Chase)
       this.getDataFromChase();
       this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest));
+      this.questEditor.setChase(this.chase);
     });
 
   }

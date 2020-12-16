@@ -209,19 +209,25 @@ label {
 }
 
 .narrative-status {
-  width: 30%;
+  width: 20%;
 }
 
 .button-array-container {
   padding-top: 30px;
-  width: 50%;
+  width: 70%;
 }
-
 
 .saveCancelButton {
   margin: 10px;
 }
 
 img {
+  width: 100%;
+}
+
+.single-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 100%;
 }

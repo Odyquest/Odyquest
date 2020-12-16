@@ -2,7 +2,9 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { Quest } from 'src/app/shared/models/quest';
 import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models/narrative';
+import { XButton } from 'src/app/shared/models/xButton'
 import { Solution } from 'src/app/shared/models/solution';
+import { Chase } from '../shared/models/chase';
 
 @Component({
   selector: 'app-quest-editor',
@@ -11,6 +13,7 @@ import { Solution } from 'src/app/shared/models/solution';
 })
 export class QuestEditorComponent implements OnInit {
 
+  chase: Chase;
   gameElement: GameElement;
 
   //current state of the form:
@@ -26,8 +29,11 @@ export class QuestEditorComponent implements OnInit {
   hide_input_term = true;
   hide_multiple_choice = true;
 
+  //Narrative
   narrative_status: NarrativeStatus;
   public selected_narrative_status_int = 1; //"Continue" = 1, "Win" = 2, "Loose" = 3
+  buttons: Array<XButton>;
+  gameElementsMap: Map<number, string>;
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -94,6 +100,8 @@ export class QuestEditorComponent implements OnInit {
         this.selected_narrative_status_int = 3;
       }
       console.log("loaded narrative status as: ", this.narrative_status);
+      this.buttons = this.gameElement.buttons;
+      console.log("Number of Buttons: ", this.buttons.length);
     } else if ((this.gameElement instanceof Solution)) {
     }
   }
@@ -106,8 +114,20 @@ export class QuestEditorComponent implements OnInit {
     if ((this.gameElement instanceof Quest)) {
     } else if ((this.gameElement instanceof Narrative)) {
       this.gameElement.narrativeStatus = this.narrative_status;
+      this.gameElement.buttons = this.buttons;
     } else if ((this.gameElement instanceof Solution)) {
     }
+  }
+
+  setChase(chase: Chase): void {
+    this.chase = chase;
+
+    this.gameElementsMap = new Map<number, string>();
+    this.chase.gameElements.forEach((value: GameElement, key: number) => {
+      let title_with_id = value.title + ' (' + key + ')'
+      console.log("Key: ", key,  ", GameElement:" + title_with_id);
+      this.gameElementsMap.set(key, title_with_id);
+    });
   }
 
   setGameElementToEdit(gm: GameElement): void {
