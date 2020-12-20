@@ -14,6 +14,7 @@ export class QuestStatus {
 
 export class GameEngine {
   currentQuest: Quest;
+  currentElement: GameElement;
   currentQuestStatus: QuestStatus;
 
   title: string;
@@ -23,10 +24,7 @@ export class GameEngine {
   testingCounter = 0;
 
   constructor(chase: Chase) {
-    console.log('create game from ' + JSON.stringify(chase.metaData.title));
-    console.log('create game from ' + chase.metaData.title);
     this.chase = chase;
-    console.log(this.chase);
   }
 
   startQuest(quest: Quest): void {
@@ -38,8 +36,18 @@ export class GameEngine {
     return this.currentQuestStatus;
   }
 
-  get_initial_element(): GameElement {
-    return this.chase.gameElements.get(this.chase.initialGameElement);
+  continueWith(element: number): GameElement {
+    this.currentElement = this.chase.getElement(element);
+
+    if (this.currentElement instanceof Quest) {
+      const quest = this.currentElement as Quest;
+      this.startQuest(quest);
+    }
+    return this.currentElement;
+  }
+
+  start(): GameElement {
+    return this.continueWith(this.chase.initialGameElement);
   }
 }
 

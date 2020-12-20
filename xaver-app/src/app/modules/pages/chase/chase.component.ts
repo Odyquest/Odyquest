@@ -29,14 +29,14 @@ export class ChaseComponent implements OnInit {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
     console.log('start chase with id', this.chaseID);
     this.game = new GameEngine(getSimpleExample());
-    this.displayElement = this.game.get_initial_element();
-    this.uiService.toolbarTitle.next("Beispiel Schnitzeljagd");
+    this.displayElement = this.game.start();
+    this.uiService.toolbarTitle.next('Beispiel Schnitzeljagd');
   }
 
   start_game(chase: Chase): void {
     console.log('start new game: ' + chase.metaData.title);
     this.game = new GameEngine(chase);
-    this.displayElement = this.game.get_initial_element();
+    this.displayElement = this.game.start();
     this.uiService.toolbarTitle.next(this.game.title);
   }
 
@@ -45,13 +45,9 @@ export class ChaseComponent implements OnInit {
   }
 
   selectDestination(destination: number): void {
-    this.displayElement = this.game.chase.getElement(destination);
+    this.displayElement = this.game.continueWith(destination);
     console.log('Select next element "' + this.displayElement.title + '" (' + destination + ')');
 
-    if (this.displayElement instanceof Quest) {
-      const quest = this.displayElement as Quest;
-      this.game.startQuest(quest);
-    }
   }
 
   isNarrative(element: GameElement): boolean {

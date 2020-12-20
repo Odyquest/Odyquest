@@ -18,16 +18,14 @@ export class NarrativeComponent implements OnInit {
 
 
 
-  constructor(private router: Router, private sanitizer:DomSanitizer) { }
+  constructor(private router: Router, private sanitizer: DomSanitizer) { }
 
 
   ngOnInit(): void {
   }
 
   select(button: number): void {
-    // console.log('narrative: ' + button + ' selected');
     if (this.narrative.isFinal()) {
-      console.log('Finished final narrative');
       let finishStatus: FinishStatus;
       switch (this.narrative.narrativeStatus) {
           case NarrativeStatus.Win:
