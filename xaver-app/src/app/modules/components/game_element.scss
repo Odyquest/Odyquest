@@ -9,11 +9,6 @@
     width: 30%;
   }
 
-  .game_element_image img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
   .game_element_text {
     width: 70%;
   }
@@ -28,11 +23,6 @@
 
   .game_element_image {
     text-align: center;
-  }
-
-  .game_element_image img {
-    max-width: 100%;
-    max-height: 100%;
   }
 
   .game_element_text {
@@ -59,6 +49,8 @@
 }
 .game_element_image img {
   display:block;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .game_element_text {
@@ -70,5 +62,8 @@
   width: 100%;
   clear: both;
   text-align: center;
-  margin: 16px auto;
+  margin: 8px auto;
+}
+.game_element_buttons button {
+  margin: 8px;
 }
