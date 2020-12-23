@@ -1,5 +1,4 @@
 .pageWrapper {
-    // background: white;
     position: absolute;
     top: max(10%,20px);
     left: max(10%,50px);
@@ -12,3 +11,7 @@
     background-repeat: no-repeat;
 }
 
+.buttonBar {
+  position: absolute;
+  bottom: 0px;
+}
