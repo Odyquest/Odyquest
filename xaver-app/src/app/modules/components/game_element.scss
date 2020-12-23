@@ -43,6 +43,7 @@
 .game_element_content {
   clear: both;
   width: 100%;
+  min-height: calc(100% - 88px);
 }
 
 .game_element_columns {
