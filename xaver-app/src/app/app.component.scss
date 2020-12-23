@@ -12,13 +12,9 @@ mat-toolbar {
   right: 0;
   bottom: 0;
   overflow: auto;
-  display: flex;
-  margin: 82px auto 32px;
+  margin: 82px auto 16px;
   padding: 0 16px;
   max-width: 960px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
 }
 
 #homeButton {

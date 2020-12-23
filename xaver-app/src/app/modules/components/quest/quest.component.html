@@ -1,22 +1,27 @@
-<div class="title_column">
-  <button mat-flat-button color="primary" (click)="help()">?</button>
-  <h3 class="game_element_title">{{quest.title}}</h3>
-</div>
-<div class="game_element_columns">
-  <div class="game_element_text">
-    <p>{{quest.description.text}}</p>
+<div class="game_element_content">
+  <div class="title_column">
+    <button mat-flat-button
+       color="primary"
+       class="help_button"
+       (click)="help()">?</button>
+    <h3 class="game_element_title">{{quest.title}}</h3>
   </div>
-  <div class="game_element_image" [ngClass]="{'solved' : hasSolution(), 'not_solved' : !hasSolution()}" >
-    <a (click)="select('next')">
-      <img  [src]="getImage()" />
-    </a>
+  <div class="game_element_columns">
+    <div class="game_element_text">
+      <p>{{quest.description.text}}</p>
+    </div>
+    <div class="game_element_image" >
+      <a (click)="select('next')">
+        <img  [src]="getImage()" [ngClass]="{'solved' : hasSolution(), 'not_solved' : !hasSolution()}" />
+      </a>
+    </div>
   </div>
 </div>
 <div class="game_element_buttons">
-  <span class="quest_tries" i18n>{{questStatus.remainingTries}} remaining tries</span>
   <button mat-flat-button color="primary" (click)="submit()" i18n>Enter solution</button>
-  <span *ngIf="timerSet" class="quest_time"><span
+  <p class="quest_tries" i18n>{{questStatus.remainingTries}} remaining tries</p>
+  <p *ngIf="timerSet" class="quest_time"><span
       *ngIf="remainingTime.hours >
       0">{{remainingTime.hours}}:</span>{{remainingTime.minutes | number:'2.0-0'}}:{{remainingTime.seconds |
-    number:'2.0-0'}}</span>
+    number:'2.0-0'}}</p>
 </div>
