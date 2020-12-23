@@ -1,6 +1,7 @@
 <div class="game_element_content">
   <div class="title_column">
     <button mat-flat-button
+       *ngIf="hasHelp()"
        color="primary"
        class="help_button"
        (click)="help()"><mat-icon>live_help</mat-icon></button>
