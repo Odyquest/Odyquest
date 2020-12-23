@@ -8,6 +8,11 @@
 mat-card {
   margin-bottom: 15px;
 }
+img {
+  object-fit: cover;
+  object-position: center;
+  max-height: 30vh;
+}
 
 .example-header-image {
   background-image: url('./../../../../assets/example_thumbnails/xaver.png');
