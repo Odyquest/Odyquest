@@ -2,6 +2,18 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="321e4419a943044e674beb55b8039f42a9761ca5" datatype="html">
+        <source>Info</source>
+        <target>Informationen</target>
+      </trans-unit>
+      <trans-unit id="3c78b53bca33467190c0b7a01320bc093a2b1427" datatype="html">
+        <source>Privacy</source>
+        <target>Datenschutz</target>
+      </trans-unit>
       <trans-unit id="85b79c9064aed1ead31ace985f31aa1363f6bdaf" datatype="html">
         <source>Help</source>
         <target>Hilfe</target>
@@ -57,6 +69,14 @@
       <trans-unit id="8bea71d0c72dcf7d91ec1ea7aa1c67638ac64930" datatype="html">
         <source> Maybe next time :fingers_crossed: </source>
         <target>Bestimmt klappts beim nächsten Mal :fingers_crossed:</target>
+      </trans-unit>
+      <trans-unit id="3ad46a943483dda58411e2110e895fdb004d3d23" datatype="html">
+        <source>About this app</source>
+        <target>Über diese App</target>
+      </trans-unit>
+      <trans-unit id="6223512fd33a68f2b0b58d118a3d08cc48df06b6" datatype="html">
+        <source>Privacy information</source>
+        <target>Datenschutzinformation</target>
       </trans-unit>
     </body>
   </file>

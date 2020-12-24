@@ -2,32 +2,57 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
+        <source>Settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="321e4419a943044e674beb55b8039f42a9761ca5" datatype="html">
+        <source>Info</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3c78b53bca33467190c0b7a01320bc093a2b1427" datatype="html">
+        <source>Privacy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="85b79c9064aed1ead31ace985f31aa1363f6bdaf" datatype="html">
         <source>Help</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="680d5c75b7fd8d37961083608b9fcdc4167b4c43" datatype="html">
         <source>Previous</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f732c304c7433e5a83ffcd862c3dce709a0f4982" datatype="html">
         <source>Next</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="15195b9ebf128fe19def2cce8aa8d59cb985c4ea" datatype="html">
         <source>Go on</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/solution/solution.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="29442d33577634d5bb7a8716954281be8955ff30" datatype="html">
@@ -51,18 +76,18 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="44f7ca7c2cbd510b91439b2b892fb47c25b6edbc" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="64fcaa5616fa99535c2d4debbfbf7bdb62391481" datatype="html">
         <source>Enter solution</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="44f7ca7c2cbd510b91439b2b892fb47c25b6edbc" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4115244d89585cb40ffb39e971c9abe8b787d735" datatype="html">
@@ -83,7 +108,21 @@
         <source>Select scavenger hunt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3ad46a943483dda58411e2110e895fdb004d3d23" datatype="html">
+        <source>About this app</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6223512fd33a68f2b0b58d118a3d08cc48df06b6" datatype="html">
+        <source>Privacy information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="55c2cb64c6dc7e99fbd797167ec544aab838615f" datatype="html">
