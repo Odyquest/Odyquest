@@ -21,7 +21,11 @@
          "buttons":[
             {
                "name":"Enter the Heart of Gold",
-               "destination":1
+               "destination":3
+            },
+            {
+               "name":"LOL",
+               "destination":2
             }
          ]
       },

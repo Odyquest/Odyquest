@@ -87,21 +87,24 @@
       <div>
         Available Buttons:
       </div>
-      <li *ngFor="let button of buttons">
+      <div class=button-header>
+        <div>
+          Button Text:
+        </div>
+        <div>
+          Destination:
+        </div>
+      </div>
+      <li *ngFor="let button of buttons; let i = index">
         <div class="single-button-container">
-          <label for="fname">Button Text:</label>
           <input type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name"><br><br>
-
-          {{this.gameElementsMap.get(button.destination)}}
-
-          <select ng-model="gameElementsMap" ng-options="key for (key, g) in gameElementsMap"></select>
-
-          <!-- <label for="button-destination">Ziel</label>
-           <select name="button-destination" [(ngModel)]="button.destination">
-            <option [value]="1">1</option>
-            <option [value]="2">2</option>
-            <option [value]="3">3</option>
-          </select> -->
+          <select >
+            <option 
+            *ngFor="let target of gameElementsList" 
+            [value]='target' 
+            [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
+            (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</option>
+          </select>
         </div>
       </li>
     </div>

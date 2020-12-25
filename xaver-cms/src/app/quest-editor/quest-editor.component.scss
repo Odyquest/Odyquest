@@ -231,3 +231,13 @@ img {
   align-items: center;
   width: 100%;
 }
+
+.button-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+li {
+  list-style-type: none;
+}

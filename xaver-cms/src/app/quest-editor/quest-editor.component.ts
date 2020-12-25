@@ -5,6 +5,7 @@ import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models
 import { XButton } from 'src/app/shared/models/xButton'
 import { Solution } from 'src/app/shared/models/solution';
 import { Chase } from '../shared/models/chase';
+//import { MainEditorComponent } from '../components/main-editor/main-editor.component'
 
 @Component({
   selector: 'app-quest-editor',
@@ -29,11 +30,15 @@ export class QuestEditorComponent implements OnInit {
   hide_input_term = true;
   hide_multiple_choice = true;
 
+  //todo remove
+  //mySelection: any;
+
   //Narrative
   narrative_status: NarrativeStatus;
   public selected_narrative_status_int = 1; //"Continue" = 1, "Win" = 2, "Loose" = 3
   buttons: Array<XButton>;
   gameElementsMap: Map<number, string>;
+  gameElementsList: string[];
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -80,6 +85,18 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
+  parseIdFromGEString(text: string) : number {
+    let id_text = text.substr(text.lastIndexOf( "(" ) + 1); //)
+    id_text = id_text.substr(0, id_text.length - 1);
+
+    return +id_text;
+  }
+
+  onNarrativeButtonDestinationChange(index: number, value: string) {
+    this.buttons[index].destination = this.parseIdFromGEString(value);
+    console.log("Set Destination of buttons[" + index + "], to " + this.buttons[index].destination);
+  }
+
   // hardly a sexy solution...
   // input forms can't read directly from GameElement?
   gameElementToLocal(): void {
@@ -122,12 +139,23 @@ export class QuestEditorComponent implements OnInit {
   setChase(chase: Chase): void {
     this.chase = chase;
 
+    //create gameelementsmap (id -> string)
+    // also create simple array used to generate dropdown values
     this.gameElementsMap = new Map<number, string>();
+    this.gameElementsList = [];
+
     this.chase.gameElements.forEach((value: GameElement, key: number) => {
       let title_with_id = value.title + ' (' + key + ')'
-      console.log("Key: ", key,  ", GameElement:" + title_with_id);
+      console.log("Key", key, "GameElement" + title_with_id);
       this.gameElementsMap.set(key, title_with_id);
+      this.gameElementsList.push(title_with_id);
     });
+
+    console.log("GameElementsList length:", this.gameElementsList.length);
+    this.gameElementsList.forEach(function (value) {
+      console.log(value);
+    });
+
   }
 
   setGameElementToEdit(gm: GameElement): void {

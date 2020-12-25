@@ -84,15 +84,20 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   //   console.log(value)
   // }
 
+  static parseIdFromGEString(text: string) : number {
+    let id_text = text.substr(text.lastIndexOf( "(" ) + 1); //)
+    id_text = id_text.substr(0, id_text.length - 1);
+
+    return +id_text;
+  }
+
   questSelectorClicked(text: string) {
     console.log("Quest Selector Clicked", text);
 
     //parse id from name, not so pretty a solution TBH
-    let id_text = text.substr(text.lastIndexOf( "(" ) + 1); //)
-    id_text = id_text.substr(0, id_text.length - 1);
-
-    this.selectedQuest = +id_text;
+    this.selectedQuest = MainEditorComponent.parseIdFromGEString(text);
     this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest));
+    this.questEditor.setChase(this.chase);
   }
 
   addQuest() {
