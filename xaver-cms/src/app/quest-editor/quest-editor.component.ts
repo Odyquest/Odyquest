@@ -103,6 +103,22 @@ export class QuestEditorComponent implements OnInit {
     this.buttons.splice(index, 1);
   }
 
+  addButton() {
+    console.log("addButton()");
+    console.log(this.buttons.length);
+
+    let button = new XButton();
+    button.name = "New Button";
+    //just use some id which is actually existing
+    button.destination = this.parseIdFromGEString(this.gameElementsMap.values().next().value);
+
+    this.buttons.push(button);
+
+    console.log(this.buttons.length);
+
+
+  }
+
   // hardly a sexy solution...
   // input forms can't read directly from GameElement?
   gameElementToLocal(): void {
