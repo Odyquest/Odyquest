@@ -85,8 +85,8 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
-  parseIdFromGEString(text: string) : number {
-    let id_text = text.substr(text.lastIndexOf( "(" ) + 1); //)
+  parseIdFromGEString(text: string): number {
+    let id_text = text.substr(text.lastIndexOf("(") + 1); //)
     id_text = id_text.substr(0, id_text.length - 1);
 
     return +id_text;
@@ -95,6 +95,12 @@ export class QuestEditorComponent implements OnInit {
   onNarrativeButtonDestinationChange(index: number, value: string) {
     this.buttons[index].destination = this.parseIdFromGEString(value);
     console.log("Set Destination of buttons[" + index + "], to " + this.buttons[index].destination);
+  }
+
+  deleteNarrativeButton(index: number) {
+    console.log("deleteNarrativeButton(" + index + ")");
+
+    this.buttons.splice(index, 1);
   }
 
   // hardly a sexy solution...
