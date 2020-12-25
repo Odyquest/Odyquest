@@ -209,6 +209,8 @@ label {
 }
 
 .narrative-status {
+  margin-left: 20px;
+  margin-right: 20px; 
   width: 20%;
 }
 
@@ -245,4 +247,11 @@ li {
 .delete_icon {
   margin-left: 20px;
   cursor: pointer;
+}
+
+.narrative-top-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

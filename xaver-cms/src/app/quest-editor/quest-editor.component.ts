@@ -36,6 +36,9 @@ export class QuestEditorComponent implements OnInit {
   //Narrative
   narrative_status: NarrativeStatus;
   public selected_narrative_status_int = 1; //"Continue" = 1, "Win" = 2, "Loose" = 3
+  narrative_type: NarrativeType;
+  public selected_narrative_type_int = 1; //"Text" = 1, "Panorama" = 2
+
   buttons: Array<XButton>;
   gameElementsMap: Map<number, string>;
   gameElementsList: string[];
@@ -85,6 +88,20 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
+  onNarrativeTypeChange(value: String) {
+    console.log("Narrative type to " + value);
+    switch (value) {
+      case "1": // "Text"
+        this.narrative_type = NarrativeType.Text;
+        console.log(this.selected_narrative_type_int);
+        break;
+      case "2": // "Panorama"
+        this.narrative_type = NarrativeType.Panorama;
+        console.log(this.selected_narrative_type_int);
+        break;
+    }
+  }
+
   parseIdFromGEString(text: string): number {
     let id_text = text.substr(text.lastIndexOf("(") + 1); //)
     id_text = id_text.substr(0, id_text.length - 1);
@@ -129,7 +146,8 @@ export class QuestEditorComponent implements OnInit {
 
     //Individual stuff
     if ((this.gameElement instanceof Quest)) {
-    } else if ((this.gameElement instanceof Narrative)) {
+    }
+    else if ((this.gameElement instanceof Narrative)) {
       this.narrative_status = this.gameElement.narrativeStatus;
       if (this.narrative_status == NarrativeStatus.Continue) {
         this.selected_narrative_status_int = 1;
@@ -138,6 +156,15 @@ export class QuestEditorComponent implements OnInit {
       } else {
         this.selected_narrative_status_int = 3;
       }
+
+      this.narrative_type = this.gameElement.narrativeType;
+      if (this.narrative_type == NarrativeType.Panorama) {
+        this.selected_narrative_type_int = 2;
+      }
+      else {
+        this.selected_narrative_type_int = 1;
+      }
+
       console.log("loaded narrative status as: ", this.narrative_status);
       this.buttons = this.gameElement.buttons;
       console.log("Number of Buttons: ", this.buttons.length);

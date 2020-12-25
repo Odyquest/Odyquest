@@ -74,55 +74,53 @@
 
 <div class="content-all-types" [hidden]="!is_narrative">
   <div class=content-type-narrative>
-    <div class=narrative-status>
-      <label for="narrative-status">Narrative Type:</label>
-      <select name="narrative-status" id="narrative-status-selector" [(ngModel)]="selected_narrative_status_int"
-        (change)="onNarrativeStatusChange($event.target.value)">
-        <option [value]="1">Continue</option>
-        <option [value]="2">Win</option>
-        <option [value]="3">Loose</option>
-      </select>
+    <div class=narrative-top-section>
+      <div class=narrative-status>
+        <label for="narrative-status">Narrative Status:</label>
+        <select name="narrative-status" id="narrative-status-selector" [(ngModel)]="selected_narrative_status_int"
+          (change)="onNarrativeStatusChange($event.target.value)">
+          <option [value]="1">Continue</option>
+          <option [value]="2">Win</option>
+          <option [value]="3">Loose</option>
+        </select>
+      </div>
+      <div class=narrative-status>
+        <label for="narrative-type">Narrative Typ:</label>
+        <select name="narrative-type" id="narrative-type-selector" [(ngModel)]="selected_narrative_type_int"
+          (change)="onNarrativeTypeChange($event.target.value)">
+          <option [value]="1">Text</option>
+          <option [value]="2">Panorama</option>
+        </select>
+      </div>
     </div>
     <div class=button-array-container>
       <div>
-        Available Buttons:
+        Verfügbare Buttons:
       </div>
       <div class=button-header>
         <div>
           Button Text:
         </div>
         <div>
-          Destination:
+          Ziel:
         </div>
       </div>
       <li *ngFor="let button of buttons; let i = index">
         <div class="single-button-container">
           <input type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name"><br><br>
-          <select >
-            <option 
-            *ngFor="let target of gameElementsList" 
-            [value]='target' 
-            [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
-            (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</option>
+          <select>
+            <option *ngFor="let target of gameElementsList" [value]='target'
+              [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
+              (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</option>
           </select>
           <mat-icon class=delete_icon (click)=deleteNarrativeButton(i)>delete</mat-icon>
         </div>
       </li>
     </div>
-    <button class="saveCancelButton" mat-raised-button color="primary" (click)="addButton()">Add Button</button>
+    <button class="saveCancelButton" mat-raised-button color="primary" (click)="addButton()">Button Hinzufügen</button>
   </div>
 </div>
 
 <div class="content-type-solution content-all-types" [hidden]="!is_solution">
   SOLUTION CONTENT
 </div>
-
-
-<!---
-<label for="fname">Solution 1 Description:</label>
-<textarea type="text" id="bug_brief" placeholder="This will be shown to the users as they solve with solution 1 ..."
-    name="fname" class="input_field_big"></textarea>
-<label for="fname">Solution 2 Description:</label>
-<textarea type="text" id="bug_brief" placeholder="This will be shown to the users as they solve with solution 2 ..."
-    name="fname" class="input_field_big"></textarea>
---->
