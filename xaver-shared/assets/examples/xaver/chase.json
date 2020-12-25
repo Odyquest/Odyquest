@@ -1,119 +1,127 @@
 {
-   "metaData":{
-      "id":"example",
-      "title":"This is a chase to the galaxy",
-      "description":"Description of the galaxy chase!",
-      "author":"Xaver",
-      "preview":{
-         "description":{
-            "text":"The galaxy chase!",
-            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+   "metaData": {
+      "id": "example",
+      "title": "This is a chase to the galaxy",
+      "description": "Description of the galaxy chase!",
+      "author": "Xaver",
+      "preview": {
+         "description": {
+            "text": "The galaxy chase!",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
          }
       }
    },
-   "_narratives":{
-      "0":{
-         "title":"Hitchhiking to the galaxy",
-         "description":{
-            "text":"You have the opportunity to travel though the galaxy. According to your guide the spaceship Heart of Gold is enabled with an Infinite Improbability Drive. Your guide also tells you \"Don't panic\"!",
-            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+   "_narratives": {
+      "0": {
+         "title": "Hitchhiking to the galaxy",
+         "description": {
+            "text": "You have the opportunity to travel though the galaxy. According to your guide the spaceship Heart of Gold is enabled with an Infinite Improbability Drive. Your guide also tells you \"Don't panic\"!",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
          },
-         "buttons":[
+         "buttons": [
             {
-               "name":"Enter the Heart of Gold",
-               "destination":0
+               "name": "Enter the Heart of Gold",
+               "destination": 0
             },
             {
-               "name":"LOL",
-               "destination":1
+               "name": "LOL",
+               "destination": 1
             },
             {
-               "name":"Enter LULULULULUthe Heart of Gold",
-               "destination":2
+               "name": "Enter LULULULULUthe Heart of Gold",
+               "destination": 2
             },
             {
-               "name":"LOLKEK",
-               "destination":3
+               "name": "LOLKEK",
+               "destination": 3
             }
          ]
       },
-      "2":{
-         "title":"Hitchhiking to the galaxy",
-         "description":{
-            "text":"I hope you enjoyed your travel through the galaxy.",
-            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+      "2": {
+         "title": "Hitchhiking to the galaxy",
+         "description": {
+            "text": "I hope you enjoyed your travel through the galaxy.",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
          },
-         "buttons":[
+         "buttons": [
             {
-               "name":"Bye!",
-               "destination":1
+               "name": "Bye!",
+               "destination": 1
             }
          ],
-         "narrativeStatus":"win"
+         "narrativeStatus": "win"
+      },
+      "3": {
+         "title": "Solution Right",
+         "description": {
+            "text": "You are right, according to Deep Thought it is 42!",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 2
+            }
+         ]
+      },
+      "4": {
+         "title": "Solution Wrong",
+         "description": {
+            "text": "You loose!",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 1
+            }
+         ]
       }
    },
-   "_quests":{
-      "1":{
-         "title":"The Ultimate Question",
-         "description":{
-            "text":"What is the answer to the Ultimate Question to Life, the Universe, and Everything?",
-            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+   "_quests": {
+      "1": {
+         "title": "The Ultimate Question",
+         "description": {
+            "text": "What is the answer to the Ultimate Question to Life, the Universe, and Everything?",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
          },
-         "questType":"multiple_choice",
-         "maxTries":7,
-         "requirementCombination":{
-            "solutionItems":[
+         "questType": "multiple_choice",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
                "three",
                "fortytwo"
             ],
-            "combinationMap":[
+            "combinationMap": [
                {
-                  "requiredItems":[
+                  "requiredItems": [
                      false,
                      true
                   ],
-                  "logicType":"and",
-                  "destination":3
+                  "logicType": "and",
+                  "destination": 3
                },
                {
-                  "requiredItems":[
+                  "requiredItems": [
                      true,
                      false
                   ],
-                  "logicType":"and",
-                  "destination":4
+                  "logicType": "and",
+                  "destination": 4
                }
             ]
          },
-         "help":[
+         "help": [
             {
-               "text":"It is 42!",
-               "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+               "text": "It is 42!",
+               "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
             },
             {
-               "text":"Not 3!",
-               "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
+               "text": "Not 3!",
+               "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
             }
          ]
       }
    },
-   "_solutions":{
-      "3":{
-         "title" : "Solution Right",
-         "description":{
-            "text":"You are right, according to Deep Thought it is 42!",
-            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
-         },
-         "destination":2
-      },
-      "4":{
-         "title" : "Solution Wrong",
-         "description":{
-            "text":"You loose!",
-            "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
-         },
-         "destination":1
-      }
-   },
-   "initialGameElement":0
+   "initialGameElement": 0
 }
