@@ -125,7 +125,7 @@ export class QuestEditorComponent implements OnInit {
     console.log(this.buttons.length);
 
     let button = new XButton();
-    button.name = "New Button";
+    button.name = "Weiter";
     //just use some id which is actually existing
     button.destination = this.parseIdFromGEString(this.gameElementsMap.values().next().value);
 
