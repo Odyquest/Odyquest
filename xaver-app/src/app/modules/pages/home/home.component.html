@@ -1,24 +1,48 @@
 <mat-progress-spinner color="primary" mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
 
 <div *ngIf="!loading" class="chaseList">
-<div *ngFor="let chase of chaseList.chases">
-  <mat-card class="example-card" (click)="startChase(chase.id)">
+  <mat-card *ngIf="hasRunningChase()" (click)="startChase(getRunningChaseId())">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{chase.title}}</mat-card-title>
-      <mat-card-subtitle>{{chase.author}}</mat-card-subtitle>
+      <mat-card-title>Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="{{chase.preview.description.image}}">
-    <mat-card-content>
-      <p>{{chase.preview.description.text}}</p>
-    </mat-card-content>
     <mat-card-actions>
-      <button primary mat-button>START</button>
-      <!--<button mat-button>LIKE</button>-->
-      <!--<button mat-button>SHARE</button>-->
+      <button primary mat-button>CONTINUE</button>
     </mat-card-actions>
   </mat-card>
-</div>
+
+  <div *ngFor="let chase of getChaseList()">
+    <mat-card (click)="startChase(chase.id)">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{chase.title}}</mat-card-title>
+        <mat-card-subtitle>{{chase.author}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{chase.preview.description.image}}">
+      <mat-card-content>
+        <p>{{chase.preview.description.text}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button primary mat-button>START</button>
+        <!--<button mat-button>LIKE</button>-->
+        <!--<button mat-button>SHARE</button>-->
+        <span *ngIf="isSucceeded(chase.id)">succeeded</span>
+        <span *ngIf="isFailed(chase.id)">failed</span>
+        <!-- TODO mark succeeded -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <mat-card *ngIf="hasNoChases()" (click)="startChase(-1)">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Start chase from file</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button primary mat-button>Upload file</button>
+      <button primary mat-button>START</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 
 <div *ngIf="inputUrl">

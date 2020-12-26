@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import {Subscription, TimeInterval} from 'rxjs';
 import { Router } from '@angular/router';
 
-import {QuestStatus} from '../../../core/services/gameEngine';
+import {QuestStatus} from '../../../core/services/game.service';
 import {Description} from '../../../shared/models/description';
 import {Quest, QuestType} from '../../../shared/models/quest';
 import {HelpComponent} from '../help/help.component';

@@ -5,7 +5,8 @@ import { map } from 'rxjs/operators';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
 import { ChaseService } from 'src/app/shared/services/chase.service';
-import { GameEngine, QuestStatus } from '../../../core/services/gameEngine';
+import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
+import { GameService, QuestStatus } from '../../../core/services/game.service';
 import { GameElement } from '../../../shared/models/gameElement';
 import { Description } from '../../../shared/models/description';
 import { Narrative } from '../../../shared/models/narrative';
@@ -22,22 +23,28 @@ import { getSimpleExample } from '../../../shared/models/example/chaseExample';
 })
 export class ChaseComponent implements OnInit {
   chaseID: string;
-  game: GameEngine;
+  game: GameService;
   displayElement: GameElement;
 
-  constructor(private activatedRoute: ActivatedRoute, public chaseService: ChaseService, private uiService: UiService) {
+  constructor(private activatedRoute: ActivatedRoute,
+              public chaseService: ChaseService,
+              private uiService: UiService,
+              private chaseStorage: ChaseStorageService) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
+    // TODO if no id, but local/file/...
     console.log('start chase with id', this.chaseID);
-    this.game = new GameEngine(getSimpleExample());
+    this.game = new GameService(this.chaseStorage, getSimpleExample());
     this.displayElement = this.game.start();
     this.uiService.toolbarTitle.next('Beispiel Schnitzeljagd');
   }
 
   start_game(chase: Chase): void {
     console.log('start new game: ' + chase.metaData.title);
-    this.game = new GameEngine(chase);
+    this.game = new GameService(this.chaseStorage, chase);
+    // TODO save to local storage
+    // TODO if position is set...
     this.displayElement = this.game.start();
-    this.uiService.toolbarTitle.next(this.game.title);
+    this.uiService.toolbarTitle.next(this.game.chase.metaData.title);
   }
 
   ngOnInit(): void {
