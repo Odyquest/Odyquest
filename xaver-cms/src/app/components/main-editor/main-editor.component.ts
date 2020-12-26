@@ -100,6 +100,10 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.questEditor.setChase(this.chase);
   }
 
+  deleteGameElement(text: string) {
+    console.log("delete GameElement:", text);
+  }
+
   addQuest() {
     console.log("addQuest()");
 

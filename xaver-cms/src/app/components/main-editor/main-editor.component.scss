@@ -118,3 +118,15 @@ mat-list-option {
   color: white;
   background: #bea05a;
 }
+
+.text-and-delete-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete_icon:hover {
+  color: red;
+  //border: 2px solid red;
+}

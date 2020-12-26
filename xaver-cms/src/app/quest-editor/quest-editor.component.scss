@@ -249,6 +249,11 @@ li {
   cursor: pointer;
 }
 
+.delete_icon:hover {
+  color: red;
+  //border: 2px solid red;
+}
+
 .narrative-top-section {
   width: 100%;
   display: flex;
