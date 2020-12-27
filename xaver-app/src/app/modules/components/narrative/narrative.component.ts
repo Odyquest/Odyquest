@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 
 import { Narrative, NarrativeStatus, NarrativeType } from '../../../shared/models/narrative';
-import { FinishStatus } from '../../../core/models/finish_status';
+import { ChaseStatus } from 'src/app/core/models/chase_status';
+import { GameService } from 'src/app/core/services/game.service';
 
 @Component({
   selector: 'app-narrative',
@@ -15,10 +15,9 @@ import { FinishStatus } from '../../../core/models/finish_status';
 export class NarrativeComponent implements OnInit {
   @Input() narrative: Narrative;
   @Output() selection: EventEmitter<number> = new EventEmitter();
+  @Output() chaseStatus: EventEmitter<ChaseStatus> = new EventEmitter();
 
-
-
-  constructor(private router: Router, private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) { }
 
 
   ngOnInit(): void {
@@ -26,16 +25,17 @@ export class NarrativeComponent implements OnInit {
 
   select(button: number): void {
     if (this.narrative.isFinal()) {
-      let finishStatus: FinishStatus;
+      let chaseStatus: ChaseStatus;
       switch (this.narrative.narrativeStatus) {
           case NarrativeStatus.Win:
-          finishStatus = FinishStatus.Success;
+          chaseStatus = ChaseStatus.Succeeded;
           break;
           case NarrativeStatus.Loose:
-          finishStatus = FinishStatus.Failed;
+          chaseStatus = ChaseStatus.Failed;
           break;
       }
-      setTimeout(() => { this.router.navigateByUrl('/finished?status=' + finishStatus); }, 1500);
+      console.log('final narrative, leave game');
+      this.chaseStatus.emit(chaseStatus);
     } else {
       this.selection.emit(button);
     }

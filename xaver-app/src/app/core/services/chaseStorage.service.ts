@@ -3,18 +3,35 @@ import { Subject } from 'rxjs';
 import { deserialize, serialize, JsonProperty, Serializable } from 'typescript-json-serializer';
 
 import { LocalStorageService } from 'src/app/core/services/localStorage.service';
+import { ChaseStatus } from 'src/app/core/models/chase_status';
 import { Chase } from '../../shared/models/chase';
-
-export enum ChaseStatus {
-  UNKNOWN = 'unknown',
-  SUCCEEDED = 'succeeded',
-  FAILED = 'failed',
-  STARTED = 'started'
-}
 
 @Serializable()
 class ChaseStatusList {
-  @JsonProperty() map: Map<string, ChaseStatus>;
+  @JsonProperty({
+    isDictionary: true,
+    onDeserialize: value => {
+      console.log('deserialize status list');
+      const list = new Map<string, ChaseStatus>();
+      for (const v in value.list) {
+        console.log('deserialize ' + v);
+        list.set(v, value.list[v]);
+      }
+      return list;
+    },
+    onSerialize: value => {
+      console.log('serialize status list');
+      const l = new Object();
+      for (const element of value.keys()) {
+          console.log('serialize status of ' + element);
+          l[element] = serialize(value.get(element));
+      }
+      console.log(JSON.stringify(l));
+      return {
+        list: l
+      };
+    }
+  }) map: Map<string, ChaseStatus>;
   constructor() {
     this.map = new Map<string, ChaseStatus>();
   }
@@ -49,6 +66,7 @@ export class ChaseStorageService {
 
   deleteRunningChase(): boolean {
     return this.storage.remove('running_chase');
+    return this.storage.remove('current_chase_position');
   }
 
   getCurrentPosition(): number | undefined {
@@ -60,6 +78,7 @@ export class ChaseStorageService {
   }
 
   deleteCurrentPosition(): boolean {
+    return this.storage.remove('running_chase');
     return this.storage.remove('current_chase_position');
   }
 
@@ -73,9 +92,9 @@ export class ChaseStorageService {
   }
   setChaseStatus(chaseId: string, chaseStatus: ChaseStatus): void {
     const j = this.storage.get('chase_status_list');
-    const list = deserialize<ChaseStatusList>(j, ChaseStatusList);
-    if (list === undefined) {
-      list.map = new Map<string, ChaseStatus>();
+    let list = deserialize<ChaseStatusList>(j, ChaseStatusList);
+    if (!list || !list.map) {
+      list = new ChaseStatusList();
     }
     list.map.set(chaseId, chaseStatus);
     this.storage.set('chase_status_list', serialize(list));

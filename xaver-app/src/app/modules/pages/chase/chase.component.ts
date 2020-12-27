@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
 import { UiService } from './../../../core/services/ui.service';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
+import { ChaseStatus } from 'src/app/core/models/chase_status';
 import { GameService, QuestStatus } from '../../../core/services/game.service';
 import { GameElement } from '../../../shared/models/gameElement';
 import { Description } from '../../../shared/models/description';
@@ -27,7 +28,8 @@ export class ChaseComponent implements OnInit {
   displayElement: GameElement;
 
   constructor(private activatedRoute: ActivatedRoute,
-              public chaseService: ChaseService,
+              private chaseService: ChaseService,
+              private router: Router,
               private uiService: UiService,
               private chaseStorage: ChaseStorageService) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
@@ -59,7 +61,14 @@ export class ChaseComponent implements OnInit {
   selectDestination(destination: number): void {
     this.displayElement = this.game.continueWith(destination);
     console.log('Select next element "' + this.displayElement.title + '" (' + destination + ')');
+  }
 
+  setChaseStatus(chaseStatus: ChaseStatus): void {
+    console.log('set status to ' + chaseStatus);
+    if (chaseStatus === ChaseStatus.Succeeded || chaseStatus === ChaseStatus.Failed) {
+      this.game.finish(chaseStatus);
+      setTimeout(() => { this.router.navigateByUrl('/finished?status=' + chaseStatus); }, 1500);
+    }
   }
 
   isNarrative(element: GameElement): boolean {

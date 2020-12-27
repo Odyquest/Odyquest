@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { ChaseStorageService, ChaseStatus } from 'src/app/core/services/chaseStorage.service';
+import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
+import { ChaseStatus } from 'src/app/core/models/chase_status';
 import { Chase } from '../../shared/models/chase';
 import { GameElement } from '../../shared/models/gameElement';
 import { Quest } from '../../shared/models/quest';
@@ -55,6 +56,7 @@ export class GameService {
 
   start(): GameElement {
     this.chaseStorage.setRunningChase(this.chase);
+    this.chaseStorage.setChaseStatus(this.chase.metaData.id, ChaseStatus.Started);
     if (this.startElement) {
       return this.continueWith(this.startElement);
     } else {
@@ -64,6 +66,7 @@ export class GameService {
 
   finish(chaseStatus: ChaseStatus): void {
     this.chaseStorage.setChaseStatus(this.chase.metaData.id, chaseStatus);
+    this.chaseStorage.deleteRunningChase();
   }
 }
 

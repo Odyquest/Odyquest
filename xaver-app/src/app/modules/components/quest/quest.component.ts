@@ -4,7 +4,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import * as moment from 'moment';
 import {Subscription, TimeInterval} from 'rxjs';
-import { Router } from '@angular/router';
 
 import {QuestStatus} from '../../../core/services/game.service';
 import {Description} from '../../../shared/models/description';
@@ -13,7 +12,7 @@ import {HelpComponent} from '../help/help.component';
 import {SubmitSolutionComponent} from '../submit-solution/submit-solution.component';
 
 import {TimeService} from './../../../core/services/time.service';
-import {FinishStatus} from './../../../core/models/finish_status';
+import {ChaseStatus} from './../../../core/models/chase_status';
 
 
 @Component({
@@ -25,6 +24,7 @@ export class QuestComponent implements OnInit {
   @Input() quest: Quest;
   @Input() questStatus: QuestStatus;
   @Output() selection: EventEmitter<number> = new EventEmitter();
+  @Output() chaseStatus: EventEmitter<ChaseStatus> = new EventEmitter();
   validSolution: number|undefined = undefined;
   futureTimeEvent;
   remainingTime = {hours: 0, minutes: 0, seconds: 0};
@@ -32,7 +32,7 @@ export class QuestComponent implements OnInit {
   subscriptions = new Array<Subscription>();
   timeTicker;
   timerSet = false;
-  constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer: DomSanitizer, private router: Router) {}
+  constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -68,7 +68,7 @@ export class QuestComponent implements OnInit {
 
   loose(): void {
     // TODO display popup
-    setTimeout(() => { this.router.navigateByUrl('/finished?status=' + FinishStatus.Failed); }, 1500);
+    this.chaseStatus.emit(ChaseStatus.Failed);
   }
 
   submit(): void {

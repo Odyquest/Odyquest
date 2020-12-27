@@ -1,14 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from "@angular/router";
-import { Title } from "@angular/platform-browser";
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { deserialize } from 'typescript-json-serializer';
 
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { UiService } from 'src/app/core/services/ui.service';
 import { ChaseList, ChaseMetaData } from 'src/app/shared/models/chase';
-import { ChaseStorageService, ChaseStatus } from 'src/app/core/services/chaseStorage.service';
+import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
+import { ChaseStatus } from 'src/app/core/models/chase_status';
 
 @Component({
   selector: 'app-home',
@@ -61,10 +62,10 @@ export class HomeComponent implements OnInit {
   }
 
   isSucceeded(chaseId: string): boolean {
-    return this.chaseStorage.getChaseStatus(chaseId) === ChaseStatus.SUCCEEDED;
+    return this.chaseStorage.getChaseStatus(chaseId) === ChaseStatus.Succeeded;
   }
   isFailed(chaseId: string): boolean {
-    return this.chaseStorage.getChaseStatus(chaseId) === ChaseStatus.FAILED;
+    return this.chaseStorage.getChaseStatus(chaseId) === ChaseStatus.Failed;
   }
 
   public startChase(id: string): void {
