@@ -15,14 +15,4 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
-  public showList() {
-    this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-        this.router.navigateByUrl('/list');
-      }, 1500);
-  }
-
 }

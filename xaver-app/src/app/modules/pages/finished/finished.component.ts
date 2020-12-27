@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { FinishStatus } from '../../../core/models/finish_status';
 
@@ -10,8 +10,9 @@ import { FinishStatus } from '../../../core/models/finish_status';
 })
 export class FinishedComponent implements OnInit {
   status: FinishStatus;
+  loading = false;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.status = this.activatedRoute.snapshot.queryParams.status;
   }
 
@@ -23,5 +24,13 @@ export class FinishedComponent implements OnInit {
   }
   finishedFailure(): boolean {
     return this.status === FinishStatus.Failed;
+  }
+
+  goHome(): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+      this.router.navigateByUrl('/');
+    }, 1500);
   }
 }

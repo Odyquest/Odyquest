@@ -9,12 +9,6 @@
     width: 30%;
   }
 
-  .game_element_image img {
-    //width: 100%;
-    max-width: 100%;
-    max-height: 100%;
-  }
-
   .game_element_text {
     width: 70%;
   }
@@ -28,14 +22,7 @@
   }
 
   .game_element_image {
-    // height: 30%;
     text-align: center;
-  }
-
-  .game_element_image img {
-    //height: 100%;
-    max-width: 100%;
-    max-height: 100%;
   }
 
   .game_element_text {
@@ -43,11 +30,16 @@
   }
 }
 
+.game_element_content {
+  clear: both;
+  width: 100%;
+  min-height: calc(100% - 88px);
+}
+
 .game_element_columns {
   display: flex;
   justify-content: center;
   align-items: center;
-  // height: 100%;
   width: 100%;
   clear: both;
 }
@@ -57,13 +49,21 @@
 }
 .game_element_image img {
   display:block;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .game_element_text {
   float: left;
+  padding: 15px;
 }
 
 .game_element_buttons {
+  width: 100%;
   clear: both;
   text-align: center;
+  margin: 8px auto;
+}
+.game_element_buttons button {
+  margin: 8px;
 }

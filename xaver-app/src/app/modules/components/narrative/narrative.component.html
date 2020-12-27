@@ -1,11 +1,24 @@
+<div class="game_element_content">
 <h3 class="game_element_title">{{narrative.title}}</h3>
-<div class="game_element_columns">
+<div *ngIf="isDefaultLayout()" class="game_element_columns">
   <div class="game_element_image">
     <img [src]="getImage()"/>
   </div>
   <div class="game_element_text">
+    <div *ngIf="isAudioType()"> Audioplayer </div>
     <p>{{narrative.description.text}}</p>
   </div>
+</div>
+<div *ngIf="isPanoramaLayout()" class="game_element_columns">
+  <div class="game_element_panorama">
+    <div *ngIf="isVideoType();then video else image"></div>
+    <ng-template #image><img [src]="getImage()"/></ng-template>
+    <ng-template #video><div> Videoplayer </div></ng-template>
+  </div>
+  <div class="game_element_footnote">
+    <p>{{narrative.description.text}}</p>
+  </div>
+</div>
 </div>
 <div class="game_element_buttons">
   <button *ngFor="let button of narrative.buttons"

@@ -4,7 +4,9 @@ import { XButton } from './xButton';
 
 export enum NarrativeType {
   Text = 'text',
-  Panorama = 'panorama'
+  Audio = 'audio',
+  Panorama = 'panorama',
+  Video = 'video',
 }
 
 export enum NarrativeStatus {

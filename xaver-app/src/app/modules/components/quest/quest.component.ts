@@ -104,6 +104,10 @@ export class QuestComponent implements OnInit {
     });
   }
 
+  hasHelp(): boolean {
+    return this.quest.help.length > 0;
+  }
+
   hasSolution(): boolean {
     return this.validSolution !== undefined;
   }

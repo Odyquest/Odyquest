@@ -13,7 +13,7 @@ export class SolutionComponent implements OnInit {
   @Input() solution: Solution;
   @Output() selection: EventEmitter<number> = new EventEmitter();
 
-  constructor(private sanitizer:DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   }

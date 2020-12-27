@@ -80,7 +80,7 @@ export class Chase {
   @JsonProperty() tags?: Array<string>;
 
   getElement(destination: number): GameElement {
-    return this.gameElements[destination];
+    return this.gameElements.get(destination);
   }
 
 }

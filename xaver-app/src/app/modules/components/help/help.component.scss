@@ -1,21 +1,4 @@
-@media screen and (orientation: landscape) {
-  /* applies to mobiles in landscape mode */
-
-  .game_element_columns {
-    flex-direction: row;
-  }
-}
-
-@media screen and (orientation: portrait) {
-  /* applies to mobiles in portrait mode */
-
-  .game_element_columns {
-    flex-direction: column-reverse;
-  }
-
-
-
-}
+@import '../game_element.scss';
 
 :host {
   // background: red !important;
@@ -25,31 +8,6 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-}
-
-.game_element_columns {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  clear: both;
-}
-
-.game_element_image {
-  width: 100%;
-
-  img {
-    width: 100%;
-  }
-}
-
-.game_element_text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
 }
 
 mat-toolbar {
