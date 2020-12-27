@@ -53,6 +53,9 @@ import { WelcomeComponent } from './modules/pages/welcome/welcome.component';
 import { FinishedComponent } from './modules/pages/finished/finished.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { PrivacyComponent } from './modules/pages/privacy/privacy.component';
+import { InformationComponent } from './modules/pages/information/information.component';
+import { SettingsComponent } from './modules/pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,9 @@ import { environment } from '../environments/environment';
     SubmitSolutionComponent,
     WelcomeComponent,
     FinishedComponent,
+    PrivacyComponent,
+    InformationComponent,
+    SettingsComponent,
   ],
   entryComponents: [
     SubmitSolutionComponent,
