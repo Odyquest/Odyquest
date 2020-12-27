@@ -1,9 +1,9 @@
-import { UiService } from './../../../core/services/ui.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
+import { UiService } from './../../../core/services/ui.service';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
 import { GameService, QuestStatus } from '../../../core/services/game.service';
@@ -22,7 +22,7 @@ import { getSimpleExample } from '../../../shared/models/example/chaseExample';
   styleUrls: ['./chase.component.scss']
 })
 export class ChaseComponent implements OnInit {
-  chaseID: string;
+  chaseID: string | undefined;
   game: GameService;
   displayElement: GameElement;
 
@@ -33,22 +33,27 @@ export class ChaseComponent implements OnInit {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
     // TODO if no id, but local/file/...
     console.log('start chase with id', this.chaseID);
-    this.game = new GameService(this.chaseStorage, getSimpleExample());
-    this.displayElement = this.game.start();
-    this.uiService.toolbarTitle.next('Beispiel Schnitzeljagd');
+    // console.log('temporary load error chase');
+    //this.game = new GameService(this.chaseStorage, getSimpleExample());
+    this.displayElement = getSimpleExample().gameElements[getSimpleExample().initialGameElement];
   }
 
   start_game(chase: Chase): void {
     console.log('start new game: ' + chase.metaData.title);
     this.game = new GameService(this.chaseStorage, chase);
-    // TODO save to local storage
-    // TODO if position is set...
     this.displayElement = this.game.start();
     this.uiService.toolbarTitle.next(this.game.chase.metaData.title);
   }
 
   ngOnInit(): void {
-    this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
+    if (!this.chaseID && this.chaseStorage.hasRunningChase()) {
+      console.log('load chase from storage');
+      this.game = GameService.fromStorage(this.chaseStorage);
+      this.displayElement = this.game.start();
+      this.uiService.toolbarTitle.next(this.game.chase.metaData.title);
+    } else {
+      this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
+    }
   }
 
   selectDestination(destination: number): void {

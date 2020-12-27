@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { deserialize, serialize } from 'typescript-json-serializer';
+import { deserialize, serialize, JsonProperty, Serializable } from 'typescript-json-serializer';
 
 import { LocalStorageService } from 'src/app/core/services/localStorage.service';
 import { Chase } from '../../shared/models/chase';
@@ -11,8 +11,14 @@ export enum ChaseStatus {
   FAILED = 'failed',
   STARTED = 'started'
 }
+
+@Serializable()
 class ChaseStatusList {
-  map: Map<string, ChaseStatus>;
+  @JsonProperty() map: Map<string, ChaseStatus>;
+  constructor() {
+    this.map = new Map<string, ChaseStatus>();
+  }
+
 }
 
 @Injectable({
@@ -25,6 +31,9 @@ export class ChaseStorageService {
   getRunningChase(): Chase | undefined {
     console.log('load chase from storage');
     const j = this.storage.get('running_chase');
+    if (!j) {
+      return undefined;
+    }
     return deserialize<Chase>(j, Chase);
   }
 
@@ -35,7 +44,7 @@ export class ChaseStorageService {
   }
 
   hasRunningChase(): boolean {
-    return this.getRunningChase() !== undefined;
+    return !!this.getRunningChase();
   }
 
   deleteRunningChase(): boolean {
@@ -57,7 +66,7 @@ export class ChaseStorageService {
   getChaseStatus(chaseId: string): ChaseStatus | undefined {
     const j = this.storage.get('chase_status_list');
     const list = deserialize<ChaseStatusList>(j, ChaseStatusList);
-    if (list === undefined) {
+    if (list === undefined || list === null) {
       return undefined;
     }
     return list.map.get(chaseId);

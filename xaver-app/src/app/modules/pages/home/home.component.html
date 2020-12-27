@@ -1,7 +1,7 @@
 <mat-progress-spinner color="primary" mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
 
 <div *ngIf="!loading" class="chaseList">
-  <mat-card *ngIf="hasRunningChase()" (click)="startChase(getRunningChaseId())">
+  <mat-card *ngIf="hasRunningChase()" (click)="startChase('')">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
