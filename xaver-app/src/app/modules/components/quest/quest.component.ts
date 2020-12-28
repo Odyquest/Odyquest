@@ -10,10 +10,8 @@ import {Description} from '../../../shared/models/description';
 import {Quest, QuestType} from '../../../shared/models/quest';
 import {HelpComponent} from '../help/help.component';
 import {SubmitSolutionComponent} from '../submit-solution/submit-solution.component';
-
 import {TimeService} from './../../../core/services/time.service';
 import {ChaseStatus} from './../../../core/models/chase_status';
-
 
 @Component({
   selector: 'app-quest',

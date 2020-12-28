@@ -18,11 +18,8 @@ import { ChaseStatus } from 'src/app/core/models/chase_status';
 })
 export class HomeComponent implements OnInit {
   inputUrl: boolean;
-  chases;
   chaseList = new ChaseList();
   loading = false;
-
-  subscritptions = new Array<Subscription>();
 
   constructor(private chaseService: ChaseService,
               private router: Router,
@@ -30,10 +27,6 @@ export class HomeComponent implements OnInit {
               private chaseStorage: ChaseStorageService) { }
 
   ngOnInit(): void {
-    // this.chaseService.chases.subscribe(chases => {
-    //   this.chases = chases;
-    //   console.log('CHASES: ', this.chases);
-    // })
     this.uiService.toolbarTitle.next('Wähle eine Schnitzeljagd');
     this.chaseService.getAllChases().subscribe(chases => this.chaseList = deserialize<ChaseList>(chases, ChaseList));
   }
@@ -74,10 +67,6 @@ export class HomeComponent implements OnInit {
         this.loading = false;
         this.router.navigateByUrl('/chase?id=' + id);
     }, 1500);
-  }
-
-  ngOnDestroy() {
-    this.subscritptions.forEach(subscription => subscription.unsubscribe());
   }
 
 }

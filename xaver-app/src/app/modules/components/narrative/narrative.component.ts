@@ -2,8 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
-
-import { Narrative, NarrativeStatus, NarrativeType } from '../../../shared/models/narrative';
+import { Narrative, NarrativeStatus, NarrativeType } from 'src/app/shared/models/narrative';
 import { ChaseStatus } from 'src/app/core/models/chase_status';
 import { GameService } from 'src/app/core/services/game.service';
 
@@ -34,7 +33,6 @@ export class NarrativeComponent implements OnInit {
           chaseStatus = ChaseStatus.Failed;
           break;
       }
-      console.log('final narrative, leave game');
       this.chaseStatus.emit(chaseStatus);
     } else {
       this.selection.emit(button);

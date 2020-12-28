@@ -33,10 +33,7 @@ export class ChaseComponent implements OnInit {
               private uiService: UiService,
               private chaseStorage: ChaseStorageService) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
-    // TODO if no id, but local/file/...
-    console.log('start chase with id', this.chaseID);
-    // console.log('temporary load error chase');
-    //this.game = new GameService(this.chaseStorage, getSimpleExample());
+    // FIXME try remove display simple example as default
     this.displayElement = getSimpleExample().gameElements[getSimpleExample().initialGameElement];
   }
 
@@ -64,7 +61,7 @@ export class ChaseComponent implements OnInit {
   }
 
   setChaseStatus(chaseStatus: ChaseStatus): void {
-    console.log('set status to ' + chaseStatus);
+    console.log('Set chase status to ' + chaseStatus);
     if (chaseStatus === ChaseStatus.Succeeded || chaseStatus === ChaseStatus.Failed) {
       this.game.finish(chaseStatus);
       setTimeout(() => { this.router.navigateByUrl('/finished?status=' + chaseStatus); }, 1500);

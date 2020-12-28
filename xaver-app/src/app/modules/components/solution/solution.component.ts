@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
-import { Solution } from '../../../shared/models/solution';
+import { Solution } from 'src/app/shared/models/solution';
 
 @Component({
   selector: 'app-solution',
