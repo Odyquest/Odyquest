@@ -4,6 +4,7 @@ import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service'
 import { ChaseStatus } from 'src/app/core/models/chase_status';
 import { Chase } from '../../shared/models/chase';
 import { GameElement } from '../../shared/models/gameElement';
+import { Narrative } from '../../shared/models/narrative';
 import { Quest } from '../../shared/models/quest';
 
 export class QuestStatus {
@@ -52,6 +53,13 @@ export class GameService {
       this.startQuest(quest);
     }
     return this.currentElement;
+  }
+
+  isFinalElement(): boolean {
+    if (this.currentElement instanceof Narrative) {
+      return (this.currentElement as Narrative).isFinal();
+    }
+    return false;
   }
 
   start(): GameElement {

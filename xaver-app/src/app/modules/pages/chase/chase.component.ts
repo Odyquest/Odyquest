@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { deserialize, serialize } from 'typescript-json-serializer';
+import { HostListener } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { UiService } from './../../../core/services/ui.service';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
 import { ChaseStatus } from 'src/app/core/models/chase_status';
+import { CloseWarningGuard } from 'src/app/core/services/close-warning.guard';
 import { GameService, QuestStatus } from '../../../core/services/game.service';
 import { GameElement } from '../../../shared/models/gameElement';
 import { Description } from '../../../shared/models/description';
@@ -26,6 +29,12 @@ export class ChaseComponent implements OnInit {
   chaseID: string | undefined;
   game: GameService;
   displayElement: GameElement;
+  isFinalElement = false;
+
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+    return this.game.isFinalElement();
+  }
 
   constructor(private activatedRoute: ActivatedRoute,
               private chaseService: ChaseService,

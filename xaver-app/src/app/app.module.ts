@@ -56,6 +56,7 @@ import { environment } from '../environments/environment';
 import { PrivacyComponent } from './modules/pages/privacy/privacy.component';
 import { InformationComponent } from './modules/pages/information/information.component';
 import { SettingsComponent } from './modules/pages/settings/settings.component';
+import { CloseWarningGuard } from './core/services/close-warning.guard';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,9 @@ import { SettingsComponent } from './modules/pages/settings/settings.component';
     MatPaginatorModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    CloseWarningGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
