@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { FinishStatus } from '../../../core/models/finish_status';
+import { ChaseStatus } from '../../../core/models/chase_status';
 
 @Component({
   selector: 'app-finished',
@@ -9,7 +9,7 @@ import { FinishStatus } from '../../../core/models/finish_status';
   styleUrls: ['./finished.component.scss']
 })
 export class FinishedComponent implements OnInit {
-  status: FinishStatus;
+  status: ChaseStatus;
   loading = false;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
@@ -20,10 +20,10 @@ export class FinishedComponent implements OnInit {
   }
 
   finishedSuccessfully(): boolean {
-    return this.status === FinishStatus.Success;
+    return this.status === ChaseStatus.Succeeded;
   }
   finishedFailure(): boolean {
-    return this.status === FinishStatus.Failed;
+    return this.status === ChaseStatus.Failed;
   }
 
   goHome(): void {

@@ -1,4 +1,4 @@
-import { deserialize, Serializable, JsonProperty } from 'typescript-json-serializer';
+import { deserialize, serialize, Serializable, JsonProperty } from 'typescript-json-serializer';
 
 import { Preview } from './preview';
 import { Narrative } from './narrative';
@@ -54,19 +54,19 @@ export class Chase {
     },
     onSerialize: value => {
       console.log('serialize gameElement');
-      const narratives = new Map<number, Narrative>();
-      const quests = new Map<number, Narrative>();
-      const solutions = new Map<number, Narrative>();
-      for (const element in value) {
-        if (value[element].buttons) {
+      const narratives = new Object();
+      const quests = new Object();
+      const solutions = new Object();
+      for (const element of value.keys()) {
+        if (value.get(element) instanceof Narrative) {
           console.log('serialize narrative');
-          narratives.set(+element, value[element]);
-        } else if (value[element].questType) {
+          narratives[element] = serialize(value.get(element));
+        } else if (value.get(element) instanceof Quest) {
           console.log('serialize quest');
-          quests.set(+element, value[element]);
-        } else if (value[element].solutionType) {
+          quests[element] = serialize(value.get(element));
+        } else if (value.get(element) instanceof Solution) {
           console.log('serialize solution');
-          solutions.set(+element, value[element]);
+          solutions[element] = serialize(value.get(element));
         }
       }
       return {

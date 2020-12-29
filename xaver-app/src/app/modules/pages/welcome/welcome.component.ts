@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
-import { UiService } from './../../../core/services/ui.service';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'app-welcome',
