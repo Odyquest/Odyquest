@@ -15,8 +15,7 @@ export class CloseWarningGuard implements CanDeactivate<ComponentCanDeactivate> 
       // NOTE: this warning message will only be shown when navigating elsewhere within your angular app;
       // when navigating away from your angular app, the browser will show a generic warning message
       // see http://stackoverflow.com/a/42207299/7307355
-      // TODO i18n
-      confirm($localize `WARNING: You are skipping the game. Press Cancel to go back and continue the game, or OK skip changes.`);
+      confirm($localize `:@@close-warning-guard: WARNING: You are skipping the game. Press Cancel to go back and continue the game, or OK skip changes.`);
   }
 }
 
