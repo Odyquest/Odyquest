@@ -3,7 +3,6 @@ import { deserialize, Serializable, JsonProperty } from 'typescript-json-seriali
 import { Preview } from './preview';
 import { Narrative } from './narrative';
 import { Quest } from './quest';
-import { Solution } from './solution';
 import { GameElement } from './gameElement';
 
 @Serializable()
@@ -32,7 +31,7 @@ export class ChaseList {
 export class Chase {
   @JsonProperty() metaData: ChaseMetaData;
   @JsonProperty({
-    names: ['_narratives', '_quests', '_solutions'],
+    names: ['_narratives', '_quests'],
     isDictionary: true,
     onDeserialize: value => {
       console.log('deserialize gameElement');
@@ -45,10 +44,6 @@ export class Chase {
         console.log('add ' + v + ' as Quest');
         gameElements.set(+v, deserialize<Quest>(value._quests[v], Quest));
       }
-      for (const v in value._solutions) {
-        console.log('add ' + v + ' as solution');
-        gameElements.set(+v, deserialize<Solution>(value._solutions[v], Solution));
-      }
       console.log("number of GameElements: ", gameElements.size);
       return gameElements;
     },
@@ -56,7 +51,6 @@ export class Chase {
       console.log('serialize gameElement');
       const narratives = new Map<number, Narrative>();
       const quests = new Map<number, Narrative>();
-      const solutions = new Map<number, Narrative>();
       for (const element in value) {
         if (value[element].buttons) {
           console.log('serialize narrative');
@@ -64,15 +58,11 @@ export class Chase {
         } else if (value[element].questType) {
           console.log('serialize quest');
           quests.set(+element, value[element]);
-        } else if (value[element].solutionType) {
-          console.log('serialize solution');
-          solutions.set(+element, value[element]);
         }
       }
       return {
         _narratives: narratives,
-        _quests: quests,
-        _solutions: solutions
+        _quests: quests
       };
     }
   }) gameElements: Map<number, GameElement>;
