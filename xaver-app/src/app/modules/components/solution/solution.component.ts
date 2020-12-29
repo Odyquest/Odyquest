@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
-import { Solution } from '../../../shared/models/solution';
+import { Solution } from 'src/app/shared/models/solution';
 
 @Component({
   selector: 'app-solution',
@@ -13,7 +13,7 @@ export class SolutionComponent implements OnInit {
   @Input() solution: Solution;
   @Output() selection: EventEmitter<number> = new EventEmitter();
 
-  constructor(private sanitizer:DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   }

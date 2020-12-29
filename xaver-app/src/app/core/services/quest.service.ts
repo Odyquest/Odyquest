@@ -46,7 +46,7 @@ export class QuestService {
   public getDefaultChase(): Observable<any> {
     //console.log('call server at ' + this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000");
     //return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
-    return this.httpClient.get('assets/examples/chase.json')
+    return this.httpClient.get('assets-shared/examples/chase.json')
       .pipe(
         map(chase => {
           return chase;

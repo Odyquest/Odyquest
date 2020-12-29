@@ -32,7 +32,7 @@ export class ChaseService {
   public getAllChases(): Observable<any> {
     // console.log('Service: getAllChases()', this.SERVER_BASE_URI);
     // return this.httpClient.get(this.SERVER_BASE_URI)
-    return this.httpClient.get('assets/examples/chase-list.json')
+    return this.httpClient.get('assets-shared/examples/chase-list.json')
       .pipe(
         map(chases => {
           return chases;
@@ -45,8 +45,7 @@ export class ChaseService {
 
   public getChase(id: string): Observable<any> {
     //return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
-    console.log("getChase() with id: ",  id);
-    return this.httpClient.get('assets/examples/' + id + '/chase.json')
+    return this.httpClient.get('assets-shared/examples/' + id + '/chase.json')
       .pipe(
         map(chase => {
           console.log("Success");

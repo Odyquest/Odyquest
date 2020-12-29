@@ -33,7 +33,7 @@ val chases = flowOf(
                         preview = Preview(
                                 Description(
                                         text = "Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
-                                        image = "assets/examples/silke/images/xaver.png"
+                                        image = "assets-shared/examples/silke/images/xaver.png"
                                 )
                         ),
                         lastEdited = LocalDateTime.now(),
@@ -47,7 +47,7 @@ val chases = flowOf(
                             title = "Zeitreise mit Xaver",
                             description = Description(
                                     text = "Oh nein, ich stecke völlig im Schlamassel. Ich habe mich hier im Museum umgesehen und wollte Fotos von den hübschen Kunstwerken machen, doch dabei habe ich wohl etwas falsch gemacht. Statt Fotos zu machen, habe ich irgendwie mehrere Objekte aus den verschiedenen Räumen des Museums verschwinden lassen! Keine Ahnung, wie das passieren konnte!",
-                                    image = "assets/examples/silke/images/xaver.png"
+                                    image = "assets-shared/examples/silke/images/xaver.png"
                             ),
                             buttons = arrayOf(
                                     XButton(
@@ -63,7 +63,7 @@ val chases = flowOf(
                                 title = "Zeitreise mit Xaver",
                                 description = Description(
                                         text = "Oh nein, ich stecke völlig im Schlamassel. Ich habe mich hier im Museum umgesehen und wollte Fotos von den hübschen Kunstwerken machen, doch dabei habe ich wohl etwas falsch gemacht. Statt Fotos zu machen, habe ich irgendwie mehrere Objekte aus den verschiedenen Räumen des Museums verschwinden lassen! Keine Ahnung, wie das passieren konnte!",
-                                        image = "assets/examples/silke/images/xaver.png"
+                                        image = "assets-shared/examples/silke/images/xaver.png"
                                 ),
                                 buttons = arrayOf(
                                         XButton(
@@ -80,7 +80,7 @@ val chases = flowOf(
                                 title = "Zeitreise mit Xaver",
                                 description = Description(
                                         "Weißt du, was es damals noch nicht gegeben hat und an der Statue des Sokrates ergänzt wurde? Nenne nur ein Wort!",
-                                        image = "assets/examples/silke/images/xaver.png"
+                                        image = "assets-shared/examples/silke/images/xaver.png"
                                 ),
                                 questType = QuestType.MULTIPLE_CHOICE,
                                 maxTries = 7,
@@ -118,7 +118,7 @@ val chases = flowOf(
                                 destination = GameElementId.fromString("20000000-0000-0000-0000-000000000001"),
                                 description = Description(
                                         text = "Damals gab es noch keine Bücher",
-                                        image = "assets/examples/silke/images/xaver.png"
+                                        image = "assets-shared/examples/silke/images/xaver.png"
                                 ),
                                 id = GameElementId.fromString("40000000-0000-0000-0000-000000000001"),
                                 version = 1,

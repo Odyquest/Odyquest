@@ -1,28 +1,37 @@
 @import "../game_element";
 
-:host {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
+@media screen and (orientation: landscape) {
+  .game_element_buttons {
+    flex-direction: row;
+  }
+  .quest_tries {
+    float: left;
+  }
+  .quest_time {
+    float: right;
+  }
 }
 
-.game_element_title {
-  padding-left: 15px;
+@media screen and (orientation: portrait) {
+  .game_element_buttons {
+    flex-direction: column;
+  }
 }
 
 .title_column {
   display: flex;
 }
 
+.help_button {
+  margin: 0px 16px;
+}
+
 .quest_tries {
-  float: left;
+  margin: 8px auto;
 }
 
 .quest_time {
-  float: right;
+  margin: 8px auto;
 }
 
 ul {

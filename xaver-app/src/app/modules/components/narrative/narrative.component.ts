@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
-
-import { Narrative, NarrativeStatus } from '../../../shared/models/narrative';
-import { FinishStatus } from '../../../core/models/finish_status';
+import { Narrative, NarrativeStatus, NarrativeType } from 'src/app/shared/models/narrative';
+import { ChaseStatus } from 'src/app/core/models/chase_status';
+import { GameService } from 'src/app/core/services/game.service';
 
 @Component({
   selector: 'app-narrative',
@@ -15,29 +14,26 @@ import { FinishStatus } from '../../../core/models/finish_status';
 export class NarrativeComponent implements OnInit {
   @Input() narrative: Narrative;
   @Output() selection: EventEmitter<number> = new EventEmitter();
+  @Output() chaseStatus: EventEmitter<ChaseStatus> = new EventEmitter();
 
-
-
-  constructor(private router: Router, private sanitizer:DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) { }
 
 
   ngOnInit(): void {
   }
 
   select(button: number): void {
-    // console.log('narrative: ' + button + ' selected');
     if (this.narrative.isFinal()) {
-      console.log('Finished final narrative');
-      let finishStatus: FinishStatus;
+      let chaseStatus: ChaseStatus;
       switch (this.narrative.narrativeStatus) {
           case NarrativeStatus.Win:
-          finishStatus = FinishStatus.Success;
+          chaseStatus = ChaseStatus.Succeeded;
           break;
           case NarrativeStatus.Loose:
-          finishStatus = FinishStatus.Failed;
+          chaseStatus = ChaseStatus.Failed;
           break;
       }
-      setTimeout(() => { this.router.navigateByUrl('/finished?status=' + finishStatus); }, 1500);
+      this.chaseStatus.emit(chaseStatus);
     } else {
       this.selection.emit(button);
     }
@@ -45,5 +41,20 @@ export class NarrativeComponent implements OnInit {
 
   getImage(): SafeResourceUrl {
      return this.sanitizer.bypassSecurityTrustUrl(this.narrative.description.image);
+  }
+
+  isDefaultLayout(): boolean {
+    return this.narrative.narrativeType === NarrativeType.Text
+      || this.narrative.narrativeType === NarrativeType.Audio;
+  }
+  isPanoramaLayout(): boolean {
+    return this.narrative.narrativeType === NarrativeType.Panorama
+      || this.narrative.narrativeType === NarrativeType.Video;
+  }
+  isAudioType(): boolean {
+    return this.narrative.narrativeType === NarrativeType.Audio;
+  }
+  isVideoType(): boolean {
+    return this.narrative.narrativeType === NarrativeType.Video;
   }
 }

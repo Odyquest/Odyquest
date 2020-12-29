@@ -2,7 +2,6 @@ mat-toolbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white !important;
 }
 
 .content {
@@ -12,19 +11,14 @@ mat-toolbar {
   right: 0;
   bottom: 0;
   overflow: auto;
-  display: flex;
-  margin: 82px auto 32px;
+  margin: 82px auto 0px;
   padding: 0 16px;
   max-width: 960px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
 }
 
 #homeButton {
   position: absolute;
   left: 15px;
-  top: 15px;
 }
 
 #menuButton {

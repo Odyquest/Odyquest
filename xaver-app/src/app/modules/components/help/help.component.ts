@@ -6,7 +6,7 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 import { Description } from '../../../shared/models/description';
 import { Quest, QuestType } from '../../../shared/models/quest';
-import { QuestStatus } from '../../../core/services/gameEngine';
+import { QuestStatus } from '../../../core/services/game.service';
 
 @Component({
   selector: 'app-help',
@@ -19,7 +19,7 @@ export class HelpComponent {
   index = 0;
 
   constructor(public dialogRef: MatDialogRef<HelpComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private sanitizer:DomSanitizer) {
+              @Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer) {
     this.help = this.data.quest.help;
     this.questStatus = this.data.status;
     if (this.help.length < 1) {

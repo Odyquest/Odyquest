@@ -1,13 +1,16 @@
 <app-narrative *ngIf="isNarrative(this.displayElement)"
   [narrative]="this.displayElement"
-  (selection)="selectDestination($event)">
+  (selection)="selectDestination($event)"
+  (chaseStatus)="setChaseStatus($event)">
 </app-narrative>
 <app-quest *ngIf="isQuest(this.displayElement)"
   [quest]="this.displayElement"
   [questStatus]="this.game.getQuestStatus()"
-  (selection)="selectDestination($event)">
+  (selection)="selectDestination($event)"
+  (chaseStatus)="setChaseStatus($event)">
 </app-quest>
 <app-solution *ngIf="isSolution(this.displayElement)"
   [solution]="this.displayElement"
-  (selection)="selectDestination($event)">
+  (selection)="selectDestination($event)"
+  (chaseStatus)="setChaseStatus($event)">
 </app-solution>

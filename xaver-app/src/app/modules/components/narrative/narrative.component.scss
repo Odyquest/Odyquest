@@ -1,5 +1,47 @@
 @import "../game_element";
 
-.game_element_text {
+@media screen and (orientation: landscape) {
+  /* applies to mobiles in landscape mode */
+
+  .game_element_panorama {
+    width: 70%;
+  }
+
+  .game_element_panorama img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .game_element_footnote {
+    width: 30%;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  /* applies to mobiles in portrait mode */
+
+  .game_element_panorama {
+    text-align: center;
+  }
+
+  .game_element_panorama img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .game_element_footnote {
+    width: 100%;
+  }
+}
+
+.game_element_panorama {
+  float: left;
+}
+.game_element_panorama img {
+  display:block;
+}
+
+.game_element_footnote {
+  float: left;
   padding: 15px;
 }

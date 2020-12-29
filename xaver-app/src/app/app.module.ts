@@ -51,6 +51,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { WelcomeComponent } from './modules/pages/welcome/welcome.component';
 import { FinishedComponent } from './modules/pages/finished/finished.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { PrivacyComponent } from './modules/pages/privacy/privacy.component';
+import { InformationComponent } from './modules/pages/information/information.component';
+import { SettingsComponent } from './modules/pages/settings/settings.component';
+import { CloseWarningGuard } from './core/services/close-warning.guard';
 
 @NgModule({
   declarations: [
@@ -67,6 +73,9 @@ import { FinishedComponent } from './modules/pages/finished/finished.component';
     SubmitSolutionComponent,
     WelcomeComponent,
     FinishedComponent,
+    PrivacyComponent,
+    InformationComponent,
+    SettingsComponent,
   ],
   entryComponents: [
     SubmitSolutionComponent,
@@ -108,9 +117,12 @@ import { FinishedComponent } from './modules/pages/finished/finished.component';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    CloseWarningGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
