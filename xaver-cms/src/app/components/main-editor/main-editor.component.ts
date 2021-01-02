@@ -101,7 +101,12 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   }
 
   deleteGameElement(text: string) {
-    console.log("delete GameElement:", text);
+    let delete_index = MainEditorComponent.parseIdFromGEString(text);
+    this.chase.gameElements.delete(delete_index);
+    console.log("deleted GameElement:", text);
+
+    //todo reload component?
+    this.getDataFromChase();
   }
 
   addQuest() {
