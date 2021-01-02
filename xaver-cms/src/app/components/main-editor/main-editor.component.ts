@@ -19,7 +19,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   public chase: Chase;
   selectedQuest: number;
-  chaseID = "xaver"; //{"xaver", "julia", "silke"}
+  chaseID = "julia"; //{"xaver", "julia", "silke"}
 
   @ViewChild('quest_editor') questEditor;
 

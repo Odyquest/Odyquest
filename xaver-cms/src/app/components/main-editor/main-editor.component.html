@@ -30,16 +30,7 @@
 
       <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">Neue Narrative</button>
     </div>
-    <div class="quest_selector_header">Solutions</div>
-    <div class="quest_selector">
-      <mat-selection-list #selected [multiple]="false" #questlist>
-        <mat-list-option *ngFor="let quest of solutionList" (click)="questSelectorClicked(quest)">
-          {{quest}}
-        </mat-list-option>
-      </mat-selection-list>
-
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addSolution()">Neue Solution</button>
-    </div>
+    
   </div>
   <app-quest-editor #quest_editor></app-quest-editor>
 </div>
