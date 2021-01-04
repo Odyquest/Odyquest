@@ -48,9 +48,11 @@ export class ChaseService {
     return this.httpClient.get('assets-shared/examples/' + id + '/chase.json')
       .pipe(
         map(chase => {
+          console.log("Success");
           return chase;
         }),
         catchError(error => {
+          console.log("Failure");
           return error;
         })
       )

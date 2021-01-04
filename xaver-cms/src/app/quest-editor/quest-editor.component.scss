@@ -17,7 +17,8 @@
   flex-direction: row;
   width: 100%;
   height: 35%;
-
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
 }
 
 .quest-editor-top-right-container {
@@ -25,7 +26,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  width: 75%;
   height: 100%;
 }
 
@@ -33,13 +34,19 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 30%;
 }
 
 
 .quest-image-container {
-  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 25%;
   height: 90%;
   margin: 10px;
   border: 3px solid grey;
@@ -57,13 +64,13 @@ input {
   border: 3px solid grey;
   border-radius: 4px;
 
-  font-size: 13pt;
+  font-size: 15pt;
   margin-bottom: 40px;
 }
 
 textarea {
   width: 90%;
-  height: 17%;
+  height: 60%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -71,7 +78,7 @@ textarea {
   border-radius: 4px;
 
   margin-bottom: 40px;
-  //font-size: 30;
+  font-size: 15pt;
 }
 
 textarea:focus {
@@ -186,4 +193,73 @@ select {
 
 label {
     white-space: nowrap;
+}
+
+.content-all-types {
+  width: 100%;
+  height: 65%;
+  margin: 10px;
+  overflow-y: scroll;
+}
+
+.content-type-narrative {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.narrative-status {
+  margin-left: 20px;
+  margin-right: 20px; 
+  width: 20%;
+}
+
+.button-array-container {
+  padding-top: 30px;
+  width: 70%;
+}
+
+.saveCancelButton {
+  margin: 10px;
+}
+
+img {
+  width: 100%;
+}
+
+.single-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.button-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+li {
+  list-style-type: none;
+}
+
+.delete_icon {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.delete_icon:hover {
+  color: red;
+  //border: 2px solid red;
+}
+
+.narrative-top-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

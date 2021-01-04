@@ -1,14 +1,36 @@
 <div class="main_body">
   <div class="quest_selector_container">
+    <div class="quest_selector_header">Quests</div>
     <div class="quest_selector">
-      <mat-selection-list #selected [multiple]="false" (selectionChange)="questSelectorClicked($event, selected.selectedOptions.selected)">
-        <mat-list-option *ngFor="let quest of questList" [(ngModel)]="selectedQuest">
-          {{quest}}
+      <mat-selection-list #selected [multiple]="false" #questlist>
+        <mat-list-option *ngFor="let quest of questList">
+          <div class=text-and-delete-container>
+            <div (click)="questSelectorClicked(quest)">
+              {{quest}}
+            </div>
+            <mat-icon class=delete_icon (click)=deleteGameElement(quest)>delete</mat-icon>
+          </div>
         </mat-list-option>
       </mat-selection-list>
 
       <button id="addQuestButton" mat-raised-button color="primary" (click)="addQuest()">Neue Quest</button>
     </div>
+    <div class="quest_selector_header">Narratives</div>
+    <div class="quest_selector">
+      <mat-selection-list #selected [multiple]="false" #questlist>
+        <mat-list-option *ngFor="let quest of narrativeList">
+          <div class=text-and-delete-container>
+            <div (click)="questSelectorClicked(quest)">
+              {{quest}}
+            </div>
+            <mat-icon class=delete_icon (click)=deleteGameElement(quest)>delete</mat-icon>
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">Neue Narrative</button>
+    </div>
+    
   </div>
   <app-quest-editor #quest_editor></app-quest-editor>
 </div>

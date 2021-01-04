@@ -19,10 +19,10 @@ export enum NarrativeStatus {
 export class Narrative extends GameElement {
 
 	/** Buttons for next steps if game continues */
-	@JsonProperty() buttons: Array<XButton>;
+	@JsonProperty() buttons = Array<XButton>();
 	/** How to display the current narrative */
 	@JsonProperty() narrativeType = NarrativeType.Text;
-	/** Game continues of is finished */
+	/** Game continues or is finished */
 	@JsonProperty() narrativeStatus = NarrativeStatus.Continue;
 
   isFinal(): boolean {
