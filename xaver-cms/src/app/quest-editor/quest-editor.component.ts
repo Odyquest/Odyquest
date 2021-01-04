@@ -3,7 +3,6 @@ import { GameElement } from 'src/app/shared/models/gameElement';
 import { Quest } from 'src/app/shared/models/quest';
 import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models/narrative';
 import { XButton } from 'src/app/shared/models/xButton'
-import { Solution } from 'src/app/shared/models/solution';
 import { Chase } from '../shared/models/chase';
 //import { MainEditorComponent } from '../components/main-editor/main-editor.component'
 
@@ -24,7 +23,6 @@ export class QuestEditorComponent implements OnInit {
 
   is_quest: boolean;
   is_narrative: boolean;
-  is_solution: boolean;
 
   hide_object_search = false;
   hide_input_term = true;
@@ -168,7 +166,6 @@ export class QuestEditorComponent implements OnInit {
       console.log("loaded narrative status as: ", this.narrative_status);
       this.buttons = this.gameElement.buttons;
       console.log("Number of Buttons: ", this.buttons.length);
-    } else if ((this.gameElement instanceof Solution)) {
     }
   }
 
@@ -181,7 +178,6 @@ export class QuestEditorComponent implements OnInit {
     } else if ((this.gameElement instanceof Narrative)) {
       this.gameElement.narrativeStatus = this.narrative_status;
       this.gameElement.buttons = this.buttons;
-    } else if ((this.gameElement instanceof Solution)) {
     }
   }
 
@@ -214,17 +210,10 @@ export class QuestEditorComponent implements OnInit {
       console.log("Loading Quest in Editor");
       this.is_quest = true;
       this.is_narrative = false;
-      this.is_solution = false;
     } else if ((gm instanceof Narrative)) {
       console.log("Loading Narrative in Editor");
       this.is_quest = false;
       this.is_narrative = true;
-      this.is_solution = false;
-    } else if ((gm instanceof Solution)) {
-      console.log("Loading Solution in Editor");
-      this.is_quest = false;
-      this.is_narrative = false;
-      this.is_solution = true;
     }
     console.log("Title: " + this.gameElement.title);
 

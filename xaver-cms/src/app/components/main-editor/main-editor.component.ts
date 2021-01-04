@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Chase } from 'src/app/shared/models/chase';
 import { Quest } from 'src/app/shared/models/quest';
 import { Narrative } from 'src/app/shared/models/narrative';
-import { Solution } from 'src/app/shared/models/solution';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { deserialize, serialize } from 'typescript-json-serializer';
@@ -27,7 +26,6 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   // todo use actual questList
   questList: string[];
   narrativeList: string[];
-  solutionList: string[];
 
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
@@ -40,7 +38,6 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     console.log("Contained GameElements (" + this.chase.gameElements.size + "):");
     this.questList = [];
     this.narrativeList = [];
-    this.solutionList = [];
 
     this.chase.gameElements.forEach((value: GameElement, key: Number) => {
       let title_with_id = value.title + ' (' + key + ')' 
@@ -50,9 +47,6 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
       } else if ((value instanceof Narrative)){
         console.log("Narrative:" + title_with_id);
         this.narrativeList.push(title_with_id);
-      } else if ((value instanceof Solution)){
-        console.log("Solution:" + title_with_id);
-        this.solutionList.push(title_with_id);
       }
     });
   }
@@ -125,16 +119,6 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     const narrative = new Narrative();
     narrative.title = 'New Narrative';
     this.chase.gameElements.set(this.getNextFreeMapKey(), narrative);
-
-    this.getDataFromChase();
-  }
-
-  addSolution() {
-    console.log("addSolution()");
-
-    const solution = new Solution();
-    solution.title = 'New Solution';
-    this.chase.gameElements.set(this.getNextFreeMapKey(), solution);
 
     this.getDataFromChase();
   }
