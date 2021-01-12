@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GameElement } from 'src/app/shared/models/gameElement';
-import { Quest } from 'src/app/shared/models/quest';
+import { Quest, QuestType } from 'src/app/shared/models/quest';
 import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models/narrative';
 import { XButton } from 'src/app/shared/models/xButton'
 import { Chase } from '../shared/models/chase';
-import { SolutionTerm } from '../shared/models/solution_term';
+import { LogicType, SolutionTerm } from '../shared/models/solution_term';
+import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
 //import { MainEditorComponent } from '../components/main-editor/main-editor.component'
 
 @Component({
@@ -28,6 +29,9 @@ export class QuestEditorComponent implements OnInit {
   //Quest
   solutionItems: Array<string>;
   combinationMap: Array<SolutionTerm>
+  maxTries: number;
+  public quest_type_status_int; //"Text" = 1, "MultipleChoice" = 2
+  questType: QuestType;
 
   //Narrative
   narrative_status: NarrativeStatus;
@@ -48,11 +52,11 @@ export class QuestEditorComponent implements OnInit {
   onQuestTypeChange(value: String) {
     console.log("Changed quest type to " + value);
     switch (value) {
-      case "input-term":
+      case "1":
+        this.questType = QuestType.Text;
         break;
-      case "multiple-choice":
-        break;
-      case "object-search":
+      case "2":
+        this.questType = QuestType.Text;
         break;
     }
   }
@@ -146,6 +150,9 @@ export class QuestEditorComponent implements OnInit {
     let solution = "Neue Lösung";
 
     //todo need to update various other stuff
+    for(var comb = 0; comb < this.combinationMap.length; comb++){
+      this.combinationMap[comb].requiredItems.push(true);
+    }
 
     //just use some id which is actually existing
     //button.destination = this.parseIdFromGEString(this.gameElementsMap.values().next().value);
@@ -157,9 +164,16 @@ export class QuestEditorComponent implements OnInit {
   addSolutionCombination() {
     console.log("addSolutionCombination()");
 
-    let combination = this.combinationMap.values().next().value;
+    //let combination = this.combinationMap.values().next().value;
+    let new_comb = new SolutionTerm;
+    new_comb.destination = 1;
+    new_comb.logicType = LogicType.And;
+    new_comb.requiredItems = [];
+    for (var i = 0; i < this.combinationMap.values().next().value.logicType.length; i++) {
+      new_comb.requiredItems.push(true);
+    }
 
-    this.combinationMap.push(combination);
+    this.combinationMap.push(new_comb);
   }
 
   // hardly a sexy solution...
@@ -174,6 +188,16 @@ export class QuestEditorComponent implements OnInit {
     if ((this.gameElement instanceof Quest)) {
       this.solutionItems = this.gameElement.requirementCombination.solutionItems;
       this.combinationMap = this.gameElement.requirementCombination.combinationMap;
+      this.maxTries = this.gameElement.maxTries;
+      this.questType = this.gameElement.questType;
+      switch (this.questType) {
+        case QuestType.Text:
+          this.quest_type_status_int = 1;
+          break;
+        case QuestType.MultipleChoice:
+          this.quest_type_status_int = 2;
+          break;
+      }
     }
     else if ((this.gameElement instanceof Narrative)) {
       this.narrative_status = this.gameElement.narrativeStatus;

@@ -26,14 +26,14 @@
 
       <div class="quest-top-mini-container">
         <label for="quest-type">Quest Typ:</label>
-        <select name="quest-type" id="quest-type-selector" (change)="onQuestTypeChange($event.target.value)">
-          <option value="text">Text</option>
-          <option value="multiple-choice">Multiple Choice</option>
+        <select name="quest-type" id="quest-type-selector" [(ngModel)]="quest_type_status_int" (change)="onQuestTypeChange($event.target.value)">
+          <option [value]="1">Text</option>
+          <option [value]="2">Multiple Choice</option>
         </select>
       </div>
       <div class="quest-top-mini-container">
         <label for="num_tries">Versuche (0 = ∞):</label>
-        <input type="number" id="num_tries" name="num_tries" min="0">
+        <input type="number" id="num_tries" name="num_tries" min="0" [(ngModel)]="maxTries">
       </div>
       <div class="quest-top-mini-container">
         <label for="max_time">Sekunden Zeit (0 = ∞):</label>
@@ -60,7 +60,7 @@
 
           <li *ngFor="let combination of combinationMap; let j = index">
             <div class="combination_map_checkbox_width combination_map_checkbox_container">
-              <input type="checkbox" id="combination_map_check" name="combination_map_check" checked>
+              <input type="checkbox" id="combination_map_check" name="combination_map_check" [(ngModel)]="combinationMap[j].requiredItems[i]">
             </div>
           </li>
           <div [hidden]="this.solutionItems.length < 2">
