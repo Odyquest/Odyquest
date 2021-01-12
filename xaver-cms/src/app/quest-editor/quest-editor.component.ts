@@ -4,6 +4,7 @@ import { Quest } from 'src/app/shared/models/quest';
 import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models/narrative';
 import { XButton } from 'src/app/shared/models/xButton'
 import { Chase } from '../shared/models/chase';
+import { SolutionTerm } from '../shared/models/solution_term';
 //import { MainEditorComponent } from '../components/main-editor/main-editor.component'
 
 @Component({
@@ -24,12 +25,9 @@ export class QuestEditorComponent implements OnInit {
   is_quest: boolean;
   is_narrative: boolean;
 
-  hide_object_search = false;
-  hide_input_term = true;
-  hide_multiple_choice = true;
-
-  //todo remove
-  //mySelection: any;
+  //Quest
+  solutionItems: Array<string>;
+  combinationMap: Array<SolutionTerm>
 
   //Narrative
   narrative_status: NarrativeStatus;
@@ -51,19 +49,10 @@ export class QuestEditorComponent implements OnInit {
     console.log("Changed quest type to " + value);
     switch (value) {
       case "input-term":
-        this.hide_object_search = true
-        this.hide_input_term = false
-        this.hide_multiple_choice = true
         break;
       case "multiple-choice":
-        this.hide_object_search = true
-        this.hide_input_term = true
-        this.hide_multiple_choice = false
         break;
       case "object-search":
-        this.hide_object_search = false
-        this.hide_input_term = true
-        this.hide_multiple_choice = true
         break;
     }
   }
@@ -112,10 +101,29 @@ export class QuestEditorComponent implements OnInit {
     console.log("Set Destination of buttons[" + index + "], to " + this.buttons[index].destination);
   }
 
+  onCombinationMapDestinationChange(index: number, value: string) {
+    this.combinationMap[index].destination = this.parseIdFromGEString(value);
+    console.log("Set Destination of CombinationMap[" + index + "], to " + this.combinationMap[index].destination);
+  }
+
   deleteNarrativeButton(index: number) {
     console.log("deleteNarrativeButton(" + index + ")");
 
     this.buttons.splice(index, 1);
+  }
+
+  deleteQuestSolution(index: number) {
+    console.log("deleteQuestSolution(" + index + ")");
+
+    this.solutionItems.splice(index, 1);
+
+    //todo need to update various other stuff
+  }
+
+  deleteSolutionCombination(index: number) {
+    console.log("deleteSolutionCombination(" + index + ")");
+
+    this.combinationMap.splice(index, 1);
   }
 
   addButton() {
@@ -130,8 +138,28 @@ export class QuestEditorComponent implements OnInit {
     this.buttons.push(button);
 
     console.log(this.buttons.length);
+  }
 
+  addSolutionItem() {
+    console.log("addSolutionItem()");
 
+    let solution = "Neue Lösung";
+
+    //todo need to update various other stuff
+
+    //just use some id which is actually existing
+    //button.destination = this.parseIdFromGEString(this.gameElementsMap.values().next().value);
+
+    this.solutionItems.push(solution);
+
+  }
+
+  addSolutionCombination() {
+    console.log("addSolutionCombination()");
+
+    let combination = this.combinationMap.values().next().value;
+
+    this.combinationMap.push(combination);
   }
 
   // hardly a sexy solution...
@@ -144,6 +172,8 @@ export class QuestEditorComponent implements OnInit {
 
     //Individual stuff
     if ((this.gameElement instanceof Quest)) {
+      this.solutionItems = this.gameElement.requirementCombination.solutionItems;
+      this.combinationMap = this.gameElement.requirementCombination.combinationMap;
     }
     else if ((this.gameElement instanceof Narrative)) {
       this.narrative_status = this.gameElement.narrativeStatus;

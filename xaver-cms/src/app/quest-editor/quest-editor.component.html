@@ -20,55 +20,96 @@
 
 
 
-<div class="content-type-quest content-all-types" [hidden]="!is_quest">
-  <div class="quest-type-container">
-    <label for="quest-type">Quest Type:</label>
-    <select name="quest-type" id="quest-type-selector" (change)="onQuestTypeChange($event.target.value)">
-      <option value="text">Text</option>
-      <option value="multiple-choice">Multiple Choice</option>
-    </select>
-  </div>
-  <div [hidden]="hide_object_search" class="switchable-quest-content">
-    <div class="content-for-object-search">
-      <div class="object-select-container">
-        <div class="object-select-container-single">
-          <label for="quest-type">Search Object 1:</label>
-          <select name="search-object-1" (change)="onQuestTypeChange($event.target.value)">
-            <option value="object-1">Some Object 1</option>
-            <option value="object-2">Some Object 2</option>
-            <option value="object-3">Some Object 3</option>
-          </select>
-        </div>
-        <div class="object-select-container-single">
-          <label for="quest-type">Search Object 2:</label>
-          <select name="search-object-2" (change)="onQuestTypeChange($event.target.value)">
-            <option value="object-1">Some Object 1</option>
-            <option value="object-2">Some Object 2</option>
-            <option value="object-3">Some Object 3</option>
-          </select>
-        </div>
+<div class="content-all-types" [hidden]="!is_quest">
+  <div class="content-type-quest">
+    <div class="quest-top-container">
+
+      <div class="quest-top-mini-container">
+        <label for="quest-type">Quest Typ:</label>
+        <select name="quest-type" id="quest-type-selector" (change)="onQuestTypeChange($event.target.value)">
+          <option value="text">Text</option>
+          <option value="multiple-choice">Multiple Choice</option>
+        </select>
       </div>
-      <div class="object-misc-container">
-        <div class="object-select-container-single">
-          <label for="solution-type">Solution Type</label>
-          <select name="solution-type" (change)="onQuestTypeChange($event.target.value)">
-            <option value="object-1">Find All Objects</option>
-            <option value="object-2">Find Any Object</option>
-          </select>
-        </div>
+      <div class="quest-top-mini-container">
+        <label for="num_tries">Versuche (0 = ∞):</label>
+        <input type="number" id="num_tries" name="num_tries" min="0">
+      </div>
+      <div class="quest-top-mini-container">
+        <label for="max_time">Sekunden Zeit (0 = ∞):</label>
+        <input type="number" id="max_time" name="max_time" min="0">
+      </div>
+      <div class="quest-top-mini-container">
+        <label for="disp_image_first">Bild zuerst anzeigen</label>
+        <input type="checkbox" id="disp_image_first" name="disp_image_first" checked>
       </div>
     </div>
-  </div>
-  <div [hidden]="hide_input_term" class="switchable-quest-content">
-    <div class="content-for-input-term">
-      input term
+
+    <div class="combinationmap_header">
+      Lösungen:
     </div>
-  </div>
-  <div [hidden]="hide_multiple_choice" class="switchable-quest-content">
-    <div class="content-for-multiple-choice">
-      multiple choice
+
+    <div class="quest-bottom-container">
+      <div class="quest-solution-list-container">
+        <div>
+          <li *ngFor="let solution of solutionItems; let i = index">
+            <div class="single-solution-item-container">
+              <div class=combination_map_name_width>
+                <input type="text" id="quest-name" name="quest_name" [(ngModel)]="solutionItems[i]"><br><br>
+              </div>
+
+          <li *ngFor="let combination of combinationMap; let j = index">
+            <div class="combination_map_checkbox_width combination_map_checkbox_container">
+              <input type="checkbox" id="combination_map_check" name="combination_map_check" checked>
+            </div>
+          </li>
+          <div [hidden]="this.solutionItems.length < 2">
+            <mat-icon class=delete_icon (click)=deleteQuestSolution(i)>delete</mat-icon>
+          </div>
+        </div>
+        </li>
+      </div>
+      <div class="quest-combinationmap-bottom-container">
+        <div class=combination_map_name_width>
+          <button class="saveCancelButton" mat-raised-button color="primary" (click)="addSolutionItem()">↓ Lösung
+            Hinzufügen ↓</button>
+        </div>
+        <li *ngFor="let combination of combinationMap; let j = index">
+          <div class=combination_map_checkbox_width>
+            <div class="combination-map-bottom-row-attributes">
+              <select name="quest-type" id="combination-type-selector"
+                (change)="onQuestTypeChange($event.target.value)">
+                <option value="and">Alle</option>
+                <option value="or">Eins</option>
+              </select>
+              <select id="combination-map-destination-dropdown">
+                <option *ngFor="let target of gameElementsList" [value]='target'
+                  [attr.selected]="parseIdFromGEString(target)==1 ? true : null"
+                  (click)="onCombinationMapDestinationChange(j, target)">{{target}}</option>
+              </select>
+
+
+
+
+
+
+              <div [hidden]="this.combinationMap.length < 2">
+                <mat-icon class=delete_icon (click)=deleteSolutionCombination(j)>delete</mat-icon>
+              </div>
+            </div>
+          </div>
+        </li>
+      </div>
     </div>
+    <div class="quest-add-solution-container">
+      <button class="saveCancelButton" mat-raised-button color="primary" (click)="addSolutionCombination()">→
+        Kombination Hinzufügen</button>
+    </div>
+
+
+
   </div>
+</div>
 </div>
 
 
@@ -113,7 +154,8 @@
               [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
               (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</option>
           </select>
-          <div [hidden]="this.buttons.length < 2"><!-- todo hidden not working -->
+          <div [hidden]="this.buttons.length < 2">
+            <!-- todo hidden not working -->
             <mat-icon class=delete_icon (click)=deleteNarrativeButton(i)>delete</mat-icon>
           </div>
         </div>
