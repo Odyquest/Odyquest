@@ -4,21 +4,25 @@
     <mat-icon target="_blank">close</mat-icon>
   </button>
 </mat-toolbar>
-<mat-dialog-content>
-  <div class="game_element_columns">
-    <div class="game_element_text">
-      <p>{{help[index].text}}</p>
-    </div>
-    <div class="game_element_image">
-      <img [src]="getImage()" />
-    </div>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <!-- <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span> -->
-  <div class="buttonWrapper">
-    <button color="primary" mat-flat-button (click)="previous()" i18n>Previous</button>
-    <button color="primary" mat-flat-button (click)="next()" i18n>Next</button>
-  </div>
-  <!-- <span class="quest_time">{{questStatus.remainingTime}} remaining time</span> -->
-</mat-dialog-actions>
+<article>
+  <mat-dialog-content>
+    <section>
+      <div class="game_element_columns">
+        <div class="game_element_text">
+          <p>{{help[index].text}}</p>
+        </div>
+        <div class="game_element_image">
+          <img [src]="getImage()" />
+        </div>
+      </div>
+    </section>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <nav>
+      <div class="buttonWrapper">
+        <button color="primary" mat-flat-button (click)="previous()" i18n>Previous</button>
+        <button color="primary" mat-flat-button (click)="next()" i18n>Next</button>
+      </div>
+    </nav>
+  </mat-dialog-actions>
+</article>
