@@ -245,7 +245,7 @@
          },
          "buttons": [
             {
-               "text": "Weiter",
+               "name": "Weiter",
                "destination": 11
             }
          ],
@@ -258,7 +258,7 @@
          },
          "buttons": [
             {
-               "text": "Weiter",
+               "name": "Weiter",
                "destination": 13
             }
          ],
@@ -271,7 +271,7 @@
          },
          "buttons": [
             {
-               "text": "Weiter",
+               "name": "Weiter",
                "destination": 13
             }
          ],
@@ -284,7 +284,7 @@
          },
          "buttons": [
             {
-               "text": "Weiter",
+               "name": "Weiter",
                "destination": 13
             }
          ],
@@ -297,7 +297,7 @@
          },
          "buttons": [
             {
-               "text": "Weiter",
+               "name": "Weiter",
                "destination": 19
             }
          ],
@@ -310,7 +310,7 @@
          },
          "buttons": [
             {
-               "text": "Weiter",
+               "name": "Weiter",
                "destination": 24
             }
          ],
