@@ -78,6 +78,9 @@ export class QuestComponent implements OnInit {
       const solution = this.quest.requirementCombination.getSolution(result);
       if (solution !== undefined) {
         this.validSolution = solution.destination;
+        if (this.quest.requirementCombination.getPossibleDestinations().length === 1) {
+          this.selection.emit(this.validSolution);
+        }
       } else {
         if (result.length > 0) {
           this.questStatus.remainingTries--;
