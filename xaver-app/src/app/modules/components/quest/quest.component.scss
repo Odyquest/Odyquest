@@ -27,7 +27,9 @@
 }
 
 .quest_tries {
-  margin: 8px auto;
+  // margin: 8px auto;
+  border: 8px #eee solid;  // for animation
+  border-radius: 8px;
 }
 
 .quest_time {
@@ -46,5 +48,15 @@ ul {
   animation: blink 2s;
   animation-iteration-count: infinite;
 }
-
 @keyframes blink { 50% { border-color:#eee ; }  }
+
+.invalid_answer {
+  border: 8px #eee solid;
+  border-radius: 8px;
+  animation: highlight 5s;
+  animation-iteration-count: 1;
+}
+@keyframes highlight {
+  from {background-color: red; border-color: red; color:white;}
+  to {background-color: #eee; border-color: #eee; color: black;}
+}

@@ -13,6 +13,10 @@ import {SubmitSolutionComponent} from '../submit-solution/submit-solution.compon
 import {TimeService} from './../../../core/services/time.service';
 import {ChaseStatus} from './../../../core/models/chase_status';
 
+enum SolutionStatus {
+  ValidAnswer, InvalidAnswer, WaitingForAnswer
+}
+
 @Component({
   selector: 'app-quest',
   templateUrl: './quest.component.html',
@@ -23,14 +27,18 @@ export class QuestComponent implements OnInit {
   @Input() questStatus: QuestStatus;
   @Output() selection: EventEmitter<number> = new EventEmitter();
   @Output() chaseStatus: EventEmitter<ChaseStatus> = new EventEmitter();
-  validSolution: number|undefined = undefined;
+
+  solutionStatus = SolutionStatus.WaitingForAnswer;
+  solutionDestination: number|undefined = undefined;
   futureTimeEvent;
   remainingTime = {hours: 0, minutes: 0, seconds: 0};
 
   subscriptions = new Array<Subscription>();
   timeTicker;
   timerSet = false;
-  constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer: DomSanitizer) {}
+  constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer: DomSanitizer) {
+    this.solutionStatus = SolutionStatus.WaitingForAnswer;
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -56,8 +64,8 @@ export class QuestComponent implements OnInit {
   }
 
   select(button: string): void {
-    if (this.validSolution !== undefined) {
-      this.selection.emit(this.validSolution);
+    if (this.solutionStatus === SolutionStatus.ValidAnswer && this.solutionDestination !== undefined) {
+      this.selection.emit(this.solutionDestination);
     } else {
       console.log('There is no valid solution!');
       // TODO
@@ -70,6 +78,7 @@ export class QuestComponent implements OnInit {
   }
 
   submit(): void {
+    this.solutionStatus = SolutionStatus.WaitingForAnswer;
     const dialogRef = this.dialog.open(SubmitSolutionComponent, {
       data: {quest: this.quest},
     });
@@ -77,11 +86,13 @@ export class QuestComponent implements OnInit {
       console.log(`Submitted: ${result}`);
       const solution = this.quest.requirementCombination.getSolution(result);
       if (solution !== undefined) {
-        this.validSolution = solution.destination;
+        this.solutionDestination = solution.destination;
+        this.solutionStatus = SolutionStatus.ValidAnswer;
         if (this.quest.requirementCombination.getPossibleDestinations().length === 1) {
-          this.selection.emit(this.validSolution);
+          this.selection.emit(this.solutionDestination);
         }
       } else {
+        this.solutionStatus = SolutionStatus.InvalidAnswer;
         if (result.length > 0) {
           this.questStatus.remainingTries--;
           console.log('remaining tries: ' + this.questStatus.remainingTries);
@@ -110,7 +121,11 @@ export class QuestComponent implements OnInit {
   }
 
   hasSolution(): boolean {
-    return this.validSolution !== undefined;
+    return this.solutionStatus === SolutionStatus.ValidAnswer;
+  }
+
+  invalidAnswerGiven(): boolean {
+    return this.solutionStatus === SolutionStatus.InvalidAnswer;
   }
 
   ngOnDestroy(): void {
