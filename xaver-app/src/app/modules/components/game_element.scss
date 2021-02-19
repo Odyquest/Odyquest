@@ -30,6 +30,14 @@
   }
 }
 
+.game_element_title_column {
+  display: flex;
+}
+
+.game_element_help_button {
+  margin: 0px 16px;
+}
+
 .game_element_content {
   clear: both;
   width: 100%;
@@ -46,6 +54,7 @@
 
 .game_element_image {
   float: left;
+  padding: 15px;
 }
 .game_element_image img {
   display:block;
