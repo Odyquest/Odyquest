@@ -35,8 +35,6 @@ export class HelpComponent {
   }
 
   closeDialog(): void  {
-    console.log('closeDialog() pass Pizza');
-    this.dialogRef.close('Pizza!');
   }
 
   has_next(): boolean {

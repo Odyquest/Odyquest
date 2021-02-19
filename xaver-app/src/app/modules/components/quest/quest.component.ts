@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, OnDestroy, Output} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
@@ -22,7 +22,7 @@ enum SolutionStatus {
   templateUrl: './quest.component.html',
   styleUrls: ['./quest.component.scss']
 })
-export class QuestComponent implements OnInit {
+export class QuestComponent implements OnInit, OnDestroy {
   @Input() quest: Quest;
   @Input() questStatus: QuestStatus;
   @Output() selection: EventEmitter<number> = new EventEmitter();
