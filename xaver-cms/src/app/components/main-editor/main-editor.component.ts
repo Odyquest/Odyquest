@@ -29,7 +29,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
-    this.selectedQuest = 1;
+    this.selectedQuest = 3;//todo change again
 
     //console.log("Selected Quest Id: " + this.selectedQuest);
     //console.log("Loading values from Chase", this.chase.metaData.title);

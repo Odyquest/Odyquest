@@ -65,7 +65,7 @@ input {
   border-radius: 4px;
 
   font-size: 15pt;
-  margin-bottom: 40px;
+  //margin-bottom: 40px;
 }
 
 textarea {
@@ -111,12 +111,40 @@ select {
   width: 70%;
 }
 
-.quest-type-container {
+.quest-top-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 100%;
+}
+
+.quest-top-mini-container {
+  margin: 3px 10px;
+}
+
+.quest-bottom-container {
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  //background: red;
+  width: 100%;
+  //height: 50%;//todo
+}
+
+.quest-solution-list-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  //background: green;
+}
+
+.quest-add-solution-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  //background: blue;
 }
 
 #quest-name {
@@ -128,6 +156,11 @@ select {
 }
 
 #quest-type-selector {
+  width: 70%;
+}
+
+#combination-type-selector {
+  margin-bottom: 10px;
   width: 70%;
 }
 
@@ -211,6 +244,15 @@ label {
   height: 100%;
 }
 
+.content-type-quest{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .narrative-status {
   margin-left: 20px;
   margin-right: 20px; 
@@ -237,6 +279,14 @@ img {
   width: 100%;
 }
 
+.single-solution-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .button-header {
   display: flex;
   flex-direction: row;
@@ -249,11 +299,37 @@ li {
 
 .delete_icon {
   margin-left: 20px;
+  margin-right: 20px;
   cursor: pointer;
 }
 
+.combination_map_name_width {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //background:green;
+}
+
+.combination_map_checkbox_width {
+  width: 5vw;
+  margin-left: 5px;
+  margin-right: 5px;
+  background: rgb(216, 215, 215);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //border-left:   1px solid black;
+  //border-right:   1px solid black;
+  //background: blue;
+}
+
+.combination_map_checkbox_container {
+  height: 85px;            
+}
+
 .delete_icon:hover {
-  color: red;
+  //color: red;
   //border: 2px solid red;
 }
 
@@ -263,3 +339,32 @@ li {
   flex-direction: row;
   justify-content: center;
 }
+
+.combinationmap_header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 25pt;
+}
+
+.quest-combinationmap-bottom-container {
+  display: flex;
+  flex-direction: row;
+  //background: red;
+}
+
+.combination-map-bottom-row-attributes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#combination-map-destination-dropdown {
+  margin-bottom: 10px;
+}
+
+// .full_height {
+//   height: 100%;
+//   background: blue;
+// }
