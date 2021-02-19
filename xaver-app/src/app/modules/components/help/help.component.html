@@ -4,8 +4,8 @@
     <mat-icon target="_blank">close</mat-icon>
   </button>
 </mat-toolbar>
+<mat-dialog-content>
 <article>
-  <mat-dialog-content>
     <section>
       <div class="game_element_columns">
         <div class="game_element_text">
@@ -16,13 +16,22 @@
         </div>
       </div>
     </section>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <nav>
-      <div class="buttonWrapper">
-        <button color="primary" mat-flat-button (click)="previous()" i18n>Previous</button>
-        <button color="primary" mat-flat-button (click)="next()" i18n>Next</button>
-      </div>
-    </nav>
-  </mat-dialog-actions>
 </article>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <nav>
+    <div class="button_wrapper">
+      <button 
+         mat-flat-button
+         color="primary"
+         [disabled]="!has_previous()"
+         (click)="previous()" i18n>Previous</button>
+      <span class="page_number">{{pageNumber}}</span>
+      <button
+         mat-flat-button
+         color="primary"
+         [disabled]="!has_next()"
+         (click)="next()" i18n>Next</button>
+    </div>
+  </nav>
+</mat-dialog-actions>

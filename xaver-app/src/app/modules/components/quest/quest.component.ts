@@ -35,7 +35,6 @@ export class QuestComponent implements OnInit {
 
   subscriptions = new Array<Subscription>();
   timeTicker;
-  timerSet = false;
   constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer: DomSanitizer) {
     this.solutionStatus = SolutionStatus.WaitingForAnswer;
   }
@@ -51,7 +50,6 @@ export class QuestComponent implements OnInit {
             this.remainingTime.hours = duration.hours();
             this.remainingTime.minutes = duration.minutes();
             this.remainingTime.seconds = duration.seconds();
-            this.timerSet = true;
             if (this.remainingTime.hours === 0
               && this.remainingTime.minutes === 0
               && this.remainingTime.seconds === 0) {
