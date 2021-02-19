@@ -169,7 +169,8 @@ export class QuestEditorComponent implements OnInit {
     new_comb.destination = 1;
     new_comb.logicType = LogicType.And;
     new_comb.requiredItems = [];
-    for (var i = 0; i < this.combinationMap.values().next().value.logicType.length; i++) {
+
+    for (var i = 0; i < this.combinationMap.values().next().value.requiredItems.length; i++) {
       new_comb.requiredItems.push(true);
     }
 

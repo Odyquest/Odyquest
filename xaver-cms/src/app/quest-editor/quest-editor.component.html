@@ -18,7 +18,9 @@
   </div>
 </div>
 
-
+<!-- ! ============================= -->
+<!-- ! ========== QUESTS =========== -->
+<!-- ! ============================= -->
 
 <div class="content-all-types" [hidden]="!is_quest">
   <div class="content-type-quest">
@@ -26,7 +28,8 @@
 
       <div class="quest-top-mini-container">
         <label for="quest-type">Quest Typ:</label>
-        <select name="quest-type" id="quest-type-selector" [(ngModel)]="quest_type_status_int" (change)="onQuestTypeChange($event.target.value)">
+        <select name="quest-type" id="quest-type-selector" [(ngModel)]="quest_type_status_int"
+          (change)="onQuestTypeChange($event.target.value)">
           <option [value]="1">Text</option>
           <option [value]="2">Multiple Choice</option>
         </select>
@@ -60,7 +63,8 @@
 
           <li *ngFor="let combination of combinationMap; let j = index">
             <div class="combination_map_checkbox_width combination_map_checkbox_container">
-              <input type="checkbox" id="combination_map_check" name="combination_map_check" [(ngModel)]="combinationMap[j].requiredItems[i]">
+              <input type="checkbox" id="combination_map_check" name="combination_map_check"
+                [(ngModel)]="combinationMap[j].requiredItems[i]">
             </div>
           </li>
           <div [hidden]="this.solutionItems.length < 2">
@@ -105,13 +109,13 @@
       <button class="saveCancelButton" mat-raised-button color="primary" (click)="addSolutionCombination()">→
         Kombination Hinzufügen</button>
     </div>
-
-
-
   </div>
 </div>
 </div>
 
+<!-- ! ============================= -->
+<!-- ! ======== NARRATIVES ========= -->
+<!-- ! ============================= -->
 
 <div class="content-all-types" [hidden]="!is_narrative">
   <div class=content-type-narrative>
