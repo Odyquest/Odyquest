@@ -5,20 +5,33 @@
   </button>
 </mat-toolbar>
 <mat-dialog-content>
-  <div class="game_element_columns">
-    <div class="game_element_text">
-      <p>{{help[index].text}}</p>
-    </div>
-    <div class="game_element_image">
-      <img [src]="getImage()" />
-    </div>
-  </div>
+<article>
+    <section>
+      <div class="game_element_columns">
+        <div class="game_element_text">
+          <p>{{help[index].text}}</p>
+        </div>
+        <div class="game_element_image">
+          <img [src]="getImage()" />
+        </div>
+      </div>
+    </section>
+</article>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <!-- <span class="quest_tries">{{questStatus.remainingTries}} remaining tries</span> -->
-  <div class="buttonWrapper">
-    <button color="primary" mat-flat-button (click)="previous()" i18n>Previous</button>
-    <button color="primary" mat-flat-button (click)="next()" i18n>Next</button>
-  </div>
-  <!-- <span class="quest_time">{{questStatus.remainingTime}} remaining time</span> -->
+  <nav>
+    <div class="button_wrapper">
+      <button 
+         mat-flat-button
+         color="primary"
+         [disabled]="!has_previous()"
+         (click)="previous()" i18n>Previous</button>
+      <span class="page_number">{{pageNumber}}</span>
+      <button
+         mat-flat-button
+         color="primary"
+         [disabled]="!has_next()"
+         (click)="next()" i18n>Next</button>
+    </div>
+  </nav>
 </mat-dialog-actions>

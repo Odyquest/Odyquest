@@ -25,6 +25,7 @@ export class GameService {
   currentElement: GameElement;
   currentQuestStatus: QuestStatus;
   startElement: number | undefined;
+  finished = false;
 
   static fromStorage(chaseStorage: ChaseStorageService): GameService {
     const service = new GameService(chaseStorage, chaseStorage.getRunningChase());
@@ -72,9 +73,14 @@ export class GameService {
     }
   }
 
+  isFinished(): boolean {
+    return this.finished;
+  }
+
   finish(chaseStatus: ChaseStatus): void {
     this.chaseStorage.setChaseStatus(this.chase.metaData.id, chaseStatus);
     this.chaseStorage.deleteRunningChase();
+    this.finished = true;
   }
 }
 

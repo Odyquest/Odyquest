@@ -33,7 +33,7 @@ export class ChaseComponent implements OnInit {
 
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
-    return this.game.isFinalElement();
+    return this.game.isFinished();
   }
 
   constructor(private activatedRoute: ActivatedRoute,

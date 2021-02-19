@@ -1,7 +1,6 @@
 @import '../game_element.scss';
 
 :host {
-  // background: red !important;
   display: flex;
   height: 100%;
   width: 100%;
@@ -17,23 +16,30 @@ mat-toolbar {
 }
 
 mat-dialog-content {
-  // background: blue;
   padding: 15px;
   margin: 0 !important;
   height: 100%;
 }
 
 mat-dialog-actions {
-  // background: green;
   margin-bottom: 0 !important;
+  width: 100%
+}
+
+mat-dialog-actions nav {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 0 15px 0 15px;
 }
 
-.buttonWrapper {
+.button_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+.page_number {
+  padding: 0 15px 0 15px;
 }

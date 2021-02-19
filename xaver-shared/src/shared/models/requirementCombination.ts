@@ -53,4 +53,13 @@ export class RequirementCombination {
     return; // no valid solution
   }
 
+  getPossibleDestinations(): Array<number> {
+    const destinations = new Array<number>();
+    for (const combination of this.combinationMap) {
+      if (destinations.indexOf(combination.destination) == -1) {
+        destinations.push(combination.destination);
+      }
+    }
+    return destinations;
+  }
 }
