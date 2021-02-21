@@ -9,11 +9,9 @@
           <mat-card-title>Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
         </mat-card-header>
       </header>
-      <nav>
-        <mat-card-actions>
-          <button primary mat-button>CONTINUE</button>
-        </mat-card-actions>
-      </nav>
+      <mat-card-actions>
+        <button primary mat-button>CONTINUE</button>
+      </mat-card-actions>
     </mat-card>
   </section>
 
@@ -31,14 +29,12 @@
         <mat-card-content>
           <p>{{chase.preview.description.text}}</p>
         </mat-card-content>
-        <nav>
-          <mat-card-actions>
-            <button primary mat-button>START</button>
-            <!--<button mat-button>LIKE</button>-->
-            <!--<button mat-button>SHARE</button>-->
-            <mat-icon class="card-flag" *ngIf="isSucceeded(chase.id)" >done</mat-icon>
-          </mat-card-actions>
-        </nav>
+        <mat-card-actions>
+          <button primary mat-button>START</button>
+          <!--<button mat-button>LIKE</button>-->
+          <!--<button mat-button>SHARE</button>-->
+          <mat-icon class="card-flag" *ngIf="isSucceeded(chase.id)" >done</mat-icon>
+        </mat-card-actions>
       </mat-card>
     </section>
   </div>
@@ -51,12 +47,10 @@
           <mat-card-title>Start chase from file</mat-card-title>
         </mat-card-header>
       </header>
-      <nav>
-        <mat-card-actions>
-          <button primary mat-button>Upload file</button>
-          <button primary mat-button>START</button>
-        </mat-card-actions>
-      </nav>
+      <mat-card-actions>
+        <button primary mat-button>Upload file</button>
+        <button primary mat-button>START</button>
+      </mat-card-actions>
     </mat-card>
   </section>
 </div>
