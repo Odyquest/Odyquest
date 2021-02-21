@@ -15,9 +15,9 @@ export enum LogicType {
 export class SolutionTerm {
 
 	/** for each entry in solutionItems of the required combination, define whether it is expected or not */
-	@JsonProperty() requiredItems: Array<boolean>;
+	@JsonProperty() requiredItems: Array<boolean> = [true];
 	/** logic operation to connect the required items to check whether this solution is fullfilled */
-	@JsonProperty() logicType: LogicType;
+	@JsonProperty() logicType: LogicType = LogicType.And;
 	/** points to entry of game element map with type solution */
-	@JsonProperty() destination: number;
+	@JsonProperty() destination: number = 1;
 }
