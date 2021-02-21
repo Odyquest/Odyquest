@@ -6,6 +6,7 @@ import { XButton } from 'src/app/shared/models/xButton'
 import { Chase } from '../shared/models/chase';
 import { LogicType, SolutionTerm } from '../shared/models/solution_term';
 import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
+import { Description } from '../shared/models/description';
 //import { MainEditorComponent } from '../components/main-editor/main-editor.component'
 
 @Component({
@@ -42,6 +43,7 @@ export class QuestEditorComponent implements OnInit {
   buttons: Array<XButton>;
   gameElementsMap: Map<number, string>;
   gameElementsList: string[];
+  help: Array<Description>;
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -116,6 +118,12 @@ export class QuestEditorComponent implements OnInit {
     this.buttons.splice(index, 1);
   }
 
+  deleteHelpText(index: number) {
+    console.log("deleteHelpText(" + index + ")");
+
+    this.help.splice(index, 1);
+  }
+
   deleteQuestSolution(index: number) {
     console.log("deleteQuestSolution(" + index + ")");
 
@@ -142,6 +150,17 @@ export class QuestEditorComponent implements OnInit {
     this.buttons.push(button);
 
     console.log(this.buttons.length);
+  }
+
+  addHelpText() {
+    console.log("addHelpText()");
+    console.log(this.help.length);
+
+    let help_text = new Description();
+    help_text.text = "HilfeText";
+    this.help.push(help_text);
+
+    console.log(this.help.length);
   }
 
   addSolutionItem() {
@@ -184,6 +203,10 @@ export class QuestEditorComponent implements OnInit {
     this.title = this.gameElement.title;
     this.description = this.gameElement.description.text;
     this.image_url = this.gameElement.description.image;
+    this.help = this.gameElement.help;
+      if(this.help === undefined) {
+        this.help = [];
+    }
 
     //Individual stuff
     if ((this.gameElement instanceof Quest)) {
@@ -233,6 +256,7 @@ export class QuestEditorComponent implements OnInit {
     } else if ((this.gameElement instanceof Narrative)) {
       this.gameElement.narrativeStatus = this.narrative_status;
       this.gameElement.buttons = this.buttons;
+      this.gameElement.help = this.help;
     }
   }
 
