@@ -1,4 +1,3 @@
-import { SolutionComponent } from './modules/components/solution/solution.component';
 import { NarrativeComponent } from './modules/components/narrative/narrative.component';
 import { QuestComponent } from './modules/components/quest/quest.component';
 import { QrcodeInputComponent } from './modules/components/qrcode-input/qrcode-input.component';
@@ -66,7 +65,6 @@ import { CloseWarningGuard } from './core/services/close-warning.guard';
     HomeComponent,
     UrlInputComponent,
     NarrativeComponent,
-    SolutionComponent,
     ChaseListComponent,
     QrcodeInputComponent,
     QuestComponent,

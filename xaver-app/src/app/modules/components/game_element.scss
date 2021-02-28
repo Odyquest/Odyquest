@@ -30,10 +30,22 @@
   }
 }
 
+.game_element_title_row {
+  display: flex;
+}
+
+.game_element_help_button {
+  margin: 8px 16px;
+}
+
 .game_element_content {
   clear: both;
-  width: 100%;
-  min-height: calc(100% - 88px);
+  width: calc(100% - 32px);
+  // 100% - pos .content - padding top & bottom
+  min-height: calc(100% - 80px - 32px);
+  background: white;
+  padding: 16px;
+  margin: 0px auto 16px auto;
 }
 
 .game_element_columns {
@@ -46,6 +58,7 @@
 
 .game_element_image {
   float: left;
+  padding: 0px;
 }
 .game_element_image img {
   display:block;
@@ -63,7 +76,8 @@
   clear: both;
   text-align: center;
   margin: 8px auto;
+  background: white;
 }
 .game_element_buttons button {
-  margin: 8px;
+  margin: 8px 16px;
 }

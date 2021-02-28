@@ -15,14 +15,12 @@ import { QuestStatus } from '../../../core/services/game.service';
 })
 export class HelpComponent {
   help = new Array<Description>();
-  questStatus = new QuestStatus(new Quest());
   index = 0;
   pageNumber: string;
 
   constructor(public dialogRef: MatDialogRef<HelpComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer) {
     this.help = this.data.quest.help;
-    this.questStatus = this.data.status;
     if (this.help.length < 1) {
       console.log('No help available, close immediately');
       this.closeDialog();

@@ -16,24 +16,23 @@
   .game_element_buttons {
     flex-direction: column;
   }
-}
-
-.title_column {
-  display: flex;
-}
-
-.help_button {
-  margin: 0px 16px;
+  .quest_time {
+    border-top: 1px #f0f0f0 solid;
+  }
+  .quest_tries {
+    border-top: 1px #f0f0f0 solid;
+  }
 }
 
 .quest_tries {
-  // margin: 8px auto;
-  border: 8px #eee solid;  // for animation
-  border-radius: 8px;
+  padding: 16px 8px;
+  margin: 0px;
+  border-top: 1px #eee solid;
 }
 
 .quest_time {
-  margin: 8px auto;
+  padding: 16px 8px;
+  margin: 0px;
 }
 
 ul {
@@ -48,15 +47,15 @@ ul {
   animation: blink 2s;
   animation-iteration-count: infinite;
 }
-@keyframes blink { 50% { border-color:#eee ; }  }
+@keyframes blink { 50% { border-color:#fff ; }  }
 
 .invalid_answer {
-  border: 8px #eee solid;
+  border: 8px #fff solid;
   border-radius: 8px;
   animation: highlight 5s;
   animation-iteration-count: 1;
 }
 @keyframes highlight {
   from {background-color: red; border-color: red; color:white;}
-  to {background-color: #eee; border-color: #eee; color: black;}
+  to {background-color: #fff; border-color: #fff; color: black;}
 }

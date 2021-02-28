@@ -8,44 +8,40 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ChaseService {
 
-  readonly SERVER_ADR = 'https://localhost:';
-  readonly SERVER_PORT = '8445';
-  readonly CHASE_IDENTIFIER = '/api/quest'
-  readonly SERVER_BASE_URI = this.SERVER_ADR + this.SERVER_PORT + this.CHASE_IDENTIFIER;
-
-  // ============== ONLY FOR DEVELOPING =============
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Basic ' + btoa('admin:Admin123')
-    })
-  };
-  // ===============================================
-  public chases = new Subject<any>()
+  //  // ============== ONLY FOR DEVELOPING =============
+  //
+  //  httpOptions = {
+  //    headers: new HttpHeaders({
+  //      'Content-Type': 'application/json',
+  //      'Authorization': 'Basic ' + btoa('admin:Admin123')
+  //    })
+  //  };
+  //  // ===============================================
+  readonly SERVER_BASE_URI = 'assets-shared/examples/';
+  // readonly SERVER_BASE_URI = 'http://localhost:8444/api/';
 
   constructor(
     private httpClient: HttpClient
-
   ) { }
 
   public getAllChases(): Observable<any> {
-    // console.log('Service: getAllChases()', this.SERVER_BASE_URI);
-    // return this.httpClient.get(this.SERVER_BASE_URI)
-    return this.httpClient.get('assets-shared/examples/chase-list.json')
+    return this.httpClient.get(this.SERVER_BASE_URI + 'chase-list.json')
+    // return this.httpClient.get(this.SERVER_BASE_URI + 'chase')
       .pipe(
         map(chases => {
+          // console.log("chases: " + chases);
           return chases;
         }),
         catchError(error => {
+          // console.log("error: " + JSON.stringify(error));
           return error;
         })
       )
   }
 
   public getChase(id: string): Observable<any> {
-    //return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
-    return this.httpClient.get('assets-shared/examples/' + id + '/chase.json')
+    return this.httpClient.get(this.SERVER_BASE_URI + id + '/chase.json')
+    // return this.httpClient.get(this.SERVER_BASE_URI + 'chase/' + id)
       .pipe(
         map(chase => {
           console.log("Success");
@@ -58,15 +54,4 @@ export class ChaseService {
       )
   }
 
-  public getDefaultChase() {
-    return this.httpClient.get(this.SERVER_BASE_URI + "/10000000-0000-0000-0000-000000000000")
-      .pipe(
-        map(chase => {
-          return chase;
-        }),
-        catchError(error => {
-          return error;
-        })
-      )
-  }
 }

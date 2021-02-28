@@ -1,9 +1,9 @@
 <article class="game_element_content">
-  <div class="title_column">
+  <div *ngIf="needsTitleRow()" class="game_element_title_row">
     <button mat-flat-button
        *ngIf="hasHelp()"
        color="primary"
-       class="help_button"
+       class="game_element_help_button"
        (click)="help()"><mat-icon>live_help</mat-icon></button>
     <h3 class="game_element_title">{{quest.title}}</h3>
   </div>
@@ -20,7 +20,7 @@
 </article>
 <nav class="game_element_buttons">
   <button mat-flat-button color="primary" (click)="submit()" i18n>Enter solution</button>
-  <button *ngIf="hasSolution()" mat-flat-button color="primary" (click)="submit()" i18n>Go on</button>
+  <button *ngIf="hasSolution()" mat-flat-button color="primary" (click)="select('next')" i18n>Go on</button>
   <p class="quest_tries" >
     <span [ngClass]="{'invalid_answer' : invalidAnswerGiven(),  'not_invalid_answer' : !invalidAnswerGiven()}"i18n>
       {{questStatus.remainingTries}} remaining tries

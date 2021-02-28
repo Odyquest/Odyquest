@@ -107,11 +107,15 @@ export class QuestComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(HelpComponent, {
       height: '90vh',
       width: '90vw',
-      data: {quest: this.quest, status: this.questStatus},
+      data: {quest: this.quest},
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Submitted: ${result}`);
     });
+  }
+
+  needsTitleRow(): boolean {
+    return this.hasHelp() || !!this.quest.title;
   }
 
   hasHelp(): boolean {
