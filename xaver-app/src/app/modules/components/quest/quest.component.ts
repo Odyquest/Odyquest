@@ -114,6 +114,10 @@ export class QuestComponent implements OnInit, OnDestroy {
     });
   }
 
+  needsTitleRow(): boolean {
+    return this.hasHelp() || !!this.quest.title;
+  }
+
   hasHelp(): boolean {
     return this.quest.help.length > 0;
   }

@@ -52,6 +52,10 @@ export class NarrativeComponent implements OnInit {
     });
   }
 
+  needsTitleRow(): boolean {
+    return this.hasHelp() || !!this.narrative.title;
+  }
+
   hasHelp(): boolean {
     return this.narrative.help.length > 0;
   }

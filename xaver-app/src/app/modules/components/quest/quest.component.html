@@ -1,5 +1,5 @@
 <article class="game_element_content">
-  <div class="game_element_title_column">
+  <div *ngIf="needsTitleRow()" class="game_element_title_row">
     <button mat-flat-button
        *ngIf="hasHelp()"
        color="primary"
