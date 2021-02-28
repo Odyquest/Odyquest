@@ -1,10 +1,12 @@
 <article>
-  <div *ngIf="finishedSuccessfully()" i18n> Congratulations :tada: </div>
-  <div *ngIf="finishedFailure()" i18n> Maybe next time :fingers_crossed: </div>
+  <!--<div *ngIf="finishedSuccessfully()" i18n> Congratulations :tada: </div>-->
+  <!--<div *ngIf="finishedFailure()" i18n> Maybe next time :fingers_crossed: </div>-->
+  <p i18n>Get more information about Badisches Landesmuseum at <a href="https://landesmuseum.de">https://landesmuseum.de</a></p>
+  <p i18n>Browse the source code of the app Qdyquest at <a href="https://github.com/XaverImMuseum/XaverImMuseum">https://github.com/XaverImMuseum/XaverImMuseum</a></p>
 </article>
 <nav>
-  <div class="game_element_buttons">
-    <button mat-flat-button color="primary"
-                            (click)="goHome()" i18n>Go on</button>
-  </div>
+<div class="game_element_buttons">
+  <button mat-flat-button color="primary"
+          (click)="goHome()" i18n>Go on</button>
+</div>
 </nav>
