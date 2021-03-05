@@ -30,7 +30,7 @@ export class FinishedComponent implements OnInit {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/list');
     }, 1500);
   }
 }
