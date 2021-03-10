@@ -138,6 +138,10 @@ export class QuestEditorComponent implements OnInit {
     this.combinationMap.splice(index, 1);
   }
 
+  updateSolutionItem(event, index){
+    this.solutionItems[index] = event.target.value;
+  }
+
   addButton() {
     console.log("addButton()");
     console.log(this.buttons.length);
