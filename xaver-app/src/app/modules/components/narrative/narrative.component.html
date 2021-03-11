@@ -1,10 +1,5 @@
 <article class="game_element_content">
   <div *ngIf="needsTitleRow()" class="game_element_title_row">
-    <button mat-flat-button
-       *ngIf="hasHelp()"
-       color="primary"
-       class="game_element_help_button"
-       (click)="help()"><mat-icon>live_help</mat-icon></button>
     <h3 class="game_element_title">{{narrative.title}}</h3>
   </div>
   <div *ngIf="isDefaultLayout()" class="game_element_columns">
@@ -32,4 +27,9 @@
      mat-flat-button
      color="primary"
      (click)="select(button.destination)">{{button.name}}</button>
+    <button mat-flat-button
+       *ngIf="hasHelp()"
+       color="primary"
+       class="game_element_help_button"
+       (click)="help()"><mat-icon>live_help</mat-icon></button>
 </nav>
