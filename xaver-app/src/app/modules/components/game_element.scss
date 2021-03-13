@@ -44,6 +44,7 @@
   // 100% - pos .content - padding top & bottom
   min-height: calc(100% - 80px - 32px);
   background: white;
+  border-radius: 8px;
   padding: 16px;
   margin: 0px auto 16px auto;
 }
@@ -77,6 +78,7 @@
   text-align: center;
   margin: 8px auto;
   background: white;
+  border-radius: 8px;
 }
 .game_element_buttons button {
   margin: 8px 16px;

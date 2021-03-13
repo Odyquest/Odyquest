@@ -1,6 +1,7 @@
 @import "~@angular/material/theming";
 
 $custom-typography: mat-typography-config($headline: mat-typography-level(20px, 48px),
+$font-family: 'Quicksand',
 $title: mat-typography-level(18px, 48px),
 $subheading-2: mat-typography-level(16px, 48px),
 $subheading-1: mat-typography-level(16px, 48px),

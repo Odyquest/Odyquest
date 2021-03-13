@@ -2,7 +2,7 @@
   <mat-form-field *ngIf="isText()" class="example-full-width">
     <input matInput i18n-placeholder placeholder="Solution" [(ngModel)]="textResult">
   </mat-form-field>
-  <ul *ngIf="isMultipleChoice()" [(ngModel)]="data.result">
+  <ul class="checkbox-list" *ngIf="isMultipleChoice()" [(ngModel)]="data.result">
     <li *ngFor="let item of items">
       <mat-checkbox color="primary" [(ngModel)]="item.selected">
         {{item.name}}

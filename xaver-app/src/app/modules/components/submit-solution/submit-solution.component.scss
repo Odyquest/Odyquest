@@ -6,14 +6,17 @@
 }
 
 mat-dialog-content {
-  // background: blue;
   padding: 15px;
   margin: 0 !important;
   height: 100%;
 }
 
+.checkbox-list {
+  list-style-type:none;
+  font-size:1.5em;
+}
+
 mat-dialog-actions {
-  // background: green;
   margin-bottom: 0 !important;
   display: flex;
   justify-content: space-between;
