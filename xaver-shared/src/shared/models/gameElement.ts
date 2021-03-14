@@ -23,4 +23,8 @@ export class GameElement {
 	 * if it is undefined, use the app for display
 	 */
   @JsonProperty() executionTarget: ExecutionTarget|undefined;
+
+  constructor() {
+    this.help = new Array<Description>();
+  }
 }

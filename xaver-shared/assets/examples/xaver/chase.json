@@ -21,7 +21,13 @@
          "buttons": [
             {
                "name": "Enter the Heart of Gold",
-               "destination": 0
+               "destination": 1
+            }
+         ],
+         "help": [
+            {
+               "text": "This is just an example.",
+               "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
             }
          ]
       },

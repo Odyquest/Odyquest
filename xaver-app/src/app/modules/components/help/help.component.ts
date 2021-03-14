@@ -15,36 +15,47 @@ import { QuestStatus } from '../../../core/services/game.service';
 })
 export class HelpComponent {
   help = new Array<Description>();
-  questStatus = new QuestStatus(new Quest());
   index = 0;
+  pageNumber: string;
 
   constructor(public dialogRef: MatDialogRef<HelpComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer) {
     this.help = this.data.quest.help;
-    this.questStatus = this.data.status;
     if (this.help.length < 1) {
       console.log('No help available, close immediately');
       this.closeDialog();
     }
+    this.setPageNumber();
+  }
+
+  setPageNumber(): void {
+    this.pageNumber = ' ' + (this.index + 1) + '/' + this.help.length + ' ';
   }
 
   closeDialog(): void  {
-    console.log('closeDialog() pass Pizza');
-    this.dialogRef.close('Pizza!');
+  }
+
+  has_next(): boolean {
+    return this.index < this.help.length - 1;
   }
 
   next(): void {
-    if (this.index < this.help.length - 1) {
+    if (this.has_next()) {
       console.log('next help');
       this.index++;
     }
+    this.setPageNumber();
   }
 
+  has_previous(): boolean {
+    return this.index > 0;
+  }
   previous(): void {
-    if (this.index > 0) {
+    if (this.has_previous()) {
       console.log('previous help');
       this.index--;
     }
+    this.setPageNumber();
   }
 
   getImage(): SafeResourceUrl {

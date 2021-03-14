@@ -15,7 +15,6 @@ import { GameElement } from '../../../shared/models/gameElement';
 import { Description } from '../../../shared/models/description';
 import { Narrative } from '../../../shared/models/narrative';
 import { Quest } from '../../../shared/models/quest';
-import { Solution } from '../../../shared/models/solution';
 import { Chase } from '../../../shared/models/chase';
 
 import { getSimpleExample } from '../../../shared/models/example/chaseExample';
@@ -33,7 +32,7 @@ export class ChaseComponent implements OnInit {
 
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
-    return this.game.isFinalElement();
+    return this.game.isFinished();
   }
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -83,10 +82,6 @@ export class ChaseComponent implements OnInit {
 
   isQuest(element: GameElement): boolean {
     return element instanceof Quest;
-  }
-
-  isSolution(element: GameElement): boolean {
-    return element instanceof Solution;
   }
 
 }
