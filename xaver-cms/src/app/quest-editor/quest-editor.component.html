@@ -58,7 +58,7 @@
           <li *ngFor="let solution of solutionItems; let i = index">
             <div class="single-solution-item-container">
               <div class=combination_map_name_width>
-                <input type="text" id="quest-name" name="quest_name" [(ngModel)]="solutionItems[i]"><br><br>
+                <input type="text" id="quest-name" name="quest_name" [value]="solution" (change)="updateSolutionItem($event, i)"><br><br>
               </div>
 
           <li *ngFor="let combination of combinationMap; let j = index">
@@ -110,6 +110,23 @@
         Kombination Hinzufügen</button>
     </div>
   </div>
+
+  <div class=button-array-container>
+    <div>
+      Hilfetexte
+    </div>
+    <li *ngFor="let help_entry of help; let i = index">
+      <div class="single-button-container">
+        <span>{{i+1}}</span>
+        <input type="text" id="quest-name" name="quest_name" [(ngModel)]="help[i].text"><br><br>
+        <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
+      </div>
+    </li>
+  </div>
+  <button class="saveCancelButton" mat-raised-button color="primary" (click)="addHelpText()">Hilfetext
+    Hinzufügen</button>
+
+
 </div>
 </div>
 
@@ -166,5 +183,22 @@
       </li>
     </div>
     <button class="saveCancelButton" mat-raised-button color="primary" (click)="addButton()">Button Hinzufügen</button>
+
+
+    <div class=button-array-container>
+      <div>
+        Hilfetexte
+      </div>
+      <li *ngFor="let help_entry of help; let i = index">
+        <div class="single-button-container">
+          <span>{{i+1}}</span>
+          <input type="text" id="quest-name" name="quest_name" [(ngModel)]="help[i].text"><br><br>
+          <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
+        </div>
+      </li>
+    </div>
+    <button class="saveCancelButton" mat-raised-button color="primary" (click)="addHelpText()">Hilfetext
+      Hinzufügen</button>
+
   </div>
 </div>

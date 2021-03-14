@@ -1,6 +1,8 @@
 <div class="main_body">
   <div class="quest_selector_container">
-    <div class="quest_selector_header">Quests</div>
+    <div class="quest_selector_header">Jagd</div>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="pushChaseToServer()">Jagd Speichern</button>
+    <div class="quest_selector_header">Rätsel</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
         <mat-list-option *ngFor="let quest of questList">
@@ -13,9 +15,9 @@
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addQuest()">Neue Quest</button>
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addQuest()">Neues Rätsel</button>
     </div>
-    <div class="quest_selector_header">Narratives</div>
+    <div class="quest_selector_header">Erzählelement</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
         <mat-list-option *ngFor="let quest of narrativeList">
@@ -28,7 +30,7 @@
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">Neue Narrative</button>
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">Neues Erzählelement</button>
     </div>
     
   </div>
