@@ -252,15 +252,22 @@ export class QuestEditorComponent implements OnInit {
   }
 
   localToGameElement(): void {
+    //common to all GameElements
     this.gameElement.title = this.title;
     this.gameElement.description.text = this.description;
     this.gameElement.description.image = this.image_url;
+    this.gameElement.help = this.help;
 
+    //Individual stuff
     if ((this.gameElement instanceof Quest)) {
+      this.gameElement.requirementCombination.solutionItems = this.solutionItems;
+      this.gameElement.requirementCombination.combinationMap =this.combinationMap;
+      this.gameElement.maxTries = this.maxTries;
+      this.gameElement.questType = this.questType;
     } else if ((this.gameElement instanceof Narrative)) {
       this.gameElement.narrativeStatus = this.narrative_status;
+      this.gameElement.narrativeType = this.narrative_type;
       this.gameElement.buttons = this.buttons;
-      this.gameElement.help = this.help;
     }
   }
 
@@ -308,12 +315,17 @@ export class QuestEditorComponent implements OnInit {
 
   save(): void {
     console.log("save");
-    //todo
+    this.localToGameElement();
+    // todo it seems TypeScript only uses references anyways... so the values are actually the same on GameElement and this
+    // -> already written
+
+    
   }
 
   reset(): void {
     console.log("reset");
     this.gameElementToLocal();
+    // -> reset values get 
   }
 
 }
