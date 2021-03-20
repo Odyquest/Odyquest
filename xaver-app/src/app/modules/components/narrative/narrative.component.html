@@ -27,9 +27,10 @@
      mat-flat-button
      color="primary"
      (click)="select(button.destination)">{{button.name}}</button>
-    <button mat-flat-button
-       *ngIf="hasHelp()"
-       color="primary"
-       class="game_element_help_button"
-       (click)="help()"><mat-icon>live_help</mat-icon></button>
+  <button mat-flat-button
+     *ngIf="hasHelp()"
+     color="primary"
+     class="game_element_help_button"
+     style="float: left"
+     (click)="help()"><mat-icon>live_help</mat-icon> Hilfe</button>
 </nav>
