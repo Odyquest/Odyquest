@@ -40,7 +40,8 @@
               "src/assets/color-theme.scss"
             ],
             "scripts": [],
-            "preserveSymlinks": true
+            "preserveSymlinks": true,
+            "i18nMissingTranslation": "error"
           },
           "configurations": {
             "production": {
