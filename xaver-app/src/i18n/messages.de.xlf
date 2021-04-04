@@ -118,7 +118,13 @@
       <trans-unit id="settings.description" datatype="html">
         <source>No settings available</source>
         <target>Keine Einstellungen verfügbar</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/settings/settings.component.html</context><context context-type="linenumber">3</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/settings/settings.component.html</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="close-warning-guard" datatype="html">
+        <source>WARNING: You are skipping the game. Press Cancel to go back and continue the game, or OK skip changes.</source><target state="new">WARNUNG: Das aktuelle Spiel wird abgebrochen. Drücke Abbrechen um zum Spiel zurückzukehren oder Ok um das Spiel abzubrechen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/close-warning.guard.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
