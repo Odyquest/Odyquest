@@ -2,141 +2,188 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
-        <source>Settings</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="321e4419a943044e674beb55b8039f42a9761ca5" datatype="html">
+      <trans-unit id="nav.info" datatype="html">
         <source>Info</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3c78b53bca33467190c0b7a01320bc093a2b1427" datatype="html">
+      <trans-unit id="nav.privacy" datatype="html">
         <source>Privacy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="85b79c9064aed1ead31ace985f31aa1363f6bdaf" datatype="html">
+      <trans-unit id="chase.help.title" datatype="html">
         <source>Help</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="680d5c75b7fd8d37961083608b9fcdc4167b4c43" datatype="html">
+      <trans-unit id="chase.help.previous" datatype="html">
         <source>Previous</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f732c304c7433e5a83ffcd862c3dce709a0f4982" datatype="html">
+      <trans-unit id="chase.help.next" datatype="html">
         <source>Next</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/help/help.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="15195b9ebf128fe19def2cce8aa8d59cb985c4ea" datatype="html">
-        <source>Go on</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/components/solution/solution.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="29442d33577634d5bb7a8716954281be8955ff30" datatype="html">
+      <trans-unit id="chase.submit-solution.solution" datatype="html">
         <source>Solution</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+      <trans-unit id="chase.submit-solution.cancel" datatype="html">
         <source>Cancel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="27c7bfba7033cc8dbf4caf42b40b6b3c87197838" datatype="html">
+      <trans-unit id="chase.submit-solution.verify" datatype="html">
         <source>Verify</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="64fcaa5616fa99535c2d4debbfbf7bdb62391481" datatype="html">
+      <trans-unit id="chase.quest.enter-solution" datatype="html">
         <source>Enter solution</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="44f7ca7c2cbd510b91439b2b892fb47c25b6edbc" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries</source>
+      <trans-unit id="chase.quest.go-on" datatype="html">
+        <source>Go on</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4115244d89585cb40ffb39e971c9abe8b787d735" datatype="html">
+      <trans-unit id="chase.quest.remaining-tries" datatype="html">
+        <source>
+        <x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="chase.quest.remaining-time" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{remainingTime.hours}}"/>:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome.title" datatype="html">
         <source>Welcome to scavenger hunts with Xaver</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e611f163cb969fb788ba9cc4020e29953daf8f28" datatype="html">
+      <trans-unit id="welcome.subtitle" datatype="html">
         <source>at Badisches Landesmuseum</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d5bc41cd357590aa84e706af0e39b055c354e0a7" datatype="html">
+      <trans-unit id="welcome.nav.list" datatype="html">
         <source>Select scavenger hunt</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3ad46a943483dda58411e2110e895fdb004d3d23" datatype="html">
-        <source>About this app</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6223512fd33a68f2b0b58d118a3d08cc48df06b6" datatype="html">
-        <source>Privacy information</source>
+      <trans-unit id="nav.information" datatype="html">
+        <source>About this app</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="55c2cb64c6dc7e99fbd797167ec544aab838615f" datatype="html">
-        <source> Congratulations :tada: </source>
+      <trans-unit id="finished.more-about-museum" datatype="html">
+        <source>Get more information about Badisches Landesmuseum at <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>https://landesmuseum.de<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8bea71d0c72dcf7d91ec1ea7aa1c67638ac64930" datatype="html">
-        <source> Maybe next time :fingers_crossed: </source>
+      <trans-unit id="finished.more-about-app" datatype="html">
+        <source>Browse the source code of the app Odyquest at <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>https://github.com/XaverImMuseum/XaverImMuseum<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="finished.go-on" datatype="html">
+        <source>Go on</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pricacy.title" datatype="html">
+        <source>Privacy Information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/privacy/privacy.component.html</context>
           <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.description" datatype="html">
+        <source>This app does not collect any personal data except logging for technical reasons.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/privacy/privacy.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="information.title" datatype="html">
+        <source>About the App</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/information/information.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="information.app" datatype="html">
+        <source>
+    The app Odyquest is open source. The code is licensed under <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>GPL-3.0<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.
+    Browse the source code of the app Odyquest at <x id="START_LINK_1" ctype="x-a" equiv-text="&lt;a&gt;"/>https://github.com/XaverImMuseum/XaverImMuseum<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/information/information.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="settings.title" datatype="html">
+        <source>Settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/settings/settings.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="settings.description" datatype="html">
+        <source>No settings available</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/settings/settings.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
     </body>

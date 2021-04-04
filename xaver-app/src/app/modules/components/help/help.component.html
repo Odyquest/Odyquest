@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span class="dialogHeadline" i18n>Help</span>
+  <span class="dialogHeadline" i18n="@@chase.help.title">Help</span>
   <button target="_blank" mat-icon-button mat-dialog-close>
     <mat-icon target="_blank">close</mat-icon>
   </button>
@@ -25,13 +25,13 @@
          mat-flat-button
          color="primary"
          [disabled]="!has_previous()"
-         (click)="previous()" i18n>Previous</button>
+         (click)="previous()" i18n="@@chase.help.previous">Previous</button>
       <span class="page_number">{{pageNumber}}</span>
       <button
          mat-flat-button
          color="primary"
          [disabled]="!has_next()"
-         (click)="next()" i18n>Next</button>
+         (click)="next()" i18n="@@chase.help.next">Next</button>
     </div>
   </nav>
 </mat-dialog-actions>
