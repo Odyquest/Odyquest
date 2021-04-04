@@ -4,11 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "start:en": "ng serve",
+    "start:de": "ng serve --configuration=de",
+    "build": "ng build --prod --localize",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "xi18n": "ng xi18n --output-path i18n && xliffmerge --profile xliffmerge.json"
+    "xi18n": "ng xi18n --output-path src/i18n && xliffmerge --profile xliffmerge.json"
   },
   "private": true,
   "dependencies": {
