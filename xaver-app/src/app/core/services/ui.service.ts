@@ -6,7 +6,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class UiService {
 
-  toolbarTitle = new BehaviorSubject<string>("Xaver im Museum");
+  toolbarTitle = new BehaviorSubject<string>('Odyquest');
 
   constructor() { }
 }
