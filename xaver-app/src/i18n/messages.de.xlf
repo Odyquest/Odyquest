@@ -14,18 +14,18 @@
         <source>Privacy</source>
         <target>Datenschutz</target>
       <context-group purpose="location"><context context-type="sourcefile">src/app/app.component.html</context><context context-type="linenumber">19</context></context-group><context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit>
-      <trans-unit id="chase.help.title" datatype="html">
+      <trans-unit id="chase.hint.title" datatype="html">
         <source>Hint</source>
         <target>Hinweis</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/help/help.component.html</context><context context-type="linenumber">2</context></context-group></trans-unit>
-      <trans-unit id="chase.help.previous" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/hint/hint.component.html</context><context context-type="linenumber">2</context></context-group></trans-unit>
+      <trans-unit id="chase.hint.previous" datatype="html">
         <source>Previous</source>
         <target>Zurück</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/help/help.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit>
-      <trans-unit id="chase.help.next" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/hint/hint.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit>
+      <trans-unit id="chase.hint.next" datatype="html">
         <source>Next</source>
         <target>Vorwärts</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/help/help.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/hint/hint.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit>
       <trans-unit id="chase.quest.go-on" datatype="html">
         <source>Go on</source>
         <target>Weiter</target>
@@ -52,7 +52,6 @@
         <source>Solution</source>
         <target>Lösung</target>
       <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context><context context-type="linenumber">3</context></context-group></trans-unit>
-      
       <trans-unit id="chase.quest.remaining-time" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{remainingTime.hours}}"/>:</source>
         <target><x id="INTERPOLATION" equiv-text="{{remainingTime.hours}}"/>:</target>

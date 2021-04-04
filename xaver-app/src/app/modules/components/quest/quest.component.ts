@@ -8,7 +8,7 @@ import {Subscription, TimeInterval} from 'rxjs';
 import {QuestStatus} from '../../../core/services/game.service';
 import {Description} from '../../../shared/models/description';
 import {Quest, QuestType} from '../../../shared/models/quest';
-import {HelpComponent} from '../help/help.component';
+import {HintComponent} from '../hint/hint.component';
 import {SubmitSolutionComponent} from '../submit-solution/submit-solution.component';
 import {TimeService} from './../../../core/services/time.service';
 import {ChaseStatus} from './../../../core/models/chase_status';
@@ -103,8 +103,8 @@ export class QuestComponent implements OnInit, OnDestroy {
     });
   }
 
-  help(): void {
-    const dialogRef = this.dialog.open(HelpComponent, {
+  hint(): void {
+    const dialogRef = this.dialog.open(HintComponent, {
       height: '90vh',
       width: '90vw',
       data: {quest: this.quest},

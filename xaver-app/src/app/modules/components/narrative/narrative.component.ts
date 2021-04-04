@@ -6,7 +6,7 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import { Narrative, NarrativeStatus, NarrativeType } from 'src/app/shared/models/narrative';
 import { ChaseStatus } from 'src/app/core/models/chase_status';
 import { GameService } from 'src/app/core/services/game.service';
-import { HelpComponent } from '../help/help.component';
+import { HintComponent } from '../hint/hint.component';
 
 @Component({
   selector: 'app-narrative',
@@ -41,8 +41,8 @@ export class NarrativeComponent implements OnInit {
     }
   }
 
-  help(): void {
-    const dialogRef = this.dialog.open(HelpComponent, {
+  hint(): void {
+    const dialogRef = this.dialog.open(HintComponent, {
       height: '90vh',
       width: '90vw',
       data: {quest: this.narrative},
