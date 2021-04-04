@@ -25,15 +25,25 @@
       <trans-unit id="chase.hint.next" datatype="html">
         <source>Next</source>
         <target>Vorwärts</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/hint/hint.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/hint/hint.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit><trans-unit id="chase.element.hint" datatype="html">
+        <source><x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon>"/>live_help<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon>"/> Hint</source><target state="final"><x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon>"/>live_help<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon>"/> Hinweis</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/narrative/narrative.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="chase.quest.go-on" datatype="html">
         <source>Go on</source>
         <target>Weiter</target>
       <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="chase.quest.remaining-tries" datatype="html">
         <source>
         <x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries
-      </source><target state="new">
-        <x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries
+      </source><target state="final">
+        noch <x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> Versuche
       </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
@@ -117,13 +127,7 @@
       <trans-unit id="settings.description" datatype="html">
         <source>No settings available</source>
         <target>Keine Einstellungen verfügbar</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/settings/settings.component.html</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="close-warning-guard" datatype="html">
-        <source>WARNING: You are skipping the game. Press Cancel to go back and continue the game, or OK skip changes.</source><target state="new">WARNUNG: Das aktuelle Spiel wird abgebrochen. Drücke Abbrechen um zum Spiel zurückzukehren oder Ok um das Spiel abzubrechen.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/services/close-warning.guard.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/settings/settings.component.html</context><context context-type="linenumber">3</context></context-group></trans-unit>
     </body>
   </file>
 </xliff>
