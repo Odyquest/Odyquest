@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "xi18n": "ng xi18n --output-path src/i18n && xliffmerge --profile xliffmerge.json && grep -n '<target state=\"new\">' src/i18n/* || true"
+    "extract-i18n": "ng extract-i18n --output-path src/i18n && xliffmerge --profile xliffmerge.json && npm run extract-i18n:new",
+    "extract-i18n:new": "grep -n '<target state=\"new\">' src/i18n/* || true"
   },
   "private": true,
   "dependencies": {
