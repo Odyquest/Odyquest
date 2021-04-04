@@ -12,11 +12,11 @@ import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service'
 import { ChaseStatus } from 'src/app/core/models/chase_status';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ListComponent implements OnInit {
   inputUrl: boolean;
   chaseList = new ChaseList();
   loading = false;

@@ -26,7 +26,7 @@ export class FinishedComponent implements OnInit {
     return this.status === ChaseStatus.Failed;
   }
 
-  goHome(): void {
+  backToList(): void {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;

@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ChaseComponent } from './modules/pages/chase/chase.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './modules/pages/home/home.component';
+import { ListComponent } from './modules/pages/list/list.component';
 
 
 //Angular Material Components
@@ -62,7 +62,7 @@ import { CloseWarningGuard } from './core/services/close-warning.guard';
     AppComponent,
     ChaseComponent,
     HintComponent,
-    HomeComponent,
+    ListComponent,
     UrlInputComponent,
     NarrativeComponent,
     ChaseListComponent,
