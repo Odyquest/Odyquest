@@ -31,8 +31,10 @@ export class QuestEditorComponent implements OnInit {
   solutionItems: Array<string>;
   combinationMap: Array<SolutionTerm>
   maxTries: number;
+  maxTime: number;
   public quest_type_status_int; //"Text" = 1, "MultipleChoice" = 2
   questType: QuestType;
+
 
   //Narrative
   narrative_status: NarrativeStatus;
@@ -218,6 +220,13 @@ export class QuestEditorComponent implements OnInit {
       this.combinationMap = this.gameElement.requirementCombination.combinationMap;
       this.maxTries = this.gameElement.maxTries;
       this.questType = this.gameElement.questType;
+
+      if (this.gameElement.maxTime !== undefined) {
+        this.maxTime = this.gameElement.maxTime.getTime() / 1000;
+      } else {
+        this.maxTime = 0;
+      }
+
       switch (this.questType) {
         case QuestType.Text:
           this.quest_type_status_int = 1;
@@ -265,6 +274,17 @@ export class QuestEditorComponent implements OnInit {
       this.gameElement.requirementCombination.combinationMap = this.combinationMap;
       this.gameElement.maxTries = this.maxTries;
       this.gameElement.questType = this.questType;
+
+      //why use date??
+      var t = new Date(0); // Epoch
+      t.setSeconds(this.maxTime);
+      this.gameElement.maxTime = t;
+
+      if (this.quest_type_status_int == 1) {
+        this.gameElement.questType = QuestType.Text;
+      } else {
+        this.gameElement.questType = QuestType.MultipleChoice;
+      }
     } else if ((this.gameElement instanceof Narrative)) {
       this.gameElement.narrativeStatus = this.narrative_status;
       this.gameElement.narrativeType = this.narrative_type;
