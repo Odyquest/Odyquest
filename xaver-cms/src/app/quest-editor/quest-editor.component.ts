@@ -34,6 +34,8 @@ export class QuestEditorComponent implements OnInit {
   maxTime: number;
   public quest_type_status_int; //"Text" = 1, "MultipleChoice" = 2
   questType: QuestType;
+  display_image_first: boolean;
+  solution_type_status_int: Array<number>;
 
 
   //Narrative
@@ -60,7 +62,19 @@ export class QuestEditorComponent implements OnInit {
         this.questType = QuestType.Text;
         break;
       case "2":
+        this.questType = QuestType.MultipleChoice;
+        break;
+    }
+  }
+
+  onSolutionTypeStatusChange(value: String, index: number) {
+    console.log("Changed solution type on index " + index + " to " + value);
+    switch (value) {
+      case "1":
         this.questType = QuestType.Text;
+        break;
+      case "2":
+        this.questType = QuestType.MultipleChoice;
         break;
     }
   }
@@ -138,6 +152,7 @@ export class QuestEditorComponent implements OnInit {
     console.log("deleteSolutionCombination(" + index + ")");
 
     this.combinationMap.splice(index, 1);
+    this.solution_type_status_int.splice(index, 1);
   }
 
   updateSolutionItem(event, index) {
@@ -200,6 +215,7 @@ export class QuestEditorComponent implements OnInit {
     }
 
     this.combinationMap.push(new_comb);
+    this.solution_type_status_int.push(1);
   }
 
   // hardly a sexy solution...
@@ -221,6 +237,8 @@ export class QuestEditorComponent implements OnInit {
       this.maxTries = this.gameElement.maxTries;
       this.questType = this.gameElement.questType;
 
+      this.display_image_first = this.gameElement.displayImageFirst;
+
       if (this.gameElement.maxTime !== undefined) {
         this.maxTime = this.gameElement.maxTime.getTime() / 1000;
       } else {
@@ -234,6 +252,17 @@ export class QuestEditorComponent implements OnInit {
         case QuestType.MultipleChoice:
           this.quest_type_status_int = 2;
           break;
+      }
+
+      this.solution_type_status_int = [];
+      var counter = 0;
+      for(var cm of this.gameElement.requirementCombination.combinationMap){
+        if(cm.logicType == LogicType.And){
+          this.solution_type_status_int[counter] = 1;
+        } else {
+          this.solution_type_status_int[counter] = 2;
+        }
+        counter++;
       }
     }
     else if ((this.gameElement instanceof Narrative)) {
@@ -275,7 +304,18 @@ export class QuestEditorComponent implements OnInit {
       this.gameElement.maxTries = this.maxTries;
       this.gameElement.questType = this.questType;
 
-      //why use date??
+      this.gameElement.displayImageFirst = this.display_image_first;
+
+      var counter = 0;
+      for(var cm of this.gameElement.requirementCombination.combinationMap){
+        if(this.solution_type_status_int[counter] == 1){
+          cm.logicType = LogicType.And;
+        } else {
+          cm.logicType = LogicType.Or;
+        }
+        counter++;
+      }
+      //why use date?
       var t = new Date(0); // Epoch
       t.setSeconds(this.maxTime);
       this.gameElement.maxTime = t;
