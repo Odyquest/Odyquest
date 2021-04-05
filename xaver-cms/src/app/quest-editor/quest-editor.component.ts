@@ -144,6 +144,9 @@ export class QuestEditorComponent implements OnInit {
     console.log("deleteQuestSolution(" + index + ")");
 
     this.solutionItems.splice(index, 1);
+    for(var cm of this.combinationMap) {
+      cm.requiredItems.splice(index, 1);
+    }
 
     //todo need to update various other stuff
   }
