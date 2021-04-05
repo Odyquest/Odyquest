@@ -7,6 +7,7 @@ import { ChaseService } from 'src/app/shared/services/chase.service';
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
 import { Description } from 'src/app/shared/models/description';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'main-chase-editor',
@@ -136,7 +137,18 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   }
 
   pushChaseToServer(): void {
-    console.log("Push chase to server!", serialize(this.chase, true));
+    console.log("Provide Chase as Download...");
+
+    
+
+    var serialized = serialize(this.chase, true);
+    var json = JSON.stringify(serialized, null, 2);
+
+    var blob = new Blob([json], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "chase.json");
+
+
+    console.log("Push chase to server!", serialized);
 
     this.chaseService.createChase(this.chase);
   }
