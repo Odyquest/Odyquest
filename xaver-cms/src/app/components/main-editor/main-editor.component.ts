@@ -65,7 +65,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.chaseService.getChase(this.chaseID).subscribe(chase => {
       this.chase = deserialize<Chase>(chase, Chase)
       this.getDataFromChase();
-      this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest));
+      this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest), true);
       this.questEditor.setChase(this.chase);
     });
 
@@ -91,7 +91,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
     //parse id from name, not so pretty a solution TBH
     this.selectedQuest = MainEditorComponent.parseIdFromGEString(text);
-    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest));
+    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest), false);
     this.questEditor.setChase(this.chase);
   }
 
@@ -139,7 +139,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   pushChaseToServer(): void {
     console.log("Provide Chase as Download...");
 
-    
+    this.questEditor.localToGameElement();
 
     var serialized = serialize(this.chase, true);
     var json = JSON.stringify(serialized, null, 2);

@@ -138,7 +138,7 @@ export class QuestEditorComponent implements OnInit {
     this.combinationMap.splice(index, 1);
   }
 
-  updateSolutionItem(event, index){
+  updateSolutionItem(event, index) {
     this.solutionItems[index] = event.target.value;
   }
 
@@ -173,7 +173,7 @@ export class QuestEditorComponent implements OnInit {
     let solution = "Neue Lösung";
 
     //todo need to update various other stuff
-    for(var comb = 0; comb < this.combinationMap.length; comb++){
+    for (var comb = 0; comb < this.combinationMap.length; comb++) {
       this.combinationMap[comb].requiredItems.push(true);
     }
 
@@ -208,8 +208,8 @@ export class QuestEditorComponent implements OnInit {
     this.description = this.gameElement.description.text;
     this.image_url = this.gameElement.description.image;
     this.help = this.gameElement.help;
-      if(this.help === undefined) {
-        this.help = [];
+    if (this.help === undefined) {
+      this.help = [];
     }
 
     //Individual stuff
@@ -254,6 +254,7 @@ export class QuestEditorComponent implements OnInit {
   localToGameElement(): void {
     //common to all GameElements
     this.gameElement.title = this.title;
+    console.log(this.gameElement.title);
     this.gameElement.description.text = this.description;
     this.gameElement.description.image = this.image_url;
     this.gameElement.help = this.help;
@@ -261,7 +262,7 @@ export class QuestEditorComponent implements OnInit {
     //Individual stuff
     if ((this.gameElement instanceof Quest)) {
       this.gameElement.requirementCombination.solutionItems = this.solutionItems;
-      this.gameElement.requirementCombination.combinationMap =this.combinationMap;
+      this.gameElement.requirementCombination.combinationMap = this.combinationMap;
       this.gameElement.maxTries = this.maxTries;
       this.gameElement.questType = this.questType;
     } else if ((this.gameElement instanceof Narrative)) {
@@ -293,7 +294,13 @@ export class QuestEditorComponent implements OnInit {
 
   }
 
-  setGameElementToEdit(gm: GameElement): void {
+  setGameElementToEdit(gm: GameElement, initial_setup: boolean): void {
+
+    //first save all stuff that was done in the old editor
+    if (!initial_setup) {
+      this.localToGameElement();
+    }
+
     this.gameElement = gm;
 
     if ((gm instanceof Quest)) {
@@ -319,7 +326,7 @@ export class QuestEditorComponent implements OnInit {
     // todo it seems TypeScript only uses references anyways... so the values are actually the same on GameElement and this
     // -> already written
 
-    
+
   }
 
   reset(): void {
