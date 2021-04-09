@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ChaseComponent } from './modules/pages/chase/chase.component';
-import { HomeComponent } from './modules/pages/home/home.component';
+import { ListComponent } from './modules/pages/list/list.component';
 import { FinishedComponent } from './modules/pages/finished/finished.component';
 import { WelcomeComponent } from './modules/pages/welcome/welcome.component';
 import { InformationComponent } from './modules/pages/information/information.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'information', component: InformationComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: 'list', component: HomeComponent },
+  { path: 'list', component: ListComponent },
   { path: 'chase', component: ChaseComponent, canDeactivate: [CloseWarningGuard] },
   { path: 'finished', component: FinishedComponent }
 ];
@@ -27,7 +27,7 @@ const routes: Routes = [
 // }
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

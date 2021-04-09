@@ -4,7 +4,7 @@ import { QrcodeInputComponent } from './modules/components/qrcode-input/qrcode-i
 import { ChaseListComponent } from './modules/components/chase-list/chase-list.component';
 import { UrlInputComponent } from './modules/components/url-input/url-input.component';
 import { SubmitSolutionComponent } from './modules/components/submit-solution/submit-solution.component';
-import { HelpComponent } from './modules/components/help/help.component';
+import { HintComponent } from './modules/components/hint/hint.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ChaseComponent } from './modules/pages/chase/chase.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './modules/pages/home/home.component';
+import { ListComponent } from './modules/pages/list/list.component';
 
 
 //Angular Material Components
@@ -61,8 +61,8 @@ import { CloseWarningGuard } from './core/services/close-warning.guard';
   declarations: [
     AppComponent,
     ChaseComponent,
-    HelpComponent,
-    HomeComponent,
+    HintComponent,
+    ListComponent,
     UrlInputComponent,
     NarrativeComponent,
     ChaseListComponent,
@@ -77,7 +77,7 @@ import { CloseWarningGuard } from './core/services/close-warning.guard';
   ],
   entryComponents: [
     SubmitSolutionComponent,
-    HelpComponent,
+    HintComponent,
   ],
   imports: [
     BrowserAnimationsModule,

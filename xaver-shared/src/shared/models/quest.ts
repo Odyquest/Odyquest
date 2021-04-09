@@ -16,6 +16,6 @@ export class Quest extends GameElement {
 	@JsonProperty() maxTries: number;
 	@JsonProperty() maxTime: Date; //mm:ss
 	@JsonProperty() displayImageFirst: boolean;
-	@JsonProperty() requirementCombination = new RequirementCombination();
+	@JsonProperty({ type: RequirementCombination, }) requirementCombination = new RequirementCombination();
 
 }

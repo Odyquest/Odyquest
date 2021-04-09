@@ -50,7 +50,7 @@ export class RequirementCombination {
       }
     }
     console.log('Given solution is not valid.');
-    return; // no valid solution
+    return undefined;
   }
 
   getPossibleDestinations(): Array<number> {
