@@ -41,7 +41,12 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/app/shared/environments/environment.ts",
+                  "with": "src/app/shared/environments/environment.prod.ts"
                 }
+
               ],
               "optimization": true,
               "outputHashing": "all",
@@ -61,6 +66,18 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
+                }
+              ]
+            },
+            "static": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/app/shared/environments/environment.ts",
+                  "with": "src/app/shared/environments/environment.static.ts"
                 }
               ]
             }
