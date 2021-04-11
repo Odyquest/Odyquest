@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Chase } from '../models/chase'
 import { deserialize, serialize, Serializable, JsonProperty } from 'typescript-json-serializer';
+import { ServerEnvironment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +20,13 @@ export class ChaseService {
   //    })
   //  };
   //  // ===============================================
-  readonly SERVER_BASE_URI_LOCAL = 'assets-shared/examples/';
-  readonly SERVER_BASE_URI = 'http://localhost:8444/api/';
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
   public getAllChases(): Observable<any> {
-    return this.httpClient.get(this.SERVER_BASE_URI_LOCAL + 'chase-list.json')
-      // return this.httpClient.get(this.SERVER_BASE_URI + 'chase')
+    return this.httpClient.get(this.getChaseListPath())
       .pipe(
         map(chases => {
           // console.log("chases: " + chases);
@@ -42,8 +40,7 @@ export class ChaseService {
   }
 
   public getChase(id: string): Observable<any> {
-    return this.httpClient.get(this.SERVER_BASE_URI_LOCAL + id + '/chase.json')
-      // return this.httpClient.get(this.SERVER_BASE_URI + 'chase/' + id)
+    return this.httpClient.get(this.getChasePath(id))
       .pipe(
         map(chase => {
           console.log("Success");
@@ -57,8 +54,9 @@ export class ChaseService {
   }
 
   public createChase(p_chase: Chase): Observable<any> {
+    // TODO return error if ServerEnvironment.api_based is false
     return this.httpClient.post(
-      this.SERVER_BASE_URI + '/chase', { "chase": { "metaData": serialize(p_chase.metaData, true) } })
+      ServerEnvironment.base_uri + '/chase', { "chase": { "metaData": serialize(p_chase.metaData, true) } })
       .pipe(
         map(chase => {
           console.log("Success");
@@ -71,5 +69,20 @@ export class ChaseService {
       )
   }
 
+  private getChaseListPath(): string {
+    if (ServerEnvironment.api_based === true) {
+      return ServerEnvironment.base_uri + 'chase';
+    } else {
+      return ServerEnvironment.base_uri + 'chase-list.json';
+    }
+  }
+
+  private getChasePath(id: string): string {
+    if (ServerEnvironment.api_based === true) {
+      return ServerEnvironment.base_uri + 'chase/' + id;
+    } else {
+      return ServerEnvironment.base_uri + id + '/chase.json';
+    }
+  }
 
 }
