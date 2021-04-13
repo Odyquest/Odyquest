@@ -34,8 +34,10 @@ app.post('/chase', function (req, res) {
     // FIXME implement authentication
     res.send('FIXME implement');
 })
+
 const port = 8400;
 
 app.listen(port, () => {
     console.log('The application is listening on port ' + port + '!');
 })
+
