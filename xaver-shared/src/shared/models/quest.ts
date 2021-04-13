@@ -12,10 +12,10 @@ export enum QuestType {
 @Serializable()
 export class Quest extends GameElement {
 
-	@JsonProperty() questType: QuestType; // enum
-	@JsonProperty() maxTries: number;
-	@JsonProperty() maxTime: Date; //mm:ss
-	@JsonProperty() displayImageFirst: boolean;
+	@JsonProperty() questType: QuestType = QuestType.Text; // enum
+	@JsonProperty() maxTries?: number;
+	@JsonProperty() maxTime?: Date; //mm:ss
+	@JsonProperty() displayImageFirst: boolean = false;
 	@JsonProperty({ type: RequirementCombination, }) requirementCombination = new RequirementCombination();
 
 }

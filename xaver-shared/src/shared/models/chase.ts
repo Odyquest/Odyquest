@@ -9,12 +9,12 @@ import { GameElement } from './gameElement';
 export class ChaseMetaData {
   @JsonProperty() id?: string;
   @JsonProperty() version?: number;
-  @JsonProperty() title: string;
-  @JsonProperty() description: string;
-  @JsonProperty() preview: Preview;
-  @JsonProperty() author: string; //Author;
-  @JsonProperty() lastEdited: Date;
-  @JsonProperty() creationDate: Date;
+  @JsonProperty() title: string = '';
+  @JsonProperty() description: string = '';
+  @JsonProperty() preview: Preview = new Preview();
+  @JsonProperty() author?: string; //Author;
+  @JsonProperty() lastEdited?: Date;
+  @JsonProperty() creationDate?: Date;
   @JsonProperty() comment?: string;
 }
 
@@ -29,7 +29,7 @@ export class ChaseList {
 
 @Serializable()
 export class Chase {
-  @JsonProperty() metaData: ChaseMetaData;
+  @JsonProperty() metaData: ChaseMetaData = new ChaseMetaData();
   @JsonProperty({
     names: ['_narratives', '_quests'],
     isDictionary: true,
@@ -49,8 +49,8 @@ export class Chase {
     },
     onSerialize: value => {
       console.log('serialize gameElement');
-      const narratives = new Object();
-      const quests = new Object();
+      const narratives: {[index: number]:any} = new Object();
+      const quests: {[index: number]:any} = new Object();
       for (const element of value.keys()) {
         if (value.get(element) instanceof Narrative) {
           console.log('serialize narrative');
@@ -65,11 +65,11 @@ export class Chase {
         _quests: quests
       };
     }
-  }) gameElements: Map<number, GameElement>;
-  @JsonProperty() initialGameElement: number; // GameElementID
+  }) gameElements: Map<number, GameElement> = new Map<number, GameElement>();
+  @JsonProperty() initialGameElement: number = -1; // GameElementID
   @JsonProperty() tags?: Array<string>;
 
-  getElement(destination: number): GameElement {
+  getElement(destination: number): GameElement | undefined {
     return this.gameElements.get(destination);
   }
 

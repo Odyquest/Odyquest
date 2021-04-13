@@ -26,7 +26,7 @@ export function getSimpleExample(): Chase {
   forward.destination = 0;
   narrative.buttons = new Array<XButton>();
   narrative.buttons.push(forward);
-  chase.gameElements[0] = narrative;
+  chase.gameElements.set(0,narrative);
   chase.initialGameElement = 0;
 
   return chase;
