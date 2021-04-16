@@ -9,16 +9,16 @@ import { Quest, QuestType } from '../../../shared/models/quest';
 import { QuestStatus } from '../../../core/services/game.service';
 
 @Component({
-  selector: 'app-help',
-  templateUrl: './help.component.html',
-  styleUrls: ['./help.component.scss']
+  selector: 'app-hint',
+  templateUrl: './hint.component.html',
+  styleUrls: ['./hint.component.scss']
 })
-export class HelpComponent {
+export class HintComponent {
   help = new Array<Description>();
   index = 0;
   pageNumber: string;
 
-  constructor(public dialogRef: MatDialogRef<HelpComponent>,
+  constructor(public dialogRef: MatDialogRef<HintComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer) {
     this.help = this.data.quest.help;
     if (this.help.length < 1) {
@@ -41,7 +41,7 @@ export class HelpComponent {
 
   next(): void {
     if (this.has_next()) {
-      console.log('next help');
+      console.log('next hint');
       this.index++;
     }
     this.setPageNumber();
@@ -52,7 +52,7 @@ export class HelpComponent {
   }
   previous(): void {
     if (this.has_previous()) {
-      console.log('previous help');
+      console.log('previous hint');
       this.index--;
     }
     this.setPageNumber();

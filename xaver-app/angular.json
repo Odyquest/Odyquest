@@ -40,7 +40,8 @@
               "src/assets/color-theme.scss"
             ],
             "scripts": [],
-            "preserveSymlinks": true
+            "preserveSymlinks": true,
+            "i18nMissingTranslation": "error"
           },
           "configurations": {
             "production": {
@@ -53,7 +54,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,

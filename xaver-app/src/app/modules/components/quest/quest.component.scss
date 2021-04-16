@@ -1,20 +1,28 @@
 @import "../game_element";
 
 @media screen and (orientation: landscape) {
-  .game_element_buttons {
+  .button_bar {
     flex-direction: row;
+  }
+  .quest_bar {
+    text-align:right;
   }
   .quest_tries {
     float: left;
+    border-top: 1px #eee solid;
   }
   .quest_time {
-    float: right;
+    text-align:right;
+    border-top: 1px #eee solid;
   }
 }
 
 @media screen and (orientation: portrait) {
-  .game_element_buttons {
+  .button_bar {
     flex-direction: column;
+  }
+  .quest_bar {
+    text-align:center;
   }
   .quest_time {
     border-top: 1px #f0f0f0 solid;
@@ -25,13 +33,12 @@
 }
 
 .quest_tries {
-  padding: 16px 8px;
+  padding: 16px;
   margin: 0px;
-  border-top: 1px #eee solid;
 }
 
 .quest_time {
-  padding: 16px 8px;
+  padding: 16px;
   margin: 0px;
 }
 
