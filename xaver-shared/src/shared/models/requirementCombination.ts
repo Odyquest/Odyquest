@@ -5,7 +5,7 @@ import { LogicType, SolutionTerm } from './solution_term';
 @Serializable()
 export class RequirementCombination {
 
-  @JsonProperty() solutionItems: Array<string> = ["New Solution"];
+  @JsonProperty() solutionItems: Array<string> = ["Neue Lösung"];
   @JsonProperty({ type: SolutionTerm, }) combinationMap: Array<SolutionTerm> = [new SolutionTerm];
 
   getSolution(solutions: Array<string>): SolutionTerm | undefined {

@@ -41,11 +41,11 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.narrativeList = [];
 
     this.chase.gameElements.forEach((value: GameElement, key: Number) => {
-      let title_with_id = value.title + ' (' + key + ')' 
-      if((value instanceof Quest)){
+      let title_with_id = value.title + ' (' + key + ')'
+      if ((value instanceof Quest)) {
         console.log("Quest:" + title_with_id);
         this.questList.push(title_with_id);
-      } else if ((value instanceof Narrative)){
+      } else if ((value instanceof Narrative)) {
         console.log("Narrative:" + title_with_id);
         this.narrativeList.push(title_with_id);
       }
@@ -81,8 +81,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   //   console.log(value)
   // }
 
-  static parseIdFromGEString(text: string) : number {
-    let id_text = text.substr(text.lastIndexOf( "(" ) + 1); //)
+  static parseIdFromGEString(text: string): number {
+    let id_text = text.substr(text.lastIndexOf("(") + 1); //)
     id_text = id_text.substr(0, id_text.length - 1);
 
     return +id_text;
@@ -140,7 +140,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   createNewChase(): void {
     console.log("Creating new Chase from scratch...");
-    
+
     this.chase = new Chase();
     this.chase.gameElements = new Map();
     this.addQuest();
@@ -150,8 +150,26 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.questEditor.setChase(this.chase);
   }
 
-  uploadChase(): void {
+  uploadChase($event): void {
     console.log("Opening file explorer to load local chase file...");
+
+    console.log($event.target.files[0]);
+    var reader = new FileReader();
+    reader.addEventListener("load", e => {
+      const json_string: string = reader.result as string;
+      var json = JSON.parse(json_string);
+      var chase = deserialize<Chase>(json, Chase);
+      console.log(chase);
+
+      this.chase = chase;
+
+      this.selectedQuest = 1;
+
+      this.getDataFromChase();
+      this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest), true);
+      this.questEditor.setChase(this.chase);
+    });
+    reader.readAsText($event.target.files[0]);
   }
 
   downloadChase(): void {
@@ -162,7 +180,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     var serialized = serialize(this.chase, true);
     var json = JSON.stringify(serialized, null, 2);
 
-    var blob = new Blob([json], {type: "text/plain;charset=utf-8"});
+    var blob = new Blob([json], { type: "text/plain;charset=utf-8" });
     saveAs(blob, "chase.json");
 
 
