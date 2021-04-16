@@ -15,7 +15,7 @@
   //height: 100%;
   padding-bottom: 20px;
   align-items: center;
-  border-bottom: 2px solid black;
+  //border-bottom: 2px solid black;
 }
 
 .quest_connections:hover {
@@ -123,6 +123,7 @@ mat-list-option {
   width: 100%;
   color: white;
   background: #bea05a;
+  border-top: 2px solid black;
 }
 
 .text-and-delete-container {
