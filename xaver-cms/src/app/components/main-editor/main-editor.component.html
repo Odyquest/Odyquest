@@ -1,7 +1,9 @@
 <div class="main_body">
   <div class="quest_selector_container">
     <div class="quest_selector_header">Jagd</div>
-    <button id="saveChaseButton" mat-raised-button color="primary" (click)="pushChaseToServer()">Jagd Downloaden</button>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="createNewChase()">Neue Jagd</button>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="uploadChase()">Jagd Öffnen</button>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="downloadChase()">Jagd Speichern</button>
     <div class="quest_selector_header">Rätsel</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>

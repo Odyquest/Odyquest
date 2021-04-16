@@ -30,7 +30,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
-    this.selectedQuest = 3;//todo change again
+    this.selectedQuest = 1;//todo change again
 
     //console.log("Selected Quest Id: " + this.selectedQuest);
     //console.log("Loading values from Chase", this.chase.metaData.title);
@@ -63,7 +63,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     console.log("ngOnInit()");
     //this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
     this.chaseService.getChase(this.chaseID).subscribe(chase => {
-      this.chase = deserialize<Chase>(chase, Chase)
+      //this.chase = deserialize<Chase>(chase, Chase)
+      this.createNewChase();
+
       this.getDataFromChase();
       this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest), true);
       this.questEditor.setChase(this.chase);
@@ -108,7 +110,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     console.log("addQuest()");
 
     const quest = new Quest();
-    quest.title = 'New Quest';
+    quest.title = 'Neues Rätsel';
     this.chase.gameElements.set(this.getNextFreeMapKey(), quest);
 
     this.getDataFromChase();
@@ -136,7 +138,22 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
-  pushChaseToServer(): void {
+  createNewChase(): void {
+    console.log("Creating new Chase from scratch...");
+    
+    this.chase = new Chase();
+    this.chase.gameElements = new Map();
+    this.addQuest();
+
+    this.getDataFromChase();
+    //this.questEditor.setGameElementToEdit(this.chase);
+  }
+
+  uploadChase(): void {
+    console.log("Opening file explorer to load local chase file...");
+  }
+
+  downloadChase(): void {
     console.log("Provide Chase as Download...");
 
     this.questEditor.localToGameElement();
