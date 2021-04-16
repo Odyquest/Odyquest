@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject} from '@angular/core';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { Quest, QuestType } from 'src/app/shared/models/quest';
 import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models/narrative';
@@ -7,7 +7,7 @@ import { Chase } from '../shared/models/chase';
 import { LogicType, SolutionTerm } from '../shared/models/solution_term';
 import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
 import { Description } from '../shared/models/description';
-//import { MainEditorComponent } from '../components/main-editor/main-editor.component'
+import { MainEditorComponent } from '../components/main-editor/main-editor.component'
 
 @Component({
   selector: 'app-quest-editor',
@@ -49,7 +49,7 @@ export class QuestEditorComponent implements OnInit {
   gameElementsList: string[];
   help: Array<Description>;
 
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(@Inject(MainEditorComponent) private main_editor: MainEditorComponent, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -140,11 +140,19 @@ export class QuestEditorComponent implements OnInit {
     this.help.splice(index, 1);
   }
 
+  onTitleChange(): void {
+    console.log("title changed!");
+
+    //save data so the MainCOmponent can access it, then recreate the quest list
+    this.localToGameElement();
+    this.main_editor.getDataFromChase();
+  }
+
   deleteQuestSolution(index: number) {
     console.log("deleteQuestSolution(" + index + ")");
 
     this.solutionItems.splice(index, 1);
-    for(var cm of this.combinationMap) {
+    for (var cm of this.combinationMap) {
       cm.requiredItems.splice(index, 1);
     }
 
@@ -259,8 +267,8 @@ export class QuestEditorComponent implements OnInit {
 
       this.solution_type_status_int = [];
       var counter = 0;
-      for(var cm of this.gameElement.requirementCombination.combinationMap){
-        if(cm.logicType == LogicType.And){
+      for (var cm of this.gameElement.requirementCombination.combinationMap) {
+        if (cm.logicType == LogicType.And) {
           this.solution_type_status_int[counter] = 1;
         } else {
           this.solution_type_status_int[counter] = 2;
@@ -310,8 +318,8 @@ export class QuestEditorComponent implements OnInit {
       this.gameElement.displayImageFirst = this.display_image_first;
 
       var counter = 0;
-      for(var cm of this.gameElement.requirementCombination.combinationMap){
-        if(this.solution_type_status_int[counter] == 1){
+      for (var cm of this.gameElement.requirementCombination.combinationMap) {
+        if (this.solution_type_status_int[counter] == 1) {
           cm.logicType = LogicType.And;
         } else {
           cm.logicType = LogicType.Or;

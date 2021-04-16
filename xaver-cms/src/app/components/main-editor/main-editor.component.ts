@@ -146,7 +146,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.addQuest();
 
     this.getDataFromChase();
-    //this.questEditor.setGameElementToEdit(this.chase);
+    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(1), true);
+    this.questEditor.setChase(this.chase);
   }
 
   uploadChase(): void {
