@@ -1,6 +1,7 @@
-import express from 'express';
 import cors from 'cors';
-//import { Database } from './database';
+import express from 'express';
+import mongoose from 'mongoose'
+import { Database, ChaseMetaDataModel, DescriptionModel } from './model';
 
 const app = express();
 
@@ -40,5 +41,6 @@ const port = 8400;
 
 app.listen(port, () => {
     console.log('The application is listening on port ' + port + '!');
+    var database = new Database();
 })
 
