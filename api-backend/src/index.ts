@@ -3,6 +3,8 @@ import express from 'express';
 import mongoose from 'mongoose'
 import { Database, ChaseMetaDataModel, DescriptionModel } from './database';
 
+var database = new Database();
+
 const app = express();
 
 const options: cors.CorsOptions = {
@@ -25,16 +27,18 @@ app.get('/', (req, res) => {
 })
 
 app.get('/chase', (req, res) => {
-    res.send('FIXME return all the chases');
+  database.getChaseList();
+  res.send('FIXME return all the chases');
 })
 
 app.get('/chase/*', (req, res) => {
-    res.send('FIXME return chase with id: ' + req.params[0]);
+  database.getChase(req.params[0]);
+  res.send('FIXME return chase with id: ' + req.params[0]);
 })
 
 app.post('/chase', function (req, res) {
-    // FIXME implement authentication
-    res.send('FIXME implement');
+  // FIXME implement authentication
+  res.send('FIXME implement');
 })
 
 const port = 8400;

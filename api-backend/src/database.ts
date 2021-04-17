@@ -32,12 +32,7 @@ const ChaseMetaDataSchema = new Schema(
 );
 const ChaseSchema = new Schema(
   {
-    metaData: ChaseMetaDataSchema
-  }
-);
-const ChaseListSchema = new Schema(
-  {
-    chases: [ ChaseMetaDataSchema ]
+    metaData: {type: ChaseMetaDataSchema, required: true }
   }
 );
 
@@ -51,24 +46,37 @@ interface ChaseListDocument extends ChaseList, Document {};
 
 export const connection = createConnection(`mongodb://localhost:27017/test`, { useNewUrlParser: true, useUnifiedTopology: true })
 
-//export const DescriptionModel: Model<DescriptionDocument> = connection.model('Description', DescriptionSchema);
-//export const ChaseMetaDataModel: Model<ChaseMetaDataDocument> = connection.model('ChaseMetaData', ChaseMetaDataSchema);
 export const DescriptionModel = connection.model('Description', DescriptionSchema);
 export const ChaseMetaDataModel = connection.model('ChaseMetaData', ChaseMetaDataSchema);
+export const ChaseModel = connection.model('Chase', ChaseSchema);
 
 export class Database {
   constructor() {
 
     console.log(connection.modelNames())
 
-    const element = new ChaseMetaDataModel({
-      chase_id: "unique",
-      title: "great title"
-    });
-
-    element.save();
-    // Now you can use the model directly
-    const unique_element = ChaseMetaDataModel.find({ chase_id: 'unique' });
-    console.log(unique_element);
   }
+
+  getChase(id: string) {
+    ChaseModel.find( function (err, doc) {
+      if (err) { console.log(err); }
+      console.log(doc);
+    });
+  }
+
+  getChaseList() {
+    ChaseModel.find( function (err, doc) {
+      if (err) { console.log(err); }
+      console.log(doc);
+      //return doc;
+    });
+    //console.log(list);
+  }
+
+  createChase(chase: Chase) {
+    const entry = new ChaseModel(chase);
+    console.log(entry);
+    entry.save();
+  }
+
 };
