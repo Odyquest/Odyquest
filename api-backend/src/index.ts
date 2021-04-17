@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose'
-import { Database, ChaseMetaDataModel, DescriptionModel } from './model';
+import { Database, ChaseMetaDataModel, DescriptionModel } from './database';
 
 const app = express();
 
