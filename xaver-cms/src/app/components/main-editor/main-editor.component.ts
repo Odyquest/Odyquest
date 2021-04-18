@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Chase } from 'src/app/shared/models/chase';
+import { Chase, ChaseMetaData } from 'src/app/shared/models/chase';
 import { Quest } from 'src/app/shared/models/quest';
 import { Narrative } from 'src/app/shared/models/narrative';
 import { GameElement } from 'src/app/shared/models/gameElement';
@@ -20,6 +20,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   public chase: Chase;
   selectedQuest: number;
   chaseID = "julia"; //{"xaver", "julia", "silke"}
+  title: string = "";
+  author: string = "";
+  description: string = "";
 
   @ViewChild('quest_editor') questEditor;
 
@@ -28,9 +31,19 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   questList: string[];
   narrativeList: string[];
 
+  writeDataToChase(): void {
+    this.chase.metaData.title = this.title;
+    this.chase.metaData.description = this.description;
+    this.chase.metaData.author = this.author;
+  }
+
   // reads all the info from this.chase and writes onto class members
   getDataFromChase(): void {
     this.selectedQuest = 1;//todo change again
+
+    this.title = this.chase.metaData.title;
+    this.description = this.chase.metaData.description;
+    this.author = this.chase.metaData.author;
 
     //console.log("Selected Quest Id: " + this.selectedQuest);
     //console.log("Loading values from Chase", this.chase.metaData.title);
@@ -139,10 +152,15 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   }
 
   createNewChase(): void {
+    console.log("TITLE: " + this.title);
+    console.log("Description: " + this.description);
+    console.log("Author: " + this.author);
+
     console.log("Creating new Chase from scratch...");
 
     this.chase = new Chase();
     this.chase.gameElements = new Map();
+    this.chase.metaData = new ChaseMetaData();
     this.addQuest();
 
     this.getDataFromChase();
@@ -176,6 +194,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     console.log("Provide Chase as Download...");
 
     this.questEditor.localToGameElement();
+    this.writeDataToChase();
 
     var serialized = serialize(this.chase, true);
     var json = JSON.stringify(serialized, null, 2);

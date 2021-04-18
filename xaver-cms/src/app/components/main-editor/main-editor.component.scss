@@ -137,3 +137,28 @@ mat-list-option {
   color: red;
   //border: 2px solid red;
 }
+
+input {
+  width: 80%;
+  padding: 6px 10px;
+  margin: 4px 0;
+  box-sizing: border-box;
+  border: 3px solid grey;
+  border-radius: 4px;
+
+  font-size: 15pt;
+  //margin-bottom: 40px;
+}
+
+textarea {
+  width: 90%;
+  height: 7%;
+  padding: 6px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid grey;
+  border-radius: 4px;
+
+  margin-bottom: 10px;
+  font-size: 15pt;
+}
