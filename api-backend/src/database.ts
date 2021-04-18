@@ -74,9 +74,7 @@ export const ChaseModel = connection.model('Chase', ChaseSchema);
 
 export class Database {
   constructor() {
-
-    console.log(connection.modelNames())
-
+    console.log('Registered models: ' + connection.modelNames())
   }
 
   getChase(id: string): Promise<Chase> {

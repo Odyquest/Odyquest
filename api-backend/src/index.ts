@@ -2,6 +2,8 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose'
 import { Database, ChaseMetaDataModel, DescriptionModel } from './database';
+import { ChaseList } from './shared/models/chase';
+import { serialize } from 'typescript-json-serializer';
 
 var database = new Database();
 
@@ -17,7 +19,7 @@ const options: cors.CorsOptions = {
   ],
   credentials: true,
   methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-  origin: 'localhost',
+  origin: 'http://localhost:4200',
   preflightContinue: false,
 };
 app.use(cors(options));
@@ -28,19 +30,23 @@ app.get('/', (req, res) => {
 
 app.get('/chase', (req, res) => {
   database.getChaseList().then(list => {
-    res.send('FIXME return all ' + list.length + ' chases');
+    const chases = new ChaseList();
+    chases.chases = list;
+    res.send(serialize(chases));
   }).catch(() => {
     //TODO set error code
-    res.send('FIXME no chases error');
+    // send empty list
+    const chases = new ChaseList();
+    res.send(serialize(chases));
   });
 })
 
 app.get('/chase/*', (req, res) => {
   database.getChase(req.params[0]).then(chase => {
-    res.send('FIXME return chase with id ' + req.params[0] + ' and title ' + chase.metaData.title);
+    res.send(serialize(chase));
   }).catch(() => {
     //TODO set error code
-    res.send('FIXME no such chase error');
+    res.send('{}');
   });
 })
 
