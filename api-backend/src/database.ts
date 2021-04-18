@@ -1,11 +1,6 @@
 import { model, createConnection, Document, Model, Schema } from 'mongoose';
 import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
-//import { Description } from './shared/models/description';
-
-interface Description extends Document {
-  text: string;
-  image: string;
-}
+import { Description } from './shared/models/description';
 
 const DescriptionSchema = new Schema(
   {
@@ -13,7 +8,6 @@ const DescriptionSchema = new Schema(
     image: {type: String, required: false }
   }
 )
-
 
 const ChaseMetaDataSchema = new Schema(
   {
@@ -30,16 +24,14 @@ const ChaseMetaDataSchema = new Schema(
    comment: {type: String, required: false }
   }
 );
+
 const ChaseSchema = new Schema(
   {
     metaData: {type: ChaseMetaDataSchema, required: true }
   }
 );
 
-interface DescriptionDocument extends Description, Document {
-  text: string|any;
-  image: string|any;
-};
+interface DescriptionDocument extends Description, Document {};
 interface ChaseMetaDataDocument extends ChaseMetaData, Document {};
 interface ChaseDocument extends Chase, Document {};
 interface ChaseListDocument extends ChaseList, Document {};
