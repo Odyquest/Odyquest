@@ -3,6 +3,7 @@ import { Description } from '../description';
 import { GameElement } from '../gameElement';
 import { Narrative } from '../narrative';
 import { Quest, QuestType } from '../quest';
+import { Preview } from '../preview';
 import { RequirementCombination } from '../requirementCombination';
 import { LogicType, SolutionTerm } from '../solution_term';
 import { XButton } from '../xButton';
@@ -11,8 +12,12 @@ import { base64_encoded_image } from './imageExample';
 export function getSimpleExample(): Chase {
   const chase = new Chase();
   const metaData = new ChaseMetaData();
+  metaData.chase_id = 'simple_id';
   metaData.title = 'This is an example chase!';
   metaData.description = 'This chase has no content';
+  metaData.preview = new Preview()
+  metaData.preview.description = new Description()
+  metaData.preview.description.text = 'This chase has no content';
   chase.metaData = metaData;
   chase.gameElements = new Map<number, GameElement>();
 
