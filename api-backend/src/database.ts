@@ -1,6 +1,8 @@
 import { model, createConnection, Document, Model, Schema } from 'mongoose';
 import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
 import { Description } from './shared/models/description';
+import { Narrative } from './shared/models/narrative';
+import { Quest } from './shared/models/quest';
 
 const DescriptionSchema = new Schema(
   {
@@ -28,6 +30,34 @@ const ChaseMetaDataSchema = new Schema(
 const ChaseSchema = new Schema(
   {
     metaData: {type: ChaseMetaDataSchema, required: true }
+  }
+);
+
+const NarrativeSchema = new Schema(
+  {
+    /* attributes representing GameElements */
+    id: {type: Number, required: false },
+    version: {type: Number, required: false },
+    title: {type: String, required: false },
+    description: {type: DescriptionSchema, required: true }
+    // TODO add help
+
+    /* attributes representing Narrative */
+    // TODO buttons
+  }
+);
+
+const QuestSchema = new Schema(
+  {
+    /* attributes representing GameElements */
+    id: {type: Number, required: false },
+    version: {type: Number, required: false },
+    title: {type: String, required: false },
+    description: {type: DescriptionSchema, required: true }
+    // TODO add help
+
+    /* attributes representing Quest */
+    // TODO fill
   }
 );
 
