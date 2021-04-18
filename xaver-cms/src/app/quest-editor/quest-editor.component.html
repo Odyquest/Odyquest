@@ -1,18 +1,21 @@
 <div class="quest-editor-top-container">
-  <div class="quest-image-container">
-    <img [src]="image_url">
+  <div class="quest-image-outer-container">
+    <div class="quest-image-container">
+      <img [src]="image_url">
+    </div>
+    <input type="text" id="image-name" name="quest_name" [(ngModel)]="image_url" placeholder="URL für das Bild..."><br><br>
   </div>
   <div class="quest-editor-top-right-container">
     <div class="quest-editor-top-right-container-header">
       <div class="quest-name-container">
-        <label for="fname">Title:</label>
-        <input type="text" id="quest-name" name="quest_name" [(ngModel)]="title"><br><br>
+        <label for="fname">Titel:</label>
+        <input type="text" id="quest-name" name="quest_name" [(ngModel)]="title" (change)="onTitleChange()"><br><br>
       </div>
-      <button class="saveCancelButton" mat-raised-button color="primary" (click)="reset()">Reset</button>
-      <button class="saveCancelButton" mat-raised-button color="primary" (click)="save()">Speichern</button>
+      <!-- <button class="saveCancelButton" mat-raised-button color="primary" (click)="reset()">Reset</button>
+      <button class="saveCancelButton" mat-raised-button color="primary" (click)="save()">Speichern</button> -->
     </div>
-    <label for="fname">Quest Description:</label>
-    <textarea type="text" id="bug_brief" placeholder="Here goes all relevant information to solve the quest ..."
+    <label for="fname">Aufgabenbeschreibung:</label>
+    <textarea type="text" id="bug_brief" placeholder="Hier steht der Beschreibungstext für den User..."
       name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
 
   </div>
@@ -40,11 +43,11 @@
       </div>
       <div class="quest-top-mini-container">
         <label for="max_time">Sekunden Zeit (0 = ∞):</label>
-        <input type="number" id="max_time" name="max_time" min="0">
+        <input type="number" id="max_time" name="max_time" min="0" [(ngModel)]="maxTime">
       </div>
       <div class="quest-top-mini-container">
         <label for="disp_image_first">Bild zuerst anzeigen</label>
-        <input type="checkbox" id="disp_image_first" name="disp_image_first" checked>
+        <input type="checkbox" id="disp_image_first" name="disp_image_first" [(ngModel)]="display_image_first">
       </div>
     </div>
 
@@ -58,7 +61,8 @@
           <li *ngFor="let solution of solutionItems; let i = index">
             <div class="single-solution-item-container">
               <div class=combination_map_name_width>
-                <input type="text" id="quest-name" name="quest_name" [value]="solution" (change)="updateSolutionItem($event, i)"><br><br>
+                <input type="text" id="quest-name" name="quest_name" [value]="solution"
+                  (change)="updateSolutionItem($event, i)"><br><br>
               </div>
 
           <li *ngFor="let combination of combinationMap; let j = index">
@@ -81,10 +85,10 @@
         <li *ngFor="let combination of combinationMap; let j = index">
           <div class=combination_map_checkbox_width>
             <div class="combination-map-bottom-row-attributes">
-              <select name="quest-type" id="combination-type-selector"
-                (change)="onQuestTypeChange($event.target.value)">
-                <option value="and">Alle</option>
-                <option value="or">Eins</option>
+              <select name="quest-type" id="combination-type-selector" [(ngModel)]="solution_type_status_int[j]"
+                (change)="onSolutionTypeStatusChange($event.target.value, j)">
+                <option value="1">Alle</option>
+                <option value="2">Eins</option>
               </select>
               <select id="combination-map-destination-dropdown">
                 <option *ngFor="let target of gameElementsList" [value]='target'

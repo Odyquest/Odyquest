@@ -23,6 +23,7 @@
     "@angular/router": "~9.1.1",
     "@okta/okta-angular": "^2.2.0",
     "@okta/okta-signin-widget": "^4.4.4",
+    "file-saver": "^2.0.5",
     "help": "^3.0.2",
     "material-design-icons": "^3.0.1",
     "rxjs": "~6.5.4",
@@ -35,9 +36,9 @@
     "@angular/cli": "~9.1.1",
     "@angular/compiler-cli": "~9.1.1",
     "@angular/language-service": "~9.1.1",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -49,6 +50,6 @@
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "typescript": "^3.8.3"
   }
 }

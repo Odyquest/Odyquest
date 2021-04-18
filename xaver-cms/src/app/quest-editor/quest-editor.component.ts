@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject} from '@angular/core';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { Quest, QuestType } from 'src/app/shared/models/quest';
 import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models/narrative';
@@ -7,7 +7,7 @@ import { Chase } from '../shared/models/chase';
 import { LogicType, SolutionTerm } from '../shared/models/solution_term';
 import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
 import { Description } from '../shared/models/description';
-//import { MainEditorComponent } from '../components/main-editor/main-editor.component'
+import { MainEditorComponent } from '../components/main-editor/main-editor.component'
 
 @Component({
   selector: 'app-quest-editor',
@@ -31,8 +31,12 @@ export class QuestEditorComponent implements OnInit {
   solutionItems: Array<string>;
   combinationMap: Array<SolutionTerm>
   maxTries: number;
+  maxTime: number;
   public quest_type_status_int; //"Text" = 1, "MultipleChoice" = 2
   questType: QuestType;
+  display_image_first: boolean;
+  solution_type_status_int: Array<number>;
+
 
   //Narrative
   narrative_status: NarrativeStatus;
@@ -45,7 +49,7 @@ export class QuestEditorComponent implements OnInit {
   gameElementsList: string[];
   help: Array<Description>;
 
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(@Inject(MainEditorComponent) private main_editor: MainEditorComponent, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -58,7 +62,19 @@ export class QuestEditorComponent implements OnInit {
         this.questType = QuestType.Text;
         break;
       case "2":
+        this.questType = QuestType.MultipleChoice;
+        break;
+    }
+  }
+
+  onSolutionTypeStatusChange(value: String, index: number) {
+    console.log("Changed solution type on index " + index + " to " + value);
+    switch (value) {
+      case "1":
         this.questType = QuestType.Text;
+        break;
+      case "2":
+        this.questType = QuestType.MultipleChoice;
         break;
     }
   }
@@ -124,10 +140,21 @@ export class QuestEditorComponent implements OnInit {
     this.help.splice(index, 1);
   }
 
+  onTitleChange(): void {
+    console.log("title changed!");
+
+    //save data so the MainCOmponent can access it, then recreate the quest list
+    this.localToGameElement();
+    this.main_editor.getDataFromChase();
+  }
+
   deleteQuestSolution(index: number) {
     console.log("deleteQuestSolution(" + index + ")");
 
     this.solutionItems.splice(index, 1);
+    for (var cm of this.combinationMap) {
+      cm.requiredItems.splice(index, 1);
+    }
 
     //todo need to update various other stuff
   }
@@ -136,9 +163,10 @@ export class QuestEditorComponent implements OnInit {
     console.log("deleteSolutionCombination(" + index + ")");
 
     this.combinationMap.splice(index, 1);
+    this.solution_type_status_int.splice(index, 1);
   }
 
-  updateSolutionItem(event, index){
+  updateSolutionItem(event, index) {
     this.solutionItems[index] = event.target.value;
   }
 
@@ -173,7 +201,7 @@ export class QuestEditorComponent implements OnInit {
     let solution = "Neue Lösung";
 
     //todo need to update various other stuff
-    for(var comb = 0; comb < this.combinationMap.length; comb++){
+    for (var comb = 0; comb < this.combinationMap.length; comb++) {
       this.combinationMap[comb].requiredItems.push(true);
     }
 
@@ -198,6 +226,7 @@ export class QuestEditorComponent implements OnInit {
     }
 
     this.combinationMap.push(new_comb);
+    this.solution_type_status_int.push(1);
   }
 
   // hardly a sexy solution...
@@ -208,8 +237,8 @@ export class QuestEditorComponent implements OnInit {
     this.description = this.gameElement.description.text;
     this.image_url = this.gameElement.description.image;
     this.help = this.gameElement.help;
-      if(this.help === undefined) {
-        this.help = [];
+    if (this.help === undefined) {
+      this.help = [];
     }
 
     //Individual stuff
@@ -218,6 +247,15 @@ export class QuestEditorComponent implements OnInit {
       this.combinationMap = this.gameElement.requirementCombination.combinationMap;
       this.maxTries = this.gameElement.maxTries;
       this.questType = this.gameElement.questType;
+
+      this.display_image_first = this.gameElement.displayImageFirst;
+
+      if (this.gameElement.maxTime !== undefined) {
+        this.maxTime = this.gameElement.maxTime.getTime() / 1000;
+      } else {
+        this.maxTime = 0;
+      }
+
       switch (this.questType) {
         case QuestType.Text:
           this.quest_type_status_int = 1;
@@ -225,6 +263,17 @@ export class QuestEditorComponent implements OnInit {
         case QuestType.MultipleChoice:
           this.quest_type_status_int = 2;
           break;
+      }
+
+      this.solution_type_status_int = [];
+      var counter = 0;
+      for (var cm of this.gameElement.requirementCombination.combinationMap) {
+        if (cm.logicType == LogicType.And) {
+          this.solution_type_status_int[counter] = 1;
+        } else {
+          this.solution_type_status_int[counter] = 2;
+        }
+        counter++;
       }
     }
     else if ((this.gameElement instanceof Narrative)) {
@@ -254,6 +303,7 @@ export class QuestEditorComponent implements OnInit {
   localToGameElement(): void {
     //common to all GameElements
     this.gameElement.title = this.title;
+    console.log(this.gameElement.title);
     this.gameElement.description.text = this.description;
     this.gameElement.description.image = this.image_url;
     this.gameElement.help = this.help;
@@ -261,9 +311,31 @@ export class QuestEditorComponent implements OnInit {
     //Individual stuff
     if ((this.gameElement instanceof Quest)) {
       this.gameElement.requirementCombination.solutionItems = this.solutionItems;
-      this.gameElement.requirementCombination.combinationMap =this.combinationMap;
+      this.gameElement.requirementCombination.combinationMap = this.combinationMap;
       this.gameElement.maxTries = this.maxTries;
       this.gameElement.questType = this.questType;
+
+      this.gameElement.displayImageFirst = this.display_image_first;
+
+      var counter = 0;
+      for (var cm of this.gameElement.requirementCombination.combinationMap) {
+        if (this.solution_type_status_int[counter] == 1) {
+          cm.logicType = LogicType.And;
+        } else {
+          cm.logicType = LogicType.Or;
+        }
+        counter++;
+      }
+      //why use date?
+      var t = new Date(0); // Epoch
+      t.setSeconds(this.maxTime);
+      this.gameElement.maxTime = t;
+
+      if (this.quest_type_status_int == 1) {
+        this.gameElement.questType = QuestType.Text;
+      } else {
+        this.gameElement.questType = QuestType.MultipleChoice;
+      }
     } else if ((this.gameElement instanceof Narrative)) {
       this.gameElement.narrativeStatus = this.narrative_status;
       this.gameElement.narrativeType = this.narrative_type;
@@ -293,7 +365,13 @@ export class QuestEditorComponent implements OnInit {
 
   }
 
-  setGameElementToEdit(gm: GameElement): void {
+  setGameElementToEdit(gm: GameElement, initial_setup: boolean): void {
+
+    //first save all stuff that was done in the old editor
+    if (!initial_setup) {
+      this.localToGameElement();
+    }
+
     this.gameElement = gm;
 
     if ((gm instanceof Quest)) {
@@ -319,7 +397,7 @@ export class QuestEditorComponent implements OnInit {
     // todo it seems TypeScript only uses references anyways... so the values are actually the same on GameElement and this
     // -> already written
 
-    
+
   }
 
   reset(): void {

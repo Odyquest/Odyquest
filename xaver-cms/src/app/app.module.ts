@@ -68,16 +68,16 @@ export function onAuthRequired(oktaAuth, injector) {
 
 // TODO: add resolver
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-  { path: 'home', component: HomeComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-
-  { path: 'chase', component: MainEditorComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-  {
-    path: 'login/callback',
-    component: OktaCallbackComponent
-  },
-  { path: 'login', component: LoginComponent },
-  { path: 'logged-out', component: LoggedOutComponent }
+  { path: '', component: MainEditorComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
+  //{ path: '', component: HomeComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
+  //{ path: 'home', component: HomeComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
+  //{ path: 'chase', component: MainEditorComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
+  //{
+  //  path: 'login/callback',
+  //  component: OktaCallbackComponent
+  //},
+  //{ path: 'login', component: LoginComponent },
+  //{ path: 'logged-out', component: LoggedOutComponent }
 
 ]
 

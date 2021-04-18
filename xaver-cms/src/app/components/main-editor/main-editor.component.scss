@@ -15,7 +15,7 @@
   //height: 100%;
   padding-bottom: 20px;
   align-items: center;
-  border-bottom: 2px solid black;
+  //border-bottom: 2px solid black;
 }
 
 .quest_connections:hover {
@@ -84,12 +84,12 @@ mat-selection-list {
     background: $background_color_selectable;
     color: $text_color;
     border: 2px solid $text_color;
-    padding: 6px 16px;
+    padding: 6px 8px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
-    margin: 10px 2px;
+    margin: 2px 2px;
     transition-duration: 0.4s;
     border-radius: 5px;
     cursor: pointer;
@@ -113,8 +113,8 @@ mat-list-option {
 }
 
 #saveChaseButton {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .quest_selector_header {
@@ -123,6 +123,7 @@ mat-list-option {
   width: 100%;
   color: white;
   background: #bea05a;
+  border-top: 2px solid black;
 }
 
 .text-and-delete-container {
@@ -135,4 +136,29 @@ mat-list-option {
 .delete_icon:hover {
   color: red;
   //border: 2px solid red;
+}
+
+input {
+  width: 80%;
+  padding: 6px 10px;
+  margin: 4px 0;
+  box-sizing: border-box;
+  border: 3px solid grey;
+  border-radius: 4px;
+
+  font-size: 15pt;
+  //margin-bottom: 40px;
+}
+
+textarea {
+  width: 90%;
+  height: 7%;
+  padding: 6px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid grey;
+  border-radius: 4px;
+
+  margin-bottom: 10px;
+  font-size: 15pt;
 }

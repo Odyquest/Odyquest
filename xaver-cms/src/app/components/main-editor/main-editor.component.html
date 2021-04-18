@@ -1,7 +1,14 @@
 <div class="main_body">
   <div class="quest_selector_container">
     <div class="quest_selector_header">Jagd</div>
-    <button id="saveChaseButton" mat-raised-button color="primary" (click)="pushChaseToServer()">Jagd Speichern</button>
+    <input hidden type="file" #uploader (change)="uploadChase($event)" />
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="createNewChase()">Neue Jagd</button>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="uploader.click()">Jagd Öffnen</button>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="downloadChase()">Jagd Speichern</button>
+    <input type="text" id="author" name="Titel" [(ngModel)]="title" placeholder="Name der Jagd..."><br><br>
+    <input type="text" id="author" name="Autor" [(ngModel)]="author" placeholder="Autor..."><br><br>
+    <textarea type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..." name="fname"
+      class="input_field_big" [(ngModel)]="description"></textarea>
     <div class="quest_selector_header">Rätsel</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
@@ -30,9 +37,10 @@
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">Neues Erzählelement</button>
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">Neues
+        Erzählelement</button>
     </div>
-    
+
   </div>
   <app-quest-editor #quest_editor></app-quest-editor>
 </div>
