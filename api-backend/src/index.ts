@@ -55,3 +55,9 @@ app.listen(port, () => {
     console.log('The application is listening on port ' + port + '!');
 })
 
+//import { getSimpleExample } from './shared/models/example/chaseExample';
+//
+//console.log('create example');
+//database.createChase(getSimpleExample());
+//console.log('print chase list:');
+//console.log(database.getChaseList());
