@@ -79,20 +79,20 @@ export class Database {
 
   }
 
-  getChase(id: string) {
-    ChaseModel.find( function (err, doc) {
-      if (err) { console.log(err); }
-      console.log(doc);
+  getChase(id: string): Promise<Chase> {
+    return ChaseModel.findOne({_id: id}).then(item => {
+      return item;
+    }).catch(error => {
+      return error;
     });
   }
 
-  getChaseList() {
-    ChaseModel.find( function (err, doc) {
-      if (err) { console.log(err); }
-      console.log(doc);
-      //return doc;
+  getChaseList(): Promise<Array<ChaseMetaData>> {
+    return ChaseModel.find().then(item => {
+      return item;
+    }).catch(error => {
+      return error;
     });
-    //console.log(list);
   }
 
   createChase(chase: Chase) {

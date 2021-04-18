@@ -27,13 +27,21 @@ app.get('/', (req, res) => {
 })
 
 app.get('/chase', (req, res) => {
-  database.getChaseList();
-  res.send('FIXME return all the chases');
+  database.getChaseList().then(list => {
+    res.send('FIXME return all ' + list.length + ' chases');
+  }).catch(() => {
+    //TODO set error code
+    res.send('FIXME no chases error');
+  });
 })
 
 app.get('/chase/*', (req, res) => {
-  database.getChase(req.params[0]);
-  res.send('FIXME return chase with id: ' + req.params[0]);
+  database.getChase(req.params[0]).then(chase => {
+    res.send('FIXME return chase with id ' + req.params[0] + ' and title ' + chase.metaData.title);
+  }).catch(() => {
+    //TODO set error code
+    res.send('FIXME no such chase error');
+  });
 })
 
 app.post('/chase', function (req, res) {
@@ -45,6 +53,5 @@ const port = 8400;
 
 app.listen(port, () => {
     console.log('The application is listening on port ' + port + '!');
-    var database = new Database();
 })
 
