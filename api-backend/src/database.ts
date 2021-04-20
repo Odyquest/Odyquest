@@ -13,7 +13,7 @@ const DescriptionSchema = new Schema(
 
 const ChaseMetaDataSchema = new Schema(
   {
-   chase_id: {type: String, required: true },
+   chaseId: {type: String, required: true },
    version: {type: Number, required: false },
    title: {type: String, required: true },
    description: {type: String, required: false },

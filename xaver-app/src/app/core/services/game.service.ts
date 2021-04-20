@@ -65,7 +65,7 @@ export class GameService {
 
   start(): GameElement {
     this.chaseStorage.setRunningChase(this.chase);
-    this.chaseStorage.setChaseStatus(this.chase.metaData.id, ChaseStatus.Started);
+    this.chaseStorage.setChaseStatus(this.chase.metaData.chaseId, ChaseStatus.Started);
     if (this.startElement) {
       return this.continueWith(this.startElement);
     } else {
@@ -78,7 +78,7 @@ export class GameService {
   }
 
   finish(chaseStatus: ChaseStatus): void {
-    this.chaseStorage.setChaseStatus(this.chase.metaData.id, chaseStatus);
+    this.chaseStorage.setChaseStatus(this.chase.metaData.chaseId, chaseStatus);
     this.chaseStorage.deleteRunningChase();
     this.finished = true;
   }

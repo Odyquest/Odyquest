@@ -12,7 +12,7 @@ import { base64_encoded_image } from './imageExample';
 export function getSimpleExample(): Chase {
   const chase = new Chase();
   const metaData = new ChaseMetaData();
-  metaData.chase_id = 'simple_id';
+  metaData.chaseId = 'simple_id';
   metaData.title = 'This is an example chase!';
   metaData.description = 'This chase has no content';
   metaData.preview = new Preview()

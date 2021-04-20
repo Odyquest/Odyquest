@@ -7,7 +7,7 @@ import { GameElement } from './gameElement';
 
 @Serializable()
 export class ChaseMetaData {
-  @JsonProperty() chase_id?: string;
+  @JsonProperty() chaseId?: string;
   @JsonProperty() version?: number;
   @JsonProperty() title: string = '';
   @JsonProperty() description: string = '';
