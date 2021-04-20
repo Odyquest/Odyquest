@@ -29,7 +29,8 @@ const ChaseMetaDataSchema = new Schema(
 
 const ChaseSchema = new Schema(
   {
-    metaData: {type: ChaseMetaDataSchema, required: true }
+    metaData: {type: ChaseMetaDataSchema, required: true },
+    initialGameElement: {type: Number, required: true }
   }
 );
 
