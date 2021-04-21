@@ -4,5 +4,5 @@ import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
 export class Preview {
-	@JsonProperty() description: Description;
+	@JsonProperty() description: Description = new Description();
 }

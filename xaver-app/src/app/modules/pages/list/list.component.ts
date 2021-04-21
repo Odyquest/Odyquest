@@ -47,7 +47,7 @@ export class ListComponent implements OnInit {
     return this.chaseStorage.getRunningChase().metaData.title;
   }
   getRunningChaseId(): any {
-    return this.chaseStorage.getRunningChase().metaData.id;
+    return this.chaseStorage.getRunningChase().metaData.chaseId;
   }
 
   hasNoChases(): boolean {

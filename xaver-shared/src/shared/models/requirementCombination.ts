@@ -25,13 +25,13 @@ export class RequirementCombination {
       }
     }
 
-    const matchAny = function(value, index): boolean {
+    const matchAny = function(value: boolean, index: number): boolean {
       return value === solutionArray[index] && value === true;
     };
-    const matchAll = function(value, index): boolean {
+    const matchAll = function(value: boolean, index: number): boolean {
       return value === solutionArray[index];
     };
-    const isTrue = function(value): boolean {
+    const isTrue = function(value:boolean): boolean {
       return value === true;
     }
     for (const combination of this.combinationMap) {

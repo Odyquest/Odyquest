@@ -3,8 +3,8 @@ import { Description } from './description';
 
 @Serializable()
 export class ExecutionTarget {
-	@JsonProperty() url: string;
-	@JsonProperty() data: string;
+	@JsonProperty() url: string = '';
+	@JsonProperty() data: string = '';
 }
 
 /**
@@ -14,15 +14,15 @@ export class ExecutionTarget {
 export class GameElement {
 	@JsonProperty() id?: number;
 	@JsonProperty() version?: number;
-	@JsonProperty() title: string;
+	@JsonProperty() title: string = '';
 	@JsonProperty() description = new Description();
-	@JsonProperty({ type: Description }) help: Array<Description>;
+	@JsonProperty({ type: Description }) help: Array<Description> = new Array<Description>();
 
 	/** Url to external presenter of this element like Xaver
 	 * if variable is defined, the given presenter will be used
 	 * if it is undefined, use the app for display
 	 */
-  @JsonProperty() executionTarget: ExecutionTarget|undefined;
+  @JsonProperty() executionTarget?: ExecutionTarget;
 
   constructor() {
     this.help = new Array<Description>();
