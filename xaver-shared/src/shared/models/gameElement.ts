@@ -27,4 +27,16 @@ export class GameElement {
   constructor() {
     this.help = new Array<Description>();
   }
+
+  copyFromGameElement(element:GameElement) {
+    if (element.id) {
+      this.id = element.id;
+    }
+    if (element.version) {
+    this.version = element.version;
+    }
+    this.title = element.title;
+    this.description = element.description;
+    this.help = element.help;
+  }
 }

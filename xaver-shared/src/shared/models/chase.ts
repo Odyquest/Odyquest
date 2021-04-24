@@ -58,6 +58,8 @@ export class Chase {
         } else if (value.get(element) instanceof Quest) {
           console.log('serialize quest');
           quests[element] = serialize(value.get(element));
+        } else {
+          console.log('can not serialize game element of unknown type');
         }
       }
       return {

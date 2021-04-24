@@ -2,8 +2,8 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose'
 import { Database, ChaseMetaDataModel, DescriptionModel } from './database';
-import { ChaseList } from './shared/models/chase';
-import { serialize } from 'typescript-json-serializer';
+import { Chase, ChaseList } from './shared/models/chase';
+import { deserialize, serialize } from 'typescript-json-serializer';
 
 var database = new Database();
 
@@ -32,7 +32,7 @@ app.get('/chase', (req, res) => {
   database.getChaseList().then(list => {
     const chases = new ChaseList();
     chases.chases = list;
-    res.send(serialize(chases));
+    res.send(serialize(chases as ChaseList));
   }).catch(() => {
     //TODO set error code
     // send empty list
@@ -43,7 +43,7 @@ app.get('/chase', (req, res) => {
 
 app.get('/chase/*', (req, res) => {
   database.getChase(req.params[0]).then(chase => {
-    res.send(serialize(chase));
+    res.send(serialize(chase as Chase));
   }).catch(() => {
     //TODO set error code
     res.send('{}');
