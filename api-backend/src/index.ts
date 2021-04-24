@@ -23,6 +23,7 @@ const options: cors.CorsOptions = {
   preflightContinue: false,
 };
 app.use(cors(options));
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Boom!');
@@ -52,7 +53,8 @@ app.get('/chase/*', (req, res) => {
 
 app.post('/chase', function (req, res) {
   // FIXME implement authentication
-  res.send('FIXME implement');
+  console.log('received new chase ' + JSON.stringify(req.body));
+  res.send('{ chaseId: "' + database.createChase(deserialize(req.body, Chase)) + '" }');
 })
 
 const port = 8400;

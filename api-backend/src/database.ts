@@ -71,8 +71,8 @@ const QuestSchema = new Schema(
     questType: {type: String, default: QuestType.Text, enum: Object.values(QuestType), required: true },
     maxTries: {type: Number, required: false },
     maxTime: {type: Date, required: false },
-    displayImageFirst: {type: Boolean, required: true },
-    requiredCombination: {type: Boolean, required: true }
+    displayImageFirst: {type: Boolean, required: true }
+    //requiredCombination: {type: Boolean, required: false }
   }, { _id: false }
 );
 
@@ -169,7 +169,7 @@ export class Database {
     });
   }
 
-  createChase(chase: Chase) {
+  createChase(chase: Chase): Promise<string> {
     const doc = chase as ChaseDocument;
     doc.narrativeKeys = new Array<number>();
     doc.narrativeValues = new Array<Narrative>();
@@ -190,6 +190,7 @@ export class Database {
     console.log('createChase(): save with id ' + entry._id)
     entry.get('metaData').chaseId = entry._id;
     entry.save();
+    return entry._id;
   }
 
 };
