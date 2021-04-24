@@ -18,4 +18,15 @@ export class Quest extends GameElement {
 	@JsonProperty() displayImageFirst: boolean = false;
 	@JsonProperty({ type: RequirementCombination, }) requirementCombination = new RequirementCombination();
 
+  copyFromQuest(quest:Quest) {
+    this.questType = quest.questType;
+    if (quest.maxTries) {
+      this.maxTries = quest.maxTries;
+    }
+    if (quest.maxTime) {
+      this.maxTime = quest.maxTime;
+    }
+    this.displayImageFirst = quest.displayImageFirst;
+    this.requirementCombination = quest.requirementCombination;
+  }
 }

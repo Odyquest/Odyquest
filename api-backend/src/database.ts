@@ -2,8 +2,8 @@ import { model, createConnection, Document, Model, Schema, Query } from 'mongoos
 import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
 import { Description } from './shared/models/description';
 import { GameElement } from './shared/models/gameElement';
-import { Narrative } from './shared/models/narrative';
-import { Quest } from './shared/models/quest';
+import { Narrative, NarrativeType, NarrativeStatus } from './shared/models/narrative';
+import { Quest, QuestType } from './shared/models/quest';
 
 const DescriptionSchema = new Schema(
   {
@@ -28,51 +28,79 @@ const ChaseMetaDataSchema = new Schema(
   }
 );
 
-const GameElementSchema = new Schema(
+//const GameElementSchema = new Schema(
+//  {
+//    /* attributes representing GameElement */
+//    id: {type: Number, required: false },
+//    version: {type: Number, required: false },
+//    title: {type: String, required: false },
+//    description: {type: DescriptionSchema, required: true }
+//    // TODO add help
+//  }, { _id: false }
+//);
+
+const NarrativeSchema = new Schema(
   {
+    /* attributes representing GameElement */
     id: {type: Number, required: false },
     version: {type: Number, required: false },
     title: {type: String, required: false },
-    description: {type: DescriptionSchema, required: true }
-    // TODO add help
-  }
+    description: {type: DescriptionSchema, required: true },
+    help: {type: [Description], required: true},
+
+    /* attributes representing Narrative */
+    buttons: {type: [{
+      name: {type: String, required: true },
+      destination: {type: Number, required: true },
+    }], required: true },
+    narrativeType: {type: String, default: NarrativeType.Text, enum: Object.values(NarrativeType), required: true },
+    narrativeStatus: {type: String, default: NarrativeStatus.Continue, enum: Object.values(NarrativeStatus), required: true },
+  }, { _id: false }
+);
+
+const QuestSchema = new Schema(
+  {
+    /* attributes representing GameElement */
+    id: {type: Number, required: false },
+    version: {type: Number, required: false },
+    title: {type: String, required: false },
+    description: {type: DescriptionSchema, required: true },
+    help: {type: [Description], required: true},
+
+    /* attributes representing Quest */
+    questType: {type: String, default: QuestType.Text, enum: Object.values(QuestType), required: true },
+    maxTries: {type: Number, required: false },
+    maxTime: {type: Date, required: false },
+    displayImageFirst: {type: Boolean, required: true },
+    requiredCombination: {type: Boolean, required: true }
+  }, { _id: false }
 );
 
 const ChaseSchema = new Schema(
   {
     metaData: {type: ChaseMetaDataSchema, required: true },
-    gameElementValues: {type: [GameElementSchema], required: true},
-    gameElementKeys: {type: [Number], required: true},
+    narrativeValues: {type: [NarrativeSchema], required: true},
+    narrativeKeys: {type: [Number], required: true},
+    questValues: {type: [QuestSchema], required: true},
+    questKeys: {type: [Number], required: true},
     initialGameElement: {type: Number, required: true }
   }
 );
 
-const NarrativeSchema = new Schema(
-  {
-    /* attributes representing Narrative */
-    // TODO buttons
-  }
-);
-
-const QuestSchema = new Schema(
-  {
-    /* attributes representing Quest */
-    // TODO fill
-  }
-);
-
 /* handle inheritance in gameElementValues */
-const GameElementArray = ChaseSchema.path('gameElementValues') as Schema.Types.DocumentArray;
-const NarrativeType = GameElementArray.discriminator('Narrative', NarrativeSchema);
-const QuestType = GameElementArray.discriminator('Quest', QuestSchema);
+//const GameElementArray = ChaseSchema.path('gameElementValues') as Schema.Types.DocumentArray;
+//const NarrativeType = GameElementArray.discriminator('Narrative', NarrativeSchema);
+//const QuestType = GameElementArray.discriminator('Quest', QuestSchema);
 
-interface DescriptionDocument extends Description, Document {};
-interface ChaseMetaDataDocument extends ChaseMetaData, Document {};
+//interface DescriptionDocument extends Description, Document {};
+//interface ChaseMetaDataDocument extends ChaseMetaData, Document {};
 interface ChaseDocument extends Chase, Document {
   /** list of keys stored in gameElements */
-  gameElementKeys: Array<number>;
+  narrativeKeys: Array<number>;
+  questKeys: Array<number>;
   /** list of game elements stored in gameElements, same order as in gameElementKeys  */
-  gameElementValues: Array<GameElement>;
+  narrativeValues: Array<Narrative>;
+  questValues: Array<Quest>;
 };
 interface ChaseListDocument extends ChaseList, Document {};
 
@@ -97,13 +125,37 @@ export class Database {
 
   getChase(id: string): Promise<Chase> {
     return ChaseModel.findOne({_id: id}).then(function(item) {
-      if (item && (item as ChaseDocument).gameElementKeys) {
-        let chase = item as ChaseDocument
+      console.log('getChase(): findOne');
+      if (item && (item as ChaseDocument)) {
+        const document = item as ChaseDocument;
+
+        // copy chase data
+        const chase = new Chase();
+        chase.metaData = document.metaData;
+        chase.initialGameElement = document.initialGameElement;
+        chase.tags = document.tags;
         chase.gameElements = new Map<number, GameElement>();
-        for (var i = 0; i < chase.gameElementKeys.length; i++) {
-          chase.gameElements.set(chase.gameElementKeys[i], chase.gameElementValues[i]);
+
+        // copy game elements
+        for (let i = 0; i < document.narrativeKeys.length; i++) {
+          const element = new Narrative();
+          element.copyFromNarrative(document.narrativeValues[i]);
+          chase.gameElements.set(document.narrativeKeys[i], element);
         }
-        return item;
+        for (let i = 0; i < document.questKeys.length; i++) {
+          const element:Quest = new Quest();
+          element.copyFromQuest(document.questValues[i]);
+          chase.gameElements.set(document.questKeys[i], element);
+        }
+        console.log('getChase(): chase has ' + chase.gameElements.size + ' game elements');
+
+        for(let [key, value] of chase.gameElements) {
+          console.log('element ' + key + ' is of type ' + typeof value);
+        }
+
+        return chase;
+      } else {
+          console.log('getChase() either chase is undefined or no game element keys are available');
       }
     }).catch(error => {
       return error;
@@ -111,8 +163,14 @@ export class Database {
   }
 
   getChaseList(): Promise<Array<ChaseMetaData>> {
-    return ChaseModel.find().then(item => {
-      return item;
+    return ChaseModel.find().exec().then(item => {
+      const list = new Array<ChaseMetaData>();
+      for (const value in item) {
+        console.log("chase [" + value + "-> " + item[value]);
+        const c = item[value];
+        // FIXME list.push(c.metaData);
+      }
+      return list;
     }).catch(error => {
       return error;
     });
@@ -121,14 +179,25 @@ export class Database {
   createChase(chase: Chase) {
     console.log('there are ' + chase.gameElements.size + ' game elements');
     const doc = chase as ChaseDocument;
-    doc.gameElementKeys = new Array<number>();
-    doc.gameElementValues = new Array<GameElement>();
+    doc.narrativeKeys = new Array<number>();
+    doc.narrativeValues = new Array<Narrative>();
+    doc.questKeys = new Array<number>();
+    doc.questValues = new Array<Quest>();
     for (let [key, value] of doc.gameElements.entries()) {
-      doc.gameElementKeys.push(key);
-      doc.gameElementValues.push(value);
+      if (value instanceof Narrative) {
+        doc.narrativeKeys.push(key);
+        doc.narrativeValues.push(value as Narrative);
+        console.log('createChase(): save narrative');
+      } else if (value instanceof Quest) {
+        doc.questKeys.push(key);
+        doc.questValues.push(value as Quest);
+        console.log('createChase(): save quest');
+      } else {
+        console.log('createChase(): unknown type of game element');
+      }
     }
     const entry = new ChaseModel(doc);
-    console.log(entry);
+    console.log('createChase(): save ' + entry);
     entry.save();
   }
 

@@ -25,6 +25,13 @@ export class Narrative extends GameElement {
 	/** Game continues or is finished */
 	@JsonProperty() narrativeStatus = NarrativeStatus.Continue;
 
+  copyFromNarrative(narrative:Narrative) {
+    this.copyFromGameElement(narrative);
+    this.buttons = narrative.buttons;
+    this.narrativeType = narrative.narrativeType;
+    this.narrativeStatus = narrative.narrativeStatus;
+  }
+
   isFinal(): boolean {
     return this.narrativeStatus !== NarrativeStatus.Continue;
   }
