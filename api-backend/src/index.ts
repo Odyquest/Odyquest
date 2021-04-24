@@ -43,9 +43,7 @@ app.get('/chase', (req, res) => {
 
 app.get('/chase/*', (req, res) => {
   database.getChase(req.params[0]).then(chase => {
-    console.log('api: chase has ' + chase.gameElements.size + ' game elements');
-    const data = serialize(chase as Chase);
-    res.send(data);
+    res.send(serialize(chase as Chase));
   }).catch(() => {
     //TODO set error code
     res.send('{}');

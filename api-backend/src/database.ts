@@ -46,7 +46,7 @@ const NarrativeSchema = new Schema(
     version: {type: Number, required: false },
     title: {type: String, required: false },
     description: {type: DescriptionSchema, required: true },
-    help: {type: [Description], required: true},
+    help: {type: [DescriptionSchema], required: true},
 
     /* attributes representing Narrative */
     buttons: {type: [{
@@ -65,7 +65,7 @@ const QuestSchema = new Schema(
     version: {type: Number, required: false },
     title: {type: String, required: false },
     description: {type: DescriptionSchema, required: true },
-    help: {type: [Description], required: true},
+    help: {type: [DescriptionSchema], required: true},
 
     /* attributes representing Quest */
     questType: {type: String, default: QuestType.Text, enum: Object.values(QuestType), required: true },
@@ -125,7 +125,6 @@ export class Database {
 
   getChase(id: string): Promise<Chase> {
     return ChaseModel.findOne({_id: id}).then(function(item) {
-      console.log('getChase(): findOne');
       if (item && (item as ChaseDocument)) {
         const document = item as ChaseDocument;
 
@@ -147,11 +146,6 @@ export class Database {
           element.copyFromQuest(document.questValues[i]);
           chase.gameElements.set(document.questKeys[i], element);
         }
-        console.log('getChase(): chase has ' + chase.gameElements.size + ' game elements');
-
-        for(let [key, value] of chase.gameElements) {
-          console.log('element ' + key + ' is of type ' + typeof value);
-        }
 
         return chase;
       } else {
@@ -163,12 +157,11 @@ export class Database {
   }
 
   getChaseList(): Promise<Array<ChaseMetaData>> {
-    return ChaseModel.find().exec().then(item => {
+    return ChaseModel.find().exec().then(function(item) {
       const list = new Array<ChaseMetaData>();
       for (const value in item) {
-        console.log("chase [" + value + "-> " + item[value]);
-        const c = item[value];
-        // FIXME list.push(c.metaData);
+        const cmd = item[value].get('metaData');
+        list.push(cmd);
       }
       return list;
     }).catch(error => {
@@ -177,7 +170,6 @@ export class Database {
   }
 
   createChase(chase: Chase) {
-    console.log('there are ' + chase.gameElements.size + ' game elements');
     const doc = chase as ChaseDocument;
     doc.narrativeKeys = new Array<number>();
     doc.narrativeValues = new Array<Narrative>();
@@ -187,17 +179,16 @@ export class Database {
       if (value instanceof Narrative) {
         doc.narrativeKeys.push(key);
         doc.narrativeValues.push(value as Narrative);
-        console.log('createChase(): save narrative');
       } else if (value instanceof Quest) {
         doc.questKeys.push(key);
         doc.questValues.push(value as Quest);
-        console.log('createChase(): save quest');
       } else {
         console.log('createChase(): unknown type of game element');
       }
     }
     const entry = new ChaseModel(doc);
-    console.log('createChase(): save ' + entry);
+    console.log('createChase(): save with id ' + entry._id)
+    entry.get('metaData').chaseId = entry._id;
     entry.save();
   }
 
