@@ -4,6 +4,7 @@ import { Description } from './shared/models/description';
 import { GameElement } from './shared/models/gameElement';
 import { Narrative, NarrativeType, NarrativeStatus } from './shared/models/narrative';
 import { Quest, QuestType } from './shared/models/quest';
+import { LogicType } from './shared/models/solution_term';
 
 const DescriptionSchema = new Schema(
   {
@@ -72,7 +73,14 @@ const QuestSchema = new Schema(
     maxTries: {type: Number, required: false },
     maxTime: {type: Date, required: false },
     displayImageFirst: {type: Boolean, required: true },
-    requiredCombination: {type: Boolean, required: true }
+    requirementCombination: {type: {
+      solutionItems: {type: [String], required: true},
+      combinationMap: {type: [{
+        requiredItems: {type: [Boolean], required: true},
+        logicType: {type: String, default: LogicType.And, enum: Object.values(LogicType), required: true},
+        destination: {type: Number, required: true},
+      }], required: true},
+    }, required: true }
   }, { _id: false }
 );
 
@@ -130,9 +138,7 @@ export class Database {
 
         // copy chase data
         const chase = new Chase();
-        chase.metaData = document.metaData;
-        chase.initialGameElement = document.initialGameElement;
-        chase.tags = document.tags;
+        chase.copyFromChase(document);
         chase.gameElements = new Map<number, GameElement>();
 
         // copy game elements
@@ -169,27 +175,56 @@ export class Database {
     });
   }
 
-  createChase(chase: Chase) {
-    const doc = chase as ChaseDocument;
-    doc.narrativeKeys = new Array<number>();
-    doc.narrativeValues = new Array<Narrative>();
-    doc.questKeys = new Array<number>();
-    doc.questValues = new Array<Quest>();
-    for (let [key, value] of doc.gameElements.entries()) {
+  private gameElementMapToArrays(from: Chase, to:ChaseDocument) {
+    to.narrativeKeys = new Array<number>();
+    to.narrativeValues = new Array<Narrative>();
+    to.questKeys = new Array<number>();
+    to.questValues = new Array<Quest>();
+    for (let [key, value] of from.gameElements.entries()) {
       if (value instanceof Narrative) {
-        doc.narrativeKeys.push(key);
-        doc.narrativeValues.push(value as Narrative);
+        to.narrativeKeys.push(key);
+        to.narrativeValues.push(value as Narrative);
       } else if (value instanceof Quest) {
-        doc.questKeys.push(key);
-        doc.questValues.push(value as Quest);
+        to.questKeys.push(key);
+        to.questValues.push(value as Quest);
       } else {
         console.log('createChase(): unknown type of game element');
       }
     }
+  }
+
+  private createChase(chase: Chase): Promise<string> {
+    const doc = chase as ChaseDocument;
+    this.gameElementMapToArrays(doc, doc);
     const entry = new ChaseModel(doc);
     console.log('createChase(): save with id ' + entry._id)
     entry.get('metaData').chaseId = entry._id;
     entry.save();
+    return entry._id;
+  }
+
+  private updateChase(new_chase: Chase, document:ChaseDocument) {
+    new_chase.copyToChase(document);
+    this.gameElementMapToArrays(new_chase, document);
+    document.save();
+  }
+
+  createOrUpdateChase(chase: Chase): Promise<string> {
+    var db = this;
+    return ChaseModel.findOne({_id: chase.metaData.chaseId}).then(function(item) {
+      if (item && (item as ChaseDocument)) {
+        const document = item as ChaseDocument;
+        console.log('update chase ' + document.metaData.chaseId);
+        db.updateChase(chase, document);
+        return chase.metaData.chaseId;
+      } else {
+        console.log('create new chase');
+        // console.log('updateChase() either chase is undefined or no game element keys are available');
+        return db.createChase(chase);
+      }
+    }).catch(error => {
+      return error;
+    });
   }
 
 };

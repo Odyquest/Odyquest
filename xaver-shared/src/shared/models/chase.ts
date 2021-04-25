@@ -71,6 +71,23 @@ export class Chase {
   @JsonProperty() initialGameElement: number = -1; // GameElementID
   @JsonProperty() tags?: Array<string>;
 
+  copyFromChase(chase: Chase) {
+        this.metaData = chase.metaData;
+        this.initialGameElement = chase.initialGameElement;
+        this.gameElements = chase.gameElements;
+        if (chase.tags) {
+          this.tags = chase.tags;
+        }
+  }
+  copyToChase(chase: Chase) {
+        chase.metaData = this.metaData;
+        chase.initialGameElement = this.initialGameElement;
+        chase.gameElements = this.gameElements;
+        if (this.tags) {
+          chase.tags = this.tags;
+        }
+  }
+
   getElement(destination: number): GameElement | undefined {
     return this.gameElements.get(destination);
   }
