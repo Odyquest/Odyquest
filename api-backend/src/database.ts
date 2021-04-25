@@ -4,6 +4,7 @@ import { Description } from './shared/models/description';
 import { GameElement } from './shared/models/gameElement';
 import { Narrative, NarrativeType, NarrativeStatus } from './shared/models/narrative';
 import { Quest, QuestType } from './shared/models/quest';
+import { LogicType } from './shared/models/solution_term';
 
 const DescriptionSchema = new Schema(
   {
@@ -71,8 +72,15 @@ const QuestSchema = new Schema(
     questType: {type: String, default: QuestType.Text, enum: Object.values(QuestType), required: true },
     maxTries: {type: Number, required: false },
     maxTime: {type: Date, required: false },
-    displayImageFirst: {type: Boolean, required: true }
-    //requiredCombination: {type: Boolean, required: false }
+    displayImageFirst: {type: Boolean, required: true },
+    requirementCombination: {type: {
+      solutionItems: {type: [String], required: true},
+      combinationMap: {type: [{
+        requiredItems: {type: [Boolean], required: true},
+        logicType: {type: String, default: LogicType.And, enum: Object.values(LogicType), required: true},
+        destination: {type: Number, required: true},
+      }], required: true},
+    }, required: true }
   }, { _id: false }
 );
 
