@@ -54,7 +54,23 @@ app.get('/chase/*', (req, res) => {
 app.post('/chase', function (req, res) {
   // FIXME implement authentication
   console.log('received new chase ' + JSON.stringify(req.body));
-  res.send('{ chaseId: "' + database.createChase(deserialize(req.body, Chase)) + '" }');
+  database.createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
+    res.send('{ chaseId: "' + id + '" }');
+  }).catch(() => {
+    //TODO set error code
+    res.send('{}');
+  });
+})
+
+app.put('/chase', function (req, res) {
+  // FIXME implement authentication
+  console.log('received new chase ' + JSON.stringify(req.body));
+  database.createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
+    res.send('{ chaseId: "' + id + '" }');
+  }).catch(() => {
+    //TODO set error code
+    res.send('{}');
+  });
 })
 
 const port = 8400;
@@ -63,9 +79,3 @@ app.listen(port, () => {
     console.log('The application is listening on port ' + port + '!');
 })
 
-//import { getSimpleExample } from './shared/models/example/chaseExample';
-//
-//console.log('create example');
-//database.createChase(getSimpleExample());
-//console.log('print chase list:');
-//console.log(database.getChaseList());
