@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import multer from 'multer';
 import { Database, ChaseMetaDataModel, DescriptionModel } from './database';
 import { Chase, ChaseList } from './shared/models/chase';
 import { deserialize, serialize } from 'typescript-json-serializer';
@@ -8,6 +9,7 @@ import { deserialize, serialize } from 'typescript-json-serializer';
 var database = new Database();
 
 const app = express();
+const upload = multer();
 
 const options: cors.CorsOptions = {
   allowedHeaders: [
@@ -71,6 +73,26 @@ app.put('/chase', function (req, res) {
     //TODO set error code
     res.send('{}');
   });
+})
+
+app.get('/media/*', (req, res) => {
+  database.getMedia(req.params[0]).then(data => {
+    res.send(data);
+  }).catch(() => {
+    //TODO set error code
+    res.send('');
+  });
+})
+
+function addMedia(req:express.Request, res:express.Response) {
+  console.log('received media data ' + JSON.stringify(req.body));
+  const id = database.createMedia(req.body.chaseId, req.body.name, req.file.mimetype, req.file.buffer);
+  res.send('{ url: "/media/' + id + '" }');
+}
+
+app.post('/media', upload.single('file'), function (req, res) {
+  // FIXME implement authentication
+  addMedia(req, res);
 })
 
 const port = 8400;
