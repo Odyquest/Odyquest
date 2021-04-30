@@ -126,6 +126,24 @@ export const DescriptionModel = connection.model('Description', DescriptionSchem
 export const ChaseMetaDataModel = connection.model('ChaseMetaData', ChaseMetaDataSchema);
 export const ChaseModel = connection.model('Chase', ChaseSchema);
 
+const MediaSchema = new Schema(
+  {
+    chaseId: {type: String, required: true },
+    name: {type: String, required: true },
+    mimetype: {type: String, required: true },
+    binary: {type: Buffer, required: true },
+    // TODO add more
+  }
+)
+class MediaDocument extends Document {
+  chaseId: string = "";
+  name: string = "";
+  mimetype: string = '';
+  binary: any;
+  // TODO add more
+};
+export const MediaModel = connection.model('Media', MediaSchema);
+
 export class Database {
   constructor() {
     console.log('Registered models: ' + connection.modelNames())
@@ -227,4 +245,27 @@ export class Database {
     });
   }
 
+  getMedia(id: string): Promise<Buffer> {
+    return MediaModel.findOne({ _id: id }).then(function(item) {
+      if (item && (item as MediaDocument)) {
+        const media = (item as MediaDocument);
+        return media.binary;
+      }
+    });
+  }
+
+  createMedia(chaseId: string, name: string, mimetype: string, data: Buffer): string {
+    console.log("start creating media document");
+    const entry = new MediaModel();
+    console.log("created media document");
+    const doc = entry as MediaDocument;
+    doc.chaseId = chaseId;
+    doc.name = name;
+    doc.mimetype = mimetype;
+    doc.binary = data;
+    console.log("set data media document");
+    entry.save();
+    console.log("saved media document");
+    return entry._id;
+  }
 };
