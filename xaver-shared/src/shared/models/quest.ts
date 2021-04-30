@@ -19,6 +19,7 @@ export class Quest extends GameElement {
 	@JsonProperty({ type: RequirementCombination, }) requirementCombination = new RequirementCombination();
 
   copyFromQuest(quest:Quest) {
+    this.copyFromGameElement(quest);
     this.questType = quest.questType;
     if (quest.maxTries) {
       this.maxTries = quest.maxTries;
