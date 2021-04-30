@@ -17,7 +17,7 @@
 
   <div *ngFor="let chase of getChaseList()">
     <section>
-      <mat-card (click)="startChase(chase.id)">
+      <mat-card (click)="startChase(chase.chaseId)">
         <header>
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -33,7 +33,7 @@
           <button primary mat-button>START</button>
           <!--<button mat-button>LIKE</button>-->
           <!--<button mat-button>SHARE</button>-->
-          <mat-icon class="card-flag" *ngIf="isSucceeded(chase.id)" >done</mat-icon>
+          <mat-icon class="card-flag" *ngIf="isSucceeded(chase.chaseId)" >done</mat-icon>
         </mat-card-actions>
       </mat-card>
     </section>
