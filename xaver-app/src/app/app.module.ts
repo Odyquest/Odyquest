@@ -8,7 +8,7 @@ import { HintComponent } from './modules/components/hint/hint.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ChaseComponent } from './modules/pages/chase/chase.component';
@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './modules/pages/list/list.component';
 
 
-//Angular Material Components
+// Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
@@ -57,6 +57,8 @@ import { InformationComponent } from './modules/pages/information/information.co
 import { SettingsComponent } from './modules/pages/settings/settings.component';
 import { CloseWarningGuard } from './core/services/close-warning.guard';
 
+import { MarkdownModule } from 'ngx-markdown';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +87,7 @@ import { CloseWarningGuard } from './core/services/close-warning.guard';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MarkdownModule.forRoot({ loader: HttpClient }),
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
