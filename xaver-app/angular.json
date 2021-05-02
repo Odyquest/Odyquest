@@ -40,7 +40,8 @@
               "src/assets/color-theme.scss"
             ],
             "scripts": [
-              "node_modules/marked/lib/marked.js"
+              "node_modules/marked/lib/marked.js",
+              "node_modules/emoji-toolkit/lib/js/joypixels.min.js"
             ],
             "preserveSymlinks": true,
             "i18nMissingTranslation": "error"
