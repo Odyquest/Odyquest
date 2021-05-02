@@ -1,8 +1,7 @@
 <article>
   <!--<div *ngIf="finishedSuccessfully()" i18n="@@finished.congratulations"> Congratulations :tada: </div>-->
   <!--<div *ngIf="finishedFailure()" i18n="@@finished.next-time"> Maybe next time :fingers_crossed: </div>-->
-  <p i18n="@@finished.more-about-museum">Get more information about Badisches Landesmuseum at <a href="https://landesmuseum.de">https://landesmuseum.de</a></p>
-  <p i18n="@@finished.more-about-app">Browse the source code of the app Odyquest at <a href="https://github.com/XaverImMuseum/XaverImMuseum">https://github.com/XaverImMuseum/XaverImMuseum</a></p>
+  <p markdown emoji [src]="getPath()" ></p>
 </article>
 <nav>
 <div class="game_element_buttons">

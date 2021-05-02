@@ -12,4 +12,7 @@ export class InformationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getPath(): string {
+    return $localize`:@@pathToInformation:/assets/information.en.md`;
+  }
 }
