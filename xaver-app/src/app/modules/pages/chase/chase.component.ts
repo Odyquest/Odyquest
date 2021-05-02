@@ -65,6 +65,8 @@ export class ChaseComponent implements OnInit {
 
   selectDestination(destination: number): void {
     this.displayElement = this.game.continueWith(destination);
+    // navigate to top for next element
+    document.getElementById('router').scrollTo(0, 0);
     console.log('Select next element "' + this.displayElement.title + '" (' + destination + ')');
   }
 

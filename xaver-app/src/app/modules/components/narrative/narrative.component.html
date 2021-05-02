@@ -1,6 +1,6 @@
 <article class="game_element_content">
   <div *ngIf="needsTitleRow()" class="game_element_title_row">
-    <h3 class="game_element_title">{{narrative.title}}</h3>
+    <h3 class="game_element_title" >{{narrative.title}}</h3>
   </div>
   <div *ngIf="isDefaultLayout()" class="game_element_columns">
     <div class="game_element_image">
@@ -8,7 +8,7 @@
     </div>
     <div class="game_element_text">
       <div *ngIf="isAudioType()"> Audioplayer </div>
-      <div markdown ngPreserveWhitespaces>{{narrative.description.text}}</div>
+      <div markdown emoji>{{narrative.description.text}}</div>
     </div>
   </div>
   <div *ngIf="isPanoramaLayout()" class="game_element_columns">
@@ -18,7 +18,7 @@
       <ng-template #video><div> Videoplayer </div></ng-template>
     </div>
     <div class="game_element_footnote">
-      <div markdown ngPreserveWhitespaces>{{narrative.description.text}}</div>
+      <div markdown emoji>{{narrative.description.text}}</div>
     </div>
   </div>
 </article>
@@ -26,7 +26,7 @@
   <button *ngFor="let button of narrative.buttons"
      mat-flat-button
      color="primary"
-     (click)="select(button.destination)">{{button.name}}</button>
+     (click)="select(button.destination)" >{{button.name}}</button>
   <button mat-flat-button
      *ngIf="hasHelp()"
      color="primary"
