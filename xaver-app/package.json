@@ -7,6 +7,8 @@
     "start:en": "ng serve",
     "start:de": "ng serve --configuration=de",
     "build": "ng build --prod --localize",
+    "build:production": "ng build --prod --localize",
+    "build:static": "ng build --prod --localize --configuration=static",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
