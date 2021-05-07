@@ -108,25 +108,18 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="finished.more-about-museum" datatype="html">
-        <source>Get more information about Badisches Landesmuseum at <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://landesmuseum.de&quot;&gt;"/>https://landesmuseum.de<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="finished.more-about-app" datatype="html">
-        <source>Browse the source code of the app Odyquest at <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/XaverImMuseum/XaverImMuseum&quot;&gt;"/>https://github.com/XaverImMuseum/XaverImMuseum<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="finished.go-on" datatype="html">
         <source>Go on</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pathToFinished" datatype="html">
+        <source>/assets/finished.en.md</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.ts</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="information.title" datatype="html">
@@ -136,11 +129,11 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="information.app" datatype="html">
-        <source> The app Odyquest is open source. The code is licensed under <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/XaverImMuseum/XaverImMuseum/blob/master/LICENSE&quot;&gt;"/>GPL-3.0<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. Browse the source code of the app Odyquest at <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://github.com/XaverImMuseum/XaverImMuseum&quot;&gt;"/>https://github.com/XaverImMuseum/XaverImMuseum<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
+      <trans-unit id="pathToInformation" datatype="html">
+        <source>/assets/information.en.md</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/information/information.component.html</context>
-          <context context-type="linenumber">6,8</context>
+          <context context-type="sourcefile">src/app/modules/pages/information/information.component.ts</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="pricacy.title" datatype="html">
@@ -150,11 +143,11 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="privacy.description" datatype="html">
-        <source>This app does not collect any personal data except logging for technical reasons.</source>
+      <trans-unit id="pathToPrivacy" datatype="html">
+        <source>/assets/privacy.en.md</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/privacy/privacy.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="sourcefile">src/app/modules/pages/privacy/privacy.component.ts</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="settings.title" datatype="html">

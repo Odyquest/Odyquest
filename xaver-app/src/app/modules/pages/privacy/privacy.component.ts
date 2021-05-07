@@ -12,4 +12,7 @@ export class PrivacyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getPath(): string {
+    return $localize`:@@pathToPrivacy:/assets/privacy.en.md`;
+  }
 }

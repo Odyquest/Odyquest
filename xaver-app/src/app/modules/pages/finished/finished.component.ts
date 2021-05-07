@@ -33,4 +33,8 @@ export class FinishedComponent implements OnInit {
       this.router.navigateByUrl('/list');
     }, 1500);
   }
+
+  getPath(): string {
+    return $localize`:@@pathToFinished:/assets/finished.en.md`;
+  }
 }
