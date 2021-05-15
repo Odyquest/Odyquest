@@ -2,6 +2,11 @@ import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { GameElement } from './gameElement';
 import { XButton } from './xButton';
 
+/**
+ * Display type of the narrative element
+ *
+ * Caution: Not all types are fully implemented yet.
+ */
 export enum NarrativeType {
   Text = 'text',
   Audio = 'audio',
@@ -9,12 +14,23 @@ export enum NarrativeType {
   Video = 'video',
 }
 
+/**
+ * Status of a narrative element
+ *
+ * Does the chase continue or is it the final element. Does the chase finish in a winning or loosing branch.
+ */
 export enum NarrativeStatus {
   Continue = 'continue',
   Win = 'win',
   Loose = 'loose'
 }
 
+/**
+ * A game element telling a story
+ *
+ * It has different buttons for different branches continuing the story
+ * or the status marks it as final element in the chase.
+ */
 @Serializable()
 export class Narrative extends GameElement {
 
@@ -32,6 +48,10 @@ export class Narrative extends GameElement {
     this.narrativeStatus = narrative.narrativeStatus;
   }
 
+  /**
+   * Whether the game element is the final one (true)
+   * or the chase will be continued by an other game element (false).
+   */
   isFinal(): boolean {
     return this.narrativeStatus !== NarrativeStatus.Continue;
   }
