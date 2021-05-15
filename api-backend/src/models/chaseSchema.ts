@@ -4,6 +4,9 @@ import { DescriptionSchema } from './descriptionSchema';
 import { NarrativeSchema } from './narrativeSchema';
 import { QuestSchema } from './questSchema';
 
+/**
+ * Database schema for class ChaseMetaData
+ */
 export const ChaseMetaDataSchema = new Schema(
   {
    chaseId: {type: String, required: true },
@@ -20,6 +23,12 @@ export const ChaseMetaDataSchema = new Schema(
   }
 );
 
+/**
+ * Database schema for class Chase
+ *
+ * Separates map gameElements into Key and Value arrays, each for every GameElement specialization.
+ * Separating the map is necessary to store and read the map entries from database in a type safe way.
+ */
 export const ChaseSchema = new Schema(
   {
     metaData: {type: ChaseMetaDataSchema, required: true },
@@ -30,8 +39,3 @@ export const ChaseSchema = new Schema(
     initialGameElement: {type: Number, required: true }
   }
 );
-
-/* handle inheritance in gameElementValues */
-//const GameElementArray = ChaseSchema.path('gameElementValues') as Schema.Types.DocumentArray;
-//const NarrativeType = GameElementArray.discriminator('Narrative', NarrativeSchema);
-//const QuestType = GameElementArray.discriminator('Quest', QuestSchema);

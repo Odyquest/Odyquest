@@ -2,6 +2,11 @@ import { Schema } from 'mongoose';
 import { Narrative, NarrativeType, NarrativeStatus } from 'src/shared/models/narrative';
 import { DescriptionSchema } from './descriptionSchema';
 
+/**
+ * Database schema for class Narrative
+ *
+ * Contains the attributes of parent class GameElement.
+ */
 export const NarrativeSchema = new Schema(
   {
     /* attributes representing GameElement */

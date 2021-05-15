@@ -3,6 +3,11 @@ import { Quest, QuestType } from 'src/shared/models/quest';
 import { LogicType } from 'src/shared/models/solution_term';
 import { DescriptionSchema } from './descriptionSchema';
 
+/**
+ * Database schema for class Quest
+ *
+ * Contains the attributes of parent class GameElement.
+ */
 export const QuestSchema = new Schema(
   {
     /* attributes representing GameElement */

@@ -17,6 +17,9 @@ const connection = createConnection(`mongodb://localhost:27017/test`, { useNewUr
 const ChaseModel = connection.model('Chase', ChaseSchema);
 const MediaModel = connection.model('Media', MediaSchema);
 
+/**
+ * encapsulates database connection
+ */
 export class Database {
   constructor() {}
 
@@ -64,6 +67,9 @@ export class Database {
     });
   }
 
+  /**
+   * convert map of game elements into arrays of specialized types
+   */
   private gameElementMapToArrays(from: Chase, to:ChaseDocument) {
     to.narrativeKeys = new Array<number>();
     to.narrativeValues = new Array<Narrative>();
@@ -82,6 +88,12 @@ export class Database {
     }
   }
 
+  /**
+   * create new chase entry in database
+   *
+   * @param chase - data to add to database
+   * @return id of the new database entry
+   */
   private createChase(chase: Chase): Promise<string> {
     const doc = chase as ChaseDocument;
     this.gameElementMapToArrays(doc, doc);
@@ -92,12 +104,27 @@ export class Database {
     return entry._id;
   }
 
+  /**
+   * update chase in database
+   *
+   * @param new_chase - will be saved in database
+   * @param document - document in database to save the given chase in
+   */
   private updateChase(new_chase: Chase, document:ChaseDocument) {
     new_chase.copyToChase(document);
     this.gameElementMapToArrays(new_chase, document);
     document.save();
   }
 
+  /**
+   * creates or updates chase
+   *
+   * If the given chase has a valid id, the chase with this id in the database will be updated.
+   * If the given chase has no id, a new database entry will be created.
+   *
+   * @param chase - new chase data, for updating or creating entry
+   * @return id of the chase
+   */
   createOrUpdateChase(chase: Chase): Promise<string> {
     var db = this;
     return ChaseModel.findOne({_id: chase.metaData.chaseId}).then(function(item) {

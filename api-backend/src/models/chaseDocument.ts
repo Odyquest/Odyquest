@@ -1,8 +1,13 @@
 import { Document } from 'mongoose';
-import { Chase, ChaseList } from 'src/shared/models/chase';
+import { Chase } from 'src/shared/models/chase';
 import { Narrative } from 'src/shared/models/narrative';
 import { Quest } from 'src/shared/models/quest';
 
+/**
+ * Database document for class Chase
+ *
+ * Contains additional attributes from ChaseSchema for type safe reading and writing from database.
+ */
 export interface ChaseDocument extends Chase, Document {
   /** list of keys stored in gameElements */
   narrativeKeys: Array<number>;
@@ -11,6 +16,4 @@ export interface ChaseDocument extends Chase, Document {
   narrativeValues: Array<Narrative>;
   questValues: Array<Quest>;
 };
-
-interface ChaseListDocument extends ChaseList, Document {};
 
