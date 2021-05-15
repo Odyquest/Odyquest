@@ -1,5 +1,7 @@
 # Odyquest
 
+**WARNING: Project is experimental and not ready for production yet. Necessary authentication functionality for manipulating data is missing!**
+
 The project Odyquest is a framework for scavenger hunts and escape games.
 The heart is a web app.
 It tells a story which leads you for example through a exhibition in a museum discovering the small details
