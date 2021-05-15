@@ -15,3 +15,12 @@ The project consists of three parts:
 
 * [Installation guide](documentation/installation.md)
 * [Documentation for developers](documentation/development.md)
+
+## Localization/Translations
+
+The static text elements in the web app are fully localized, the supported languages are English and German for the moment.
+The language will be selected by the default language of the browser.
+
+For actual games (chases) there is no localization functionality provided on purpose.
+It is easier and more flexible to create multiple chases to cover multiple languages.
+
