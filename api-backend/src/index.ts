@@ -2,7 +2,8 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
-import { Database, ChaseMetaDataModel, DescriptionModel } from './database';
+
+import { Database } from './database';
 import { Chase, ChaseList } from './shared/models/chase';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
