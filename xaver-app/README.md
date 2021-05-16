@@ -1,19 +1,24 @@
-# Odyquest-App
+# Odyquest App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
+The actual web app of the Odyquest project.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start:en` or `npm run start:de` for a development server, using English or German localization. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Localization
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm run extract-i18n` to update localization files.
+`npm run extract-i18n:new` will show you all new localization entries.
+Update entries with correct translations for each file. The updated files will appear in the list of new localized
+entries as long as the target state is new. Therefore chance _new_ in `<target state="new">` to _final_.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run build:production` to build the project with localization enabled. The build artifacts will be stored in the `dist/` directory.
+If you are using a static data set run `npm run build:static`.
 
+<!-- (no tests available yet)
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -21,6 +26,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+-->
 
 ## Further help
 

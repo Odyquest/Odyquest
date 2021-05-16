@@ -1,13 +1,19 @@
-# api-backend
+# Api Backend
 
 Server side implementation for database requests.
+
+## Build
 
 * Build: `npm run build`
 * Run: `nodejs dist/index.js`
 
-## create example database
+## Manual Testing
 
-Create database entry from valid file:
+To test the implementation, you need a MongoDB database running with default configuration.
+
+### Create example database entries
+
+Create database entry from valid chase file:
 ```
 curl -X POST -H "Content-Type: application/json" -d @../xaver-shared/assets/examples/xaver/chase.json http://localhost:8400/chase
 ```
