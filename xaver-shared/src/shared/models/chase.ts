@@ -5,6 +5,11 @@ import { Narrative } from './narrative';
 import { Quest } from './quest';
 import { GameElement } from './gameElement';
 
+/**
+ * Containing the meta data of a chase
+ *
+ * All data which are may be interesting for displaying a list of chases or filtering
+ */
 @Serializable()
 export class ChaseMetaData {
   @JsonProperty() chaseId?: string;
@@ -18,6 +23,9 @@ export class ChaseMetaData {
   @JsonProperty() comment?: string;
 }
 
+/**
+ * Encapsulates a list of chase meta data for easier serialization and deserialization
+ */
 @Serializable()
 export class ChaseList {
   @JsonProperty({ type: ChaseMetaData }) chases: Array<ChaseMetaData>;
@@ -27,12 +35,19 @@ export class ChaseList {
   }
 }
 
+/**
+ * Actual implementation of a chase which represents a treasure hunt or escape game
+ */
 @Serializable()
 export class Chase {
   @JsonProperty() metaData: ChaseMetaData = new ChaseMetaData();
+  /** A chase is a collection of game elements.
+   * Each game element is a specialized implementation of GameElement and can be addressed by the key in the map.
+   */
   @JsonProperty({
     names: ['_narratives', '_quests'],
     isDictionary: true,
+    /** Merge specialized maps together to original map */
     onDeserialize: value => {
       console.log('deserialize gameElement');
       const gameElements = new Map<number, GameElement>();
@@ -47,6 +62,7 @@ export class Chase {
       console.log("number of GameElements: ", gameElements.size);
       return gameElements;
     },
+    /** Split up gameElements for serialization to keep type safety */
     onSerialize: value => {
       console.log('serialize gameElement');
       const narratives: {[index: number]:any} = new Object();
@@ -68,9 +84,13 @@ export class Chase {
       };
     }
   }) gameElements: Map<number, GameElement> = new Map<number, GameElement>();
+  /** Index of first element in gameElements to start the chase with */
   @JsonProperty() initialGameElement: number = -1; // GameElementID
   @JsonProperty() tags?: Array<string>;
 
+  /**
+   * Copy the chase attributes from a given chase to this chase
+   */
   copyFromChase(chase: Chase) {
         this.metaData = chase.metaData;
         this.initialGameElement = chase.initialGameElement;
@@ -79,6 +99,10 @@ export class Chase {
           this.tags = chase.tags;
         }
   }
+
+  /**
+   * Copy the chase attributes from this chase to a given chase.
+   */
   copyToChase(chase: Chase) {
         chase.metaData = this.metaData;
         chase.initialGameElement = this.initialGameElement;
@@ -88,6 +112,7 @@ export class Chase {
         }
   }
 
+  /** Get the game element with the given id */
   getElement(destination: number): GameElement | undefined {
     return this.gameElements.get(destination);
   }

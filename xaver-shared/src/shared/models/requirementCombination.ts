@@ -1,13 +1,22 @@
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { LogicType, SolutionTerm } from './solution_term';
 
-
+/**
+ * Represents all expected Solutions of a Quest
+ */
 @Serializable()
 export class RequirementCombination {
 
+  /** names of the solution items */
   @JsonProperty() solutionItems: Array<string> = ["Neue Lösung"];
+  /** combination of solution items which leads to a new game element */
   @JsonProperty({ type: SolutionTerm, }) combinationMap: Array<SolutionTerm> = [new SolutionTerm];
 
+  /**
+   * Takes a possible solution and verifies it.
+   *
+   * @return the solution term corresponds to the given solution of 'undefined' if the given solution has no corresponding solution term
+   */
   getSolution(solutions: Array<string>): SolutionTerm | undefined {
     const solutionArray = new Array<boolean>(this.solutionItems.length);
     const expectedItems = new Array<string>(this.solutionItems.length);

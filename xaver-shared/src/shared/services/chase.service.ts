@@ -3,9 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Chase } from '../models/chase'
-import { deserialize, serialize, Serializable, JsonProperty } from 'typescript-json-serializer';
+import { deserialize, serialize } from 'typescript-json-serializer';
 import { ServerEnvironment } from '../environments/environment';
 
+/**
+ * Connection to data source for reading and writing chases
+ *
+ * Actual data source is configured in ServerEnvironment
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +30,11 @@ export class ChaseService {
     private httpClient: HttpClient
   ) { }
 
+  /**
+   * Get list of ChaseMetaData from configured data source.
+   *
+   * @return observable of type ChaseList
+   */
   public getAllChases(): Observable<any> {
     return this.httpClient.get(this.getChaseListPath())
       .pipe(
@@ -39,6 +49,11 @@ export class ChaseService {
       )
   }
 
+  /**
+   * Read chase with given id from configured data source.
+   *
+   * @return observable of type Chase
+   */
   public getChase(id: string): Observable<any> {
     return this.httpClient.get(this.getChasePath(id))
       .pipe(
@@ -53,6 +68,9 @@ export class ChaseService {
       )
   }
 
+  /**
+   * Create chase in data source
+   */
   public createChase(p_chase: Chase): Observable<any> {
     // TODO return error if ServerEnvironment.api_based is false
     return this.httpClient.post(

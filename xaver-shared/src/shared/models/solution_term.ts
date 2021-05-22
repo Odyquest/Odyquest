@@ -3,6 +3,11 @@ import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { Description } from './description';
 import { GameElement } from './gameElement';
 
+/**
+ * Type of logical expression
+ *
+ * The logical operation connecting terms for verifying.
+ */
 export enum LogicType {
   Or = "or",
   And = "and",
