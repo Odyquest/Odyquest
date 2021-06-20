@@ -205,7 +205,10 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
     console.log("Push chase to server!", serialized);
 
-    this.chaseService.createOrUpdateChase(this.chase);
+    // push chase to server database
+    this.chaseService.createOrUpdateChase(this.chase).subscribe(id => {
+      this.chase.metaData.chaseId = id;
+    });
   }
 
 }
