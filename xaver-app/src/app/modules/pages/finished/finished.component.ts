@@ -35,6 +35,6 @@ export class FinishedComponent implements OnInit {
   }
 
   getPath(): string {
-    return $localize`:@@pathToFinished:/assets/finished.en.md`;
+    return $localize`:@@pathToFinished:assets/finished.en.md`;
   }
 }

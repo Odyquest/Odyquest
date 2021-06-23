@@ -140,7 +140,7 @@
         <source>Go on</source><target state="final">Go on</target>
         
       <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/finished/finished.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit><trans-unit id="pathToFinished" datatype="html">
-        <source>/assets/finished.en.md</source><target state="final">/assets/finished.en.md</target>
+        <source>assets/finished.en.md</source><target state="final">assets/finished.en.md</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.ts</context>
           <context context-type="linenumber">38</context>
@@ -153,7 +153,7 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit><trans-unit id="pathToPrivacy" datatype="html">
-        <source>/assets/privacy.en.md</source><target state="final">/assets/privacy.en.md</target>
+        <source>assets/privacy.en.md</source><target state="final">assets/privacy.en.md</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/privacy/privacy.component.ts</context>
           <context context-type="linenumber">16</context>
@@ -168,7 +168,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="pathToInformation" datatype="html">
-        <source>/assets/information.en.md</source><target state="final">/assets/information.en.md</target>
+        <source>assets/information.en.md</source><target state="final">assets/information.en.md</target>
         
       <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/information/information.component.ts</context><context context-type="linenumber">16</context></context-group></trans-unit>
       <trans-unit id="settings.title" datatype="html">

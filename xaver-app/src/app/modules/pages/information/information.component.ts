@@ -13,6 +13,6 @@ export class InformationComponent implements OnInit {
   }
 
   getPath(): string {
-    return $localize`:@@pathToInformation:/assets/information.en.md`;
+    return $localize`:@@pathToInformation:assets/information.en.md`;
   }
 }
