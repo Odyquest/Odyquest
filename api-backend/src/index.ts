@@ -96,7 +96,7 @@ app.post('/media', upload.single('file'), function (req, res) {
   addMedia(req, res);
 })
 
-const port = 8400;
+const port = 8444;
 
 app.listen(port, () => {
     console.log('The application is listening on port ' + port + '!');
