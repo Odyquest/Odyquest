@@ -13,6 +13,6 @@ export class PrivacyComponent implements OnInit {
   }
 
   getPath(): string {
-    return $localize`:@@pathToPrivacy:/assets/privacy.en.md`;
+    return $localize`:@@pathToPrivacy:assets/privacy.en.md`;
   }
 }

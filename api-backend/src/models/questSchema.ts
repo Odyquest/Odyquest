@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
-import { Quest, QuestType } from 'src/shared/models/quest';
-import { LogicType } from 'src/shared/models/solution_term';
+import { Quest, QuestType } from '../shared/models/quest';
+import { LogicType } from '../shared/models/solution_term';
 import { DescriptionSchema } from './descriptionSchema';
 
 /**

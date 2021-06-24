@@ -1,9 +1,9 @@
 import { createConnection } from 'mongoose';
 
-import { Chase, ChaseList, ChaseMetaData } from 'src/shared/models/chase';
-import { GameElement } from 'src/shared/models/gameElement';
-import { Narrative } from 'src/shared/models/narrative';
-import { Quest } from 'src/shared/models/quest';
+import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
+import { GameElement } from './shared/models/gameElement';
+import { Narrative } from './shared/models/narrative';
+import { Quest } from './shared/models/quest';
 
 import { ChaseDocument } from './models/chaseDocument';
 import { ChaseMetaDataSchema } from './models/chaseSchema';

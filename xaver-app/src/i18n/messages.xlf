@@ -116,7 +116,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="pathToFinished" datatype="html">
-        <source>/assets/finished.en.md</source>
+        <source>assets/finished.en.md</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/finished/finished.component.ts</context>
           <context context-type="linenumber">38</context>
@@ -130,7 +130,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="pathToInformation" datatype="html">
-        <source>/assets/information.en.md</source>
+        <source>assets/information.en.md</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/information/information.component.ts</context>
           <context context-type="linenumber">16</context>
@@ -144,7 +144,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="pathToPrivacy" datatype="html">
-        <source>/assets/privacy.en.md</source>
+        <source>assets/privacy.en.md</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/privacy/privacy.component.ts</context>
           <context context-type="linenumber">16</context>

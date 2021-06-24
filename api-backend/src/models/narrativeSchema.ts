@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Narrative, NarrativeType, NarrativeStatus } from 'src/shared/models/narrative';
+import { Narrative, NarrativeType, NarrativeStatus } from '../shared/models/narrative';
 import { DescriptionSchema } from './descriptionSchema';
 
 /**

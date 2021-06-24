@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Description } from 'src/shared/models/description';
+import { Description } from '../shared/models/description';
 
 /**
  * Database schema for class Description

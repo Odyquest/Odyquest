@@ -1,4 +1,4 @@
 export const ServerEnvironment = {
   api_based: true,
-  base_uri: 'http://localhost:8444/api/'
+  base_uri: 'http://localhost:8444/'
 };
