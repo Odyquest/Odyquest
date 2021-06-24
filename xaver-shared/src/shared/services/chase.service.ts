@@ -16,16 +16,6 @@ import { ServerEnvironment } from '../environments/environment';
 })
 export class ChaseService {
 
-  //  // ============== ONLY FOR DEVELOPING =============
-  //
-  //  httpOptions = {
-  //    headers: new HttpHeaders({
-  //      'Content-Type': 'application/json',
-  //      'Authorization': 'Basic ' + btoa('admin:Admin123')
-  //    })
-  //  };
-  //  // ===============================================
-
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -70,15 +60,17 @@ export class ChaseService {
 
   /**
    * Create chase in data source
+   *
+   * @return observable containing chaseId
    */
-  public createChase(p_chase: Chase): Observable<any> {
-    // TODO return error if ServerEnvironment.api_based is false
+  public createOrUpdateChase(p_chase: Chase): Observable<any> {
+    // TODO return error if ServerEnvironment.api_based is false: not allowed
     return this.httpClient.post(
-      ServerEnvironment.base_uri + '/chase', { "chase": { "metaData": serialize(p_chase.metaData, true) } })
+      ServerEnvironment.base_uri + 'chase', serialize(p_chase))
       .pipe(
-        map(chase => {
+        map(chaseId => {
           console.log("Success");
-          return chase;
+          return chaseId["chaseId"];
         }),
         catchError(error => {
           console.log("Failure");
