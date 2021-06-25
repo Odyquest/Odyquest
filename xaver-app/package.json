@@ -6,6 +6,7 @@
     "start": "ng serve",
     "start:en": "ng serve",
     "start:de": "ng serve --configuration=de",
+    "start:static": "ng serve --configuration=static",
     "build": "ng build --prod --localize --base-href /app/",
     "build:production": "ng build --prod --localize --base-href /app/",
     "build:static": "ng build --prod --localize --configuration=static --base-href /app/",

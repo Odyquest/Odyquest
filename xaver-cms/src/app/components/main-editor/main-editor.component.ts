@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
+import { saveAs } from 'file-saver';
+import { deserialize, serialize } from 'typescript-json-serializer';
+
 import { Chase, ChaseMetaData } from 'src/app/shared/models/chase';
 import { Quest } from 'src/app/shared/models/quest';
 import { Narrative } from 'src/app/shared/models/narrative';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { ChaseService } from 'src/app/shared/services/chase.service';
-import { deserialize, serialize } from 'typescript-json-serializer';
-import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
 import { Description } from 'src/app/shared/models/description';
-import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'main-chase-editor',
@@ -23,6 +25,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   title: string = "";
   author: string = "";
   description: string = "";
+
+  gameElementsMap = new Map<number, string>();
+  gameElementsList = [];
 
   @ViewChild('quest_editor') questEditor;
 
@@ -63,6 +68,21 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
         this.narrativeList.push(title_with_id);
       }
     });
+
+    this.gameElementsMap = new Map<number, string>();
+    this.gameElementsList = [];
+
+    this.chase.gameElements.forEach((value: GameElement, key: number) => {
+      let title_with_id = value.title + ' (' + key + ')'
+      console.log("Key", key, "GameElement" + title_with_id);
+      this.gameElementsMap.set(key, title_with_id);
+      this.gameElementsList.push(title_with_id);
+    });
+
+    console.log("GameElementsList length:", this.gameElementsList.length);
+    this.gameElementsList.forEach(function (value) {
+      console.log(value);
+    });
   }
 
   // forwards the selected quest to the QuestEditorComponent
@@ -70,14 +90,15 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   }
 
-  constructor(private chaseService: ChaseService) { }
+  constructor(private activatedRoute: ActivatedRoute, private chaseService: ChaseService) {
+    this.chaseID = this.activatedRoute.snapshot.queryParams.id;
+  }
 
   ngOnInit(): void {
     console.log("ngOnInit()");
-    //this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
     this.chaseService.getChase(this.chaseID).subscribe(chase => {
-      //this.chase = deserialize<Chase>(chase, Chase)
-      this.createNewChase();
+      this.chase = deserialize<Chase>(chase, Chase)
+      // this.createNewChase();
 
       this.getDataFromChase();
       this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest), true);
@@ -151,6 +172,19 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
+  parseIdFromGEString(text: string): number {
+    let id_text = text.substr(text.lastIndexOf("(") + 1); //)
+    id_text = id_text.substr(0, id_text.length - 1);
+
+    return +id_text;
+  }
+
+  onInitialGameElementChange(value: string) {
+    this.chase.initialGameElement = this.parseIdFromGEString(value);
+    console.log('Set initial game element to ' + this.chase.initialGameElement);
+  }
+
+
   createNewChase(): void {
     console.log("TITLE: " + this.title);
     console.log("Description: " + this.description);
@@ -190,25 +224,29 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     reader.readAsText($event.target.files[0]);
   }
 
-  downloadChase(): void {
-    console.log("Provide Chase as Download...");
-
+  prepareSavingChase(): void {
     this.questEditor.localToGameElement();
     this.writeDataToChase();
+  }
 
-    var serialized = serialize(this.chase, true);
-    var json = JSON.stringify(serialized, null, 2);
-
-    var blob = new Blob([json], { type: "text/plain;charset=utf-8" });
-    saveAs(blob, "chase.json");
-
-
-    console.log("Push chase to server!", serialized);
-
+  pushChase(): void {
+    console.log('Push chase to server!');
+    this.prepareSavingChase();
     // push chase to server database
     this.chaseService.createOrUpdateChase(this.chase).subscribe(id => {
       this.chase.metaData.chaseId = id;
     });
+  }
+
+  downloadChase(): void {
+    console.log('Provide Chase as Download...');
+    this.prepareSavingChase();
+
+    const serialized = serialize(this.chase, true);
+    const json = JSON.stringify(serialized, null, 2);
+
+    const blob = new Blob([json], { type: 'text/plain;charset=utf-8' });
+    saveAs(blob, 'chase.json');
   }
 
 }

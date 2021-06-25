@@ -91,6 +91,9 @@
           "configurations": {
             "production": {
               "browserTarget": "xaver-cms:build:production"
+            },
+            "static": {
+              "browserTarget": "xaver-cms:build:static"
             }
           }
         },

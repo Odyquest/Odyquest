@@ -3,12 +3,21 @@
     <div class="quest_selector_header">Jagd</div>
     <input hidden type="file" #uploader (change)="uploadChase($event)" />
     <button id="saveChaseButton" mat-raised-button color="primary" (click)="createNewChase()">Neue Jagd</button>
-    <button id="saveChaseButton" mat-raised-button color="primary" (click)="uploader.click()">Jagd Öffnen</button>
-    <button id="saveChaseButton" mat-raised-button color="primary" (click)="downloadChase()">Jagd Speichern</button>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="uploader.click()">Jagd Hochladen</button>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="downloadChase()">Jagd Herunterladen</button>
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="pushChase()">Jagd Speichern</button>
     <input type="text" id="author" name="Titel" [(ngModel)]="title" placeholder="Name der Jagd..."><br><br>
     <input type="text" id="author" name="Autor" [(ngModel)]="author" placeholder="Autor..."><br><br>
     <textarea type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..." name="fname"
       class="input_field_big" [(ngModel)]="description"></textarea>
+    <div class="initial-game-element-container">
+      <label for="initial-game-element">Startelement:</label>
+      <select id="initial-game-element">
+        <option *ngFor="let target of gameElementsList" [value]='target'
+                [attr.selected]="true"
+                (click)="onInitialGameElementChange(target)">{{target}}</option>
+      </select>
+    </div>
     <div class="quest_selector_header">Rätsel</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
