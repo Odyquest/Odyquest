@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:static": "ng serve --configuration=static",
     "build": "ng build",
     "build:production": "ng build --prod --base-href /cms/",
     "build:static": "ng build --prod --configuration=static --base-href /cms/",

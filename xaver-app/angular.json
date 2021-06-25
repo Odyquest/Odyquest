@@ -108,6 +108,9 @@
             "production": {
               "browserTarget": "xaver-app:build:production"
             },
+            "static": {
+              "browserTarget": "xaver-app:build:static"
+            },
             "de": {
               "browserTarget": "xaver-app:build:de"
             }
