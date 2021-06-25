@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
+import { saveAs } from 'file-saver';
+import { deserialize, serialize } from 'typescript-json-serializer';
+
 import { Chase, ChaseMetaData } from 'src/app/shared/models/chase';
 import { Quest } from 'src/app/shared/models/quest';
 import { Narrative } from 'src/app/shared/models/narrative';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { ChaseService } from 'src/app/shared/services/chase.service';
-import { deserialize, serialize } from 'typescript-json-serializer';
-import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
 import { Description } from 'src/app/shared/models/description';
-import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'main-chase-editor',
@@ -70,14 +72,15 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   }
 
-  constructor(private chaseService: ChaseService) { }
+  constructor(private activatedRoute: ActivatedRoute, private chaseService: ChaseService) {
+    this.chaseID = this.activatedRoute.snapshot.queryParams.id;
+  }
 
   ngOnInit(): void {
     console.log("ngOnInit()");
-    //this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
     this.chaseService.getChase(this.chaseID).subscribe(chase => {
-      //this.chase = deserialize<Chase>(chase, Chase)
-      this.createNewChase();
+      this.chase = deserialize<Chase>(chase, Chase)
+      // this.createNewChase();
 
       this.getDataFromChase();
       this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest), true);

@@ -1,63 +1,42 @@
-<div class=" chaseList">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Rätselhafte Sphinx</mat-card-title>
-      <mat-card-subtitle>Julia L.</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="./../../../assets/example_thumbnails/xaver_sphinx.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. At risus viverra adipiscing at in.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+<mat-progress-spinner color="primary" mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
 
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Zeitreise mit Xaver</mat-card-title>
-      <mat-card-subtitle>Silke H.</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="./../../../assets/example_thumbnails/xaver_zeitreise.png" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. At risus viverra adipiscing at in.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+<div *ngIf="!loading" class="chaseList">
+  <div *ngFor="let chase of getChaseList()">
+    <section>
+      <mat-card (click)="editChase(chase.chaseId)">
+        <header>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{chase.title}}</mat-card-title>
+            <mat-card-subtitle>{{chase.author}}</mat-card-subtitle>
+          </mat-card-header>
+        </header>
+        <img mat-card-image src="{{chase.preview.description.image}}">
+        <mat-card-content>
+          <p>{{chase.preview.description.text}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button primary mat-button>EDIT</button>
+        </mat-card-actions>
+      </mat-card>
+    </section>
+  </div>
 
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Ausmisten im Museum</mat-card-title>
-      <mat-card-subtitle>Christiane L.</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="./../../../assets/example_thumbnails/xaver_museum.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. At risus viverra adipiscing at in.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <button color="primary" mat-fab (click)="openCreateChaseDialog()">
-    <mat-icon>add</mat-icon>
-  </button>
-
+  <!--
+  <section>
+    <mat-card *ngIf="hasNoChases()" (click)="editChase(-1)">
+      <header>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Start chase from file</mat-card-title>
+        </mat-card-header>
+      </header>
+      <mat-card-actions>
+        <button primary mat-button>Upload file</button>
+        <button primary mat-button>EDIT</button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+  -->
 </div>
+
