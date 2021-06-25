@@ -26,6 +26,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   author: string = "";
   description: string = "";
 
+  gameElementsMap = new Map<number, string>();
+  gameElementsList = [];
+
   @ViewChild('quest_editor') questEditor;
 
   // these values are filled with info from the chase
@@ -64,6 +67,21 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
         console.log("Narrative:" + title_with_id);
         this.narrativeList.push(title_with_id);
       }
+    });
+
+    this.gameElementsMap = new Map<number, string>();
+    this.gameElementsList = [];
+
+    this.chase.gameElements.forEach((value: GameElement, key: number) => {
+      let title_with_id = value.title + ' (' + key + ')'
+      console.log("Key", key, "GameElement" + title_with_id);
+      this.gameElementsMap.set(key, title_with_id);
+      this.gameElementsList.push(title_with_id);
+    });
+
+    console.log("GameElementsList length:", this.gameElementsList.length);
+    this.gameElementsList.forEach(function (value) {
+      console.log(value);
     });
   }
 
@@ -153,6 +171,19 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
       key++;
     }
   }
+
+  parseIdFromGEString(text: string): number {
+    let id_text = text.substr(text.lastIndexOf("(") + 1); //)
+    id_text = id_text.substr(0, id_text.length - 1);
+
+    return +id_text;
+  }
+
+  onInitialGameElementChange(value: string) {
+    this.chase.initialGameElement = this.parseIdFromGEString(value);
+    console.log('Set initial game element to ' + this.chase.initialGameElement);
+  }
+
 
   createNewChase(): void {
     console.log("TITLE: " + this.title);

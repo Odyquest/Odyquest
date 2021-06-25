@@ -9,6 +9,14 @@
     <input type="text" id="author" name="Autor" [(ngModel)]="author" placeholder="Autor..."><br><br>
     <textarea type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..." name="fname"
       class="input_field_big" [(ngModel)]="description"></textarea>
+    <div class="initial-game-element-container">
+      <label for="initial-game-element">Startelement:</label>
+      <select id="initial-game-element">
+        <option *ngFor="let target of gameElementsList" [value]='target'
+                [attr.selected]="true"
+                (click)="onInitialGameElementChange(target)">{{target}}</option>
+      </select>
+    </div>
     <div class="quest_selector_header">Rätsel</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>

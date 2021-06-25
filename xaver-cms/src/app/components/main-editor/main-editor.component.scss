@@ -162,3 +162,50 @@ textarea {
   margin-bottom: 10px;
   font-size: 15pt;
 }
+
+.single-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.single-solution-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 40px;
+  -moz-padding-start: calc(10px - 3px);
+  padding-left: 10px;
+
+  font-size: 16px;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  border: 3px solid grey;
+
+  cursor: pointer;
+}
+
+label {
+    white-space: nowrap;
+}
+
+.initial-game-element-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
