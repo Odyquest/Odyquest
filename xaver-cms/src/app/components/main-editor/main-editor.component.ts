@@ -224,25 +224,29 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     reader.readAsText($event.target.files[0]);
   }
 
-  downloadChase(): void {
-    console.log("Provide Chase as Download...");
-
+  prepareSavingChase(): void {
     this.questEditor.localToGameElement();
     this.writeDataToChase();
+  }
 
-    var serialized = serialize(this.chase, true);
-    var json = JSON.stringify(serialized, null, 2);
-
-    var blob = new Blob([json], { type: "text/plain;charset=utf-8" });
-    saveAs(blob, "chase.json");
-
-
-    console.log("Push chase to server!", serialized);
-
+  pushChase(): void {
+    console.log('Push chase to server!');
+    this.prepareSavingChase();
     // push chase to server database
     this.chaseService.createOrUpdateChase(this.chase).subscribe(id => {
       this.chase.metaData.chaseId = id;
     });
+  }
+
+  downloadChase(): void {
+    console.log('Provide Chase as Download...');
+    this.prepareSavingChase();
+
+    const serialized = serialize(this.chase, true);
+    const json = JSON.stringify(serialized, null, 2);
+
+    const blob = new Blob([json], { type: 'text/plain;charset=utf-8' });
+    saveAs(blob, 'chase.json');
   }
 
 }
