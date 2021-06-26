@@ -16,6 +16,13 @@ import { ServerEnvironment } from '../environments/environment';
 })
 export class ChaseService {
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvZHlxdWVzdCIsIm5hbWUiOiJYYXZlciIsImlhdCI6MTUxNjIzOTAyMn0.IdZh-go3WrO-9vefWeFrUuKk6bw90RimWvuwHM7DcCM'
+    })
+  };
+
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -26,7 +33,7 @@ export class ChaseService {
    * @return observable of type ChaseList
    */
   public getAllChases(): Observable<any> {
-    return this.httpClient.get(this.getChaseListPath())
+    return this.httpClient.get(this.getChaseListPath(), this.httpOptions)
       .pipe(
         map(chases => {
           // console.log("chases: " + chases);
@@ -45,7 +52,7 @@ export class ChaseService {
    * @return observable of type Chase
    */
   public getChase(id: string): Observable<any> {
-    return this.httpClient.get(this.getChasePath(id))
+    return this.httpClient.get(this.getChasePath(id), this.httpOptions)
       .pipe(
         map(chase => {
           console.log("Success");
@@ -66,7 +73,7 @@ export class ChaseService {
   public createOrUpdateChase(p_chase: Chase): Observable<any> {
     // TODO return error if ServerEnvironment.api_based is false: not allowed
     return this.httpClient.post(
-      ServerEnvironment.base_uri + 'chase', serialize(p_chase))
+      ServerEnvironment.base_uri + 'chase', serialize(p_chase), this.httpOptions)
       .pipe(
         map(chaseId => {
           console.log("Success");
