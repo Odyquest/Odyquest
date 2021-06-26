@@ -2,10 +2,17 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
+import jwt from 'express-jwt';
 
 import { Database } from './database';
 import { Chase, ChaseList } from './shared/models/chase';
 import { deserialize, serialize } from 'typescript-json-serializer';
+
+const jwt_protection = jwt({
+  secret: 'secretkey',
+  algorithms: ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'PS256', 'PS384', 'PS512', 'ES256', 'ES384', 'ES512']
+});
+// TODO catch jwt exception and only pass "Unauthorized"
 
 var database = new Database();
 
@@ -32,6 +39,10 @@ app.get('/', (req, res) => {
     res.send('Boom!');
 })
 
+app.get('/login', jwt_protection, (req, res) => {
+  res.send('success');
+});
+
 app.get('/chase', (req, res) => {
   database.getChaseList().then(list => {
     const chases = new ChaseList();
@@ -54,18 +65,7 @@ app.get('/chase/*', (req, res) => {
   });
 })
 
-app.post('/chase', function (req, res) {
-  // FIXME implement authentication
-  console.log('received new chase ' + JSON.stringify(req.body));
-  database.createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
-    res.send('{ chaseId: "' + id + '" }');
-  }).catch(() => {
-    //TODO set error code
-    res.send('{}');
-  });
-})
-
-app.put('/chase', function (req, res) {
+app.post('/chase', jwt_protection, function (req, res) {
   // FIXME implement authentication
   console.log('received new chase ' + JSON.stringify(req.body));
   database.createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
@@ -83,7 +83,7 @@ app.get('/media/*', (req, res) => {
     //TODO set error code
     res.send('');
   });
-})
+});
 
 function addMedia(req:express.Request, res:express.Response) {
   console.log('received media data ' + JSON.stringify(req.body));
@@ -91,10 +91,10 @@ function addMedia(req:express.Request, res:express.Response) {
   res.send('{ url: "/media/' + id + '" }');
 }
 
-app.post('/media', upload.single('file'), function (req, res) {
+app.post('/media', jwt_protection, upload.single('file'), function (req, res) {
   // FIXME implement authentication
   addMedia(req, res);
-})
+});
 
 const port = 8444;
 
