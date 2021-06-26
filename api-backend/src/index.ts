@@ -5,11 +5,12 @@ import multer from 'multer';
 import jwt from 'express-jwt';
 
 import { Database } from './database';
+import { getCorsOrigin, getApiSecret, getApiPort } from './environment';
 import { Chase, ChaseList } from './shared/models/chase';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
 const jwt_protection = jwt({
-  secret: 'secretkey',
+  secret: getApiSecret(),
   algorithms: ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'PS256', 'PS384', 'PS512', 'ES256', 'ES384', 'ES512']
 });
 // TODO catch jwt exception and only pass "Unauthorized"
@@ -30,7 +31,7 @@ const options: cors.CorsOptions = {
   ],
   credentials: true,
   methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-  origin: 'http://localhost:4200',
+  origin: getCorsOrigin(),
   preflightContinue: false,
 };
 app.use(cors(options));
@@ -97,7 +98,7 @@ app.post('/media', jwt_protection, upload.single('file'), function (req, res) {
   addMedia(req, res);
 });
 
-const port = 8444;
+const port = getApiPort();
 
 app.listen(port, () => {
     console.log('The application is listening on port ' + port + '!');

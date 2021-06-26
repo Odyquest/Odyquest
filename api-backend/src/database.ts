@@ -1,5 +1,7 @@
 import { createConnection } from 'mongoose';
 
+import { getMongoDbUrl } from './environment';
+
 import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
 import { GameElement } from './shared/models/gameElement';
 import { Narrative } from './shared/models/narrative';
@@ -12,7 +14,7 @@ import { DescriptionSchema } from './models/descriptionSchema';
 import { MediaDocument } from './models/mediaDocument';
 import { MediaSchema } from './models/mediaSchema';
 
-const connection = createConnection(`mongodb://localhost:27017/test`, { useNewUrlParser: true, useUnifiedTopology: true })
+const connection = createConnection(getMongoDbUrl(), { useNewUrlParser: true, useUnifiedTopology: true })
 
 const ChaseModel = connection.model('Chase', ChaseSchema);
 const MediaModel = connection.model('Media', MediaSchema);
