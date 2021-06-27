@@ -145,6 +145,31 @@ export class Database {
     });
   }
 
+  deleteChase(chaseId: string): Promise<string> {
+    var db = this;
+    return ChaseModel.deleteOne({_id: chaseId}).then(function(item) {
+      console.log('delete chase ' + chaseId);
+      console.log('delete containing media...');
+      for (const media in db.getMediaInChase(chaseId)) {
+        db.deleteMedia(media);
+      }
+      return 'success';
+    }).catch(error => {
+      return error;
+    });
+  }
+
+  getMediaInChase(chaseId: string): Promise<Array<string>> {
+    return MediaModel.find({ _id: chaseId }).exec().then(function(item) {
+      const list = new Array<string>();
+      for (const value in item) {
+        const media = item[value].get('_id');
+        list.push(media);
+      }
+      return list;
+    });
+  }
+
   getMedia(id: string): Promise<Buffer> {
     return MediaModel.findOne({ _id: id }).then(function(item) {
       if (item && (item as MediaDocument)) {
@@ -167,5 +192,15 @@ export class Database {
     entry.save();
     console.log("saved media document");
     return entry._id;
+  }
+
+  deleteMedia(id: string): Promise<string> {
+    var db = this;
+    return MediaModel.deleteOne({_id: id}).then(function(item) {
+      console.log('delete media ' + id);
+      return 'success';
+    }).catch(error => {
+      return error;
+    });
   }
 };

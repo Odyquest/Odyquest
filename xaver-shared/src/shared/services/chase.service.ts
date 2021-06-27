@@ -76,11 +76,67 @@ export class ChaseService {
       ServerEnvironment.base_uri + 'chase', serialize(p_chase), this.httpOptions)
       .pipe(
         map(chaseId => {
-          console.log("Success");
+          console.log("Successfull pushed chase to server");
           return chaseId["chaseId"];
         }),
         catchError(error => {
-          console.log("Failure");
+          console.log("Failure while pushing chase to server");
+          return error;
+        })
+      )
+  }
+
+  /**
+   * Delete chase with given id from configured data source.
+   */
+  public deleteChase(id: string): Observable<any> {
+    return this.httpClient.delete(this.getChasePath(id), this.httpOptions)
+      .pipe(
+        map(chase => {
+          console.log("Successfull deleted chase");
+          return chase;
+        }),
+        catchError(error => {
+          console.log("Failure while deleting chase");
+          return error;
+        })
+      )
+  }
+
+  /**
+   * Create media file in data source
+   *
+   * @return observable containing url to data relative to ServerEnvironment.base_uri
+   */
+  public createMedia(data: Chase): Observable<any> {
+    // TODO return error if ServerEnvironment.api_based is false: not allowed
+    return this.httpClient.post(
+      ServerEnvironment.base_uri + 'media', data, this.httpOptions)
+      .pipe(
+        map(url => {
+          console.log("Successfull pushed media to server");
+          return url["url"];
+        }),
+        catchError(error => {
+          console.log("Failure while pushing media to server");
+          return error;
+        })
+      )
+  }
+
+  /**
+   * Delete chase with given id from configured data source.
+   */
+  public deleteMedia(id: string): Observable<any> {
+    return this.httpClient.delete(
+      ServerEnvironment.base_uri + 'media/' + id, this.httpOptions)
+      .pipe(
+        map(chase => {
+          console.log("Successfull deleted media");
+          return chase;
+        }),
+        catchError(error => {
+          console.log("Failure while deleting media");
           return error;
         })
       )
