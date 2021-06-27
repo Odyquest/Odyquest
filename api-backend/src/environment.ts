@@ -11,7 +11,7 @@ export function getCorsOrigin(): string {
 }
 
 export function getMongoDbUrl(): string {
-  return getEnv(process.env.ODYQUEST_MONGODB_URL, 'http://localhost:27017/test');
+  return getEnv(process.env.ODYQUEST_MONGODB_URL, 'mongodb://localhost:27017/test');
 }
 
 export function getApiSecret(): string {

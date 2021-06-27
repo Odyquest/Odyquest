@@ -100,7 +100,7 @@ export class ChaseService {
           console.log("Failure while deleting chase");
           return error;
         })
-      )
+      );
   }
 
   /**
