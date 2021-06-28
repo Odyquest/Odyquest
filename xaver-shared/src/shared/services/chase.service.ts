@@ -121,7 +121,7 @@ export class ChaseService {
           console.log("Failure while pushing media to server");
           return error;
         })
-      )
+      );
   }
 
   /**

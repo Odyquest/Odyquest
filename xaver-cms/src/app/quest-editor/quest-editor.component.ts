@@ -8,6 +8,7 @@ import { LogicType, SolutionTerm } from '../shared/models/solution_term';
 import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
 import { Description } from '../shared/models/description';
 import { MainEditorComponent } from '../components/main-editor/main-editor.component'
+import { ChaseService } from 'src/app/shared/services/chase.service';
 
 @Component({
   selector: 'app-quest-editor',
@@ -49,7 +50,7 @@ export class QuestEditorComponent implements OnInit {
   gameElementsList: string[];
   help: Array<Description>;
 
-  constructor(@Inject(MainEditorComponent) private main_editor: MainEditorComponent, private cd: ChangeDetectorRef) { }
+  constructor(@Inject(MainEditorComponent) private main_editor: MainEditorComponent, private cd: ChangeDetectorRef, private chaseService: ChaseService) { }
 
   ngOnInit(): void {
 
@@ -404,6 +405,20 @@ export class QuestEditorComponent implements OnInit {
     console.log("reset");
     this.gameElementToLocal();
     // -> reset values get 
+  }
+
+  uploadMedia($event): void {
+    console.log('Opening file explorer to load local media file...');
+    console.log($event.target.files[0]);
+    const reader = new FileReader();
+    reader.addEventListener('load', e => {
+      console.log('upload file...');
+      this.chaseService.createMedia(this.chase.metaData.chaseId, '(unnamed)', $event.target.files[0]).subscribe( res  => {
+        console.log('...done: ' + res);
+        // update image and url fields
+      });
+    });
+    reader.readAsArrayBuffer($event.target.files[0]);
   }
 
 }
