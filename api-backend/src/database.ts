@@ -1,5 +1,7 @@
 import { createConnection } from 'mongoose';
 
+import { getMongoDbUrl } from './environment';
+
 import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
 import { GameElement } from './shared/models/gameElement';
 import { Narrative } from './shared/models/narrative';
@@ -12,7 +14,7 @@ import { DescriptionSchema } from './models/descriptionSchema';
 import { MediaDocument } from './models/mediaDocument';
 import { MediaSchema } from './models/mediaSchema';
 
-const connection = createConnection(`mongodb://localhost:27017/test`, { useNewUrlParser: true, useUnifiedTopology: true })
+const connection = createConnection(getMongoDbUrl(), { useNewUrlParser: true, useUnifiedTopology: true })
 
 const ChaseModel = connection.model('Chase', ChaseSchema);
 const MediaModel = connection.model('Media', MediaSchema);
@@ -143,6 +145,31 @@ export class Database {
     });
   }
 
+  deleteChase(chaseId: string): Promise<string> {
+    var db = this;
+    return ChaseModel.deleteOne({_id: chaseId}).then(function(item) {
+      console.log('delete chase ' + chaseId);
+      console.log('delete containing media...');
+      for (const media in db.getMediaInChase(chaseId)) {
+        db.deleteMedia(media);
+      }
+      return 'success';
+    }).catch(error => {
+      return error;
+    });
+  }
+
+  getMediaInChase(chaseId: string): Promise<Array<string>> {
+    return MediaModel.find({ _id: chaseId }).exec().then(function(item) {
+      const list = new Array<string>();
+      for (const value in item) {
+        const media = item[value].get('_id');
+        list.push(media);
+      }
+      return list;
+    });
+  }
+
   getMedia(id: string): Promise<Buffer> {
     return MediaModel.findOne({ _id: id }).then(function(item) {
       if (item && (item as MediaDocument)) {
@@ -153,17 +180,24 @@ export class Database {
   }
 
   createMedia(chaseId: string, name: string, mimetype: string, data: Buffer): string {
-    console.log("start creating media document");
     const entry = new MediaModel();
-    console.log("created media document");
     const doc = entry as MediaDocument;
     doc.chaseId = chaseId;
     doc.name = name;
     doc.mimetype = mimetype;
     doc.binary = data;
-    console.log("set data media document");
     entry.save();
     console.log("saved media document");
     return entry._id;
+  }
+
+  deleteMedia(id: string): Promise<string> {
+    var db = this;
+    return MediaModel.deleteOne({_id: id}).then(function(item) {
+      console.log('delete media ' + id);
+      return 'success';
+    }).catch(error => {
+      return error;
+    });
   }
 };

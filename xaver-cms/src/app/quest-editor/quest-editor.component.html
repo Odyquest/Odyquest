@@ -4,6 +4,8 @@
       <img [src]="image_url">
     </div>
     <input type="text" id="image-name" name="quest_name" [(ngModel)]="image_url" placeholder="URL für das Bild..."><br><br>
+    <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="MediaUploader.click()">Bild Hochladen</button>
   </div>
   <div class="quest-editor-top-right-container">
     <div class="quest-editor-top-right-container-header">
@@ -17,7 +19,8 @@
     <label for="fname">Aufgabenbeschreibung:</label>
     <textarea type="text" id="bug_brief" placeholder="Hier steht der Beschreibungstext für den User..."
       name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
-
+    <a href="https://www.markdownguide.org/cheat-sheet#basic-syntax">Hilfe Textformatierung</a>
+    <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">Hilfe Emojis</a>
   </div>
 </div>
 

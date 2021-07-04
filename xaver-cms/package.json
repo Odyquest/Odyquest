@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start:static": "ng serve --configuration=static",
+    "start:production": "ng serve --configuration=production",
     "build": "ng build",
     "build:production": "ng build --prod --base-href /cms/",
     "build:static": "ng build --prod --configuration=static --base-href /cms/",
