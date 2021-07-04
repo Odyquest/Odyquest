@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Chase } from '../models/chase'
 import { deserialize, serialize } from 'typescript-json-serializer';
@@ -18,7 +18,6 @@ export class ChaseService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvZHlxdWVzdCIsIm5hbWUiOiJYYXZlciIsImlhdCI6MTUxNjIzOTAyMn0.IdZh-go3WrO-9vefWeFrUuKk6bw90RimWvuwHM7DcCM'
     })
   };
@@ -108,18 +107,29 @@ export class ChaseService {
    *
    * @return observable containing url to data relative to ServerEnvironment.base_uri
    */
-  public createMedia(data: Chase): Observable<any> {
-    // TODO return error if ServerEnvironment.api_based is false: not allowed
+  public createMedia(chaseId: string, name: string, file: File): Observable<any> {
+    const form = new FormData();
+    form.append('file', file);
+    form.append('chaseId', chaseId);
+    form.append('name', name);
+    console.log('create media ' + name);
     return this.httpClient.post(
-      ServerEnvironment.base_uri + 'media', data, this.httpOptions)
+      ServerEnvironment.base_uri + 'media', form, this.httpOptions)
       .pipe(
         map(url => {
-          console.log("Successfull pushed media to server");
-          return url["url"];
+          console.log("Successfull pushed media to server:");
+          return ServerEnvironment.base_uri + url;
         }),
         catchError(error => {
-          console.log("Failure while pushing media to server");
-          return error;
+          if (error.status === 200) {
+            // This should not be an error, handle it like success
+            console.log("Pushed media to server");
+            return of(ServerEnvironment.base_uri + error.error.text);
+          } else {
+            console.log("Failure while pushing media to server");
+            console.log(error);
+            return error;
+          }
         })
       );
   }

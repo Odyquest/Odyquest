@@ -415,6 +415,7 @@ export class QuestEditorComponent implements OnInit {
       console.log('upload file...');
       this.chaseService.createMedia(this.chase.metaData.chaseId, '(unnamed)', $event.target.files[0]).subscribe( res  => {
         console.log('...done: ' + res);
+        this.image_url = res;
         // update image and url fields
       });
     });

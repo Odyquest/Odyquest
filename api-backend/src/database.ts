@@ -180,15 +180,12 @@ export class Database {
   }
 
   createMedia(chaseId: string, name: string, mimetype: string, data: Buffer): string {
-    console.log("start creating media document");
     const entry = new MediaModel();
-    console.log("created media document");
     const doc = entry as MediaDocument;
     doc.chaseId = chaseId;
     doc.name = name;
     doc.mimetype = mimetype;
     doc.binary = data;
-    console.log("set data media document");
     entry.save();
     console.log("saved media document");
     return entry._id;

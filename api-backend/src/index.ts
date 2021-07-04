@@ -98,14 +98,14 @@ app.get('/media/*', (req, res) => {
   });
 });
 
-function addMedia(req:express.Request, res:express.Response) {
-  console.log('received media data');
-  const id = database.createMedia(req.body.chaseId, req.body.name, req.file.mimetype, req.file.buffer);
-  res.send('{ url: "media/' + id + '" }');
+function addMedia(req:express.Request): string {
+  return database.createMedia(req.body.chaseId, req.body.name, req.file.mimetype, req.file.buffer);
 }
 
 app.post('/media', jwt_protection, upload.single('file'), function (req, res) {
-  addMedia(req, res);
+  console.log('received media data');
+  const id = addMedia(req);
+  res.send('media/' + id);
 });
 
 app.delete('/media/*', jwt_protection, upload.single('file'), function (req, res) {
