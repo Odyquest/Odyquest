@@ -76,12 +76,6 @@ const appRoutes: Routes = [
   { path: 'editor', component: MainEditorComponent, canActivate: [AuthGuard] },
   { path: 'home', component: ChaseSelectorComponent/*, canActivate: [AuthGuard]*/ },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  //{ path: 'home', component: HomeComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-  //{ path: 'chase', component: MainEditorComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-  //{
-  //  path: 'login/callback',
-  //  component: OktaCallbackComponent
-  //},
   { path: 'login', component: LoginComponent },
   //{ path: '**', redirectTo: 'home' },
   //{ path: 'logged-out', component: LoggedOutComponent }
@@ -138,7 +132,6 @@ const appRoutes: Routes = [
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    // OktaAuthModule,
     OAuthModule.forRoot(),
     RouterModule.forRoot(
       appRoutes
@@ -149,7 +142,6 @@ const appRoutes: Routes = [
   ],
   providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
     { provide: MatDialogRef, useValue: {} },
-    /*, { provide: OKTA_CONFIG, useValue: config }*/
     { provide: OAuthModuleConfig, useValue: authModuleConfig },
     { provide: ValidationHandler, useClass: JwksValidationHandler },
     { provide: OAuthStorage, useValue: localStorage },

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
-//import { OktaAuthService } from '@okta/okta-angular';
-//import * as OktaSignIn from '@okta/okta-signin-widget';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +11,6 @@ export class LoginComponent implements OnInit {
   // public hide;
 
   constructor(router: Router) {
-    //this.signIn = oktaAuth;
-
     //router.events.forEach(event => {
     //  if (event instanceof NavigationStart) {
     //    switch (event.url) {
@@ -34,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     //this.widget.renderEl({
-    //  el: '#okta-signin-container'
+    //  el: '#signin-container'
     //},
     //  (res) => {
     //    if (res.status === 'SUCCESS') {

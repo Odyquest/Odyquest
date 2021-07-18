@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-// import { OktaAuthService } from '@okta/okta-angular';
-
-// import { OAuthService } from 'angular-oauth2-oidc';
-import { OAuthService, OAuthErrorEvent } from 'angular-oauth2-oidc'; 
+import { OAuthService, OAuthErrorEvent } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
