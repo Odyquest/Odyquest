@@ -27,6 +27,8 @@
     "@angular/router": "~9.1.1",
     "@okta/okta-angular": "^2.2.0",
     "@okta/okta-signin-widget": "^4.4.4",
+    "angular-oauth2-oidc": "^12.0.0",
+    "angular-oauth2-oidc-jwks": "^12.0.0",
     "file-saver": "^2.0.5",
     "help": "^3.0.2",
     "material-design-icons": "^3.0.1",
