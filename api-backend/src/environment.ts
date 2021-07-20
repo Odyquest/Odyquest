@@ -21,3 +21,11 @@ export function getApiSecret(): string {
 export function getApiPort(): number {
   return +getEnv(process.env.ODYQUEST_API_PORT, "8444");
 }
+
+export function getAuthIssuesBaseUrl(): string {
+  return getEnv(process.env.AUTH_ISSUER_BASE_URL, "http://localhost:8080/auth/realms/master");
+}
+
+export function getAuthBaseUrl(): string {
+  return getEnv(process.env.AUTH_BASE_URL, "http://localhost:8444" + getApiPort());
+}
