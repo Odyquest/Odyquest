@@ -7,6 +7,8 @@ import jwt from 'express-jwt';
 import { auth, requiresAuth }  from 'express-openid-connect';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
+import {getSimpleJwksService, secure} from 'express-oauth-jwt';
+
 import { Database } from './database';
 import { getCorsOrigin, getApiSecret, getApiPort, getAuthIssuesBaseUrl } from './environment';
 import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
@@ -21,22 +23,6 @@ var database = new Database();
 
 const app = express();
 const upload = multer();
-
-
-app.use(
-  auth({
-    issuerBaseURL: getAuthIssuesBaseUrl(),
-    baseURL: 'http://localhost:' + getApiPort(),
-    clientID: 'odyquest-api',
-    secret: 'f6a9d73a3d8b5afcb7d4e973031f1f21d59ea80db16f7bb05ee00f946c1a826f',
-    //idpLogout: true,
-    authRequired: false, // do not require auth for all routes
-    routes: {
-      login: false,
-      //postLogoutRedirect: '/custom-logout',
-    }
-  })
-);
 
 const options: cors.CorsOptions = {
   allowedHeaders: [
@@ -59,12 +45,49 @@ app.get('/', (req, res) => {
     res.send('Boom!');
 });
 
+// Configure OAuth security to validate JWTs and to check the issuer + audience claims
+const authOptions = {
+    claims: [
+        {
+            name: 'iss',
+          value: getAuthIssuesBaseUrl(),
+        },
+    ]
+};
+const jwksService = getSimpleJwksService('https://localhost/auth/realms/odyquest-api/protocol/openid-connect/certs');
+app.use('/*', secure(jwksService, authOptions));
+
+//app.use(
+//  auth({
+//    issuerBaseURL: getAuthIssuesBaseUrl(),
+//    baseURL: 'http://localhost:' + getApiPort(),
+//    clientID: 'odyquest-api',
+//    secret: 'f6a9d73a3d8b5afcb7d4e973031f1f21d59ea80db16f7bb05ee00f946c1a826f',
+//    //idpLogout: true,
+//    authRequired: false, // do not require auth for all routes
+//    routes: {
+//      login: false,
+//      //postLogoutRedirect: '/custom-logout',
+//    }
+//  })
+//);
+
+
 /**
  * dummy call, may be changed in future versions
  */
 app.get('/test', requiresAuth(), (req, res) => {
   res.send('success');
 });
+app.get('/api/test', requiresAuth(), (req, res) => {
+  res.send('success');
+});
+
+app.get('/callback', (req, res) => {
+  console.log('/callback called');
+  res.send('Back!');
+});
+
 
 app.get('/chase', (req, res) => {
   database.getChaseList().then(list => {

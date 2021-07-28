@@ -52,10 +52,10 @@ import { LoggedOutComponent } from './components/logged-out/logged-out.component
 
 // Could also go to its own file, but we just dump it next to the AppModule.
 const config: AuthConfig = {
-  issuer: 'http://localhost:8080/auth/realms/master',
+  issuer: 'https://localhost/auth/realms/master',
   clientId: 'odyquest-cms',
   redirectUri: window.location.origin + '/',
-  logoutUrl: 'TODO/v2/logout?returnTo=' + encodeURIComponent(window.location.origin),
+  logoutUrl: 'WILL_BE_DONE_LATER',
   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
   scope: 'openid profile email',
 };
@@ -64,7 +64,7 @@ const config: AuthConfig = {
 const authModuleConfig: OAuthModuleConfig = {
   // Inject "Authorization: Bearer ..." header for these APIs:
   resourceServer: {
-    allowedUrls: ['http://localhost:8080'],
+    allowedUrls: ['https://localhost', 'http://localhost:8400/chase'],
     sendAccessToken: true,
   },
 };
