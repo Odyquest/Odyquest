@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, Subject, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { OAuthStorage } from 'angular-oauth2-oidc';
+
 import { Chase } from '../models/chase'
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { ServerEnvironment } from '../environments/environment';
@@ -18,12 +20,13 @@ export class ChaseService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvZHlxdWVzdCIsIm5hbWUiOiJYYXZlciIsImlhdCI6MTUxNjIzOTAyMn0.IdZh-go3WrO-9vefWeFrUuKk6bw90RimWvuwHM7DcCM'
+      // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvZHlxdWVzdCIsIm5hbWUiOiJYYXZlciIsImlhdCI6MTUxNjIzOTAyMn0.IdZh-go3WrO-9vefWeFrUuKk6bw90RimWvuwHM7DcCM'
     })
   };
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private authStorage: OAuthStorage,
   ) { }
 
   /**
@@ -32,7 +35,12 @@ export class ChaseService {
    * @return observable of type ChaseList
    */
   public getAllChases(): Observable<any> {
-    return this.httpClient.get(this.getChaseListPath(), this.httpOptions)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + this.authStorage.getItem('access_token')
+      })
+    };
+    return this.httpClient.get(this.getChaseListPath(), httpOptions)
       .pipe(
         map(chases => {
           // console.log("chases: " + chases);
