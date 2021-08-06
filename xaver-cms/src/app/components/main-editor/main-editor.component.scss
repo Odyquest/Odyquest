@@ -143,7 +143,6 @@ input {
   padding: 6px 10px;
   margin: 4px 0;
   box-sizing: border-box;
-  border: 3px solid grey;
   border-radius: 4px;
 
   font-size: 15pt;
@@ -156,9 +155,7 @@ textarea {
   padding: 6px 10px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 3px solid grey;
   border-radius: 4px;
-
   margin-bottom: 10px;
   font-size: 15pt;
 }
@@ -191,7 +188,6 @@ select {
   font-size: 16px;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
-  border: 3px solid grey;
 
   cursor: pointer;
 }

@@ -8,17 +8,22 @@
     <button id="saveChaseButton" mat-raised-button color="primary" (click)="MediaUploader.click()">Bild Hochladen</button>
   </div>
   <div class="quest-editor-top-right-container">
-    <div class="quest-editor-top-right-container-header">
-      <div class="quest-name-container">
-        <label for="fname">Titel:</label>
-        <input type="text" id="quest-name" name="quest_name" [(ngModel)]="title" (change)="onTitleChange()"><br><br>
-      </div>
-      <!-- <button class="saveCancelButton" mat-raised-button color="primary" (click)="reset()">Reset</button>
-      <button class="saveCancelButton" mat-raised-button color="primary" (click)="save()">Speichern</button> -->
-    </div>
+
+        <form>
+          <mat-form-field>
+            <mat-label for="fname">Titel:</mat-label>
+            <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="title" (change)="onTitleChange()">
+          </mat-form-field>
+        </form>
+
     <label for="fname">Aufgabenbeschreibung:</label>
-    <textarea type="text" id="bug_brief" placeholder="Hier steht der Beschreibungstext für den User..."
+    <form action="">
+      <mat-form-field>
+            <textarea matInput type="text" id="bug_brief" placeholder="Hier steht der Beschreibungstext für den User..."
       name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+    </form>
+
     <a href="https://www.markdownguide.org/cheat-sheet#basic-syntax">Hilfe Textformatierung</a>
     <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">Hilfe Emojis</a>
   </div>
@@ -33,24 +38,38 @@
     <div class="quest-top-container">
 
       <div class="quest-top-mini-container">
-        <label for="quest-type">Quest Typ:</label>
-        <select name="quest-type" id="quest-type-selector" [(ngModel)]="quest_type_status_int"
-          (change)="onQuestTypeChange($event.target.value)">
-          <option [value]="1">Text</option>
-          <option [value]="2">Multiple Choice</option>
-        </select>
+        <mat-form-field appearance="fill">
+          <mat-label>Quest Typ:</mat-label>
+          <mat-select>
+            <mat-option [value]="1">Text</mat-option>
+            <mat-option [value]="2">Multiple Choice</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="quest-top-mini-container">
+        <form>
+          <mat-form-field>
+            <mat-label for="num_tries">Versuche (0 = ∞):</mat-label>
+            <input matInput type="number" id="num_tries" name="num_tries" min="0" [(ngModel)]="maxTries">
+          </mat-form-field>
+        </form>
       </div>
       <div class="quest-top-mini-container">
-        <label for="num_tries">Versuche (0 = ∞):</label>
-        <input type="number" id="num_tries" name="num_tries" min="0" [(ngModel)]="maxTries">
-      </div>
-      <div class="quest-top-mini-container">
-        <label for="max_time">Sekunden Zeit (0 = ∞):</label>
-        <input type="number" id="max_time" name="max_time" min="0" [(ngModel)]="maxTime">
+        <form>
+          <mat-form-field>
+            <mat-label for="max_time">Sekunden Zeit (0 = ∞):</mat-label>
+            <input matInput type="number" id="max_time" name="max_time" min="0" [(ngModel)]="maxTime">
+          </mat-form-field>
+        </form>
       </div>
       <div class="quest-top-mini-container">
         <label for="disp_image_first">Bild zuerst anzeigen</label>
-        <input type="checkbox" id="disp_image_first" name="disp_image_first" [(ngModel)]="display_image_first">
+        <!-- <input type="checkbox" id="disp_image_first" name="disp_image_first" [(ngModel)]="display_image_first"> -->
+        <mat-checkbox class="example-margin"
+        [checked]="display_image_first" color="primary"
+        >
+</mat-checkbox>
       </div>
     </div>
 
@@ -64,14 +83,22 @@
           <li *ngFor="let solution of solutionItems; let i = index">
             <div class="single-solution-item-container">
               <div class=combination_map_name_width>
-                <input type="text" id="quest-name" name="quest_name" [value]="solution"
-                  (change)="updateSolutionItem($event, i)"><br><br>
+                <form>
+                  <mat-form-field>
+                    <mat-label></mat-label>
+                <input matInput type="text" id="quest-name" name="quest_name" [value]="solution"
+                  (change)="updateSolutionItem($event, i)">
+                  </mat-form-field>
+                  </form>
               </div>
 
           <li *ngFor="let combination of combinationMap; let j = index">
             <div class="combination_map_checkbox_width combination_map_checkbox_container">
-              <input type="checkbox" id="combination_map_check" name="combination_map_check"
+                <mat-checkbox class="example-margin"
+                color="primary"
+                id="combination_map_check" name="combination_map_check"
                 [(ngModel)]="combinationMap[j].requiredItems[i]">
+  </mat-checkbox>
             </div>
           </li>
           <div [hidden]="this.solutionItems.length < 2">
@@ -88,19 +115,21 @@
         <li *ngFor="let combination of combinationMap; let j = index">
           <div class=combination_map_checkbox_width>
             <div class="combination-map-bottom-row-attributes">
-              <select name="quest-type" id="combination-type-selector" [(ngModel)]="solution_type_status_int[j]"
-                (change)="onSolutionTypeStatusChange($event.target.value, j)">
-                <option value="1">Alle</option>
-                <option value="2">Eins</option>
-              </select>
-              <select id="combination-map-destination-dropdown">
-                <option *ngFor="let target of gameElementsList" [value]='target'
+              <mat-form-field appearance="fill">
+                <mat-select [(ngModel)]="solution_type_status_int[j]">
+                  <mat-option [value]="1">Alle</mat-option>
+                  <mat-option [value]="2">Eins</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Quest Typ:</mat-label>
+                <mat-select>
+                  <mat-option  *ngFor="let target of gameElementsList" [value]='target'
                   [attr.selected]="parseIdFromGEString(target)==1 ? true : null"
-                  (click)="onCombinationMapDestinationChange(j, target)">{{target}}</option>
-              </select>
-
-
-
+                  (click)="onCombinationMapDestinationChange(j, target)">{{target}}</mat-option>
+                </mat-select>
+              </mat-form-field>
 
 
 
@@ -122,17 +151,22 @@
     <div>
       Hilfetexte
     </div>
-    <li *ngFor="let help_entry of help; let i = index">
-      <div class="single-button-container">
-        <span>{{i+1}}</span>
-        <input type="text" id="quest-name" name="quest_name" [(ngModel)]="help[i].text"><br><br>
-        <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
+    <form>
+      <div *ngFor="let help_entry of help; let i = index">
+        <div class="single-button-container">
+          <span>{{i+1}}</span>
+            <mat-form-field>
+            <mat-label></mat-label>
+            <input matInput type="text" name="quest_name" [(ngModel)]="help[i].text">
+            </mat-form-field>
+          <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
+        </div>
       </div>
-    </li>
+    </form>
+
   </div>
   <button class="saveCancelButton" mat-raised-button color="primary" (click)="addHelpText()">Hilfetext
     Hinzufügen</button>
-
 
 </div>
 </div>
@@ -176,7 +210,13 @@
       </div>
       <li *ngFor="let button of buttons; let i = index">
         <div class="single-button-container">
-          <input type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name"><br><br>
+          <form>
+            <mat-form-field>
+              <mat-label></mat-label>
+          <input matInput  type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name">
+            </mat-form-field>
+            </form>
+
           <select>
             <option *ngFor="let target of gameElementsList" [value]='target'
               [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
@@ -196,13 +236,18 @@
       <div>
         Hilfetexte
       </div>
-      <li *ngFor="let help_entry of help; let i = index">
+      <form>
+      <div *ngFor="let help_entry of help; let i = index">
         <div class="single-button-container">
           <span>{{i+1}}</span>
-          <input type="text" id="quest-name" name="quest_name" [(ngModel)]="help[i].text"><br><br>
+            <mat-form-field>
+            <mat-label></mat-label>
+            <input matInput type="text" name="quest_name" [(ngModel)]="help[i].text">
+            </mat-form-field>
           <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
         </div>
-      </li>
+      </div>
+    </form>
     </div>
     <button class="saveCancelButton" mat-raised-button color="primary" (click)="addHelpText()">Hilfetext
       Hinzufügen</button>

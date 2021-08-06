@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
-import { saveAs } from 'file-saver';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Chase, ChaseMetaData } from 'src/app/shared/models/chase';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
-import { Chase, ChaseMetaData } from 'src/app/shared/models/chase';
-import { Quest } from 'src/app/shared/models/quest';
-import { Narrative } from 'src/app/shared/models/narrative';
-import { GameElement } from 'src/app/shared/models/gameElement';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { Description } from 'src/app/shared/models/description';
+import { GameElement } from 'src/app/shared/models/gameElement';
+import { Narrative } from 'src/app/shared/models/narrative';
+import { Quest } from 'src/app/shared/models/quest';
+import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'main-chase-editor',
@@ -35,6 +35,23 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   // todo use actual questList
   questList: string[];
   narrativeList: string[];
+
+  constructor(private activatedRoute: ActivatedRoute, private chaseService: ChaseService) {
+    this.chaseID = this.activatedRoute.snapshot.queryParams.id;
+  }
+
+  ngOnInit(): void {
+    console.log("ngOnInit()");
+    this.chaseService.getChase(this.chaseID).subscribe(chase => {
+      this.chase = deserialize<Chase>(chase, Chase)
+      // this.createNewChase();
+
+      this.getDataFromChase();
+      this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest), true);
+      this.questEditor.setChase(this.chase);
+    });
+
+  }
 
   writeDataToChase(): void {
     this.chase.metaData.title = this.title;
@@ -90,22 +107,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private chaseService: ChaseService) {
-    this.chaseID = this.activatedRoute.snapshot.queryParams.id;
-  }
 
-  ngOnInit(): void {
-    console.log("ngOnInit()");
-    this.chaseService.getChase(this.chaseID).subscribe(chase => {
-      this.chase = deserialize<Chase>(chase, Chase)
-      // this.createNewChase();
-
-      this.getDataFromChase();
-      this.questEditor.setGameElementToEdit(this.chase.gameElements.get(this.selectedQuest), true);
-      this.questEditor.setChase(this.chase);
-    });
-
-  }
 
   ngAfterViewInit(): void {
     console.log("ngAfterViewInit()");

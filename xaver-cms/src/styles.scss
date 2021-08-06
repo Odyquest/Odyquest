@@ -14,7 +14,7 @@
 
 //global color defs
 $form_color: rgb(15, 29, 32);
-$text_color: rgb(114, 176, 218);
+$text_color: rgb(110, 124, 133);
 $text_color_unselected: rgb(219, 219, 219);
 $background_color: #262527;
 $background_color_content: rgb(23, 39, 44);
@@ -37,18 +37,6 @@ body {
 
 .mat-button-wrapper {
   color: white;
-}
-
-
-
-
-#okta-signin-submit {
-  background: #a88a49 !important;
-  border: none !important;
-}
-
-#okta-sign-in {
-  margin-top: 0px !important;
 }
 
 .cdk-overlay-container {
