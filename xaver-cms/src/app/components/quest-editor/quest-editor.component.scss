@@ -28,6 +28,7 @@
   justify-content: flex-start;
   width: 75%;
   height: 100%;
+  padding: 20px;
 }
 
 .quest-editor-top-right-container-header {
@@ -259,16 +260,21 @@ li {
   cursor: pointer;
 }
 
+
 .combination_map_name_width {
-  width: 20vw;
+  width: 100%;
+  min-width: 150px;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  //background:green;
+  // background:green;
 }
 
 .combination_map_checkbox_width {
-  width: 5vw;
+  width: 100%;
+  min-width: 50px;
+  max-width: 100px;
   margin-left: 5px;
   margin-right: 5px;
   background: rgb(216, 215, 215);
@@ -307,6 +313,7 @@ li {
   display: flex;
   flex-direction: row;
   //background: red;
+  // margin-left: 145px;
 }
 
 .combination-map-bottom-row-attributes {
@@ -318,4 +325,35 @@ li {
 
 #combination-map-destination-dropdown {
   margin-bottom: 10px;
+}
+
+#quest-meta-info-input{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.solution-list-form-field {
+  width: 100%;
+  min-width: 50px;
+  max-width: 85px;
+}
+
+.solution-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.combination-map-delete-column-wrapper {
+  display: flex;
+}
+
+.delete-icon-wrapper {
+display: flex;
+width: 100%;
+min-width: 50px;
+max-width: 55px;
+height: 100%;
+align-items: center;
+justify-content: center;
 }

@@ -49,7 +49,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
-import { QuestEditorComponent } from './quest-editor/quest-editor.component'
+import { QuestEditorComponent } from './components/quest-editor/quest-editor.component'
 import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.component';
 
 const config = {

@@ -3,11 +3,11 @@ import { GameElement } from 'src/app/shared/models/gameElement';
 import { Quest, QuestType } from 'src/app/shared/models/quest';
 import { Narrative, NarrativeType, NarrativeStatus } from 'src/app/shared/models/narrative';
 import { XButton } from 'src/app/shared/models/xButton'
-import { Chase } from '../shared/models/chase';
-import { LogicType, SolutionTerm } from '../shared/models/solution_term';
+import { Chase } from '../../shared/models/chase';
+import { LogicType, SolutionTerm } from '../../shared/models/solution_term';
 import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
-import { Description } from '../shared/models/description';
-import { MainEditorComponent } from '../components/main-editor/main-editor.component'
+import { Description } from '../../shared/models/description';
+import { MainEditorComponent } from '../main-editor/main-editor.component'
 import { ChaseService } from 'src/app/shared/services/chase.service';
 
 @Component({
@@ -404,7 +404,7 @@ export class QuestEditorComponent implements OnInit {
   reset(): void {
     console.log("reset");
     this.gameElementToLocal();
-    // -> reset values get 
+    // -> reset values get
   }
 
   uploadMedia($event): void {
