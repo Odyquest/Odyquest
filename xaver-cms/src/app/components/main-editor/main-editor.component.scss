@@ -5,7 +5,7 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
-  background: #eee;
+  background: #262527;
 }
 
 .quest_selector {
@@ -22,15 +22,29 @@
   background: white;
 }
 
+#chase-meta-info-form {
+  margin: 15px;
+}
+
 .quest_selector_container {
   display: flex;
   flex-direction: column;
-  width: 15%;
+  width: 100%;
+  min-width: 200px;
+  max-width: 250px;
   height: 100%;
   align-items: center;
   justify-content: flex-start;
-  border-right: 2px solid rgba(0, 0, 0, 0.6);
-  overflow-y: scroll;
+  border-right: 2px solid #262527;
+  overflow-y: auto;
+}
+
+.golden-font {
+  color: #bea05a;
+}
+
+mat-form-field {
+  color: white;
 }
 
 label {
@@ -80,6 +94,28 @@ mat-selection-list {
   width: 100%;
 }
 
+.button-wrapper{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background: #262527;
+}
+
+.chase-menu-icon {
+  background: rgba(255, 255, 255, 0.8);
+  color: #bea05a;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.chase-menu-icon:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: #bea05a;
+}
+
 #add_quest_button {
     background: $background_color_selectable;
     color: $text_color;
@@ -123,7 +159,7 @@ mat-list-option {
   width: 100%;
   color: white;
   background: #bea05a;
-  border-top: 2px solid black;
+  border-top: 2px solid #262527;
 }
 
 .text-and-delete-container {
@@ -135,29 +171,6 @@ mat-list-option {
 
 .delete_icon:hover {
   color: red;
-  //border: 2px solid red;
-}
-
-input {
-  width: 80%;
-  padding: 6px 10px;
-  margin: 4px 0;
-  box-sizing: border-box;
-  border-radius: 4px;
-
-  font-size: 15pt;
-  //margin-bottom: 40px;
-}
-
-textarea {
-  width: 90%;
-  height: 7%;
-  padding: 6px 10px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  font-size: 15pt;
 }
 
 .single-button-container {
@@ -173,27 +186,6 @@ textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
-}
-
-select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-
-  width: 100%;
-  height: 40px;
-  -moz-padding-start: calc(10px - 3px);
-  padding-left: 10px;
-
-  font-size: 16px;
-  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-
-  cursor: pointer;
-}
-
-label {
-    white-space: nowrap;
 }
 
 .initial-game-element-container {
