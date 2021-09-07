@@ -97,7 +97,7 @@ export class ChaseService {
    * Delete chase with given id from configured data source.
    */
   public deleteChase(id: string): Observable<any> {
-    return this.httpClient.delete(this.getChasePath(id), this.httpOptions)
+    return this.httpClient.delete(this.getChasePath(id, true), this.httpOptions)
       .pipe(
         map(chase => {
           console.log("Successfull deleted chase");
@@ -122,7 +122,7 @@ export class ChaseService {
     form.append('name', name);
     console.log('create media ' + name);
     return this.httpClient.post(
-      ServerEnvironment.base_uri + 'media', form, this.httpOptions)
+      ServerEnvironment.base_uri + 'protected/media', form, this.httpOptions)
       .pipe(
         map(url => {
           console.log("Successfull pushed media to server:");
@@ -147,7 +147,7 @@ export class ChaseService {
    */
   public deleteMedia(id: string): Observable<any> {
     return this.httpClient.delete(
-      ServerEnvironment.base_uri + 'media/' + id, this.httpOptions)
+      ServerEnvironment.base_uri + 'protected/media/' + id, this.httpOptions)
       .pipe(
         map(chase => {
           console.log("Successfull deleted media");
@@ -168,9 +168,13 @@ export class ChaseService {
     }
   }
 
-  private getChasePath(id: string): string {
+  private getChasePath(id: string, modify=true): string {
     if (ServerEnvironment.api_based === true) {
-      return ServerEnvironment.base_uri + 'chase/' + id;
+      let prefix = '';
+      if (modify) {
+        prefix = 'protected/';
+      }
+      return ServerEnvironment.base_uri + prefix + 'chase/' + id;
     } else {
       return ServerEnvironment.base_uri + id + '/chase.json';
     }

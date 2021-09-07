@@ -2,22 +2,14 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
-import jwt from 'express-jwt';
 
-import { auth, requiresAuth }  from 'express-openid-connect';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
 import {getSimpleJwksService, secure} from 'express-oauth-jwt';
 
 import { Database } from './database';
-import { getCorsOrigin, getApiSecret, getApiPort, getAuthIssuesBaseUrl } from './environment';
+import { getCorsOrigin, getApiPort, getAuthIssuesBaseUrl, getAuthJwksUrl } from './environment';
 import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
-
-const jwt_protection = jwt({
-  secret: getApiSecret(),
-  algorithms: ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'PS256', 'PS384', 'PS512', 'ES256', 'ES384', 'ES512']
-});
-// TODO catch jwt exception and only pass "Unauthorized"
 
 var database = new Database();
 
@@ -54,40 +46,18 @@ const authOptions = {
         },
     ]
 };
-const jwksService = getSimpleJwksService('https://localhost/auth/realms/odyquest-api/protocol/openid-connect/certs');
-app.use('/*', secure(jwksService, authOptions));
-
-//app.use(
-//  auth({
-//    issuerBaseURL: getAuthIssuesBaseUrl(),
-//    baseURL: 'http://localhost:' + getApiPort(),
-//    clientID: 'odyquest-api',
-//    secret: 'f6a9d73a3d8b5afcb7d4e973031f1f21d59ea80db16f7bb05ee00f946c1a826f',
-//    //idpLogout: true,
-//    authRequired: false, // do not require auth for all routes
-//    routes: {
-//      login: false,
-//      //postLogoutRedirect: '/custom-logout',
-//    }
-//  })
-//);
-
+const jwksService = getSimpleJwksService(getAuthJwksUrl());
+app.use('/protected/*', secure(jwksService, authOptions));
 
 /**
  * dummy call, may be changed in future versions
  */
-app.get('/test', requiresAuth(), (req, res) => {
+app.get('/test', (req, res) => {
   res.send('success');
 });
-app.get('/api/test', requiresAuth(), (req, res) => {
+app.get('/protected/test', (req, res) => {
   res.send('success');
 });
-
-app.get('/callback', (req, res) => {
-  console.log('/callback called');
-  res.send('Back!');
-});
-
 
 app.get('/chase', (req, res) => {
   database.getChaseList().then(list => {
@@ -111,7 +81,7 @@ app.get('/chase/*', (req, res) => {
   });
 });
 
-app.post('/chase', requiresAuth(), function (req, res) {
+app.post('/protected/chase', function (req, res) {
   console.log('received chase');
   database.createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
     res.send('{ chaseId: "' + id + '" }');
@@ -121,7 +91,7 @@ app.post('/chase', requiresAuth(), function (req, res) {
   });
 });
 
-app.delete('/chase/*', requiresAuth(), function (req, res) {
+app.delete('/protected/chase/*', function (req, res) {
   database.deleteChase(req.params[0]).then(id => {
     res.send('{status:"success"}');
   }).catch(() => {
@@ -143,13 +113,13 @@ function addMedia(req:express.Request): string {
   return database.createMedia(req.body.chaseId, req.body.name, req.file.mimetype, req.file.buffer);
 }
 
-app.post('/media', requiresAuth(), upload.single('file'), function (req, res) {
+app.post('/protected/media', upload.single('file'), function (req, res) {
   console.log('received media data');
   const id = addMedia(req);
   res.send('media/' + id);
 });
 
-app.delete('/media/*', requiresAuth(), upload.single('file'), function (req, res) {
+app.delete('/protected/media/*', upload.single('file'), function (req, res) {
   database.deleteMedia(req.params[0]).then(data => {
     res.send(data);
   }).catch(() => {
