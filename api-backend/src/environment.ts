@@ -25,7 +25,3 @@ export function getAuthIssuesBaseUrl(): string {
 export function getAuthJwksUrl(): string {
   return getEnv(process.env.AUTH_ISSUER_BASE_URL, "https://localhost:8080/auth/realms/master/protocol/openid-connect/certs");
 }
-
-export function getAuthBaseUrl(): string {
-  return getEnv(process.env.AUTH_BASE_URL, "http://localhost:8444" + getApiPort());
-}
