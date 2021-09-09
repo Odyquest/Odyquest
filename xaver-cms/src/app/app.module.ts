@@ -54,7 +54,7 @@ import { LoggedOutComponent } from './components/logged-out/logged-out.component
 const config: AuthConfig = {
   issuer: 'https://localhost/auth/realms/master',
   clientId: 'odyquest-cms',
-  redirectUri: window.location.origin + '/',
+  redirectUri: window.location.origin + '/cms',
   logoutUrl: 'WILL_BE_DONE_LATER',
   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
   scope: 'openid profile email',
@@ -145,7 +145,7 @@ const appRoutes: Routes = [
     { provide: OAuthModuleConfig, useValue: authModuleConfig },
     { provide: ValidationHandler, useClass: JwksValidationHandler },
     { provide: OAuthStorage, useValue: localStorage },
-  { provide: AuthConfig, useValue: config },
+    { provide: AuthConfig, useValue: config },
   ],
 
   bootstrap: [AppComponent]
