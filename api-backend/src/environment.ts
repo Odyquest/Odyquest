@@ -19,9 +19,9 @@ export function getApiPort(): number {
 }
 
 export function getAuthIssuesBaseUrl(): string {
-  return getEnv(process.env.AUTH_ISSUER_BASE_URL, "https://localhost:8080/auth/realms/master");
+  return getEnv(process.env.ODYQUEST_AUTH_ISSUER_BASE_URL, "https://localhost:8080/auth/realms/master");
 }
 
 export function getAuthJwksUrl(): string {
-  return getEnv(process.env.AUTH_ISSUER_BASE_URL, "https://localhost:8080/auth/realms/master/protocol/openid-connect/certs");
+  return getEnv(process.env.ODYQUEST_AUTH_JWKS_URL, "https://localhost:8080/auth/realms/master/protocol/openid-connect/certs");
 }
