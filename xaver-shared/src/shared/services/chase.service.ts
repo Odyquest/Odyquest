@@ -77,7 +77,7 @@ export class ChaseService {
   public createOrUpdateChase(p_chase: Chase): Observable<any> {
     // TODO return error if ServerEnvironment.api_based is false: not allowed
     return this.httpClient.post(
-      ServerEnvironment.base_uri + 'chase', serialize(p_chase), this.getHttpOptions())
+      ServerEnvironment.base_uri + 'protected/chase', serialize(p_chase), this.getHttpOptions())
       .pipe(
         map(chaseId => {
           console.log("Successfull pushed chase to server");
