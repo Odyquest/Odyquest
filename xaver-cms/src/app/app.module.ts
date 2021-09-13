@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
-import { Router, RouterModule, Routes } from '@angular/router'
+import { HttpClientModule } from '@angular/common/http';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.component';
 import { ChaseSelectorComponent } from './components/chase-selector/chase-selector.component';
 import { RuntimeConfigurationService, runtimeInitializerFn } from './shared/services/runtime-configuration.service';
-//Angular Material Components
+// Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
@@ -42,45 +42,46 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator'; import { CreateChaseDialogComponent } from './components/create-chase-dialog/create-chase-dialog.component';
 import { MainEditorComponent } from './components/main-editor/main-editor.component';
-import { QuestEditorComponent } from './quest-editor/quest-editor.component'
+import { QuestEditorComponent } from './quest-editor/quest-editor.component';
 
-import {
-  OKTA_CONFIG,
-  OktaAuthModule,
-  OktaCallbackComponent,
-  OktaAuthGuard
-} from '@okta/okta-angular';
+// import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import { AuthGuard } from './services/auth/auth.guard.service';
 import { LoggedOutComponent } from './components/logged-out/logged-out.component';
 
-const config = {
-  issuer: 'https://dev-379215.okta.com/oauth2/default',
-  redirectUri: 'http://localhost:4200/login/callback',
-  clientId: '0oa10p9e5b5UyMNao4x7',
-  pkce: true,
-  scopes: ['profile']
-}
 
-export function onAuthRequired(oktaAuth, injector) {
-  const router = injector.get(Router);
+// Could also go to its own file, but we just dump it next to the AppModule.
+const config: AuthConfig = {
+  issuer: 'https://localhost/auth/realms/master',
+  clientId: 'odyquest-cms',
+  redirectUri: window.location.origin + '/cms',
+  logoutUrl: 'WILL_BE_DONE_LATER',
+  silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+  scope: 'openid profile email',
+};
 
-  // Redirect the user to your custom login page
-  router.navigate(['/login']);
-}
+// Could also go to its own file, but we just dump it next to the AppModule.
+const authModuleConfig: OAuthModuleConfig = {
+  // Inject "Authorization: Bearer ..." header for these APIs:
+  resourceServer: {
+    allowedUrls: ['https://localhost', 'http://localhost:8400/chase'],
+    sendAccessToken: true,
+  },
+};
+
+config.logoutUrl = `${config.issuer}v2/logout?client_id=${config.clientId}&returnTo=${encodeURIComponent(config.redirectUri)}`;
 
 // TODO: add resolver
 const appRoutes: Routes = [
-  { path: 'editor', component: MainEditorComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-  { path: '', component: ChaseSelectorComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-  //{ path: 'home', component: HomeComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-  //{ path: 'chase', component: MainEditorComponent /*, canActivate: [OktaAuthGuard], data: { onAuthRequired }*/ },
-  //{
-  //  path: 'login/callback',
-  //  component: OktaCallbackComponent
-  //},
-  //{ path: 'login', component: LoginComponent },
+  { path: 'editor', component: MainEditorComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: ChaseSelectorComponent/*, canActivate: [AuthGuard]*/ },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  //{ path: '**', redirectTo: 'home' },
   //{ path: 'logged-out', component: LoggedOutComponent }
 
-]
+];
 
 
 
@@ -132,9 +133,9 @@ const appRoutes: Routes = [
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    OktaAuthModule,
+    OAuthModule.forRoot(),
     RouterModule.forRoot(
-      appRoutes, { enableTracing: true }
+      appRoutes
     )
   ],
   entryComponents: [
@@ -142,14 +143,18 @@ const appRoutes: Routes = [
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
-    { provide: MatDialogRef, useValue: {} }, { provide: OKTA_CONFIG, useValue: config },
-        RuntimeConfigurationService,
+    RuntimeConfigurationService,
     {
       provide: APP_INITIALIZER,
       useFactory: runtimeInitializerFn,
       multi: true,
       deps: [RuntimeConfigurationService]
-    }
+    },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: OAuthModuleConfig, useValue: authModuleConfig },
+    { provide: ValidationHandler, useClass: JwksValidationHandler },
+    { provide: OAuthStorage, useValue: localStorage },
+    { provide: AuthConfig, useValue: config },
   ],
 
   bootstrap: [AppComponent]

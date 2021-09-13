@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { OktaAuthService } from '@okta/okta-angular';
+import { OAuthService, OAuthErrorEvent } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -12,36 +12,48 @@ export class AppComponent {
   title = 'xaver-cms';
   userName;
 
-  constructor(public router: Router, public oktaAuth: OktaAuthService) {
 
-    this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
-    );
+
+  username = '';
+
+  get token() { return this.oauthService.getAccessToken(); }
+  get claims() { return this.oauthService.getIdentityClaims(); }
+
+  constructor(public router: Router, public oauthService: OAuthService) {
+        // For debugging:
+    oauthService.events.subscribe(e => e instanceof OAuthErrorEvent ? console.error(e) : console.warn(e));
+
+    // Load information from Auth0 (could also be configured manually)
+    oauthService.loadDiscoveryDocument()
+
+      // See if the hash fragment contains tokens (when user got redirected back)
+      .then(() => oauthService.tryLogin())
+
+      // If we're still not logged in yet, try with a silent refresh:
+      .then(() => {
+        if (!oauthService.hasValidAccessToken()) {
+          return oauthService.silentRefresh();
+        }
+      })
+
+      // Get username, if possible.
+      .then(() => {
+        if (oauthService.getIdentityClaims()) {
+          console.log('get user name from ');
+          console.log(oauthService.getIdentityClaims());
+          this.username = oauthService.getIdentityClaims()['preferred_username'];
+        }
+      });
+
+    oauthService.setupAutomaticSilentRefresh();
+
   }
 
-  async ngOnInit() {
-    // Get the authentication state for immediate use
-    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 
-    if(this.isAuthenticated) {
 
-    const userClaims = await this.oktaAuth.getUser();
-    this.userName = userClaims.name;
-    }
-
-  }
-
-  login() {
-    this.oktaAuth.loginRedirect('/home');
-  }
-
-  async logout() {
-    // Terminates the session with Okta and removes current tokens.
-    await this.oktaAuth.logout({
-      postLogoutRedirectUri: "http://localhost:4200/logged-out"
-    });
-
-  }
+  login() { console.log('login'); this.oauthService.initImplicitFlow(); }
+  logout() { console.log('logout'); this.oauthService.logOut(); }
+  refresh() { console.log('refresh'); this.oauthService.silentRefresh(); }
 
   navigateTo(destination) {
     this.router.navigateByUrl('/home');

@@ -59,6 +59,32 @@ import { CloseWarningGuard } from './core/services/close-warning.guard';
 
 import { MarkdownModule } from 'ngx-markdown';
 
+import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+// import { AuthGuard } from './services/auth/auth.guard.service';
+// import { LoggedOutComponent } from './components/logged-out/logged-out.component';
+
+// Could also go to its own file, but we just dump it next to the AppModule.
+const config: AuthConfig = {
+  issuer: 'https://cms.schnitzeljagd.landesmuseum.de/auth/realms/master',
+  clientId: 'odyquest-cms',
+  redirectUri: window.location.origin + '/cms',
+  logoutUrl: 'WILL_BE_DONE_LATER',
+  silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+  scope: 'openid profile email',
+};
+
+// Could also go to its own file, but we just dump it next to the AppModule.
+const authModuleConfig: OAuthModuleConfig = {
+  // Inject "Authorization: Bearer ..." header for these APIs:
+  resourceServer: {
+    allowedUrls: ['https://api.schnitzeljagd.landesmuseum.de'],
+    sendAccessToken: true,
+  },
+};
+
+config.logoutUrl = `${config.issuer}v2/logout?client_id=${config.clientId}&returnTo=${encodeURIComponent(config.redirectUri)}`;
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,7 +155,11 @@ import { MarkdownModule } from 'ngx-markdown';
       useFactory: runtimeInitializerFn,
       multi: true,
       deps: [RuntimeConfigurationService]
-    }
+    },
+    { provide: OAuthModuleConfig, useValue: authModuleConfig },
+    { provide: ValidationHandler, useClass: JwksValidationHandler },
+    { provide: OAuthStorage, useValue: localStorage },
+    { provide: AuthConfig, useValue: config },
   ],
   bootstrap: [AppComponent]
 })
