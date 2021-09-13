@@ -7,14 +7,14 @@ import { SubmitSolutionComponent } from './modules/components/submit-solution/su
 import { HintComponent } from './modules/components/hint/hint.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ChaseComponent } from './modules/pages/chase/chase.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './modules/pages/list/list.component';
-
+import { RuntimeConfigurationService, runtimeInitializerFn } from './shared/services/runtime-configuration.service';
 
 // Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -149,6 +149,13 @@ config.logoutUrl = `${config.issuer}v2/logout?client_id=${config.clientId}&retur
   ],
   providers: [
     CloseWarningGuard,
+    RuntimeConfigurationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: runtimeInitializerFn,
+      multi: true,
+      deps: [RuntimeConfigurationService]
+    },
     { provide: OAuthModuleConfig, useValue: authModuleConfig },
     { provide: ValidationHandler, useClass: JwksValidationHandler },
     { provide: OAuthStorage, useValue: localStorage },

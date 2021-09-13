@@ -7,6 +7,7 @@ import { OAuthStorage } from 'angular-oauth2-oidc';
 import { Chase } from '../models/chase'
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { ServerEnvironment } from '../environments/environment';
+import { RuntimeConfigurationService } from './runtime-configuration.service';
 
 /**
  * Connection to data source for reading and writing chases
@@ -20,6 +21,7 @@ export class ChaseService {
 
   constructor(
     private httpClient: HttpClient,
+    private configuration: RuntimeConfigurationService,
     private authStorage: OAuthStorage,
   ) { }
 

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule, Routes } from '@angular/router';
@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.component';
 import { ChaseSelectorComponent } from './components/chase-selector/chase-selector.component';
+import { RuntimeConfigurationService, runtimeInitializerFn } from './shared/services/runtime-configuration.service';
 // Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -140,7 +141,15 @@ const appRoutes: Routes = [
   entryComponents: [
     CreateChaseDialogComponent
   ],
-  providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+  providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    RuntimeConfigurationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: runtimeInitializerFn,
+      multi: true,
+      deps: [RuntimeConfigurationService]
+    },
     { provide: MatDialogRef, useValue: {} },
     { provide: OAuthModuleConfig, useValue: authModuleConfig },
     { provide: ValidationHandler, useClass: JwksValidationHandler },
