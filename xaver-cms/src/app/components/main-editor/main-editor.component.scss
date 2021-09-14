@@ -5,7 +5,6 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
-  background: #262527;
 }
 
 .quest_selector {
@@ -24,6 +23,8 @@
 
 #chase-meta-info-form {
   margin: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .quest_selector_container {
@@ -35,7 +36,7 @@
   height: 100%;
   align-items: center;
   justify-content: flex-start;
-  border-right: 2px solid #262527;
+  // border-right: 2px solid #262527;
   overflow-y: auto;
 }
 
@@ -90,21 +91,22 @@ h1 {
 // ================================================================================= GFLOW
 
 mat-selection-list {
-  background: white;
+  background: #ffedc1;
   width: 100%;
 }
+
 
 .button-wrapper{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  background: #262527;
+  // background: #262527;
 }
 
 .chase-menu-icon {
   background: rgba(255, 255, 255, 0.8);
-  color: #bea05a;
+  color: #8d732e;
   border-radius: 5px;
   padding: 2px;
   margin: 2px;
@@ -113,7 +115,7 @@ mat-selection-list {
 
 .chase-menu-icon:hover {
   color: rgba(255, 255, 255, 0.8);
-  background: #bea05a;
+  background: #8d732e;
 }
 
 #add_quest_button {
@@ -140,7 +142,7 @@ mat-selection-list {
 }
 
 mat-list-option {
-  background: white;
+  background: #ffedc1;
   width: 100%;
 }
 
@@ -159,7 +161,9 @@ mat-list-option {
   width: 100%;
   color: white;
   background: #bea05a;
-  border-top: 2px solid #262527;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  // border-top: 2px solid #262527;
 }
 
 .text-and-delete-container {

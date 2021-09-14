@@ -20,15 +20,18 @@
         <textarea matInput type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..."
           name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
       </mat-form-field>
-    </form>
 
-    <div class="initial-game-element-container">
-      <label class="golden-font" for="initial-game-element">Startelement:</label>
-      <mat-select id="initial-game-element">
-        <mat-option *ngFor="let target of gameElementsList" [value]='target' [attr.selected]="true"
-          (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
-      </mat-select>
-    </div>
+
+
+      <mat-form-field>
+        <mat-label class="" for="initial-game-element">Startelement:</mat-label>
+
+        <mat-select id="initial-game-element">
+          <mat-option *ngFor="let target of gameElementsList" [value]='target' [attr.selected]="true"
+            (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
     <div class="quest_selector_header">Rätsel</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
