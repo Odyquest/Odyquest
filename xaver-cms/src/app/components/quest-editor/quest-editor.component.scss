@@ -197,8 +197,9 @@ label {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
   height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .content-type-quest{
@@ -219,7 +220,6 @@ label {
 .button-array-container {
   padding-top: 30px;
   width: 100%;
-  background: red;
 }
 
 .row {
@@ -240,14 +240,21 @@ label {
 }
 
 #narrator-button-array-container {
-  padding-top: 30px;
+  padding-top: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
+.border {
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
 .saveCancelButton {
   margin: 10px;
+  max-width: 250px;
 }
 
 img {
@@ -338,6 +345,12 @@ li {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+h3 {
+  font-weight: 500;
 }
 
 .combinationmap_header {

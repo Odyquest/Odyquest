@@ -161,7 +161,7 @@
       </div>
     </div>
 
-    <div class=button-array-container>
+    <div class="button-array-container border">
       <div>
         Hilfetexte
       </div>
@@ -191,22 +191,23 @@
 
 <div class="content-all-types" [hidden]="!is_narrative">
   <div class=content-type-narrative>
-    <div class=narrative-top-section>
+    <h2>Erzählelement hinzufügen</h2>
+    <div class="narrative-top-section border">
       <div class=narrative-status>
         <mat-form-field>
-          <mat-label for="narrative-status">Narrative Status:</mat-label>
+          <mat-label for="narrative-status">Aktion</mat-label>
           <mat-select name="narrative-status" id="narrative-status-selector" [(ngModel)]="selected_narrative_status_int"
             (change)="onNarrativeStatusChange($event.target.value)">
-            <mat-option [value]="1">Continue</mat-option>
-            <mat-option [value]="2">Win</mat-option>
-            <mat-option [value]="3">Loose</mat-option>
+            <mat-option [value]="1">Weiter</mat-option>
+            <mat-option [value]="2">Gewinnen</mat-option>
+            <mat-option [value]="3">Verlieren</mat-option>
           </mat-select>
         </mat-form-field>
 
       </div>
       <div class=narrative-status>
         <mat-form-field>
-          <mat-label for="narrative-type">Narrative Typ:</mat-label>
+          <mat-label for="narrative-type">Typ:</mat-label>
           <mat-select name="narrative-type" id="narrative-type-selector" [(ngModel)]="selected_narrative_type_int"
             (change)="onNarrativeTypeChange($event.target.value)">
             <mat-option [value]="1">Text</mat-option>
@@ -216,42 +217,11 @@
 
       </div>
     </div>
-    <div id=narrator-button-array-container>
+    <div id=narrator-button-array-container class="border">
       <div class="row">
-        Verfügbare Buttons:
+        <h3> Verfügbare Buttons:
+        </h3>
       </div>
-
-      <!-- <div class="row">
-        <div class="column">
-          <h3>Button Text:</h3>
-          <ng-container *ngFor="let button of buttons; let i = index">
-            <mat-form-field>
-              <mat-label>Text für den Button eingeben</mat-label>
-              <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name">
-            </mat-form-field>
-          </ng-container>
-        </div>
-        <div class="column">
-          <h3>Ziel:</h3>
-          <ng-container *ngFor="let button of buttons; let i = index">
-            <mat-form-field>
-              <mat-select>
-                <mat-option *ngFor="let target of gameElementsList" [value]='target'
-                  [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
-                  (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </ng-container>
-        </div>
-        <div class="column">
-          <h3>Aktion:</h3>
-          <ng-container *ngFor="let button of buttons; let i = index"> <button mat-icon-button
-              [disabled]="this.buttons.length < 2" (click)=deleteNarrativeButton(i)>
-              <mat-icon>delete
-              </mat-icon>
-            </button></ng-container>
-        </div>
-      </div> -->
 
       <ng-container *ngFor="let button of buttons; let i = index">
 
@@ -297,15 +267,16 @@
 
 
 
-
+      <div class="row"> <button class="saveCancelButton" mat-raised-button color="primary" (click)="addButton()">Button
+          Hinzufügen</button>
+      </div>
 
 
 
     </div>
-    <button class="saveCancelButton" mat-raised-button color="primary" (click)="addButton()">Button Hinzufügen</button>
 
 
-    <div class=button-array-container>
+    <div class="button-array-container border">
       <div>
         Hilfetexte
       </div>
