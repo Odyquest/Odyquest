@@ -193,55 +193,114 @@
   <div class=content-type-narrative>
     <div class=narrative-top-section>
       <div class=narrative-status>
-        <label for="narrative-status">Narrative Status:</label>
-        <select name="narrative-status" id="narrative-status-selector" [(ngModel)]="selected_narrative_status_int"
-          (change)="onNarrativeStatusChange($event.target.value)">
-          <option [value]="1">Continue</option>
-          <option [value]="2">Win</option>
-          <option [value]="3">Loose</option>
-        </select>
+        <mat-form-field>
+          <mat-label for="narrative-status">Narrative Status:</mat-label>
+          <mat-select name="narrative-status" id="narrative-status-selector" [(ngModel)]="selected_narrative_status_int"
+            (change)="onNarrativeStatusChange($event.target.value)">
+            <mat-option [value]="1">Continue</mat-option>
+            <mat-option [value]="2">Win</mat-option>
+            <mat-option [value]="3">Loose</mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </div>
       <div class=narrative-status>
-        <label for="narrative-type">Narrative Typ:</label>
-        <select name="narrative-type" id="narrative-type-selector" [(ngModel)]="selected_narrative_type_int"
-          (change)="onNarrativeTypeChange($event.target.value)">
-          <option [value]="1">Text</option>
-          <option [value]="2">Panorama</option>
-        </select>
+        <mat-form-field>
+          <mat-label for="narrative-type">Narrative Typ:</mat-label>
+          <mat-select name="narrative-type" id="narrative-type-selector" [(ngModel)]="selected_narrative_type_int"
+            (change)="onNarrativeTypeChange($event.target.value)">
+            <mat-option [value]="1">Text</mat-option>
+            <mat-option [value]="2">Panorama</mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </div>
     </div>
-    <div class=button-array-container>
-      <div>
+    <div id=narrator-button-array-container>
+      <div class="row">
         Verfügbare Buttons:
       </div>
-      <div class=button-header>
-        <div>
-          Button Text:
-        </div>
-        <div>
-          Ziel:
-        </div>
-      </div>
-      <ng-container *ngFor="let button of buttons; let i = index">
-        <div class="single-button-container">
-          <form>
+
+      <!-- <div class="row">
+        <div class="column">
+          <h3>Button Text:</h3>
+          <ng-container *ngFor="let button of buttons; let i = index">
             <mat-form-field>
-              <mat-label></mat-label>
+              <mat-label>Text für den Button eingeben</mat-label>
               <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name">
             </mat-form-field>
-          </form>
+          </ng-container>
+        </div>
+        <div class="column">
+          <h3>Ziel:</h3>
+          <ng-container *ngFor="let button of buttons; let i = index">
+            <mat-form-field>
+              <mat-select>
+                <mat-option *ngFor="let target of gameElementsList" [value]='target'
+                  [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
+                  (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+        </div>
+        <div class="column">
+          <h3>Aktion:</h3>
+          <ng-container *ngFor="let button of buttons; let i = index"> <button mat-icon-button
+              [disabled]="this.buttons.length < 2" (click)=deleteNarrativeButton(i)>
+              <mat-icon>delete
+              </mat-icon>
+            </button></ng-container>
+        </div>
+      </div> -->
 
-          <select>
-            <option *ngFor="let target of gameElementsList" [value]='target'
-              [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
-              (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</option>
-          </select>
-          <div [hidden]="this.buttons.length < 2">
-            <!-- todo hidden not working -->
-            <mat-icon class=delete_icon (click)=deleteNarrativeButton(i)>delete</mat-icon>
+      <ng-container *ngFor="let button of buttons; let i = index">
+
+        <div *ngIf="i === 0" class="row">
+          <div class="column">
+            <h3>Button Text:</h3>
+
+          </div>
+          <div class="column">
+            <h3>Ziel:</h3>
+
+          </div>
+          <div class="column">
+            <h3></h3>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <mat-form-field>
+              <mat-label>Text für den Button eingeben</mat-label>
+              <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name">
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <mat-form-field>
+              <mat-select>
+                <mat-option *ngFor="let target of gameElementsList" [value]='target'
+                  [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
+                  (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <button mat-icon-button [disabled]="this.buttons.length < 2" (click)=deleteNarrativeButton(i)>
+              <mat-icon>delete
+              </mat-icon>
+            </button>
           </div>
         </div>
       </ng-container>
+
+
+
+
+
+
+
     </div>
     <button class="saveCancelButton" mat-raised-button color="primary" (click)="addButton()">Button Hinzufügen</button>
 

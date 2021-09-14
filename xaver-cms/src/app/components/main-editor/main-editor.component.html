@@ -3,30 +3,31 @@
     <div class="quest_selector_header">Jagd</div>
     <input hidden type="file" #uploader (change)="uploadChase($event)" />
     <div class="button-wrapper">
-    <mat-icon class="chase-menu-icon" (click)="createNewChase()" matTooltip="Neue Jagd">add</mat-icon>
-    <mat-icon class="chase-menu-icon" (click)="uploader.click()" matTooltip="Jagd Hochladen">file_upload</mat-icon>
-    <mat-icon class="chase-menu-icon" (click)="downloadChase()" matTooltip="Jagd Herunterladen">file_download</mat-icon>
-    <mat-icon class="chase-menu-icon" (click)="pushChase()" matTooltip="Jagd Speichern">save</mat-icon>
+      <mat-icon class="chase-menu-icon" (click)="createNewChase()" matTooltip="Neue Jagd">add</mat-icon>
+      <mat-icon class="chase-menu-icon" (click)="uploader.click()" matTooltip="Jagd Hochladen">file_upload</mat-icon>
+      <mat-icon class="chase-menu-icon" (click)="downloadChase()" matTooltip="Jagd Herunterladen">file_download
+      </mat-icon>
+      <mat-icon class="chase-menu-icon" (click)="pushChase()" matTooltip="Jagd Speichern">save</mat-icon>
     </div>
 
     <form id="chase-meta-info-form">
       <mat-form-field>
         <input matInput type="text" id="author" name="Titel" [(ngModel)]="title" placeholder="Name der Jagd...">
       </mat-form-field>
-      <mat-form-field> <input matInput type="text" id="author" name="Autor" [(ngModel)]="author" placeholder="Autor..."></mat-form-field>
-      <mat-form-field>
-        <textarea matInput type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..." name="fname"
-      class="input_field_big" [(ngModel)]="description"></textarea>
+      <mat-form-field> <input matInput type="text" id="author" name="Autor" [(ngModel)]="author" placeholder="Autor...">
       </mat-form-field>
-      </form>
+      <mat-form-field>
+        <textarea matInput type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..."
+          name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+    </form>
 
     <div class="initial-game-element-container">
       <label class="golden-font" for="initial-game-element">Startelement:</label>
-      <select id="initial-game-element">
-        <option *ngFor="let target of gameElementsList" [value]='target'
-                [attr.selected]="true"
-                (click)="onInitialGameElementChange(target)">{{target}}</option>
-      </select>
+      <mat-select id="initial-game-element">
+        <mat-option *ngFor="let target of gameElementsList" [value]='target' [attr.selected]="true"
+          (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
+      </mat-select>
     </div>
     <div class="quest_selector_header">Rätsel</div>
     <div class="quest_selector">
