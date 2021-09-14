@@ -1,0 +1,6 @@
+{
+  "api": {
+    "api_based": true,
+    "base_uri": "https://api.example.com"
+  }
+}

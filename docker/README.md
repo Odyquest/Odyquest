@@ -10,4 +10,8 @@ Odyquest can run inside docker.
 ## Docker-compose Setup
 
 The provided `docker-compose.yml` is only a template and does not work out of the box.
-For running, resolve alle issues markded with `TODO` and set correct domain name.
+For running, resolve alle issues marked with `TODO` and set correct domain name in following files:
+
+* [docker-compose.yml]()
+* [nginx.conf]()
+* [configuration.json]()

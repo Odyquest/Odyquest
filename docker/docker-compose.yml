@@ -30,6 +30,10 @@ services:
     restart: always
     image: localhost:5000/odyquest-frontend:production
     container_name: app-cms-frontend
+    volumes:
+      - ./configuration.json:/usr/share/nginx/html/app/en/assets-shared/configuration/configuration.json
+      - ./configuration.json:/usr/share/nginx/html/app/de/assets-shared/configuration/configuration.json
+      - ./configuration.json:/usr/share/nginx/html/cms/assets-shared/configuration/configuration.json
     networks:
       - default
 
