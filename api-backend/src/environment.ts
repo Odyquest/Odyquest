@@ -18,6 +18,14 @@ export function getApiPort(): number {
   return +getEnv(process.env.ODYQUEST_API_PORT, "8444");
 }
 
+export function getUseAuth(): boolean {
+  if (getEnv(process.env.ODYQUEST_USE_AUTH, 'true') === 'false') {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 export function getAuthIssuesBaseUrl(): string {
   return getEnv(process.env.ODYQUEST_AUTH_ISSUER_BASE_URL, "https://localhost:8080/auth/realms/master");
 }
