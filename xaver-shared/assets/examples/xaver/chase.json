@@ -80,7 +80,8 @@
             "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
          },
          "questType": "multiple_choice",
-         "maxTries": 7,
+         "maxTries": 3,
+         "maxTime": "1970-01-01T00:01:00.000Z",
          "requirementCombination": {
             "solutionItems": [
                "three",

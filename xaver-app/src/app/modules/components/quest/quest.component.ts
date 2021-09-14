@@ -132,6 +132,10 @@ export class QuestComponent implements OnInit, OnDestroy {
     return this.quest.maxTime && this.quest.maxTime.getTime() > 0;
   }
 
+  hasTriesConstraint(): boolean {
+    return this.quest.maxTries && this.quest.maxTries > 0;
+  }
+
   invalidAnswerGiven(): boolean {
     return this.solutionStatus === SolutionStatus.InvalidAnswer;
   }

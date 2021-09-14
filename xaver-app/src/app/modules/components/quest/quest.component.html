@@ -26,7 +26,7 @@
   </div>
   <div class="status_bar">
     <p class="quest_tries" >
-      <span
+      <span *ngIf="hasTriesConstraint()"
           [ngClass]="{'invalid_answer' : invalidAnswerGiven(),  'not_invalid_answer' : !invalidAnswerGiven()}"
           i18n="@@chase.quest.remaining-tries">
         {{questStatus.remainingTries}} remaining tries
