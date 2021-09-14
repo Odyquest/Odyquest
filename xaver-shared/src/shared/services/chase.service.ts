@@ -172,7 +172,7 @@ export class ChaseService {
 
   private getChasePath(id: string, modify=false): string {
     // TODO check if user is logged in -> use 'protected' prefix
-    if (this.configuration.get().api_based === true) {
+    if (this.configuration.get().api.api_based === true) {
       let prefix = '';
       if (modify) {
         prefix = 'protected/';
