@@ -10,6 +10,7 @@ import { QuestSchema } from './questSchema';
 export const ChaseMetaDataSchema = new Schema(
   {
    chaseId: {type: String, required: true },
+   published: {type: Boolean, required: true },
    version: {type: Number, required: false },
    title: {type: String, required: true },
    description: {type: String, required: false },

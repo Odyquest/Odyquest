@@ -76,6 +76,19 @@ app.get('/chase', (req, res) => {
   });
 });
 
+app.get('/protected/chase', (req, res) => {
+  database.getChaseList(true).then(list => {
+    const chases = new ChaseList();
+    chases.chases = list;
+    res.send(serialize(chases as ChaseList));
+  }).catch(() => {
+    //TODO set error code
+    // send empty list
+    const chases = new ChaseList();
+    res.send(serialize(chases));
+  });
+});
+
 app.get('/chase/*', (req, res) => {
   database.getChase(req.params[0]).then(chase => {
     res.send(serialize(chase as Chase));

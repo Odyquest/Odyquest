@@ -56,12 +56,19 @@ export class Database {
     });
   }
 
-  getChaseList(): Promise<Array<ChaseMetaData>> {
+  /**
+   * Get list of chases
+   *
+   * @param addNonPublished add also chases which are not published yet
+   */
+  getChaseList(addNonPublished=false): Promise<Array<ChaseMetaData>> {
     return ChaseModel.find().exec().then(function(item) {
       const list = new Array<ChaseMetaData>();
       for (const value in item) {
         const cmd = item[value].get('metaData');
-        list.push(cmd);
+        if (addNonPublished || cmd.published) {
+          list.push(cmd);
+        }
       }
       return list;
     }).catch(error => {

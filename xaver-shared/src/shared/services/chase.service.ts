@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, Subject, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { OAuthStorage } from 'angular-oauth2-oidc';
+import { OAuthStorage, OAuthService } from 'angular-oauth2-oidc';
 
 import { Chase, ChaseList } from '../models/chase'
 import { deserialize, serialize } from 'typescript-json-serializer';
@@ -22,6 +22,7 @@ export class ChaseService {
     private httpClient: HttpClient,
     private configuration: RuntimeConfigurationService,
     private authStorage: OAuthStorage,
+    private authService: OAuthService,
   ) { }
 
   private getHttpOptions() {
@@ -159,9 +160,12 @@ export class ChaseService {
   }
 
   private getChaseListPath(): string {
-    // TODO check if user is logged in -> use 'protected' prefix
+    let prefix = '';
+    if (this.authService.hasValidIdToken()) {
+      prefix = 'protected/';
+    }
     if (this.configuration.get().api.api_based === true) {
-      return this.configuration.get().api.base_uri + 'chase';
+      return this.configuration.get().api.base_uri + prefix + 'chase';
     } else {
       return this.configuration.get().api.base_uri + 'chase-list.json';
     }
