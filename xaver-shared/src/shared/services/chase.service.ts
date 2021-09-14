@@ -42,7 +42,7 @@ export class ChaseService {
       .pipe(
         map(chases => {
           // console.log("chases: " + chases);
-          return chases;
+          return deserialize<ChaseList>(chases, ChaseList);
         }),
         catchError(error => {
           // console.log("error: " + JSON.stringify(error));
@@ -61,7 +61,7 @@ export class ChaseService {
       .pipe(
         map(chase => {
           console.log("Success");
-          return chase;
+          return deserialize<Chase>(chase, Chase);
         }),
         catchError(error => {
           console.log("Failure");
