@@ -7,7 +7,7 @@ export class RuntimeConfigurationService {
 
   constructor(private http: HttpClient) { }
 
-  load() {
+  load(): Promise<any> {
     return this.http.get('/assets-shared/configuration/configuration.json')
       .toPromise()
       .then(data => {
@@ -25,9 +25,9 @@ export class RuntimeConfigurationService {
  *
  * Only called once in app.module.ts
  */
-export const runtimeInitializerFn = (config: RuntimeConfigurationService) => {
+export const runtimeInitializerFn = (service: RuntimeConfigurationService) => {
   return () => {
-    return config.load();
+    return service.load();
   };
 };
 

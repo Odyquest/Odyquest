@@ -4,15 +4,14 @@ import { Observable, Subject, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { OAuthStorage } from 'angular-oauth2-oidc';
 
-import { Chase } from '../models/chase'
+import { Chase, ChaseList } from '../models/chase'
 import { deserialize, serialize } from 'typescript-json-serializer';
-import { ServerEnvironment } from '../environments/environment';
 import { RuntimeConfigurationService } from './runtime-configuration.service';
 
 /**
  * Connection to data source for reading and writing chases
  *
- * Actual data source is configured in ServerEnvironment
+ * Actual data source is configured in RuntimeConfigurationService
  */
 @Injectable({
   providedIn: 'root'
@@ -77,9 +76,9 @@ export class ChaseService {
    * @return observable containing chaseId
    */
   public createOrUpdateChase(p_chase: Chase): Observable<any> {
-    // TODO return error if ServerEnvironment.api_based is false: not allowed
+    // TODO return error if 'api_based' is false: not allowed
     return this.httpClient.post(
-      ServerEnvironment.base_uri + 'protected/chase', serialize(p_chase), this.getHttpOptions())
+      this.configuration.get().api.base_uri + 'protected/chase', serialize(p_chase), this.getHttpOptions())
       .pipe(
         map(chaseId => {
           console.log("Successfull pushed chase to server");
@@ -112,7 +111,7 @@ export class ChaseService {
   /**
    * Create media file in data source
    *
-   * @return observable containing url to data relative to ServerEnvironment.base_uri
+   * @return observable containing url to data relative to 'base_uri'
    */
   public createMedia(chaseId: string, name: string, file: File): Observable<any> {
     const form = new FormData();
@@ -121,17 +120,17 @@ export class ChaseService {
     form.append('name', name);
     console.log('create media ' + name);
     return this.httpClient.post(
-      ServerEnvironment.base_uri + 'protected/media', form, this.getHttpOptions())
+      this.configuration.get().api.base_uri + 'protected/media', form, this.getHttpOptions())
       .pipe(
         map(url => {
           console.log("Successfull pushed media to server:");
-          return ServerEnvironment.base_uri + url;
+          return this.configuration.get().api.base_uri + url;
         }),
         catchError(error => {
           if (error.status === 200) {
             // This should not be an error, handle it like success
             console.log("Pushed media to server");
-            return of(ServerEnvironment.base_uri + error.error.text);
+            return of(this.configuration.get().api.base_uri + error.error.text);
           } else {
             console.log("Failure while pushing media to server");
             console.log(error);
@@ -146,7 +145,7 @@ export class ChaseService {
    */
   public deleteMedia(id: string): Observable<any> {
     return this.httpClient.delete(
-      ServerEnvironment.base_uri + 'protected/media/' + id, this.getHttpOptions())
+      this.configuration.get().api.base_uri + 'protected/media/' + id, this.getHttpOptions())
       .pipe(
         map(chase => {
           console.log("Successfull deleted media");
@@ -160,22 +159,24 @@ export class ChaseService {
   }
 
   private getChaseListPath(): string {
-    if (ServerEnvironment.api_based === true) {
-      return ServerEnvironment.base_uri + 'chase';
+    // TODO check if user is logged in -> use 'protected' prefix
+    if (this.configuration.get().api.api_based === true) {
+      return this.configuration.get().api.base_uri + 'chase';
     } else {
-      return ServerEnvironment.base_uri + 'chase-list.json';
+      return this.configuration.get().api.base_uri + 'chase-list.json';
     }
   }
 
   private getChasePath(id: string, modify=false): string {
-    if (ServerEnvironment.api_based === true) {
+    // TODO check if user is logged in -> use 'protected' prefix
+    if (this.configuration.get().api_based === true) {
       let prefix = '';
       if (modify) {
         prefix = 'protected/';
       }
-      return ServerEnvironment.base_uri + prefix + 'chase/' + id;
+      return this.configuration.get().api.base_uri + prefix + 'chase/' + id;
     } else {
-      return ServerEnvironment.base_uri + id + '/chase.json';
+      return this.configuration.get().api.base_uri + id + '/chase.json';
     }
   }
 
