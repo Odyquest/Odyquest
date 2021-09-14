@@ -36,7 +36,8 @@
 
 <div class="content-all-types" [hidden]="!is_quest">
   <div class="content-type-quest">
-    <div class="quest-top-container">
+    <h2>Quest hinzufügen</h2>
+    <div class="quest-top-container border">
 
       <div class="quest-top-mini-container">
         <mat-form-field appearance="fill">
@@ -72,12 +73,13 @@
       </div>
     </div>
 
-    <div class="combinationmap_header">
-      Lösungen:
-    </div>
 
-    <div class="quest-bottom-container">
-      <div class="quest-solution-list-container">
+
+    <div class="quest-bottom-container border">
+      <div class="row combinationmap_header">
+        <h3>Lösungen:</h3>
+      </div>
+      <div class="row quest-solution-list-container">
         <div class="solution-input-wrapper">
           <div class="quest-combinationmap-bottom-container">
             <div class="combination_map_name_width"></div>
@@ -154,11 +156,12 @@
 
 
         </div>
+        <div class="quest-add-solution-container">
+          <button class="saveCancelButton" mat-raised-button color="primary" (click)="addSolutionCombination()">→
+            Kombination Hinzufügen</button>
+        </div>
       </div>
-      <div class="quest-add-solution-container">
-        <button class="saveCancelButton" mat-raised-button color="primary" (click)="addSolutionCombination()">→
-          Kombination Hinzufügen</button>
-      </div>
+
     </div>
 
     <div class="button-array-container border">
@@ -277,9 +280,7 @@
 
 
     <div class="button-array-container border">
-      <div>
-        Hilfetexte
-      </div>
+      <h3>Hilfetexte</h3>
       <form>
         <div *ngFor="let help_entry of help; let i = index">
           <div class="single-button-container">

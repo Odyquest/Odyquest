@@ -83,6 +83,7 @@ label {
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding-top: 15px;
 }
 
 .quest-top-mini-container {
@@ -91,7 +92,7 @@ label {
 
 .quest-bottom-container {
   display: flex;
-  flex-direction:row;
+  flex-direction: column;
   justify-content: center;
   //background: red;
   width: 100%;
@@ -207,8 +208,9 @@ label {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
   height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .narrative-status {
@@ -218,7 +220,7 @@ label {
 }
 
 .button-array-container {
-  padding-top: 30px;
+  padding-top: 10px;
   width: 100%;
 }
 
@@ -273,7 +275,7 @@ img {
 .single-solution-item-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -393,6 +395,7 @@ h3 {
 .solution-input-wrapper {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 .combination-map-delete-column-wrapper {
