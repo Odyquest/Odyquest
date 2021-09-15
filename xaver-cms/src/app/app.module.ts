@@ -53,8 +53,8 @@ import { LoggedOutComponent } from './components/logged-out/logged-out.component
 
 // Could also go to its own file, but we just dump it next to the AppModule.
 const config: AuthConfig = {
-  issuer: 'https://localhost/auth/realms/master',
-  clientId: 'odyquest-cms',
+  issuer: 'https://cms.schnitzeljagd.landesmuseum.de/auth/realms/master',
+  clientId: 'test-cms',
   redirectUri: window.location.origin + '/cms',
   logoutUrl: 'WILL_BE_DONE_LATER',
   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
@@ -65,7 +65,7 @@ const config: AuthConfig = {
 const authModuleConfig: OAuthModuleConfig = {
   // Inject "Authorization: Bearer ..." header for these APIs:
   resourceServer: {
-    allowedUrls: ['https://localhost', 'http://localhost:8400/chase'],
+    allowedUrls: ['http://localhost:8400/chase', 'http://localhost:8444/chase'],
     sendAccessToken: true,
   },
 };
