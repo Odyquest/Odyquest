@@ -121,8 +121,8 @@
 
               <ng-container *ngFor="let combination of combinationMap; let j = index">
                 <div class="combination_map_checkbox_width combination_map_checkbox_container">
-                  <mat-checkbox class="example-margin" color="primary" id="combination_map_check"
-                    name="combination_map_check" [(ngModel)]="combinationMap[j].requiredItems[i]">
+                  <mat-checkbox class="example-margin" color="primary" name="combination_map_check"
+                    [(ngModel)]="combinationMap[j].requiredItems[i]">
                   </mat-checkbox>
                 </div>
               </ng-container>
