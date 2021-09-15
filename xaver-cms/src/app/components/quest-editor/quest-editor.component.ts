@@ -202,7 +202,7 @@ export class QuestEditorComponent implements OnInit {
   }
 
   addHelpText() {
-    console.log('addHelpText()');
+    console.log('addHelpText()', this.help);
     console.log(this.help.length);
 
     let help_text = new Description();
@@ -441,6 +441,17 @@ export class QuestEditorComponent implements OnInit {
           this.image_url = res;
           // update image and url fields
         });
+    });
+    reader.readAsArrayBuffer($event.target.files[0]);
+  }
+
+  uploadMediaForHelp($event, helpID): void {
+    console.log('Opening file explorer to load local media file...');
+    console.log($event.target.files[0]);
+    const reader = new FileReader();
+    reader.addEventListener('load', (e) => {
+      console.log('upload file...');
+      this.help[helpID].image = $event.target.files[0];
     });
     reader.readAsArrayBuffer($event.target.files[0]);
   }

@@ -14,7 +14,10 @@
   overflow: auto;
 }
 
-
+.help-image {
+  max-height: 42px;
+  width: auto !important;
+}
 
 .quest-editor-top-container {
   display: flex;
