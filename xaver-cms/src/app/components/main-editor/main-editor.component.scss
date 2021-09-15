@@ -7,6 +7,28 @@
   height: 100%;
 }
 
+.quest-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+img {
+  width: 95%;
+  margin-top: 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
 .quest_selector {
   display: flex;
   flex-direction: column;
@@ -160,6 +182,18 @@ mat-list-option {
 #saveChaseButton {
   margin-top: 5px;
   margin-bottom: 5px;
+  color: #bea05a;
+  border: 1px solid #bea05a;
+  background: white;
+  border-radius: 5px;
+  padding: 1px;
+  cursor: pointer;
+}
+
+#saveChaseButton:hover {
+  background: #bea05a;
+  border: 1px solid #bea05a;
+  color: white;
 }
 
 .quest_selector_header {

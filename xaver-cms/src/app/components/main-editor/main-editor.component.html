@@ -4,10 +4,12 @@
     <input hidden type="file" #uploader (change)="uploadChase($event)" />
     <div class="button-wrapper">
       <mat-icon class="chase-menu-icon" (click)="createNewChase()" matTooltip="Neue Jagd">add</mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="uploader.click()" matTooltip="Jagd Hochladen">file_upload</mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="downloadChase()" matTooltip="Jagd Herunterladen">file_download
+      <mat-icon class="chase-menu-icon" (click)="pushChase()" matTooltip="Jagd speichern">save</mat-icon>
+
+      <mat-icon class="chase-menu-icon" (click)="uploader.click()" matTooltip="Jagd hochladen">file_upload</mat-icon>
+      <mat-icon class="chase-menu-icon" (click)="downloadChase()" matTooltip="Jagd herunterladen">file_download
       </mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="pushChase()" matTooltip="Jagd Speichern">save</mat-icon>
+      <mat-icon class="chase-menu-icon" (click)="deleteChase()" matTooltip="Jagd löschen">delete</mat-icon>
     </div>
 
     <form id="chase-meta-info-form">
@@ -21,8 +23,6 @@
           name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
       </mat-form-field>
 
-
-
       <mat-form-field>
         <mat-label class="" for="initial-game-element">Startelement:</mat-label>
 
@@ -31,7 +31,28 @@
             (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
         </mat-select>
       </mat-form-field>
+
+
+
     </form>
+
+    <div class="quest_selector_header">Anzeigebild für Chase</div>
+
+    <div class="quest-image-outer-container">
+      <div class="quest-image-container">
+        <img [src]="image_url">
+      </div>
+      <div class="row">
+        <input type="text" id="image-name" name="quest_name" [(ngModel)]="image_url"
+          placeholder="URL für das Bild..."><br><br>
+        <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
+        <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Chase hochladen" color="primary"
+          (click)="MediaUploader.click()">file_upload
+        </mat-icon>
+      </div>
+
+    </div>
+
     <div class="quest_selector_header">Rätsel</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
