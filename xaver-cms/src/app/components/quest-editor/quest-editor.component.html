@@ -176,13 +176,15 @@
               <mat-label>Beschreibung</mat-label>
               <textarea matInput type="textarea" [name]="'quest_name_' + i" [(ngModel)]="help[i].text"></textarea>
             </mat-form-field>
-            <img class="help-image" [src]="help[i].image" alt="">
+            <img *ngIf="help[i].image" class="help-image" [src]="help[i].image" alt="">
+            <mat-icon class="default-image" *ngIf="!help[i].image || help[i].image.length < 1">collections</mat-icon>
+
             <mat-form-field>
               <mat-label>Bild URL</mat-label>
               <input matInput type="text" [name]="'quest_image_' + i" [(ngModel)]="help[i].image">
             </mat-form-field>
             <input hidden type="file" #MediaUploader (change)="uploadMediaForHelp($event, i)" />
-            <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Chase hochladen" color="primary"
+            <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Hilfe hochladen" color="primary"
               (click)="MediaUploader.click()">file_upload
             </mat-icon>
             <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
@@ -296,8 +298,22 @@
             <span>{{i+1}}</span>
             <mat-form-field>
               <mat-label></mat-label>
-              <input matInput type="text" name="quest_name" [(ngModel)]="help[i].text">
+              <textarea matInput type="text" name="quest_name" [(ngModel)]="help[i].text"></textarea>
             </mat-form-field>
+            <div class="help-image-container">
+              <img *ngIf="help[i].image" class="help-image" [src]="help[i].image" alt="">
+              <mat-icon class="default-image" *ngIf="!help[i].image || help[i].image.length < 1">collections</mat-icon>
+
+            </div>
+
+            <mat-form-field>
+              <mat-label>Bild URL</mat-label>
+              <input matInput type="text" [name]="'quest_image_' + i" [(ngModel)]="help[i].image">
+            </mat-form-field>
+            <input hidden type="file" #MediaUploader (change)="uploadMediaForHelp($event, i)" />
+            <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Hilfe hochladen" color="primary"
+              (click)="MediaUploader.click()">file_upload
+            </mat-icon>
             <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
           </div>
         </div>

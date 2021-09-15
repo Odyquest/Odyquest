@@ -279,6 +279,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
         )
         .subscribe((res) => {
           console.log('...done: ' + res);
+          this.chase.metaData.preview = res;
           this.image_url = res;
           // update image and url fields
         });

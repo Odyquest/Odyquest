@@ -451,8 +451,19 @@ export class QuestEditorComponent implements OnInit {
     const reader = new FileReader();
     reader.addEventListener('load', (e) => {
       console.log('upload file...');
-      this.help[helpID].image = $event.target.files[0];
+      this.chaseService
+        .createMedia(
+          this.chase.metaData.chaseId,
+          '(unnamed)',
+          $event.target.files[0]
+        )
+        .subscribe((res) => {
+          console.log('...done: ' + res);
+          this.help[helpID].image = res;
+          // update image and url fields
+        });
     });
+
     reader.readAsArrayBuffer($event.target.files[0]);
   }
 }

@@ -14,9 +14,20 @@
   overflow: auto;
 }
 
+.help-image-container {
+  display: flex;
+  min-width: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
 .help-image {
   max-height: 42px;
   width: auto !important;
+}
+
+.default-image {
+  color: grey;
 }
 
 .quest-editor-top-container {
