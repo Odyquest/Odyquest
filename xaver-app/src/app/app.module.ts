@@ -67,7 +67,7 @@ import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 // Could also go to its own file, but we just dump it next to the AppModule.
 const config: AuthConfig = {
   issuer: 'https://cms.schnitzeljagd.landesmuseum.de/auth/realms/master',
-  clientId: 'odyquest-cms',
+  clientId: 'test-cms',
   redirectUri: window.location.origin + '/cms',
   logoutUrl: 'WILL_BE_DONE_LATER',
   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
