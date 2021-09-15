@@ -174,7 +174,7 @@
             <span>{{i+1}}</span>
             <mat-form-field>
               <mat-label></mat-label>
-              <input matInput type="text" name="quest_name" [(ngModel)]="help[i].text">
+              <input matInput type="text" [name]="'quest_name_' + i" [(ngModel)]="help[i].text">
             </mat-form-field>
             <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
           </div>
