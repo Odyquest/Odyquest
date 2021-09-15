@@ -1,7 +1,5 @@
 # Odyquest
 
-**WARNING: Project is experimental and not ready for production yet. Necessary authentication functionality for manipulating data is missing!**
-
 The project Odyquest is a framework for scavenger hunts and escape games.
 The heart is a web app.
 It tells a story which leads you for example through a exhibition in a museum discovering the small details
@@ -16,7 +14,14 @@ The project consists of three parts:
 * [Installation guide](documentation/installation.md)
 * [Documentation for developers](documentation/development.md)
 
-## Localization/Translations
+## Features
+
+### OAuth2 Authentication for Modification
+
+Use OAuth2 authentication service to protect the api and cms access.
+You can use a existing authentication service or set up your own by using e.g. Keycloak.
+
+### Localization/Translations
 
 The static text elements in the web app are fully localized, the supported languages are English and German for the moment.
 The language will be selected by the default language of the browser.

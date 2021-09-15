@@ -8,7 +8,7 @@ import { deserialize, serialize } from 'typescript-json-serializer';
 import {getSimpleJwksService, secure} from 'express-oauth-jwt';
 
 import { Database } from './database';
-import { getCorsOrigin, getApiPort, getAuthIssuesBaseUrl, getAuthJwksUrl } from './environment';
+import { getCorsOrigin, getApiPort, getUseAuth, getAuthIssuesBaseUrl, getAuthJwksUrl } from './environment';
 import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
 
 var database = new Database();
@@ -37,17 +37,21 @@ app.get('/', (req, res) => {
     res.send('Boom!');
 });
 
-// Configure OAuth security to validate JWTs and to check the issuer + audience claims
-const authOptions = {
-    claims: [
-        {
-            name: 'iss',
-          value: getAuthIssuesBaseUrl(),
-        },
-    ]
-};
-const jwksService = getSimpleJwksService(getAuthJwksUrl());
-app.use('/protected/*', secure(jwksService, authOptions));
+if (getUseAuth()) {
+  // Configure OAuth security to validate JWTs and to check the issuer + audience claims
+  const authOptions = {
+      claims: [
+          {
+              name: 'iss',
+            value: getAuthIssuesBaseUrl(),
+          },
+      ]
+  };
+  const jwksService = getSimpleJwksService(getAuthJwksUrl());
+  app.use('/protected/*', secure(jwksService, authOptions));
+} else {
+  console.warn("No authentication method used, do not use in production!");
+}
 
 /**
  * dummy call, may be changed in future versions
@@ -61,6 +65,19 @@ app.get('/protected/test', (req, res) => {
 
 app.get('/chase', (req, res) => {
   database.getChaseList().then(list => {
+    const chases = new ChaseList();
+    chases.chases = list;
+    res.send(serialize(chases as ChaseList));
+  }).catch(() => {
+    //TODO set error code
+    // send empty list
+    const chases = new ChaseList();
+    res.send(serialize(chases));
+  });
+});
+
+app.get('/protected/chase', (req, res) => {
+  database.getChaseList(true).then(list => {
     const chases = new ChaseList();
     chases.chases = list;
     res.send(serialize(chases as ChaseList));
