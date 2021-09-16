@@ -8,5 +8,15 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+(async () => {
+  const response = await fetch('/assets-shared/configuration/configuration.json');
+  const config = await response.json();
+
+  environment['allowedUrls'] = config.api.base_uri;
+  environment['issuer'] = config.auth.issuer;
+  environment['clientId'] = config.auth.client_id;
+
+  platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.error(err));
+})();
+
