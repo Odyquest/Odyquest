@@ -92,8 +92,8 @@ export class QuestComponent implements OnInit, OnDestroy {
           this.selection.emit(this.solutionDestination);
         }
       } else {
-        this.solutionStatus = SolutionStatus.InvalidAnswer;
         if (result.length > 0) {
+          this.solutionStatus = SolutionStatus.InvalidAnswer;
           this.questStatus.remainingTries--;
           console.log('remaining tries: ' + this.questStatus.remainingTries);
           if (this.questStatus.remainingTries === 0) {
