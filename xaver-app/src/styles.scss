@@ -20,3 +20,8 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+/* markdown specific styles */
+
+/* define ![fullsize](<path>) to get an image scaled to the width of the container */
+img[alt=textwidth] { width: 100%; }
