@@ -14,9 +14,9 @@
 
 //global color defs
 $form_color: rgb(15, 29, 32);
-$text_color: rgb(114, 176, 218);
+$text_color: rgb(110, 124, 133);
 $text_color_unselected: rgb(219, 219, 219);
-$background_color: #262527;
+$background_color: white;
 $background_color_content: rgb(23, 39, 44);
 $background_color_content_darker: rgb(22, 34, 37);
 $background_color_selectable: rgb(33, 43, 46);
@@ -36,7 +36,19 @@ body {
 }
 
 .mat-button-wrapper {
-  color: white;
+  // color: white;
+}
+
+// .cdk-overlay-container {
+//   background: rgba($color: #000000, $alpha: 0.75) !important;
+// }
+
+.mat-raised-button {
+  color: white !important;
+}
+
+.mat-form-field {
+  color: black !important;
 }
 
 #signin-submit {
@@ -48,6 +60,6 @@ body {
   margin-top: 0px !important;
 }
 
-.cdk-overlay-container {
-  background: rgba($color: #000000, $alpha: 0.75) !important;
+.mat-list-text {
+  padding-right: 0!important;
 }

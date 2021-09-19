@@ -1,0 +1,326 @@
+<div class="quest-editor-top-container">
+  <div class="quest-image-outer-container">
+    <div class="quest-image-container">
+      <img [src]="image_url">
+    </div>
+    <input type="text" id="image-name" name="quest_name" [(ngModel)]="image_url"
+      placeholder="URL für das Bild..."><br><br>
+    <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
+    <button id="saveChaseButton" mat-raised-button color="primary" (click)="MediaUploader.click()">Bild
+      Hochladen</button>
+  </div>
+  <div class="quest-editor-top-right-container">
+
+    <form id="quest-meta-info-input">
+      <mat-form-field>
+        <mat-label for="fname">Titel:</mat-label>
+        <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="title" (change)="onTitleChange()">
+      </mat-form-field>
+
+
+      <label for="fname">Aufgabenbeschreibung:</label>
+      <mat-form-field>
+        <textarea matInput type="text" id="bug_brief" placeholder="Hier steht der Beschreibungstext für den User..."
+          name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+    </form>
+
+    <a href="https://www.markdownguide.org/cheat-sheet#basic-syntax">Hilfe Textformatierung</a>
+    <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">Hilfe Emojis</a>
+  </div>
+</div>
+
+<!-- ! ============================= -->
+<!-- ! ========== QUESTS =========== -->
+<!-- ! ============================= -->
+
+<div class="content-all-types" [hidden]="!is_quest">
+  <div class="content-type-quest">
+    <h2>Quest hinzufügen</h2>
+    <div class="quest-top-container border">
+
+      <div class="quest-top-mini-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Quest Typ:</mat-label>
+          <mat-select>
+            <mat-option [value]="1">Text</mat-option>
+            <mat-option [value]="2">Multiple Choice</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="quest-top-mini-container">
+        <form>
+          <mat-form-field>
+            <mat-label for="num_tries">Versuche (0 = ∞):</mat-label>
+            <input matInput type="number" id="num_tries" name="num_tries" min="0" [(ngModel)]="maxTries">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="quest-top-mini-container">
+        <form>
+          <mat-form-field>
+            <mat-label for="max_time">Sekunden Zeit (0 = ∞):</mat-label>
+            <input matInput type="number" id="max_time" name="max_time" min="0" [(ngModel)]="maxTime">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="quest-top-mini-container">
+        <label for="disp_image_first">Bild zuerst anzeigen</label>
+        <!-- <input type="checkbox" id="disp_image_first" name="disp_image_first" [(ngModel)]="display_image_first"> -->
+        <mat-checkbox class="example-margin" [checked]="display_image_first" color="primary">
+        </mat-checkbox>
+      </div>
+    </div>
+
+
+
+    <div class="quest-bottom-container border">
+      <div class="row combinationmap_header">
+        <h3>Lösungen:</h3>
+      </div>
+      <div class="row quest-solution-list-container">
+        <div class="solution-input-wrapper">
+          <div class="quest-combinationmap-bottom-container">
+            <div class="combination_map_name_width"></div>
+            <ng-container *ngFor="let combination of combinationMap; let j = index">
+              <div class=combination_map_checkbox_width>
+                <div class="combination-map-bottom-row-attributes">
+                  <mat-form-field class="solution-list-form-field" appearance="fill">
+                    <mat-select [(ngModel)]="solution_type_status_int[j]">
+                      <mat-option [value]="1">Alle</mat-option>
+                      <mat-option [value]="2">Eins</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="solution-list-form-field" appearance="fill">
+                    <mat-label>Quest Typ:</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let target of gameElementsList" [value]='target'
+                        [attr.selected]="parseIdFromGEString(target)==1 ? true : null"
+                        (click)="onCombinationMapDestinationChange(j, target)">{{target}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </ng-container>
+            <div class="delete-icon-wrapper"></div>
+          </div>
+          <ng-container *ngFor="let solution of solutionItems; let i = index">
+            <div class="single-solution-item-container">
+              <div class=combination_map_name_width>
+                <form>
+                  <mat-form-field class="solution-list-form-field">
+                    <mat-label></mat-label>
+                    <input matInput type="text" id="quest-name" name="quest_name" [value]="solution"
+                      (change)="updateSolutionItem($event, i)">
+                  </mat-form-field>
+                </form>
+              </div>
+
+
+              <ng-container *ngFor="let combination of combinationMap; let j = index">
+                <div class="combination_map_checkbox_width combination_map_checkbox_container">
+                  <mat-checkbox class="example-margin" color="primary" name="combination_map_check"
+                    [(ngModel)]="combinationMap[j].requiredItems[i]">
+                  </mat-checkbox>
+                </div>
+              </ng-container>
+              <div class="delete-icon-wrapper" [hidden]="this.solutionItems.length < 2">
+                <mat-icon class=delete_icon (click)=deleteQuestSolution(i)>delete</mat-icon>
+              </div>
+            </div>
+          </ng-container>
+          <div class="combination-map-delete-column-wrapper">
+            <div class="combination_map_name_width"></div>
+            <ng-container *ngFor="let combination of combinationMap; let j = index">
+
+
+
+              <div class="combination_map_checkbox_width">
+                <div class="quest-delete-column-wrapper" [hidden]="this.combinationMap.length < 2">
+                  <mat-icon class="delete_icon" (click)=deleteSolutionCombination(j)>delete</mat-icon>
+                </div>
+              </div>
+
+
+            </ng-container>
+            <div class="delete-icon-wrapper"></div>
+
+          </div>
+
+
+          <div class=combination_map_name_width> <button class="saveCancelButton" mat-raised-button color="primary"
+              (click)="addSolutionItem()">↓ Lösung
+              Hinzufügen ↓</button></div>
+
+
+        </div>
+        <div class="quest-add-solution-container">
+          <button class="saveCancelButton" mat-raised-button color="primary" (click)="addSolutionCombination()">→
+            Kombination Hinzufügen</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="button-array-container border">
+      <div>
+        Hilfetexte
+      </div>
+      <form>
+        <div *ngFor="let help_entry of help; let i = index">
+          <div class="single-button-container">
+            <span>{{i+1}}</span>
+            <mat-form-field>
+              <mat-label>Beschreibung</mat-label>
+              <textarea matInput type="textarea" [name]="'quest_name_' + i" [(ngModel)]="help[i].text"></textarea>
+            </mat-form-field>
+            <img *ngIf="help[i].image" class="help-image" [src]="help[i].image" alt="">
+            <mat-icon class="default-image" *ngIf="!help[i].image || help[i].image.length < 1">collections</mat-icon>
+
+            <mat-form-field>
+              <mat-label>Bild URL</mat-label>
+              <input matInput type="text" [name]="'quest_image_' + i" [(ngModel)]="help[i].image">
+            </mat-form-field>
+            <input hidden type="file" #MediaUploader (change)="uploadMediaForHelp($event, i)" />
+            <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Hilfe hochladen" color="primary"
+              (click)="MediaUploader.click()">file_upload
+            </mat-icon>
+            <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <button class="saveCancelButton" mat-raised-button color="primary" (click)="addHelpText()">Hilfetext
+      Hinzufügen</button>
+
+  </div>
+</div>
+
+<!-- ! ============================= -->
+<!-- ! ======== NARRATIVES ========= -->
+<!-- ! ============================= -->
+
+<div class="content-all-types" [hidden]="!is_narrative">
+  <div class=content-type-narrative>
+    <h2>Erzählelement hinzufügen</h2>
+    <div class="narrative-top-section border">
+      <div class=narrative-status>
+        <mat-form-field>
+          <mat-label for="narrative-status">Aktion</mat-label>
+          <mat-select name="narrative-status" id="narrative-status-selector" [(ngModel)]="selected_narrative_status_int"
+            (change)="onNarrativeStatusChange($event.target.value)">
+            <mat-option [value]="1">Weiter</mat-option>
+            <mat-option [value]="2">Gewinnen</mat-option>
+            <mat-option [value]="3">Verlieren</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <div class=narrative-status>
+        <mat-form-field>
+          <mat-label for="narrative-type">Typ:</mat-label>
+          <mat-select name="narrative-type" id="narrative-type-selector" [(ngModel)]="selected_narrative_type_int"
+            (change)="onNarrativeTypeChange($event.target.value)">
+            <mat-option [value]="1">Text</mat-option>
+            <mat-option [value]="2">Panorama</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+    </div>
+    <div id=narrator-button-array-container class="border">
+      <div class="row">
+        <h3> Verfügbare Buttons:
+        </h3>
+      </div>
+
+      <ng-container *ngFor="let button of buttons; let i = index">
+
+        <div *ngIf="i === 0" class="row">
+          <div class="column">
+            <h3>Button Text:</h3>
+
+          </div>
+          <div class="column">
+            <h3>Ziel:</h3>
+
+          </div>
+          <div class="column">
+            <h3></h3>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <mat-form-field>
+              <mat-label>Text für den Button eingeben</mat-label>
+              <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name">
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <mat-form-field>
+              <mat-select>
+                <mat-option *ngFor="let target of gameElementsList" [value]='target'
+                  [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
+                  (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <button mat-icon-button [disabled]="this.buttons.length < 2" (click)=deleteNarrativeButton(i)>
+              <mat-icon>delete
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+
+
+      <div class="row"> <button class="saveCancelButton" mat-raised-button color="primary" (click)="addButton()">Button
+          Hinzufügen</button>
+      </div>
+
+
+
+    </div>
+
+
+    <div class="button-array-container border">
+      <h3>Hilfetexte</h3>
+      <form>
+        <div *ngFor="let help_entry of help; let i = index">
+          <div class="single-button-container">
+            <span>{{i+1}}</span>
+            <mat-form-field>
+              <mat-label></mat-label>
+              <textarea matInput type="text" name="quest_name" [(ngModel)]="help[i].text"></textarea>
+            </mat-form-field>
+            <div class="help-image-container">
+              <img *ngIf="help[i].image" class="help-image" [src]="help[i].image" alt="">
+              <mat-icon class="default-image" *ngIf="!help[i].image || help[i].image.length < 1">collections</mat-icon>
+
+            </div>
+
+            <mat-form-field>
+              <mat-label>Bild URL</mat-label>
+              <input matInput type="text" [name]="'quest_image_' + i" [(ngModel)]="help[i].image">
+            </mat-form-field>
+            <input hidden type="file" #MediaUploader (change)="uploadMediaForHelp($event, i)" />
+            <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Hilfe hochladen" color="primary"
+              (click)="MediaUploader.click()">file_upload
+            </mat-icon>
+            <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
+          </div>
+        </div>
+      </form>
+    </div>
+    <button class="saveCancelButton" mat-raised-button color="primary" (click)="addHelpText()">Hilfetext
+      Hinzufügen</button>
+
+  </div>
+</div>

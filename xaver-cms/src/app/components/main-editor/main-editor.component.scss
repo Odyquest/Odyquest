@@ -5,7 +5,28 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
-  background: #eee;
+}
+
+.quest-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+img {
+  width: 95%;
+  margin-top: 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
 }
 
 .quest_selector {
@@ -22,15 +43,35 @@
   background: white;
 }
 
+#chase-meta-info-form {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+}
+
 .quest_selector_container {
   display: flex;
   flex-direction: column;
-  width: 15%;
-  height: 100%;
+  width: 100%;
+  min-width: 200px;
+  max-width: 250px;
   align-items: center;
   justify-content: flex-start;
-  border-right: 2px solid rgba(0, 0, 0, 0.6);
-  overflow-y: scroll;
+  // border-right: 2px solid #262527;
+  // overflow-y: auto;
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+  z-index: 100;
+  min-height: 100%;
+  height: fit-content;
+}
+
+.golden-font {
+  color: #bea05a;
+}
+
+mat-form-field {
+  color: white;
 }
 
 label {
@@ -76,8 +117,34 @@ h1 {
 // ================================================================================= GFLOW
 
 mat-selection-list {
-  background: white;
+  // background: #ffedc1;
   width: 100%;
+}
+
+
+.button-wrapper{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background: #bea05a;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  // background: #262527;
+}
+
+.chase-menu-icon {
+  background: rgba(255, 255, 255, 0.8);
+  color: #8d732e;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.chase-menu-icon:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: #8d732e;
 }
 
 #add_quest_button {
@@ -104,7 +171,7 @@ mat-selection-list {
 }
 
 mat-list-option {
-  background: white;
+  // background: #ffedc1;
   width: 100%;
 }
 
@@ -115,6 +182,18 @@ mat-list-option {
 #saveChaseButton {
   margin-top: 5px;
   margin-bottom: 5px;
+  color: #bea05a;
+  border: 1px solid #bea05a;
+  background: white;
+  border-radius: 5px;
+  padding: 1px;
+  cursor: pointer;
+}
+
+#saveChaseButton:hover {
+  background: #bea05a;
+  border: 1px solid #bea05a;
+  color: white;
 }
 
 .quest_selector_header {
@@ -123,7 +202,9 @@ mat-list-option {
   width: 100%;
   color: white;
   background: #bea05a;
-  border-top: 2px solid black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  // border-top: 2px solid #262527;
 }
 
 .text-and-delete-container {
@@ -135,32 +216,6 @@ mat-list-option {
 
 .delete_icon:hover {
   color: red;
-  //border: 2px solid red;
-}
-
-input {
-  width: 80%;
-  padding: 6px 10px;
-  margin: 4px 0;
-  box-sizing: border-box;
-  border: 3px solid grey;
-  border-radius: 4px;
-
-  font-size: 15pt;
-  //margin-bottom: 40px;
-}
-
-textarea {
-  width: 90%;
-  height: 7%;
-  padding: 6px 10px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 3px solid grey;
-  border-radius: 4px;
-
-  margin-bottom: 10px;
-  font-size: 15pt;
 }
 
 .single-button-container {
@@ -176,28 +231,6 @@ textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
-}
-
-select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-
-  width: 100%;
-  height: 40px;
-  -moz-padding-start: calc(10px - 3px);
-  padding-left: 10px;
-
-  font-size: 16px;
-  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-  border: 3px solid grey;
-
-  cursor: pointer;
-}
-
-label {
-    white-space: nowrap;
 }
 
 .initial-game-element-container {

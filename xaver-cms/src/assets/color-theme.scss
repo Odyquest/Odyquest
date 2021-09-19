@@ -1,14 +1,6 @@
 @import "~@angular/material/theming";
 
-$custom-typography: mat-typography-config($headline: mat-typography-level(20px, 48px),
-$title: mat-typography-level(18px, 48px),
-$subheading-2: mat-typography-level(16px, 48px),
-$subheading-1: mat-typography-level(16px, 48px),
-$body-1: mat-typography-level(16px, 24px, 500),
-$body-2: mat-typography-level(16px, 24px, 500),
-$caption: mat-typography-level(18px, 24px, 500),
-$button: mat-typography-level(18px, 24px));
-@include mat-core($custom-typography);
+
 
 // Generate color palletes using this website: http://mcg.mbitson.com (use the export for "ANGULAR JS 2 (MATERIAL 2)"
 
