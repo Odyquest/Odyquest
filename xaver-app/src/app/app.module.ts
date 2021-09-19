@@ -7,14 +7,14 @@ import { SubmitSolutionComponent } from './modules/components/submit-solution/su
 import { HintComponent } from './modules/components/hint/hint.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ChaseComponent } from './modules/pages/chase/chase.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './modules/pages/list/list.component';
-
+import { RuntimeConfigurationService, runtimeInitializerFn } from './shared/services/runtime-configuration.service';
 
 // Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -58,6 +58,32 @@ import { SettingsComponent } from './modules/pages/settings/settings.component';
 import { CloseWarningGuard } from './core/services/close-warning.guard';
 
 import { MarkdownModule } from 'ngx-markdown';
+
+import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+// import { AuthGuard } from './services/auth/auth.guard.service';
+// import { LoggedOutComponent } from './components/logged-out/logged-out.component';
+
+// Could also go to its own file, but we just dump it next to the AppModule.
+const config: AuthConfig = {
+  issuer: 'https://cms.schnitzeljagd.landesmuseum.de/auth/realms/master',
+  clientId: 'test-cms',
+  redirectUri: window.location.origin + '/cms',
+  logoutUrl: 'WILL_BE_DONE_LATER',
+  silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+  scope: 'openid profile email',
+};
+
+// Could also go to its own file, but we just dump it next to the AppModule.
+const authModuleConfig: OAuthModuleConfig = {
+  // Inject "Authorization: Bearer ..." header for these APIs:
+  resourceServer: {
+    allowedUrls: ['https://api.schnitzeljagd.landesmuseum.de'],
+    sendAccessToken: true,
+  },
+};
+
+config.logoutUrl = `${config.issuer}v2/logout?client_id=${config.clientId}&returnTo=${encodeURIComponent(config.redirectUri)}`;
 
 @NgModule({
   declarations: [
@@ -123,6 +149,17 @@ import { MarkdownModule } from 'ngx-markdown';
   ],
   providers: [
     CloseWarningGuard,
+    RuntimeConfigurationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: runtimeInitializerFn,
+      multi: true,
+      deps: [RuntimeConfigurationService]
+    },
+    { provide: OAuthModuleConfig, useValue: authModuleConfig },
+    { provide: ValidationHandler, useClass: JwksValidationHandler },
+    { provide: OAuthStorage, useValue: localStorage },
+    { provide: AuthConfig, useValue: config },
   ],
   bootstrap: [AppComponent]
 })

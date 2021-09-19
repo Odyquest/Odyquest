@@ -26,7 +26,7 @@ export class ChaseSelectorComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.chaseService.getAllChases().subscribe(chases => this.chaseList = deserialize<ChaseList>(chases, ChaseList));
+    this.chaseService.getAllChases().subscribe(chases => this.chaseList = chases);
   }
 
   onInputUrl(): void {

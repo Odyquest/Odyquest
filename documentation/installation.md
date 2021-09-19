@@ -13,7 +13,8 @@ Set up a web server like _Apache HTTP Server_ or _nginx_. Build the app with `np
 
 ## CMS
 
-Installing the CMS works similar to the App.
+Installing the CMS works similar to the App. See corresponding [README](../xaver-app/README.md) for CMS specific
+details.
 
 ## Backend
 
@@ -33,3 +34,4 @@ Note that app and cms uses a separate copy of the chase data. If you change it, 
 
 ## Docker installation
 
+See [Docker setup](../docker/README.md) for details.

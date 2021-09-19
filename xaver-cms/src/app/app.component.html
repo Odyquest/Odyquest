@@ -1,27 +1,28 @@
 <ng-container>
-  <mat-toolbar id="mainToolbar">
-
-
-    <!-- <mat-icon id="navigateToHomeButton" (click)="navigateTo('home')">home</mat-icon>
-
+  <mat-toolbar id="mainToolbar" color="primary">
+    <mat-icon id="navigateToHomeButton" (click)="navigateTo('home')">home</mat-icon>
 
     <div>
-
       <button id="userMenuButton" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User Menu">
         <span id="userMenuButtonContent">
-          {{userName}}
           <mat-icon>account_box</mat-icon>
         </span>
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>
+          <mat-icon>account_box</mat-icon>
+          <span>{{username}}</span>
+        </button>
+        <button mat-menu-item>
           <mat-icon>input</mat-icon>
+          <span (click)="login()">Einloggen</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>output</mat-icon>
           <span (click)="logout()">Ausloggen</span>
         </button>
       </mat-menu>
-    </div> -->
-
-
+    </div>
   </mat-toolbar>
 </ng-container>
 

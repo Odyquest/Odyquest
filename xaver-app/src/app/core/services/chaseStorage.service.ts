@@ -65,8 +65,7 @@ export class ChaseStorageService {
   }
 
   deleteRunningChase(): boolean {
-    return this.storage.remove('running_chase');
-    return this.storage.remove('current_chase_position');
+    return this.storage.remove('running_chase') && this.storage.remove('current_chase_position');
   }
 
   getCurrentPosition(): number | undefined {
@@ -78,8 +77,7 @@ export class ChaseStorageService {
   }
 
   deleteCurrentPosition(): boolean {
-    return this.storage.remove('running_chase');
-    return this.storage.remove('current_chase_position');
+    return this.storage.remove('running_chase') && this.storage.remove('current_chase_position');
   }
 
   getChaseStatus(chaseId: string): ChaseStatus | undefined {

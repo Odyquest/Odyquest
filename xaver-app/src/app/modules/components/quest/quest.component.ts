@@ -40,25 +40,27 @@ export class QuestComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(
-        this.timeService.exampleTimer.subscribe(futureTimeEvent => {
-          this.futureTimeEvent = futureTimeEvent;
-          this.timeTicker = setInterval(() => {
-            const diff = futureTimeEvent.diff(moment());
-            const duration = moment.duration(diff);
+    if (this.hasTimeConstraint()) {
+      this.subscriptions.push(
+          this.timeService.exampleTimer.subscribe(futureTimeEvent => {
+            this.futureTimeEvent = futureTimeEvent;
+            this.timeTicker = setInterval(() => {
+              const diff = futureTimeEvent.diff(moment());
+              const duration = moment.duration(diff);
 
-            this.remainingTime.hours = duration.hours();
-            this.remainingTime.minutes = duration.minutes();
-            this.remainingTime.seconds = duration.seconds();
-            if (this.remainingTime.hours === 0
-              && this.remainingTime.minutes === 0
-              && this.remainingTime.seconds === 0) {
-              console.log('failed quest by timeout');
-              this.loose();
-            }
-          }, 1000);
-        }));
-    this.timeService.setTimer(0, 10, 0);
+              this.remainingTime.hours = duration.hours();
+              this.remainingTime.minutes = duration.minutes();
+              this.remainingTime.seconds = duration.seconds();
+              if (this.remainingTime.hours === 0
+                && this.remainingTime.minutes === 0
+                && this.remainingTime.seconds === 0) {
+                console.log('failed quest by timeout');
+                this.loose();
+              }
+            }, 1000);
+          }));
+      this.timeService.setTimer(0, 0, this.questStatus.remainingTime.getTime() / 1000);
+    }
   }
 
   select(button: string): void {
@@ -124,6 +126,14 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   hasSolution(): boolean {
     return this.solutionStatus === SolutionStatus.ValidAnswer;
+  }
+
+  hasTimeConstraint(): boolean {
+    return this.quest.maxTime && this.quest.maxTime.getTime() > 0;
+  }
+
+  hasTriesConstraint(): boolean {
+    return this.quest.maxTries && this.quest.maxTries > 0;
   }
 
   invalidAnswerGiven(): boolean {

@@ -54,12 +54,11 @@ export class ChaseComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.chaseID && this.chaseStorage.hasRunningChase()) {
-      console.log('load chase from storage');
       this.game = GameService.fromStorage(this.chaseStorage);
       this.displayElement = this.game.start();
       this.uiService.toolbarTitle.next(this.game.chase.metaData.title);
     } else {
-      this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(deserialize<Chase>(chase, Chase))));
+      this.chaseService.getChase(this.chaseID).subscribe(chase => (this.start_game(chase)));
     }
   }
 

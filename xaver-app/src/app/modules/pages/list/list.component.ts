@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { deserialize } from 'typescript-json-serializer';
 
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { UiService } from 'src/app/core/services/ui.service';
@@ -28,7 +27,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.uiService.toolbarTitle.next('Wähle eine Schnitzeljagd');
-    this.chaseService.getAllChases().subscribe(chases => this.chaseList = deserialize<ChaseList>(chases, ChaseList));
+    this.chaseService.getAllChases().subscribe(chases => this.chaseList = chases);
   }
 
   onInputUrl(): void {

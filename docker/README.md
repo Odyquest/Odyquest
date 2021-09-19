@@ -1,12 +1,17 @@
-## Install the quest image
+# Docker Setup for Odyquest
 
-`docker load -i <path to copied image file>`
+Odyquest can run inside docker.
 
-## Create a local docker network
+## Single Docker Images
 
-`docker network create xaver-net`
+* [Frontend: App and CMS](frontend/README.md)
+* [Backend: Api](api-backend/README.md)
 
-## Start 
+## Docker-compose Setup
 
-* `cd XaverImMuseum`
-* `docker-compose up`
+The provided `docker-compose.yml` is only a template and does not work out of the box.
+For running, resolve alle issues marked with `TODO` and set correct domain name in following files:
+
+* [docker-compose.yml]()
+* [nginx.conf]()
+* [configuration.json]()

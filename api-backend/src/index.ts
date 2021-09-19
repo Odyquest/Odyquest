@@ -2,18 +2,14 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
-import jwt from 'express-jwt';
 
-import { Database } from './database';
-import { getCorsOrigin, getApiSecret, getApiPort } from './environment';
-import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
-const jwt_protection = jwt({
-  secret: getApiSecret(),
-  algorithms: ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'PS256', 'PS384', 'PS512', 'ES256', 'ES384', 'ES512']
-});
-// TODO catch jwt exception and only pass "Unauthorized"
+import {getSimpleJwksService, secure} from 'express-oauth-jwt';
+
+import { Database } from './database';
+import { getCorsOrigin, getApiPort, getUseAuth, getAuthIssuesBaseUrl, getAuthJwksUrl } from './environment';
+import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
 
 var database = new Database();
 
@@ -41,15 +37,47 @@ app.get('/', (req, res) => {
     res.send('Boom!');
 });
 
+if (getUseAuth()) {
+  // Configure OAuth security to validate JWTs and to check the issuer + audience claims
+  const authOptions = {
+      claims: [
+          {
+              name: 'iss',
+            value: getAuthIssuesBaseUrl(),
+          },
+      ]
+  };
+  const jwksService = getSimpleJwksService(getAuthJwksUrl());
+  app.use('/protected/*', secure(jwksService, authOptions));
+} else {
+  console.warn("No authentication method used, do not use in production!");
+}
+
 /**
  * dummy call, may be changed in future versions
  */
-app.get('/login', jwt_protection, (req, res) => {
+app.get('/test', (req, res) => {
+  res.send('success');
+});
+app.get('/protected/test', (req, res) => {
   res.send('success');
 });
 
 app.get('/chase', (req, res) => {
   database.getChaseList().then(list => {
+    const chases = new ChaseList();
+    chases.chases = list;
+    res.send(serialize(chases as ChaseList));
+  }).catch(() => {
+    //TODO set error code
+    // send empty list
+    const chases = new ChaseList();
+    res.send(serialize(chases));
+  });
+});
+
+app.get('/protected/chase', (req, res) => {
+  database.getChaseList(true).then(list => {
     const chases = new ChaseList();
     chases.chases = list;
     res.send(serialize(chases as ChaseList));
@@ -70,7 +98,7 @@ app.get('/chase/*', (req, res) => {
   });
 });
 
-app.post('/chase', jwt_protection, function (req, res) {
+app.post('/protected/chase', function (req, res) {
   console.log('received chase');
   database.createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
     res.send('{ chaseId: "' + id + '" }');
@@ -80,7 +108,7 @@ app.post('/chase', jwt_protection, function (req, res) {
   });
 });
 
-app.delete('/chase/*', jwt_protection, function (req, res) {
+app.delete('/protected/chase/*', function (req, res) {
   database.deleteChase(req.params[0]).then(id => {
     res.send('{status:"success"}');
   }).catch(() => {
@@ -102,13 +130,13 @@ function addMedia(req:express.Request): string {
   return database.createMedia(req.body.chaseId, req.body.name, req.file.mimetype, req.file.buffer);
 }
 
-app.post('/media', jwt_protection, upload.single('file'), function (req, res) {
+app.post('/protected/media', upload.single('file'), function (req, res) {
   console.log('received media data');
   const id = addMedia(req);
   res.send('media/' + id);
 });
 
-app.delete('/media/*', jwt_protection, upload.single('file'), function (req, res) {
+app.delete('/protected/media/*', upload.single('file'), function (req, res) {
   database.deleteMedia(req.params[0]).then(data => {
     res.send(data);
   }).catch(() => {

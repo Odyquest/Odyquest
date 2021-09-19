@@ -47,7 +47,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     console.log('ngOnInit()');
     this.chaseService.getChase(this.chaseID).subscribe((chase) => {
-      this.chase = deserialize<Chase>(chase, Chase);
+      this.chase = chase;
       // this.createNewChase();
 
       this.getDataFromChase();
