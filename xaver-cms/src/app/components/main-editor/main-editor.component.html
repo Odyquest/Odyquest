@@ -31,9 +31,6 @@
             (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
         </mat-select>
       </mat-form-field>
-
-
-
     </form>
 
     <div class="quest_selector_header">Anzeigebild für Chase</div>
@@ -50,17 +47,15 @@
           (click)="MediaUploader.click()">file_upload
         </mat-icon>
       </div>
-
     </div>
 
     <div class="quest_selector_header">Rätsel</div>
+
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
         <mat-list-option *ngFor="let quest of questList">
-          <div class=text-and-delete-container>
-            <div (click)="questSelectorClicked(quest)">
-              {{quest}}
-            </div>
+          <div class=text-and-delete-container (click)="questSelectorClicked(quest)">
+            {{quest}}
             <mat-icon class=delete_icon (click)=deleteGameElement(quest)>delete</mat-icon>
           </div>
         </mat-list-option>
@@ -72,17 +67,16 @@
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
         <mat-list-option *ngFor="let quest of narrativeList">
-          <div class=text-and-delete-container>
-            <div (click)="questSelectorClicked(quest)">
-              {{quest}}
-            </div>
+          <div class=text-and-delete-container (click)="questSelectorClicked(quest)">
+            {{quest}}
             <mat-icon class=delete_icon (click)=deleteGameElement(quest)>delete</mat-icon>
           </div>
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">Neues
-        Erzählelement</button>
+      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">
+        Neues Erzählelement
+      </button>
     </div>
 
   </div>
