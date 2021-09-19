@@ -138,9 +138,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTooltipModule,
     OAuthModule.forRoot(),
-    RouterModule.forRoot(
-      appRoutes
-    )
+    RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' })
   ],
   entryComponents: [
     CreateChaseDialogComponent
