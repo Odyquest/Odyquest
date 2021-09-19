@@ -49,8 +49,6 @@ export class AppComponent {
 
   }
 
-
-
   login() { console.log('login'); this.oauthService.initImplicitFlow(); }
   logout() { console.log('logout'); this.oauthService.logOut(); }
   refresh() { console.log('refresh'); this.oauthService.silentRefresh(); }

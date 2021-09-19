@@ -79,7 +79,7 @@ function getAuthModuleConfig(): OAuthModuleConfig {
 // TODO: add resolver
 const appRoutes: Routes = [
   { path: 'editor', component: MainEditorComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: ChaseSelectorComponent/*, canActivate: [AuthGuard]*/ },
+  { path: 'home', component: ChaseSelectorComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   //{ path: '**', redirectTo: 'home' },
