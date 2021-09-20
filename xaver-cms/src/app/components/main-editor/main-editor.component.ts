@@ -23,6 +23,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   title: string = '';
   author: string = '';
   description: string = '';
+  initialElement = '';
 
   gameElementsMap = new Map<number, string>();
   gameElementsList = [];
@@ -108,6 +109,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.gameElementsList.forEach(function (value) {
       console.log(value);
     });
+    this.initialElement = this.gameElementsMap.get(this.chase.initialGameElement);
+    console.log('initial element is ' + this.initialElement);
   }
 
   // forwards the selected quest to the QuestEditorComponent
@@ -195,6 +198,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   onInitialGameElementChange(value: string) {
     this.chase.initialGameElement = this.parseIdFromGEString(value);
+    this.initialElement = value;
     console.log('Set initial game element to ' + this.chase.initialGameElement);
   }
 

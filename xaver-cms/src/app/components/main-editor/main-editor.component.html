@@ -26,8 +26,14 @@
       <mat-form-field>
         <mat-label class="" for="initial-game-element">Startelement:</mat-label>
 
-        <mat-select id="initial-game-element">
-          <mat-option *ngFor="let target of gameElementsList" [value]='target' [attr.selected]="true"
+        <mat-select
+          name="initial-game-element"
+          id="initial-game-element"
+          [(ngModel)]="initialElement">
+          <mat-option
+            *ngFor="let target of gameElementsList"
+            [value]='target'
+            [attr.selected]='target'
             (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
         </mat-select>
       </mat-form-field>
