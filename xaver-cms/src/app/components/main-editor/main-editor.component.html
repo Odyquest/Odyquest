@@ -43,10 +43,10 @@
 
     <div class="quest-image-outer-container">
       <div class="quest-image-container">
-        <img [src]="image_url">
+        <img [src]="imageUrl">
       </div>
       <div class="row">
-        <input type="text" id="image-name" name="quest_name" [(ngModel)]="image_url"
+        <input type="text" id="image-name" name="quest_name" [(ngModel)]="imageUrl"
           placeholder="URL für das Bild..."><br><br>
         <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
         <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Chase hochladen" color="primary"

@@ -40,6 +40,7 @@ export class QuestEditorComponent implements OnInit {
   questType: QuestType;
   display_image_first: boolean;
   solution_type_status_int: Array<number>;
+  solution_destination_description: Array<string>;
 
   //Narrative
   narrative_status: NarrativeStatus;
@@ -48,6 +49,7 @@ export class QuestEditorComponent implements OnInit {
   public selected_narrative_type_int = 1; //"Text" = 1, "Panorama" = 2
 
   buttons: Array<XButton>;
+  buttonDestinationList: Array<string>;
   gameElementsMap: Map<number, string>;
   gameElementsList: string[];
   help: Array<Description>;
@@ -125,6 +127,7 @@ export class QuestEditorComponent implements OnInit {
 
   onNarrativeButtonDestinationChange(index: number, value: string) {
     this.buttons[index].destination = this.parseIdFromGEString(value);
+    this.buttonDestinationList[index] = value;
     console.log(
       'Set Destination of buttons[' +
         index +
@@ -147,6 +150,7 @@ export class QuestEditorComponent implements OnInit {
     console.log('deleteNarrativeButton(' + index + ')');
 
     this.buttons.splice(index, 1);
+    this.buttonDestinationList.splice(index, 1);
   }
 
   deleteHelpText(index: number) {
@@ -179,6 +183,7 @@ export class QuestEditorComponent implements OnInit {
 
     this.combinationMap.splice(index, 1);
     this.solution_type_status_int.splice(index, 1);
+    //this.solution_destination_description.splice(index, 1);
   }
 
   updateSolutionItem(event, index) {
@@ -193,10 +198,11 @@ export class QuestEditorComponent implements OnInit {
     button.name = 'Weiter';
     //just use some id which is actually existing
     button.destination = this.parseIdFromGEString(
-      this.gameElementsMap.values().next().value
+      this.gameElementsList[0]
     );
 
     this.buttons.push(button);
+    this.buttonDestinationList[this.gameElementsList[0]];
 
     console.log(this.buttons.length);
   }
@@ -247,6 +253,7 @@ export class QuestEditorComponent implements OnInit {
 
     this.combinationMap.push(new_comb);
     this.solution_type_status_int.push(1);
+    this.solution_destination_description.push(this.gameElementsList[0]);
   }
 
   // hardly a sexy solution...
@@ -288,8 +295,10 @@ export class QuestEditorComponent implements OnInit {
       }
 
       this.solution_type_status_int = [];
+      this.solution_destination_description = new Array<string>();
       var counter = 0;
       for (var cm of this.gameElement.requirementCombination.combinationMap) {
+        this.solution_destination_description.push(this.gameElementsMap.get(cm.destination));
         if (cm.logicType == LogicType.And) {
           this.solution_type_status_int[counter] = 1;
         } else {
@@ -316,6 +325,10 @@ export class QuestEditorComponent implements OnInit {
 
       console.log('loaded narrative status as: ', this.narrative_status);
       this.buttons = this.gameElement.buttons;
+      this.buttonDestinationList = new Array<string>();
+      for (const button of this.buttons) {
+        this.buttonDestinationList.push(this.gameElementsMap.get(button.destination));
+      }
       console.log('Number of Buttons: ', this.buttons.length);
     }
   }
@@ -341,6 +354,7 @@ export class QuestEditorComponent implements OnInit {
 
       var counter = 0;
       for (var cm of this.gameElement.requirementCombination.combinationMap) {
+        cm.destination = this.parseIdFromGEString(this.solution_destination_description[counter]);
         if (this.solution_type_status_int[counter] == 1) {
           cm.logicType = LogicType.And;
         } else {
@@ -409,6 +423,10 @@ export class QuestEditorComponent implements OnInit {
 
     //we need to manually tell angular that changes occured:
     this.cd.detectChanges();
+  }
+
+  getElementFromMap(index: number): string {
+    return this.gameElementsMap.get(index);
   }
 
   save(): void {

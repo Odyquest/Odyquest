@@ -28,8 +28,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   gameElementsMap = new Map<number, string>();
   gameElementsList = [];
 
-  image_url: string =
-    'https://i.pinimg.com/originals/26/54/2c/26542cc0d5852f423f96a3728813391e.png';
+  imageUrl = '';
 
   @ViewChild('quest_editor') questEditor;
 
@@ -52,11 +51,11 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
       // this.createNewChase();
 
       this.getDataFromChase();
+      this.questEditor.setChase(this.chase);
       this.questEditor.setGameElementToEdit(
         this.chase.gameElements.get(this.selectedQuest),
         true
       );
-      this.questEditor.setChase(this.chase);
     });
   }
 
@@ -73,6 +72,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.title = this.chase.metaData.title;
     this.description = this.chase.metaData.description;
     this.author = this.chase.metaData.author;
+    this.imageUrl = this.chase.metaData.preview.description.image;
 
     //console.log("Selected Quest Id: " + this.selectedQuest);
     //console.log("Loading values from Chase", this.chase.metaData.title);
@@ -136,11 +136,11 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
     //parse id from name, not so pretty a solution TBH
     this.selectedQuest = MainEditorComponent.parseIdFromGEString(text);
+    this.questEditor.setChase(this.chase);
     this.questEditor.setGameElementToEdit(
       this.chase.gameElements.get(this.selectedQuest),
       false
     );
-    this.questEditor.setChase(this.chase);
   }
 
   deleteGameElement(text: string) {
@@ -215,8 +215,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.addQuest();
 
     this.getDataFromChase();
-    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(1), true);
     this.questEditor.setChase(this.chase);
+    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(1), true);
   }
 
   uploadChase($event): void {
@@ -235,11 +235,11 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
       this.selectedQuest = 1;
 
       this.getDataFromChase();
+      this.questEditor.setChase(this.chase);
       this.questEditor.setGameElementToEdit(
         this.chase.gameElements.get(this.selectedQuest),
         true
       );
-      this.questEditor.setChase(this.chase);
     });
     reader.readAsText($event.target.files[0]);
   }
@@ -284,7 +284,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
         .subscribe((res) => {
           console.log('...done: ' + res);
           this.chase.metaData.preview = res;
-          this.image_url = res;
+          this.imageUrl = res;
+          this.chase.metaData.preview.description.image = res;
           // update image and url fields
         });
     });

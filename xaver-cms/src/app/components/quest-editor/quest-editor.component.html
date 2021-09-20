@@ -41,7 +41,7 @@
       <div class="quest-top-mini-container">
         <mat-form-field appearance="fill">
           <mat-label>Quest Typ:</mat-label>
-          <mat-select>
+          <mat-select name="quest-type" [(ngModel)]="quest_type_status_int">
             <mat-option [value]="1">Text</mat-option>
             <mat-option [value]="2">Multiple Choice</mat-option>
           </mat-select>
@@ -94,7 +94,7 @@
 
                   <mat-form-field class="solution-list-form-field" appearance="fill">
                     <mat-label>Quest Typ:</mat-label>
-                    <mat-select>
+                    <mat-select [(ngModel)]="solution_destination_description[j]">
                       <mat-option *ngFor="let target of gameElementsList" [value]='target'
                         [attr.selected]="parseIdFromGEString(target)==1 ? true : null"
                         (click)="onCombinationMapDestinationChange(j, target)">{{target}}</mat-option>
@@ -262,7 +262,7 @@
           </div>
           <div class="column">
             <mat-form-field>
-              <mat-select>
+              <mat-select [(ngModel)]="buttonDestinationList[i]">
                 <mat-option *ngFor="let target of gameElementsList" [value]='target'
                   [attr.selected]="parseIdFromGEString(target)==button.destination ? true : null"
                   (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</mat-option>
