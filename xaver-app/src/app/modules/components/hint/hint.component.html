@@ -9,7 +9,7 @@
     <section>
       <div class="game_element_columns">
         <div class="game_element_text">
-          <p markdown emoji>{{help[index].text}}</p>
+          <p markdown emoji [data]="getCurrentHelpText()"></p>
         </div>
         <div class="game_element_image">
           <img [src]="getImage()" />
@@ -21,7 +21,7 @@
 <mat-dialog-actions>
   <nav>
     <div class="button_wrapper">
-      <button 
+      <button
          mat-flat-button
          color="primary"
          [disabled]="!has_previous()"

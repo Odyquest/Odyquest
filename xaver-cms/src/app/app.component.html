@@ -6,28 +6,19 @@
       <button id="userMenuButton" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User Menu">
         <span id="userMenuButtonContent">
           <mat-icon>account_box</mat-icon>
+          <span>{{username}}</span>
         </span>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>account_box</mat-icon>
-          <span>{{username}}</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>input</mat-icon>
-          <span (click)="login()">Einloggen</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>output</mat-icon>
-          <span (click)="logout()">Ausloggen</span>
+        <button mat-menu-item (click)="logout()">
+          <!--<mat-icon>output</mat-icon>-->
+          Ausloggen
         </button>
       </mat-menu>
     </div>
   </mat-toolbar>
 </ng-container>
 
-
 <div id="content">
   <router-outlet></router-outlet>
-
 </div>

@@ -2,5 +2,9 @@
   "api": {
     "api_based": false,
     "base_uri": "assets-shared/examples/"
+  },
+  "auth": {
+    "issuer": "https://localhost/auth/realms/master",
+    "client_id": "test-cms"
   }
 }

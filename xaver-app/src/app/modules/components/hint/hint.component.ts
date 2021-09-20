@@ -61,4 +61,8 @@ export class HintComponent {
   getImage(): SafeResourceUrl {
      return this.sanitizer.bypassSecurityTrustUrl(this.help[this.index].image);
   }
+
+  getCurrentHelpText(): string {
+    return this.help[this.index].text;
+  }
 }

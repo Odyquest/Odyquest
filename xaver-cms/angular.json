@@ -47,12 +47,10 @@
                   "replace": "src/app/shared/environments/environment.ts",
                   "with": "src/app/shared/environments/environment.prod.ts"
                 }
-
               ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
