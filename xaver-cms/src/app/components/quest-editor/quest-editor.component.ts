@@ -55,7 +55,7 @@ export class QuestEditorComponent implements OnInit {
   help: Array<Description>;
 
   constructor(
-    @Inject(MainEditorComponent) private main_editor: MainEditorComponent,
+    @Inject(MainEditorComponent) public main_editor: MainEditorComponent,
     private cd: ChangeDetectorRef,
     private chaseService: ChaseService
   ) {}

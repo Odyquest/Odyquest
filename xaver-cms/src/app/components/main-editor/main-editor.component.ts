@@ -4,6 +4,7 @@ import { Chase, ChaseMetaData } from 'src/app/shared/models/chase';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
 import { ChaseService } from 'src/app/shared/services/chase.service';
+import { ChaseStorageService } from 'src/app/shared/services/chaseStorage.service';
 import { Description } from 'src/app/shared/models/description';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { Narrative } from 'src/app/shared/models/narrative';
@@ -39,7 +40,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private chaseService: ChaseService
+    private chaseService: ChaseService,
+    public chaseStorage: ChaseStorageService
   ) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
   }
@@ -292,5 +294,12 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
         });
     });
     reader.readAsArrayBuffer($event.target.files[0]);
+  }
+
+  public tryInApp() {
+    this.writeDataToChase();
+    this.chaseStorage.setRunningChase(this.chase);
+    this.chaseStorage.setCurrentPosition(this.selectedQuest);
+    window.open("/app/de/chase?id=", "_blank");
   }
 }

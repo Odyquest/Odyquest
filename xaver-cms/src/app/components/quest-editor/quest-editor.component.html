@@ -24,8 +24,15 @@
           name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
       </mat-form-field>
     </form>
-    <a href="https://www.markdownguide.org/cheat-sheet#basic-syntax">Hilfe Textformatierung</a>
-    <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">Hilfe Emojis</a>
+    <div class="row">
+      <div class="column">
+        <a href="https://www.markdownguide.org/cheat-sheet#basic-syntax">Hilfe Textformatierung</a>
+        <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">Hilfe Emojis</a>
+      </div>
+      <div class="column">
+        <button mat-raised-button color="primary" (click)="main_editor.tryInApp()">Ausprobieren</button>
+      </div>
+    </div>
   </div>
 </div>
 

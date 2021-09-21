@@ -11,7 +11,7 @@ import {Quest, QuestType} from '../../../shared/models/quest';
 import {HintComponent} from '../hint/hint.component';
 import {SubmitSolutionComponent} from '../submit-solution/submit-solution.component';
 import {TimeService} from './../../../core/services/time.service';
-import {ChaseStatus} from './../../../core/models/chase_status';
+import {ChaseStatus} from './../../../shared/models/chase_status';
 
 enum SolutionStatus {
   ValidAnswer, InvalidAnswer, WaitingForAnswer

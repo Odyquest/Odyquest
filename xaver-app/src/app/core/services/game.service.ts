@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
-import { ChaseStatus } from 'src/app/core/models/chase_status';
+import { ChaseStorageService } from 'src/app/shared/services/chaseStorage.service';
+import { ChaseStatus } from 'src/app/shared/models/chase_status';
 import { Chase } from '../../shared/models/chase';
 import { GameElement } from '../../shared/models/gameElement';
 import { Narrative } from '../../shared/models/narrative';

@@ -7,8 +7,8 @@ import { Title } from '@angular/platform-browser';
 import { ChaseService } from 'src/app/shared/services/chase.service';
 import { UiService } from 'src/app/core/services/ui.service';
 import { ChaseList, ChaseMetaData } from 'src/app/shared/models/chase';
-import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
-import { ChaseStatus } from 'src/app/core/models/chase_status';
+import { ChaseStorageService } from 'src/app/shared/services/chaseStorage.service';
+import { ChaseStatus } from 'src/app/shared/models/chase_status';
 
 @Component({
   selector: 'app-list',
