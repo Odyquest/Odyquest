@@ -61,8 +61,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   writeDataToChase(): void {
     this.chase.metaData.title = this.title;
-    this.chase.metaData.description = this.description;
     this.chase.metaData.author = this.author;
+    this.chase.metaData.preview.description.text = this.description;
+    this.chase.metaData.preview.description.image = this.imageUrl;
   }
 
   // reads all the info from this.chase and writes onto class members
@@ -286,10 +287,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
         )
         .subscribe((res) => {
           console.log('...done: ' + res);
-          this.chase.metaData.preview = res;
-          this.imageUrl = res;
-          this.chase.metaData.preview.description.image = res;
           // update image and url fields
+          this.imageUrl = res;
         });
     });
     reader.readAsArrayBuffer($event.target.files[0]);
