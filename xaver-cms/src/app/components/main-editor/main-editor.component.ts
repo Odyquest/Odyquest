@@ -4,6 +4,7 @@ import { Chase, ChaseMetaData } from 'src/app/shared/models/chase';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
 import { ChaseService } from 'src/app/shared/services/chase.service';
+import { ChaseStorageService } from 'src/app/shared/services/chaseStorage.service';
 import { Description } from 'src/app/shared/models/description';
 import { GameElement } from 'src/app/shared/models/gameElement';
 import { Narrative } from 'src/app/shared/models/narrative';
@@ -24,6 +25,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   author: string = '';
   description: string = '';
   initialElement = '';
+  published = false;
 
   gameElementsMap = new Map<number, string>();
   gameElementsList = [];
@@ -39,7 +41,8 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private chaseService: ChaseService
+    private chaseService: ChaseService,
+    public chaseStorage: ChaseStorageService
   ) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
   }
@@ -60,9 +63,11 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   }
 
   writeDataToChase(): void {
+    this.chase.metaData.published = this.published;
     this.chase.metaData.title = this.title;
-    this.chase.metaData.description = this.description;
     this.chase.metaData.author = this.author;
+    this.chase.metaData.preview.description.text = this.description;
+    this.chase.metaData.preview.description.image = this.imageUrl;
   }
 
   // reads all the info from this.chase and writes onto class members
@@ -111,6 +116,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     });
     this.initialElement = this.gameElementsMap.get(this.chase.initialGameElement);
     console.log('initial element is ' + this.initialElement);
+    this.published = this.chase.metaData.published;
   }
 
   // forwards the selected quest to the QuestEditorComponent
@@ -159,22 +165,25 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   addQuest() {
     console.log('addQuest()');
-
     const quest = new Quest();
     quest.title = 'Neues Rätsel';
-    this.chase.gameElements.set(this.getNextFreeMapKey(), quest);
-
-    this.getDataFromChase();
+    this.addGameElement(quest);
   }
 
   addNarrative() {
     console.log('addNarrative()');
-
     const narrative = new Narrative();
-    narrative.title = 'New Narrative';
-    this.chase.gameElements.set(this.getNextFreeMapKey(), narrative);
+    narrative.title = 'Neues Erzählelement';
+    this.addGameElement(narrative);
+  }
 
+  addGameElement(element: GameElement) {
+    const key = this.getNextFreeMapKey();
+    this.chase.gameElements.set(key, element);
     this.getDataFromChase();
+
+    // jump to new element
+    this.questSelectorClicked(this.gameElementsMap.get(key));
   }
 
   getNextFreeMapKey(): number {
@@ -283,12 +292,17 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
         )
         .subscribe((res) => {
           console.log('...done: ' + res);
-          this.chase.metaData.preview = res;
-          this.imageUrl = res;
-          this.chase.metaData.preview.description.image = res;
           // update image and url fields
+          this.imageUrl = res;
         });
     });
     reader.readAsArrayBuffer($event.target.files[0]);
+  }
+
+  public tryInApp() {
+    this.writeDataToChase();
+    this.chaseStorage.setRunningChase(this.chase);
+    this.chaseStorage.setCurrentPosition(this.selectedQuest);
+    window.open("/app/de/chase?id=", "_blank");
   }
 }

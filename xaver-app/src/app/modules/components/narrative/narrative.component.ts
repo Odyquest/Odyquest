@@ -4,7 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 import { Narrative, NarrativeStatus, NarrativeType } from 'src/app/shared/models/narrative';
-import { ChaseStatus } from 'src/app/core/models/chase_status';
+import { ChaseStatus } from 'src/app/shared/models/chase_status';
 import { GameService } from 'src/app/core/services/game.service';
 import { HintComponent } from '../hint/hint.component';
 

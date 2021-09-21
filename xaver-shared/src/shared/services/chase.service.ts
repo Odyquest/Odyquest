@@ -37,8 +37,8 @@ export class ChaseService {
    *
    * @return observable of type ChaseList
    */
-  public getAllChases(): Observable<any> {
-    return this.httpClient.get(this.getChaseListPath(), this.getHttpOptions())
+  public getAllChases(addProtected = false): Observable<any> {
+    return this.httpClient.get(this.getChaseListPath(addProtected), this.getHttpOptions())
       .pipe(
         map(chases => {
           // console.log("chases: " + chases);
@@ -158,9 +158,9 @@ export class ChaseService {
       )
   }
 
-  private getChaseListPath(): string {
+  private getChaseListPath(addProtected: boolean): string {
     let prefix = '';
-    if (this.authStorage.getItem('access_token')) {
+    if (addProtected) {
       prefix = 'protected/';
     }
     if (this.configuration.get().api.api_based === true) {

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { deserialize, serialize, JsonProperty, Serializable } from 'typescript-json-serializer';
 
-import { LocalStorageService } from 'src/app/core/services/localStorage.service';
-import { ChaseStatus } from 'src/app/core/models/chase_status';
-import { Chase } from '../../shared/models/chase';
+import { LocalStorageService } from './localStorage.service';
+import { ChaseStatus } from '../models/chase_status';
+import { Chase } from '../models/chase';
 
 @Serializable()
 class ChaseStatusList {
