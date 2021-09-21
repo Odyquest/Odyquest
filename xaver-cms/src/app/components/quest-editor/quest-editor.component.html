@@ -209,11 +209,13 @@
       <div class=narrative-status>
         <mat-form-field>
           <mat-label for="narrative-status">Aktion</mat-label>
-          <mat-select name="narrative-status" id="narrative-status-selector" [(ngModel)]="selected_narrative_status_int"
-            (change)="onNarrativeStatusChange($event.target.value)">
-            <mat-option [value]="1">Weiter</mat-option>
-            <mat-option [value]="2">Gewinnen</mat-option>
-            <mat-option [value]="3">Verlieren</mat-option>
+          <mat-select
+            name="narrative-status-selector"
+            id="narrative-status-selector"
+            [(ngModel)]="selected_narrative_status_int">
+            <mat-option [value]="1" (click)="onNarrativeStatusChange(1)">Weiter</mat-option>
+            <mat-option [value]="2" (click)="onNarrativeStatusChange(2)">Gewinnen</mat-option>
+            <mat-option [value]="3" (click)="onNarrativeStatusChange(3)">Verlieren</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -221,10 +223,12 @@
       <div class=narrative-status>
         <mat-form-field>
           <mat-label for="narrative-type">Typ:</mat-label>
-          <mat-select name="narrative-type" id="narrative-type-selector" [(ngModel)]="selected_narrative_type_int"
-            (change)="onNarrativeTypeChange($event.target.value)">
-            <mat-option [value]="1">Text</mat-option>
-            <mat-option [value]="2">Panorama</mat-option>
+          <mat-select
+            name="narrative-type"
+            id="narrative-type-selector"
+            [(ngModel)]="selected_narrative_type_int">
+            <mat-option [value]="1" (click)="onNarrativeTypeChange(1)">Text</mat-option>
+            <mat-option [value]="2" (click)="onNarrativeTypeChange(2)">Panorama</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -241,15 +245,12 @@
         <div *ngIf="i === 0" class="row">
           <div class="column">
             <h3>Button Text:</h3>
-
           </div>
           <div class="column">
             <h3>Ziel:</h3>
-
           </div>
           <div class="column">
-            <h3></h3>
-
+            <h3><!--placeholder for delete button column--></h3>
           </div>
         </div>
 

@@ -86,32 +86,32 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
-  onNarrativeStatusChange(value: String) {
+  onNarrativeStatusChange(value: number) {
     console.log('Narrative status to ' + value);
     switch (value) {
-      case '1': // "Continue"
+      case 1: // "Continue"
         this.narrative_status = NarrativeStatus.Continue;
         console.log(this.selected_narrative_status_int);
         break;
-      case '2': // "Win"
+      case 2: // "Win"
         this.narrative_status = NarrativeStatus.Win;
         console.log(this.selected_narrative_status_int);
         break;
-      case '3': // "Loose"
+      case 3: // "Loose"
         this.narrative_status = NarrativeStatus.Loose;
         console.log(this.selected_narrative_status_int);
         break;
     }
   }
 
-  onNarrativeTypeChange(value: String) {
+  onNarrativeTypeChange(value: number) {
     console.log('Narrative type to ' + value);
     switch (value) {
-      case '1': // "Text"
+      case 1: // "Text"
         this.narrative_type = NarrativeType.Text;
         console.log(this.selected_narrative_type_int);
         break;
-      case '2': // "Panorama"
+      case 2: // "Panorama"
         this.narrative_type = NarrativeType.Panorama;
         console.log(this.selected_narrative_type_int);
         break;
