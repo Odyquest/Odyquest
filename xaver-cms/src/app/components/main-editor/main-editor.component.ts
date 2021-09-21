@@ -159,22 +159,25 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   addQuest() {
     console.log('addQuest()');
-
     const quest = new Quest();
     quest.title = 'Neues Rätsel';
-    this.chase.gameElements.set(this.getNextFreeMapKey(), quest);
-
-    this.getDataFromChase();
+    this.addGameElement(quest);
   }
 
   addNarrative() {
     console.log('addNarrative()');
-
     const narrative = new Narrative();
-    narrative.title = 'New Narrative';
-    this.chase.gameElements.set(this.getNextFreeMapKey(), narrative);
+    narrative.title = 'Neues Erzählelement';
+    this.addGameElement(narrative);
+  }
 
+  addGameElement(element: GameElement) {
+    const key = this.getNextFreeMapKey();
+    this.chase.gameElements.set(key, element);
     this.getDataFromChase();
+
+    // jump to new element
+    this.questSelectorClicked(this.gameElementsMap.get(key));
   }
 
   getNextFreeMapKey(): number {
