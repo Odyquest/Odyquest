@@ -25,6 +25,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   author: string = '';
   description: string = '';
   initialElement = '';
+  published = false;
 
   gameElementsMap = new Map<number, string>();
   gameElementsList = [];
@@ -62,6 +63,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   }
 
   writeDataToChase(): void {
+    this.chase.metaData.published = this.published;
     this.chase.metaData.title = this.title;
     this.chase.metaData.author = this.author;
     this.chase.metaData.preview.description.text = this.description;
@@ -114,6 +116,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     });
     this.initialElement = this.gameElementsMap.get(this.chase.initialGameElement);
     console.log('initial element is ' + this.initialElement);
+    this.published = this.chase.metaData.published;
   }
 
   // forwards the selected quest to the QuestEditorComponent

@@ -22,7 +22,6 @@
         <textarea matInput type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..."
           name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
       </mat-form-field>
-
       <mat-form-field>
         <mat-label class="" for="initial-game-element">Startelement:</mat-label>
 
@@ -37,6 +36,13 @@
             (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-checkbox
+        class="example-margin"
+        color="primary"
+        name="combination_map_check"
+        [(ngModel)]="published">
+        Veröffentlicht
+      </mat-checkbox>
     </form>
 
     <div class="quest_selector_header">Anzeigebild für Chase</div>
