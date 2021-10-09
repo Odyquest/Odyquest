@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { ChaseComponent } from './modules/pages/chase/chase.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './modules/pages/list/list.component';
-import { RuntimeConfigurationService, runtimeInitializerFn } from './shared/services/runtime-configuration.service';
+import { RuntimeConfigurationService, runtimeInitializerFn } from 'chase-services';
 
 // Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

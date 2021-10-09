@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 
-import { Quest, QuestType } from '../../../shared/models/quest';
+import { Quest, QuestType } from 'chase-model';
 
 class Item {
   name: string;

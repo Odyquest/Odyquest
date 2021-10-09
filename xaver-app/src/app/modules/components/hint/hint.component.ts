@@ -4,8 +4,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
-import { Description } from '../../../shared/models/description';
-import { Quest, QuestType } from '../../../shared/models/quest';
+import { Description } from 'chase-model';
+import { Quest, QuestType } from 'chase-model';
 import { QuestStatus } from '../../../core/services/game.service';
 
 @Component({

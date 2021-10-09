@@ -6,18 +6,18 @@ import { HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { UiService } from './../../../core/services/ui.service';
-import { ChaseService } from 'src/app/shared/services/chase.service';
-import { ChaseStorageService } from 'src/app/shared/services/chaseStorage.service';
-import { ChaseStatus } from 'src/app/shared/models/chase_status';
+import { ChaseService } from 'chase-services';
+import { ChaseStorageService } from 'chase-services';
+import { ChaseStatus } from 'chase-model';
 import { CloseWarningGuard } from 'src/app/core/services/close-warning.guard';
 import { GameService, QuestStatus } from '../../../core/services/game.service';
-import { GameElement } from '../../../shared/models/gameElement';
-import { Description } from '../../../shared/models/description';
-import { Narrative } from '../../../shared/models/narrative';
-import { Quest } from '../../../shared/models/quest';
-import { Chase } from '../../../shared/models/chase';
+import { GameElement } from 'chase-model';
+import { Description } from 'chase-model';
+import { Narrative } from 'chase-model';
+import { Quest } from 'chase-model';
+import { Chase } from 'chase-model';
 
-import { getSimpleExample } from '../../../shared/models/example/chaseExample';
+import { getSimpleExample } from 'chase-model';
 
 @Component({
   selector: 'app-chase',

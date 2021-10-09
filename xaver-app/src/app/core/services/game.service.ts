@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { ChaseStorageService } from 'src/app/shared/services/chaseStorage.service';
-import { ChaseStatus } from 'src/app/shared/models/chase_status';
-import { Chase } from '../../shared/models/chase';
-import { GameElement } from '../../shared/models/gameElement';
-import { Narrative } from '../../shared/models/narrative';
-import { Quest } from '../../shared/models/quest';
+import { ChaseStorageService } from 'chase-services';
+import { ChaseStatus } from 'chase-model';
+import { Chase } from 'chase-model';
+import { GameElement } from 'chase-model';
+import { Narrative } from 'chase-model';
+import { Quest } from 'chase-model';
 
 export class QuestStatus {
   remainingTries: number;

@@ -1,8 +1,8 @@
 // import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseMetaData } from 'src/app/shared/models/chase';
+import { ChaseList, ChaseMetaData } from 'chase-model';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ChaseService } from 'src/app/shared/services/chase.service';
+import { ChaseService } from 'chase-services';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';

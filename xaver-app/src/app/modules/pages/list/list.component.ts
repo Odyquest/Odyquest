@@ -4,11 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ChaseService } from 'src/app/shared/services/chase.service';
+import { ChaseService } from 'chase-services';
 import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseMetaData } from 'src/app/shared/models/chase';
-import { ChaseStorageService } from 'src/app/shared/services/chaseStorage.service';
-import { ChaseStatus } from 'src/app/shared/models/chase_status';
+import { ChaseList, ChaseMetaData } from 'chase-model';
+import { ChaseStorageService } from 'chase-services';
+import { ChaseStatus } from 'chase-model';
 
 @Component({
   selector: 'app-list',

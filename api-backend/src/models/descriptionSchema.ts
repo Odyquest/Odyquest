@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Description } from '../shared/models/description';
+import { Description } from 'chase-model';
 
 /**
  * Database schema for class Description

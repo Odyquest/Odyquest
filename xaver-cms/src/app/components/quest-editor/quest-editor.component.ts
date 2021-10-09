@@ -1,18 +1,18 @@
 import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
-import { GameElement } from 'src/app/shared/models/gameElement';
-import { Quest, QuestType } from 'src/app/shared/models/quest';
+import { GameElement } from 'chase-model';
+import { Quest, QuestType } from 'chase-model';
 import {
   Narrative,
   NarrativeType,
   NarrativeStatus,
-} from 'src/app/shared/models/narrative';
-import { XButton } from 'src/app/shared/models/xButton';
-import { Chase } from '../../shared/models/chase';
-import { LogicType, SolutionTerm } from '../../shared/models/solution_term';
+} from 'chase-model';
+import { XButton } from 'chase-model';
+import { Chase } from 'chase-model';
+import { LogicType, SolutionTerm } from 'chase-model';
 import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
-import { Description } from '../../shared/models/description';
+import { Description } from 'chase-model';
 import { MainEditorComponent } from '../main-editor/main-editor.component';
-import { ChaseService } from 'src/app/shared/services/chase.service';
+import { ChaseService } from 'chase-services';
 
 @Component({
   selector: 'app-quest-editor',

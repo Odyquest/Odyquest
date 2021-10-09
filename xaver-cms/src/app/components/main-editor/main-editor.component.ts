@@ -1,14 +1,14 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Chase, ChaseMetaData } from 'src/app/shared/models/chase';
+import { Chase, ChaseMetaData } from 'chase-model';
 import { deserialize, serialize } from 'typescript-json-serializer';
 
-import { ChaseService } from 'src/app/shared/services/chase.service';
-import { ChaseStorageService } from 'src/app/shared/services/chaseStorage.service';
-import { Description } from 'src/app/shared/models/description';
-import { GameElement } from 'src/app/shared/models/gameElement';
-import { Narrative } from 'src/app/shared/models/narrative';
-import { Quest } from 'src/app/shared/models/quest';
+import { ChaseService } from 'chase-services';
+import { ChaseStorageService } from 'chase-services';
+import { Description } from 'chase-model';
+import { GameElement } from 'chase-model';
+import { Narrative } from 'chase-model';
+import { Quest } from 'chase-model';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
 import { saveAs } from 'file-saver';
 

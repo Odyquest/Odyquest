@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
-import { Chase } from '../shared/models/chase';
-import { Narrative } from '../shared/models/narrative';
-import { Quest } from '../shared/models/quest';
+import { Chase } from 'chase-model';
+import { Narrative } from 'chase-model';
+import { Quest } from 'chase-model';
 
 /**
  * Database document for class Chase

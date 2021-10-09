@@ -9,7 +9,7 @@ import {getSimpleJwksService, secure} from 'express-oauth-jwt';
 
 import { Database } from './database';
 import { getCorsOrigin, getApiPort, getUseAuth, getAuthIssuesBaseUrl, getAuthJwksUrl } from './environment';
-import { Chase, ChaseList, ChaseMetaData } from './shared/models/chase';
+import { Chase, ChaseList, ChaseMetaData } from 'chase-model';
 
 var database = new Database();
 

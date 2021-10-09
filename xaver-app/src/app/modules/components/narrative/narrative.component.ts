@@ -3,8 +3,8 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
-import { Narrative, NarrativeStatus, NarrativeType } from 'src/app/shared/models/narrative';
-import { ChaseStatus } from 'src/app/shared/models/chase_status';
+import { Narrative, NarrativeStatus, NarrativeType } from 'chase-model';
+import { ChaseStatus } from 'chase-model';
 import { GameService } from 'src/app/core/services/game.service';
 import { HintComponent } from '../hint/hint.component';
 

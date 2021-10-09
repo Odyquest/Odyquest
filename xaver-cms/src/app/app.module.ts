@@ -47,7 +47,7 @@ import { LoggedOutComponent } from './components/logged-out/logged-out.component
 import { LoginComponent } from './components/login/login.component';
 import { MainEditorComponent } from './components/main-editor/main-editor.component';
 import { QuestEditorComponent } from './components/quest-editor/quest-editor.component';
-import { RuntimeConfigurationService, runtimeInitializerFn } from './shared/services/runtime-configuration.service';
+import { RuntimeConfigurationService, runtimeInitializerFn } from 'chase-services';
 import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.component';
 
 import { environment } from '../environments/environment';

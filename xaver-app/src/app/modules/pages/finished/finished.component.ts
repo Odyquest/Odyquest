@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ChaseStatus } from '../../../shared/models/chase_status';
+import { ChaseStatus } from 'chase-model';
 
 @Component({
   selector: 'app-finished',

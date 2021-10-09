@@ -6,12 +6,12 @@ import * as moment from 'moment';
 import {Subscription, TimeInterval} from 'rxjs';
 
 import {QuestStatus} from '../../../core/services/game.service';
-import {Description} from '../../../shared/models/description';
-import {Quest, QuestType} from '../../../shared/models/quest';
+import {ChaseStatus} from 'chase-model';
+import {Description} from 'chase-model';
+import {Quest, QuestType} from 'chase-model';
 import {HintComponent} from '../hint/hint.component';
 import {SubmitSolutionComponent} from '../submit-solution/submit-solution.component';
 import {TimeService} from './../../../core/services/time.service';
-import {ChaseStatus} from './../../../shared/models/chase_status';
 
 enum SolutionStatus {
   ValidAnswer, InvalidAnswer, WaitingForAnswer

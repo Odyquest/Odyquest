@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Chase, ChaseList, ChaseMetaData } from '../shared/models/chase';
+import { Chase, ChaseList, ChaseMetaData } from 'chase-model';
 import { DescriptionSchema } from './descriptionSchema';
 import { NarrativeSchema } from './narrativeSchema';
 import { QuestSchema } from './questSchema';
