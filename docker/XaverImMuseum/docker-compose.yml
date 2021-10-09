@@ -30,4 +30,4 @@ services:
 networks:
     default:
         external:
-            name: xaver-net
+            name: odyquest-net

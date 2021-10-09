@@ -5,7 +5,7 @@ Odyquest can run inside docker.
 ## Single Docker Images
 
 * [Frontend: App and CMS](frontend/README.md)
-* [Backend: Api](api-backend/README.md)
+* [Backend: Data](data-backend/README.md)
 
 ## Docker-compose Setup
 

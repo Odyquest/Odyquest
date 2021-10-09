@@ -1,10 +1,10 @@
-# Docker image of xaver-app
+# Docker image of odyquest-cms
 
 ## build docker image
-* go to `<repo>/xaver-cms`
+* go to `<repo>/odyquest-cms`
 * run `ng build --prod`
-* copy files from `dist/xaver-cms` to `<location of this README.md>/build/xaver-cms`
-* build docker image: `sudo docker build -t xaver-cms .`
+* copy files from `dist/odyquest-cms` to `<location of this README.md>/build/odyquest-cms`
+* build docker image: `sudo docker build -t odyquest-cms .`
 
 ## test it
-* run docker container: `sudo docker run -p 80:80 xaver-cms`
+* run docker container: `sudo docker run -p 80:80 odyquest-cms`

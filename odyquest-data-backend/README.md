@@ -1,4 +1,4 @@
-# Api Backend
+# Odyquest Data Backend
 
 Server side implementation for database requests.
 
@@ -34,6 +34,6 @@ curl -X POST -H "Content-Type: application/json" -d @../xaver-shared/assets/exam
 
 Create database media entry from valid file:
 ```
-curl -i -X POST -H "Content-Type: multipart/form-data" -F "chaseId=simple" -F "name=example_image" -F "file=@../xaver-app/src/assets/icons/icon-128x128.png" http://localhost:8400/media
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "chaseId=simple" -F "name=example_image" -F "file=@../odyquest-app/src/assets/icons/icon-128x128.png" http://localhost:8400/media
 ```
 
