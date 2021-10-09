@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Api-Backend CI
+name: Odyquest Data Backend CI
 
 on:
   push:
@@ -30,8 +30,8 @@ jobs:
     - run: npm run build --if-present
       working-directory: ./odyquest-shared/chase-model
     - run: npm ci
-      working-directory: ./api-backend
+      working-directory: ./odyquest-data-backend
     - run: npm run build --if-present
-      working-directory: ./api-backend
+      working-directory: ./odyquest-data-backend
     #- run: npm test
-    #  working-directory: ./api-backend
+    #  working-directory: ./odyquest-data-backend

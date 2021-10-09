@@ -34,8 +34,8 @@ jobs:
     - run: npm run build --if-present
       working-directory: ./odyquest-frontend-shared
     - run: npm ci
-      working-directory: ./xaver-cms
+      working-directory: ./odyquest-cms
     - run: npm run build --if-present
-      working-directory: ./xaver-cms
+      working-directory: ./odyquest-cms
     #- run: npm test
-    #  working-directory: ./xaver-cms
+    #  working-directory: ./odyquest-cms
