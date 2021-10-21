@@ -3,7 +3,7 @@
 <div *ngIf="!loading" class="chaseList">
   <div *ngFor="let chase of getChaseList()">
     <section>
-      <mat-card (click)="editChase(chase.chaseId)">
+      <mat-card>
         <header>
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -16,7 +16,8 @@
           <p>{{chase.preview.description.text}}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button primary mat-button>EDIT</button>
+          <mat-checkbox primary [checked]="chase.published" disabled>Published</mat-checkbox>
+          <button primary mat-button (click)="editChase(chase.chaseId)">EDIT</button>
         </mat-card-actions>
       </mat-card>
     </section>
