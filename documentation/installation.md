@@ -9,18 +9,18 @@ To run all three parts on the same server, you can configure a reverse proxy (fo
 
 ## App
 
-Set up a web server like _Apache HTTP Server_ or _nginx_. Build the app with `npm run build:production` ([more details about building](../xaver-app/README.md)). Copy the content of [dist/xaver-app](../xaver-app/dist/xaver-app) to the correct folder of your web server like `/var/www`.
+Set up a web server like _Apache HTTP Server_ or _nginx_. Build the app with `npm run build:production` ([more details about building](../odyquest-app/README.md)). Copy the content of [dist/odyquest-app](../odyquest-app/dist/odyquest-app) to the correct folder of your web server like `/var/www`.
 
 ## CMS
 
-Installing the CMS works similar to the App. See corresponding [README](../xaver-app/README.md) for CMS specific
+Installing the CMS works similar to the App. See corresponding [README](../odyquest-app/README.md) for CMS specific
 details.
 
 ## Backend
 
 Set up MongoDB instance.
 
-The backend uses `nodejs` as server application. Build and run it like described in [README.md](../api-backend/README.md)
+The backend uses `nodejs` as server application. Build and run it like described in [README.md](../odyquest-data-backend/README.md)
 
 ## Partial installation
 

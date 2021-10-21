@@ -8,7 +8,7 @@ while hunting for a ghost or helping a robot travelling back to the future.
 The project consists of three parts:
 
 * a web app as frontend for users,
-* a server as api backend for data storage,
+* a server as data backend for data storage,
 * and a CMS for game creation and editing.
 
 * [Installation guide](documentation/installation.md)
@@ -18,7 +18,7 @@ The project consists of three parts:
 
 ### OAuth2 Authentication for Modification
 
-Use OAuth2 authentication service to protect the api and cms access.
+Use OAuth2 authentication service to protect editing the data and cms access.
 You can use a existing authentication service or set up your own by using e.g. Keycloak.
 
 ### Localization/Translations

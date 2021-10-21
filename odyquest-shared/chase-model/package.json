@@ -1,0 +1,20 @@
+{
+  "name": "chase-model",
+  "version": "1.0.0",
+  "description": "Chase related data model",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lint": "tslint --project \"./tsconfig.json\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@types/node": "^12.11.1",
+    "tslint": "~6.1.0",
+    "typescript": "~4.1.5",
+    "typescript-json-serializer": "^2.5.0"
+  }
+}

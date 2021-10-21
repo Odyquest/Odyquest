@@ -26,8 +26,16 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-      working-directory: ./xaver-app
+      working-directory: ./odyquest-shared/chase-model
     - run: npm run build --if-present
-      working-directory: ./xaver-app
+      working-directory: ./odyquest-shared/chase-model
+    - run: npm ci
+      working-directory: ./odyquest-frontend-shared
+    - run: npm run build --if-present
+      working-directory: ./odyquest-frontend-shared
+    - run: npm ci
+      working-directory: ./odyquest-app
+    - run: npm run build --if-present
+      working-directory: ./odyquest-app
     #- run: npm test
-    #  working-directory: ./xaver-app
+    #  working-directory: ./odyquest-app

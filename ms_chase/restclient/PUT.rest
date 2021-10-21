@@ -1,8 +1,0 @@
-### Update chase with PUT
-PUT https://{{host}}/10000000-0000-0000-0000-000000000000
-If-Match: "0"
-Content-Type: application/json
-Authorization: {{basic-auth-admin}}
-ALPN: h2
-
-< data/chase-put.jsonm1m
