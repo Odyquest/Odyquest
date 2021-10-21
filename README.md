@@ -14,6 +14,19 @@ The project consists of three parts:
 * [Installation guide](documentation/installation.md)
 * [Documentation for developers](documentation/development.md)
 
+## Build instructions
+
+Short summary to build all parts:
+```bash
+# First build the libraries
+(cd odyquest-shared/chase-model && npm install && npm run build)
+(cd odyquest-frontend-shared && npm install && npm run build)
+# Then the applications
+(cd odyquest-app && npm install && npm run build)
+(cd odyquest-cms && npm install && npm run build)
+(cd odyquest-data-backend && npm install && npm run build)
+```
+
 ## Features
 
 ### OAuth2 Authentication for Modification
