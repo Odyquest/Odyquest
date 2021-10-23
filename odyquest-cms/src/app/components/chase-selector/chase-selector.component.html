@@ -1,5 +1,17 @@
 <mat-progress-spinner color="primary" mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
 
+<div class="chaseList">
+  <section>
+    <mat-card>
+      <mat-card-header>
+        allgemeine Optionen
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" (click)="createChase()">Create chase</button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+</div>
 <div *ngIf="!loading" class="chaseList">
   <div *ngFor="let chase of getChaseList()">
     <section>

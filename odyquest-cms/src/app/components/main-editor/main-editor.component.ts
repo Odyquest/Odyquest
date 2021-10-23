@@ -21,6 +21,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   public chase: Chase;
   selectedQuest: number;
   chaseID = 'julia'; //{"xaver", "julia", "silke"}
+  editorAction: string|undefined = undefined;
   title: string = '';
   author: string = '';
   description: string = '';
@@ -45,21 +46,17 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     public chaseStorage: ChaseStorageService
   ) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
+    this.editorAction = this.activatedRoute.snapshot.queryParams.action;
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit()');
-    this.chaseService.getChase(this.chaseID).subscribe((chase) => {
-      this.chase = chase;
-      // this.createNewChase();
-
-      this.getDataFromChase();
-      this.questEditor.setChase(this.chase);
-      this.questEditor.setGameElementToEdit(
-        this.chase.gameElements.get(this.selectedQuest),
-        true
-      );
-    });
+    if (this.chaseID) {
+      console.log('load chase from given id');
+      this.loadChaseToEditorById(this.chaseID);
+    } else {
+      console.log('create new chase');
+      this.createNewChase();
+    }
   }
 
   writeDataToChase(): void {
@@ -209,6 +206,19 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.chase.initialGameElement = this.parseIdFromGEString(value);
     this.initialElement = value;
     console.log('Set initial game element to ' + this.chase.initialGameElement);
+  }
+
+  loadChaseToEditorById(id: string) {
+    this.chaseService.getChase(this.chaseID).subscribe((chase) => {
+      this.chase = chase;
+
+      this.getDataFromChase();
+      this.questEditor.setChase(this.chase);
+      this.questEditor.setGameElementToEdit(
+        this.chase.gameElements.get(this.selectedQuest),
+        true
+      );
+    });
   }
 
   createNewChase(): void {

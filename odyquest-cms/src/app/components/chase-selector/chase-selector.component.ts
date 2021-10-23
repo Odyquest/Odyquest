@@ -42,6 +42,14 @@ export class ChaseSelectorComponent implements OnInit {
     return this.getChaseList().length === 0;
   }
 
+  public createChase(): void {
+    this.loading = true;
+    setTimeout(() => {
+        this.loading = false;
+        this.router.navigateByUrl('/editor?action=new');
+    }, 1500);
+  }
+
   public editChase(id: string): void {
     this.loading = true;
     setTimeout(() => {
