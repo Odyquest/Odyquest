@@ -1,6 +1,6 @@
-<div class="quest-editor-top-container">
-  <div class="quest-image-outer-container">
-    <div class="quest-image-container">
+<div class="editor-top-container">
+  <div class="editor-image-outer-container">
+    <div class="editor-image-container">
       <img [src]="image_url">
     </div>
     <input type="text" id="image-name" name="quest_name" [(ngModel)]="image_url"
@@ -9,9 +9,9 @@
     <button id="saveChaseButton" mat-raised-button color="primary" (click)="MediaUploader.click()">Bild
       Hochladen</button>
   </div>
-  <div class="quest-editor-top-right-container">
+  <div class="editor-top-right-container">
 
-    <form id="quest-meta-info-input">
+    <form id="editor-meta-info-input">
       <mat-form-field>
         <mat-label for="fname">Titel:</mat-label>
         <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="title" (change)="onTitleChange()">

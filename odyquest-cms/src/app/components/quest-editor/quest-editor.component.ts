@@ -166,7 +166,7 @@ export class QuestEditorComponent implements OnInit {
 
     //save data so the MainCOmponent can access it, then recreate the quest list
     this.localToGameElement();
-    this.main_editor.getDataFromChase();
+    this.main_editor.loadDataFromChase();
   }
 
   deleteQuestSolution(index: number) {

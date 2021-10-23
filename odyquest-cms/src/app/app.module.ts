@@ -52,6 +52,7 @@ import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.compo
 
 import { environment } from '../environments/environment';
 import { ElementEditorComponent } from './components/element-editor/element-editor.component';
+import { MetaDataEditorComponent } from './components/meta-data-editor/meta-data-editor.component';
 
 function getAuthConfig(): AuthConfig {
   const config: AuthConfig = {
@@ -102,6 +103,7 @@ const appRoutes: Routes = [
     QuestEditorComponent,
     SidebarComponent,
     ElementEditorComponent,
+    MetaDataEditorComponent,
   ],
   imports: [
     BrowserModule,

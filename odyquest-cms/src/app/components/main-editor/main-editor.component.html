@@ -12,54 +12,13 @@
       <mat-icon class="chase-menu-icon" (click)="deleteChase()" matTooltip="Jagd löschen">delete</mat-icon>
     </div>
 
-    <form id="chase-meta-info-form">
-      <mat-form-field>
-        <input matInput type="text" id="author" name="Titel" [(ngModel)]="title" placeholder="Name der Jagd...">
-      </mat-form-field>
-      <mat-form-field> <input matInput type="text" id="author" name="Autor" [(ngModel)]="author" placeholder="Autor...">
-      </mat-form-field>
-      <mat-form-field>
-        <textarea matInput type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..."
-          name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label class="" for="initial-game-element">Startelement:</mat-label>
-
-        <mat-select
-          name="initial-game-element"
-          id="initial-game-element"
-          [(ngModel)]="initialElement">
-          <mat-option
-            *ngFor="let target of gameElementsList"
-            [value]='target'
-            [attr.selected]='target'
-            (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-checkbox
-        class="example-margin"
-        color="primary"
-        name="combination_map_check"
-        [(ngModel)]="published">
-        Veröffentlicht
-      </mat-checkbox>
-    </form>
-
-    <div class="quest_selector_header">Anzeigebild für Chase</div>
-
-    <div class="quest-image-outer-container">
-      <div class="quest-image-container">
-        <img [src]="imageUrl">
-      </div>
-      <div class="row">
-        <input type="text" id="image-name" name="quest_name" [(ngModel)]="imageUrl"
-          placeholder="URL für das Bild..."><br><br>
-        <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
-        <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Chase hochladen" color="primary"
-          (click)="MediaUploader.click()">file_upload
-        </mat-icon>
-      </div>
-    </div>
+      <mat-selection-list #selected [multiple]="false" #questlist>
+        <mat-list-option>
+          <div class=text-and-delete-container (click)="metaDataSelectorClicked()">
+            Allgemein
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
 
     <div class="quest_selector_header">Rätsel</div>
 
