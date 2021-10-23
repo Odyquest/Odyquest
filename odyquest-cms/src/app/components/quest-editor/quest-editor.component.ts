@@ -54,6 +54,8 @@ export class QuestEditorComponent implements OnInit {
   gameElementsList: string[];
   help: Array<Description>;
 
+  initial_setup = true;
+
   constructor(
     @Inject(MainEditorComponent) public main_editor: MainEditorComponent,
     private cd: ChangeDetectorRef,
@@ -400,9 +402,11 @@ export class QuestEditorComponent implements OnInit {
     });
   }
 
-  setGameElementToEdit(gm: GameElement, initial_setup: boolean): void {
-    //first save all stuff that was done in the old editor
-    if (!initial_setup) {
+  setGameElementToEdit(gm: GameElement): void {
+    if (this.initial_setup) {
+      this.initial_setup = false;
+    } else {
+      // save all stuff that was done in the old editor
       this.localToGameElement();
     }
 

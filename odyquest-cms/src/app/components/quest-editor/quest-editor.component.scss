@@ -4,13 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 85%;
+  width: 100%;
   // height: 100%;
   height: fit-content;
   min-height: 100%;
   // text-align: center;
   text-justify: center;
-  background: #eee;
   overflow: auto;
 }
 

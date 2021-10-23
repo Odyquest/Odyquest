@@ -20,8 +20,8 @@ import { saveAs } from 'file-saver';
 export class MainEditorComponent implements OnInit, AfterViewInit {
   public chase: Chase;
   selectedQuest: number;
-  chaseID = 'julia'; //{"xaver", "julia", "silke"}
-  editorAction: string|undefined = undefined;
+  chaseID: string;
+  editorAction: string;
   title: string = '';
   author: string = '';
   description: string = '';
@@ -33,7 +33,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   imageUrl = '';
 
-  @ViewChild('quest_editor') questEditor;
+  @ViewChild('element_editor') elementEditor;
 
   // these values are filled with info from the chase
   // todo use actual questList
@@ -139,10 +139,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
     //parse id from name, not so pretty a solution TBH
     this.selectedQuest = MainEditorComponent.parseIdFromGEString(text);
-    this.questEditor.setChase(this.chase);
-    this.questEditor.setGameElementToEdit(
-      this.chase.gameElements.get(this.selectedQuest),
-      false
+    this.elementEditor.setChase(this.chase);
+    this.elementEditor.setGameElementToEdit(
+      this.chase.gameElements.get(this.selectedQuest)
     );
   }
 
@@ -213,11 +212,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
       this.chase = chase;
 
       this.getDataFromChase();
-      this.questEditor.setChase(this.chase);
-      this.questEditor.setGameElementToEdit(
-        this.chase.gameElements.get(this.selectedQuest),
-        true
-      );
+      this.elementEditor.setChase(this.chase);
     });
   }
 
@@ -234,8 +229,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.addQuest();
 
     this.getDataFromChase();
-    this.questEditor.setChase(this.chase);
-    this.questEditor.setGameElementToEdit(this.chase.gameElements.get(1), true);
+    this.elementEditor.setChase(this.chase);
   }
 
   uploadChase($event): void {
@@ -254,17 +248,13 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
       this.selectedQuest = 1;
 
       this.getDataFromChase();
-      this.questEditor.setChase(this.chase);
-      this.questEditor.setGameElementToEdit(
-        this.chase.gameElements.get(this.selectedQuest),
-        true
-      );
+      this.elementEditor.setChase(this.chase);
     });
     reader.readAsText($event.target.files[0]);
   }
 
   prepareSavingChase(): void {
-    this.questEditor.localToGameElement();
+    this.elementEditor.saveChangesToGameElement();
     this.writeDataToChase();
   }
 

@@ -51,6 +51,7 @@ import { RuntimeConfigurationService, runtimeInitializerFn } from 'chase-service
 import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.component';
 
 import { environment } from '../environments/environment';
+import { ElementEditorComponent } from './components/element-editor/element-editor.component';
 
 function getAuthConfig(): AuthConfig {
   const config: AuthConfig = {
@@ -100,6 +101,7 @@ const appRoutes: Routes = [
     MainEditorComponent,
     QuestEditorComponent,
     SidebarComponent,
+    ElementEditorComponent,
   ],
   imports: [
     BrowserModule,
