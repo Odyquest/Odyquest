@@ -1,39 +1,37 @@
 <mat-progress-spinner color="primary" mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
 
-<div class="chaseList">
+<div *ngIf="!loading" class="cards-container">
+
   <section>
     <mat-card>
-      <mat-card-header>
-        allgemeine Optionen
-      </mat-card-header>
       <mat-card-actions>
-        <button mat-flat-button color="primary" (click)="createChase()">Create chase</button>
+        <button mat-button (click)="createChase()">
+          <mat-icon color="primary">add</mat-icon>
+          Add new chase
+        </button>
       </mat-card-actions>
     </mat-card>
   </section>
-</div>
-<div *ngIf="!loading" class="chaseList">
-  <div *ngFor="let chase of getChaseList()">
-    <section>
-      <mat-card>
-        <header>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{chase.title}}</mat-card-title>
-            <mat-card-subtitle>{{chase.author}}</mat-card-subtitle>
-          </mat-card-header>
-        </header>
-        <img mat-card-image src="{{chase.preview.description.image}}">
-        <mat-card-content>
-          <p>{{chase.preview.description.text}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <mat-checkbox primary [checked]="chase.published" disabled>Published</mat-checkbox>
-          <button primary mat-button (click)="editChase(chase.chaseId)">EDIT</button>
-        </mat-card-actions>
-      </mat-card>
-    </section>
-  </div>
+
+  <section *ngFor="let chase of getChaseList()">
+    <mat-card>
+      <header>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{chase.title}}</mat-card-title>
+          <mat-card-subtitle>{{chase.author}}</mat-card-subtitle>
+        </mat-card-header>
+      </header>
+      <img mat-card-image src="{{chase.preview.description.image}}">
+      <mat-card-content>
+        <p>{{chase.preview.description.text}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <mat-checkbox primary [checked]="chase.published" disabled>Published</mat-checkbox>
+        <button primary mat-button (click)="editChase(chase.chaseId)">EDIT</button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
 
   <!--
   <section>

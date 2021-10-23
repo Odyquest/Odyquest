@@ -26,13 +26,15 @@ $background_color_selectable: rgb(36, 45, 47);
 
 html,
 body {
+  margin: 0;
   height: 100%;
-  background: $background_color;
 }
 
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Quicksand", "Helvetica Neue", sans-serif;
+  background: #eee;
+  font-variant-numeric: normal;
+  line-height: 1.6;
 }
 
 .mat-button-wrapper {

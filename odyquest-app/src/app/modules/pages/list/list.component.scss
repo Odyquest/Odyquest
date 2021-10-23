@@ -9,6 +9,11 @@ mat-card {
   margin-bottom: 15px;
 }
 
+p {
+  min-width: 100%;
+  width: 0;
+}
+
 img {
   object-fit: cover;
   object-position: center;
@@ -16,7 +21,7 @@ img {
 }
 
 .example-header-image {
-  background-image: url('./../../../../assets/example_thumbnails/xaver.png');
+  background-image: url('./../../../favicon.ico');
   background-size: cover;
 }
 
