@@ -1,38 +1,15 @@
 {
   "chases":[
     {
-      "chaseId":"xaver",
-      "title":"This is a chase to the galaxy",
-      "description":"Description of the galaxy chase!",
-      "author":"Xaver",
+      "chaseId":"lorem",
+      "title":"Lorem ipsum dolor sit amet",
+      "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore",
+      "author":"Ipsum Lorem",
+      "published":true,
       "preview":{
         "description":{
-          "text":"The galaxy chase!",
-          "image":"https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg"
-        }
-      }
-    },
-    {
-      "chaseId":"julia",
-      "title":"Rätselhafte Sphinx",
-      "description":"Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
-      "author":"Julia",
-      "preview":{
-        "description":{
-          "text":"Gehe mit Xaver auf eine Schnitzeljagt durch das Badische Landesmuseum!",
-          "image":"assets-shared/examples/julia/images/sphinx.jpg"
-        }
-      }
-    },
-    {
-      "chaseId":"silke",
-      "title":"Zeitreise mit Xaver",
-      "description":"Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
-      "author":"Silke",
-      "preview":{
-        "description":{
-          "text":"Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
-          "image":"assets-shared/examples/silke/images/xaver.png"
+          "text":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+          "image": "assets-shared/examples/lorem/images/title.jpg"
         }
       }
     }
