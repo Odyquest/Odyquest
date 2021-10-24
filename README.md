@@ -29,6 +29,60 @@ Short summary to build all parts:
 
 ## Features
 
+### Narrative elements for story telling
+
+<table>
+  <tr>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/narrative1.png" /></p>
+    </th>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/narrative2.png" /></p>
+    </th>
+  </tr>
+</table>
+
+### Quest elements with different input types
+
+<table>
+  <tr>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/quest1.png" /></p>
+    </th>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/quest2.png" /></p>
+    </th>
+  </tr>
+  <tr>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/multiple-choice.png" /></p>
+    </th>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/text-input.png" /></p>
+    </th>
+  </tr>
+</table>
+
+### Hints
+
+<table>
+  <tr>
+    <th width="100%">
+      <p><img width="35%" src="./documentation/screenshots/help1.png" /></p>
+    </th>
+  </tr>
+</table>
+
+### CMS for game creation and editing
+
+<table>
+  <tr>
+    <th width="100%">
+      <p><img src="./documentation/screenshots/cms1.png"></p>
+    </th>
+  </tr>
+</table>
+
 ### OAuth2 Authentication for Modification
 
 Use OAuth2 authentication service to protect editing the data and cms access.
