@@ -39,8 +39,8 @@ export class MetaDataEditorComponent implements OnInit {
     this.chase = chase;
 
     this.title = this.chase.metaData.title;
-    this.description = this.chase.metaData.description;
     this.author = this.chase.metaData.author;
+    this.description = this.chase.metaData.preview.description.text;
     this.imageUrl = this.chase.metaData.preview.description.image;
 
     // create gameelementsmap (id -> string)
