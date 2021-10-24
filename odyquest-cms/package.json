@@ -11,7 +11,9 @@
     "build:static": "ng build --prod --configuration=static --base-href /cms/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "extract-i18n": "ng extract-i18n --output-path src/i18n && xliffmerge --profile xliffmerge.json && npm run extract-i18n:new",
+    "extract-i18n:new": "grep -n '<target state=\"new\">' src/i18n/* || true"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +44,7 @@
     "@angular/cli": "~11.2.14",
     "@angular/compiler-cli": "~11.2.14",
     "@angular/language-service": "~11.2.14",
+    "@angular/localize": "^11.2.14",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
