@@ -27,11 +27,12 @@
     "@angular/router": "~11.2.14",
     "angular-oauth2-oidc": "^12.1.0",
     "angular-oauth2-oidc-jwks": "^12.0.0",
-    "chase-services": "file:../odyquest-frontend-shared/dist/chase-services/",
     "chase-model": "file:../odyquest-shared/chase-model/",
+    "chase-services": "file:../odyquest-frontend-shared/dist/chase-services/",
     "file-saver": "^2.0.5",
     "help": "^3.0.2",
     "material-design-icons": "^3.0.1",
+    "ngx-markdown": "^11.1.3",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

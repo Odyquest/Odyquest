@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,6 +36,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import {MarkdownModule } from 'ngx-markdown';
 import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
 
 import { AppComponent } from './app.component';
@@ -110,6 +111,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    MarkdownModule.forRoot({ loader: HttpClient }),
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
