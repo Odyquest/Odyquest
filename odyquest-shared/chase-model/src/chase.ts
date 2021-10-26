@@ -16,7 +16,10 @@ export class ChaseMetaData {
   @JsonProperty() published: boolean = false;
   @JsonProperty() version?: number;
   @JsonProperty() title: string = '';
+
+  /** deprecated -> replaced by preview */
   @JsonProperty() description: string = '';
+
   @JsonProperty() preview: Preview = new Preview();
   @JsonProperty() author?: string; //Author;
   @JsonProperty() lastEdited?: Date;

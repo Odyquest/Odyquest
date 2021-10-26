@@ -1,18 +1,5 @@
 @import "src/styles";
-
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 85%;
-  // height: 100%;
-  height: fit-content;
-  min-height: 100%;
-  // text-align: center;
-  text-justify: center;
-  background: #eee;
-  overflow: auto;
-}
+@import "src/app/components/editor-styles.scss";
 
 .help-image-container {
   display: flex;
@@ -28,75 +15,6 @@
 
 .default-image {
   color: grey;
-}
-
-.quest-editor-top-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  border-radius: 16px;
-  background: white;
-  width: 98%;
-  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
-  // border-bottom: 2px solid #262527;
-  // border-top: 2px solid #262527;
-  margin-top: 10px;
-}
-
-.quest-editor-top-right-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 75%;
-  height: 100%;
-  padding: 20px;
-}
-
-.quest-editor-top-right-container-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 30%;
-}
-
-
-.quest-image-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: 96%;
-  height: 90%;
-  margin: 10px;
-}
-
-.quest-image-outer-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: 25%;
-  height: 90%;
-  margin: 10px;
-}
-
-label {
-  margin: 10px;
-}
-
-
-
-.quest-name-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
 }
 
 .quest-top-container {
@@ -207,16 +125,6 @@ label {
     height: 100%;
     padding: 10px;
     border: 1px solid white;
-}
-
-.content-all-types {
-  margin: 5px;
-  margin: 10px;
-  overflow:auto;
-  border-radius: 16px;
-  background: white;
-  width: 98%;
-  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
 }
 
 .content-type-narrative {
@@ -418,7 +326,7 @@ h3 {
   margin-bottom: 10px;
 }
 
-#quest-meta-info-input{
+#editor-meta-info-input{
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -1,0 +1,58 @@
+<div class="editor-top-container">
+  <div class="editor-image-outer-container">
+    <div class="editor-image-container">
+      <img [src]="imageUrl">
+    </div>
+    <input type="text" id="image-name" name="quest_name" [(ngModel)]="imageUrl"
+                                       placeholder="URL für das Bild..."><br><br>
+                                       <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
+                                       <button id="saveChaseButton" mat-raised-button color="primary" (click)="MediaUploader.click()">
+                                         <!--<mat-icon id="saveChaseButton" matTooltip="Bild für Chase hochladen">file_upload </mat-icon>-->
+                                         Bild Hochladen
+                                       </button>
+  </div>
+  <div class="editor-top-right-container">
+
+    <form id="editor-meta-info-input">
+      <mat-form-field>
+        <input matInput type="text" id="author" name="Titel" [(ngModel)]="title" placeholder="Name der Jagd...">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" id="author" name="Autor" [(ngModel)]="author" placeholder="Autor...">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput type="text" id="chase_description" placeholder="Kurze Beschreibung für diese Jagd..."
+                                                              name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+
+<div class="content-all-types">
+  <div class="content-type-general">
+    <form id="editor-general-info-input">
+      <mat-checkbox
+        class="content-field-container"
+        color="primary"
+        name="combination_map_check"
+        [(ngModel)]="published">
+        Öffentlicht zugänglich
+      </mat-checkbox>
+      <mat-form-field class="content-field-container">
+        <mat-label class="" for="initial-game-element">Startelement:</mat-label>
+        <mat-select
+          name="initial-game-element"
+          id="initial-game-element"
+          [(ngModel)]="initialElement">
+          <mat-option
+            *ngFor="let target of gameElementsList"
+            [value]='target'
+            [attr.selected]='target'
+            (click)="onInitialGameElementChange(target)">{{target}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+</div>

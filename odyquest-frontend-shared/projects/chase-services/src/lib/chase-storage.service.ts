@@ -95,7 +95,10 @@ export class ChaseStorageService {
       list = new ChaseStatusList();
     }
     list.map.set(chaseId, chaseStatus);
-    this.storage.set('chase_status_list', serialize(list));
+    try {
+      this.storage.set('chase_status_list', serialize(list));
+    } catch (e) {
+    }
   }
 }
 

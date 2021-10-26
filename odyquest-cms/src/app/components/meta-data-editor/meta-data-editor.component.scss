@@ -1,0 +1,14 @@
+@import "src/app/components/editor-styles.scss";
+
+.content-type-general {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.content-field-container {
+  padding: 10px;
+}

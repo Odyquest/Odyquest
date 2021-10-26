@@ -14,7 +14,74 @@ The project consists of three parts:
 * [Installation guide](documentation/installation.md)
 * [Documentation for developers](documentation/development.md)
 
+## Build instructions
+
+Short summary to build all parts:
+```bash
+# First build the libraries
+(cd odyquest-shared/chase-model && npm install && npm run build)
+(cd odyquest-frontend-shared && npm install && npm run build)
+# Then the applications
+(cd odyquest-app && npm install && npm run build)
+(cd odyquest-cms && npm install && npm run build)
+(cd odyquest-data-backend && npm install && npm run build)
+```
+
 ## Features
+
+### Narrative elements for story telling
+
+<table>
+  <tr>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/narrative1.png" /></p>
+    </th>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/narrative2.png" /></p>
+    </th>
+  </tr>
+</table>
+
+### Quest elements with different input types
+
+<table>
+  <tr>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/quest1.png" /></p>
+    </th>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/quest2.png" /></p>
+    </th>
+  </tr>
+  <tr>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/multiple-choice.png" /></p>
+    </th>
+    <th width="50%">
+      <p><img width="70%" src="./documentation/screenshots/text-input.png" /></p>
+    </th>
+  </tr>
+</table>
+
+### Hints
+
+<table>
+  <tr>
+    <th width="100%">
+      <p><img width="35%" src="./documentation/screenshots/help1.png" /></p>
+    </th>
+  </tr>
+</table>
+
+### CMS for game creation and editing
+
+<table>
+  <tr>
+    <th width="100%">
+      <p><img src="./documentation/screenshots/cms1.png"></p>
+    </th>
+  </tr>
+</table>
 
 ### OAuth2 Authentication for Modification
 
