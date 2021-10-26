@@ -1,4 +1,5 @@
 @import "../game_element";
+@import "src/assets/color-theme.scss";
 
 @media screen and (orientation: landscape) {
   .button_bar {
@@ -47,23 +48,22 @@ ul {
   list-style-type: none;
 }
 
-.solved {
-  border: 8px #00ff00 solid;
-  // border: 8px mat-color($primary, default) solid;
-  border-radius: 8px;
-
-  animation: blink 2s;
-  animation-iteration-count: infinite;
+.valid_answer {
+  animation: highlight_valid 1.5s;
+  animation-iteration-count: 1;
 }
-@keyframes blink { 50% { border-color:#fff ; }  }
+@keyframes highlight_valid {
+  from {background-color: green; color:white;}
+  to {background-color: primary; color: primary;}
+}
 
 .invalid_answer {
   border: 8px #fff solid;
   border-radius: 8px;
-  animation: highlight 5s;
+  animation: highlight_invalid 1.5s;
   animation-iteration-count: 1;
 }
-@keyframes highlight {
+@keyframes highlight_invalid {
   from {background-color: red; border-color: red; color:white;}
   to {background-color: #fff; border-color: #fff; color: #262527;}
 }

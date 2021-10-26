@@ -36,10 +36,40 @@ export class QuestComponent implements OnInit, OnDestroy {
   subscriptions = new Array<Subscription>();
   timeTicker;
   constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer: DomSanitizer) {
-    this.solutionStatus = SolutionStatus.WaitingForAnswer;
   }
 
   ngOnInit(): void {
+    if (this.hasTimeConstraint()) {
+      this.subscriptions.push(
+          this.timeService.exampleTimer.subscribe(futureTimeEvent => {
+            this.futureTimeEvent = futureTimeEvent;
+            this.timeTicker = setInterval(() => {
+              const diff = futureTimeEvent.diff(moment());
+              const duration = moment.duration(diff);
+
+              this.remainingTime.hours = duration.hours();
+              this.remainingTime.minutes = duration.minutes();
+              this.remainingTime.seconds = duration.seconds();
+              if (this.remainingTime.hours === 0
+                && this.remainingTime.minutes === 0
+                && this.remainingTime.seconds === 0) {
+                console.log('failed quest by timeout');
+                this.loose();
+              }
+            }, 1000);
+          }));
+    }
+    this.resetState();
+  }
+
+  resetState(): void {
+    this.solutionStatus = SolutionStatus.WaitingForAnswer;
+
+    // delete old timers
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    clearInterval(this.timeTicker);
+
+    // set new timer
     if (this.hasTimeConstraint()) {
       this.subscriptions.push(
           this.timeService.exampleTimer.subscribe(futureTimeEvent => {
@@ -63,9 +93,10 @@ export class QuestComponent implements OnInit, OnDestroy {
     }
   }
 
-  select(button: string): void {
+  passSolution(): void {
     if (this.solutionStatus === SolutionStatus.ValidAnswer && this.solutionDestination !== undefined) {
       this.selection.emit(this.solutionDestination);
+      this.resetState();
     } else {
       console.log('There is no valid solution!');
       // TODO
@@ -89,7 +120,7 @@ export class QuestComponent implements OnInit, OnDestroy {
         this.solutionDestination = solution.destination;
         this.solutionStatus = SolutionStatus.ValidAnswer;
         if (this.quest.requirementCombination.getPossibleDestinations().length === 1) {
-          this.selection.emit(this.solutionDestination);
+          this.passSolution();
         }
       } else {
         if (result.length > 0) {
@@ -138,6 +169,10 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   invalidAnswerGiven(): boolean {
     return this.solutionStatus === SolutionStatus.InvalidAnswer;
+  }
+
+  validAnswerGiven(): boolean {
+    return this.solutionStatus === SolutionStatus.ValidAnswer;
   }
 
   ngOnDestroy(): void {

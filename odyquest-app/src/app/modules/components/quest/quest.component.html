@@ -7,16 +7,21 @@
       <div markdown emoji>{{quest.description.text}}</div>
     </div>
     <div class="game_element_image" >
-      <a (click)="select('next')">
-        <img  [src]="getImage()" [ngClass]="{'solved' : hasSolution(), 'not_solved' : !hasSolution()}" />
-      </a>
+      <img  [src]="getImage()" />
     </div>
   </div>
 </article>
 <nav class="game_element_buttons">
   <div class="button_bar">
     <button mat-flat-button color="primary" (click)="submit()" i18n="@@chase.quest.enter-solution">Enter solution</button>
-    <button *ngIf="hasSolution()" mat-flat-button color="primary" (click)="select('next')" i18n="@@chase.quest.go-on">Go on</button>
+    <button
+        *ngIf="hasSolution()"
+        mat-flat-button color="primary"
+        (click)="passSolution()"
+        [ngClass]="{'valid_answer' : validAnswerGiven(),  'not_valid_answer' : !validAnswerGiven()}"
+        i18n="@@chase.quest.go-on">
+      Go on
+    </button>
     <button mat-flat-button
       *ngIf="hasHelp()"
       color="primary"
