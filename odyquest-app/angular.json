@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "xaver-app": {
+    "odyquest-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/xaver-app",
+            "outputPath": "dist/odyquest-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -94,24 +94,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "xaver-app:build"
+            "browserTarget": "odyquest-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "xaver-app:build:production"
+              "browserTarget": "odyquest-app:build:production"
             },
             "static": {
-              "browserTarget": "xaver-app:build:static"
+              "browserTarget": "odyquest-app:build:static"
             },
             "de": {
-              "browserTarget": "xaver-app:build:de"
+              "browserTarget": "odyquest-app:build:de"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "xaver-app:build"
+            "browserTarget": "odyquest-app:build"
           }
         },
         "test": {
@@ -151,16 +151,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "xaver-app:serve"
+            "devServerTarget": "odyquest-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "xaver-app:serve:production"
+              "devServerTarget": "odyquest-app:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "xaver-app"
+  "defaultProject": "odyquest-app"
 }

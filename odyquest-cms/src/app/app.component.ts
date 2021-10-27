@@ -9,7 +9,7 @@ import { OAuthService, OAuthErrorEvent } from 'angular-oauth2-oidc';
 })
 export class AppComponent {
   isAuthenticated: boolean;
-  title = 'xaver-cms';
+  title = 'odyquest-cms';
   userName;
 
 
