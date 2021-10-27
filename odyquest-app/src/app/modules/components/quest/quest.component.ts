@@ -39,26 +39,6 @@ export class QuestComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.hasTimeConstraint()) {
-      this.subscriptions.push(
-          this.timeService.exampleTimer.subscribe(futureTimeEvent => {
-            this.futureTimeEvent = futureTimeEvent;
-            this.timeTicker = setInterval(() => {
-              const diff = futureTimeEvent.diff(moment());
-              const duration = moment.duration(diff);
-
-              this.remainingTime.hours = duration.hours();
-              this.remainingTime.minutes = duration.minutes();
-              this.remainingTime.seconds = duration.seconds();
-              if (this.remainingTime.hours === 0
-                && this.remainingTime.minutes === 0
-                && this.remainingTime.seconds === 0) {
-                console.log('failed quest by timeout');
-                this.loose();
-              }
-            }, 1000);
-          }));
-    }
     this.resetState();
   }
 
