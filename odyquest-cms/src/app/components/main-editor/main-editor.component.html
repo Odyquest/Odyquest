@@ -20,7 +20,7 @@
         </mat-list-option>
       </mat-selection-list>
 
-    <div class="quest_selector_header">Rätsel</div>
+    <div class="quest_selector_header" i18n="@@main_editor.quest">Quests</div>
 
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
@@ -32,9 +32,15 @@
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addQuest()">Neues Rätsel</button>
+      <button id="addQuestButton"
+              mat-raised-button
+              color="primary"
+              (click)="addQuest()"
+              i18n="@@main_editor.add_quest">
+        Add Quest
+      </button>
     </div>
-    <div class="quest_selector_header">Erzählelement</div>
+    <div class="quest_selector_header" i18n="@@main_editor.narratives">Narratives</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
         <mat-list-option *ngFor="let quest of narrativeList">
@@ -45,8 +51,12 @@
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">
-        Neues Erzählelement
+      <button id="addQuestButton"
+              mat-raised-button
+              color="primary"
+              (click)="addNarrative()"
+              i18n="@main_editor.add_narrative">
+        Add Narrative
       </button>
     </div>
 

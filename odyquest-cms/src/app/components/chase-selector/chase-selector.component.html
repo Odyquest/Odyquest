@@ -5,7 +5,7 @@
   <section>
     <mat-card>
       <mat-card-actions>
-        <button mat-button (click)="createChase()">
+        <button mat-button (click)="createChase()" i18n="@@chase_selector.add_new_chase">
           <mat-icon color="primary">add</mat-icon>
           Add new chase
         </button>
@@ -27,8 +27,8 @@
         <p markdown emoji>{{chase.preview.description.text}}</p>
       </mat-card-content>
       <mat-card-actions>
-        <mat-checkbox primary [checked]="chase.published" disabled>Published</mat-checkbox>
-        <button primary mat-button (click)="editChase(chase.chaseId)">EDIT</button>
+        <mat-checkbox primary [checked]="chase.published" disabled i18n="@@chase-selector.published_flag">Published</mat-checkbox>
+        <button primary mat-button (click)="editChase(chase.chaseId)" i18n="@@chase-selector.edit">edit</button>
       </mat-card-actions>
     </mat-card>
   </section>
