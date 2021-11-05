@@ -4,12 +4,10 @@
     <input hidden type="file" #uploader (change)="uploadChase($event)" />
     <div class="button-wrapper">
       <mat-icon class="chase-menu-icon" (click)="createNewChase()" matTooltip="Neue Jagd">add</mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="pushChase()" matTooltip="Jagd speichern">save</mat-icon>
-
+      <mat-icon *ngIf="hasModifiableApi()" class="chase-menu-icon" (click)="pushChase()" matTooltip="Jagd speichern">save</mat-icon>
       <mat-icon class="chase-menu-icon" (click)="uploader.click()" matTooltip="Jagd hochladen">file_upload</mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="downloadChase()" matTooltip="Jagd herunterladen">file_download
-      </mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="deleteChase()" matTooltip="Jagd löschen">delete</mat-icon>
+      <mat-icon class="chase-menu-icon" (click)="downloadChase()" matTooltip="Jagd herunterladen">file_download</mat-icon>
+      <mat-icon *ngIf="hasModifiableApi()" class="chase-menu-icon" (click)="deleteChase()" matTooltip="Jagd löschen">delete</mat-icon>
     </div>
 
       <mat-selection-list #selected [multiple]="false" #questlist>

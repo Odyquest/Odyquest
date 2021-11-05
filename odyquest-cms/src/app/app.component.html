@@ -2,7 +2,7 @@
   <mat-toolbar id="mainToolbar" color="primary">
     <mat-icon id="navigateToHomeButton" (click)="navigateTo('home')">home</mat-icon>
 
-    <div>
+    <div *ngIf="needsUser()">
       <button id="userMenuButton" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User Menu">
         <span id="userMenuButtonContent">
           <mat-icon>account_box</mat-icon>

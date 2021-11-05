@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OAuthService, OAuthErrorEvent } from 'angular-oauth2-oidc';
 
+import { RuntimeConfigurationService } from 'chase-services';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,16 +12,14 @@ import { OAuthService, OAuthErrorEvent } from 'angular-oauth2-oidc';
 export class AppComponent {
   isAuthenticated: boolean;
   title = 'odyquest-cms';
-  userName;
-
-
-
   username = '';
 
   get token() { return this.oauthService.getAccessToken(); }
   get claims() { return this.oauthService.getIdentityClaims(); }
 
-  constructor(public router: Router, public oauthService: OAuthService) {
+  constructor(public router: Router,
+              private configuration: RuntimeConfigurationService,
+              public oauthService: OAuthService) {
         // For debugging:
     oauthService.events.subscribe(e => e instanceof OAuthErrorEvent ? console.error(e) : console.warn(e));
 
@@ -55,6 +55,11 @@ export class AppComponent {
 
   navigateTo(destination) {
     this.router.navigateByUrl('/home');
+  }
+
+  needsUser(): boolean {
+    return this.configuration.isApiBased();
+
   }
 }
 

@@ -18,6 +18,10 @@ export class RuntimeConfigurationService {
   get(): any {
     return this.config;
   }
+
+  isApiBased(): boolean {
+    return this.config.api.api_based;
+  }
 }
 
 /**
