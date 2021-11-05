@@ -4,7 +4,7 @@
     "base_uri": "assets-shared/examples/"
   },
   "auth": {
-    "issuer": "https://localhost/auth/realms/master",
+    "issuer": "https://cms.schnitzeljagd.landesmuseum.de/auth/realms/master",
     "client_id": "test-cms"
   }
 }

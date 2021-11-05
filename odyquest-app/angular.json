@@ -32,7 +32,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets-shared",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/chase-services/assets",
+                "output": "/assets-shared"
+              },
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -124,7 +128,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets-shared",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/chase-services/assets",
+                "output": "/assets-shared"
+              },
               "src/manifest.webmanifest"
             ],
             "styles": [
