@@ -10,13 +10,13 @@
       <mat-icon *ngIf="hasModifiableApi()" class="chase-menu-icon" (click)="deleteChase()" matTooltip="Jagd löschen">delete</mat-icon>
     </div>
 
-      <mat-selection-list #selected [multiple]="false" #questlist>
-        <mat-list-option>
-          <div class=text-and-delete-container (click)="metaDataSelectorClicked()">
-            Allgemein
-          </div>
-        </mat-list-option>
-      </mat-selection-list>
+    <mat-selection-list #selected [multiple]="false" #questlist>
+      <mat-list-option>
+        <div class=text-and-delete-container (click)="metaDataSelectorClicked()">
+          Allgemein
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
 
     <div class="quest_selector_header" i18n="@@main_editor.quest">Quests</div>
 

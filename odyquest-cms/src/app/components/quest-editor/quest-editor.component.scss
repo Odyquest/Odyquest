@@ -35,15 +35,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: scroll;
   //background: red;
   width: 100%;
   //height: 50%;//todo
 }
 
 .quest-solution-list-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  //display: flex;
+  //flex-direction: column;
+  //height: 100%;
   //background: green;
 }
 
@@ -189,6 +190,16 @@
   margin-bottom: 20px;
 }
 
+.add-table-button {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background: #bea05a;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .saveCancelButton {
   margin: 10px;
   max-width: 250px;
@@ -198,9 +209,18 @@ img {
   width: 100%;
 }
 
+@media screen and (max-width: 900px) {
+  .single-button-container {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 900px) {
+  .single-button-container {
+    flex-direction: row;
+  }
+}
 .single-button-container {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
