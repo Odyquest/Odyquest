@@ -446,46 +446,18 @@ export class QuestEditorComponent implements OnInit {
     // -> reset values get
   }
 
-  uploadMedia($event): void {
-    console.log('Opening file explorer to load local media file...');
-    console.log($event.target.files[0]);
-    const reader = new FileReader();
-    reader.addEventListener('load', (e) => {
-      console.log('upload file...');
-      this.chaseService
-        .createMedia(
-          this.chase.metaData.chaseId,
-          '(unnamed)',
-          $event.target.files[0]
-        )
-        .subscribe((res) => {
-          console.log('...done: ' + res);
-          this.image_url = res;
-          // update image and url fields
-        });
-    });
-    reader.readAsArrayBuffer($event.target.files[0]);
+  getChaseId(): string {
+    if (this.chase && this.chase.metaData.chaseId) {
+      return this.chase.metaData.chaseId;
+    }
   }
 
-  uploadMediaForHelp($event, helpID): void {
-    console.log('Opening file explorer to load local media file...');
-    console.log($event.target.files[0]);
-    const reader = new FileReader();
-    reader.addEventListener('load', (e) => {
-      console.log('upload file...');
-      this.chaseService
-        .createMedia(
-          this.chase.metaData.chaseId,
-          '(unnamed)',
-          $event.target.files[0]
-        )
-        .subscribe((res) => {
-          console.log('...done: ' + res);
-          this.help[helpID].image = res;
-          // update image and url fields
-        });
-    });
-
-    reader.readAsArrayBuffer($event.target.files[0]);
+  updateImageUrl(url: string): void {
+    this.image_url = url;
   }
+
+  updateHelpImageUrl(helpId: number, url: string): void {
+    this.help[helpId].image = url;
+  }
+
 }

@@ -73,25 +73,14 @@ export class MetaDataEditorComponent implements OnInit {
     this.chase.metaData.published = this.published;
   }
 
-  uploadMedia($event): void {
-    console.log('Opening file explorer to load local media file...');
-    console.log($event.target.files[0]);
-    const reader = new FileReader();
-    reader.addEventListener('load', (e) => {
-      console.log('upload file...');
-      this.chaseService
-        .createMedia(
-          this.chase.metaData.chaseId,
-          '(unnamed)',
-          $event.target.files[0]
-        )
-        .subscribe((res) => {
-          console.log('...done: ' + res);
-          // update image and url fields
-          this.imageUrl = res;
-        });
-    });
-    reader.readAsArrayBuffer($event.target.files[0]);
+  getChaseId(): string {
+    if (this.chase && this.chase.metaData.chaseId) {
+      return this.chase.metaData.chaseId;
+    }
+  }
+
+  updateImageUrl(url: string): void {
+    this.imageUrl = url;
   }
 
 }

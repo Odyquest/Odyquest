@@ -1,24 +1,9 @@
 <div class="editor-top-container">
-  <div class="editor-image-outer-container">
-    <div class="editor-image-container">
-      <img [src]="imageUrl">
-    </div>
-    <input type="text"
-           id="image-name"
-           name="quest_name"
-           [(ngModel)]="imageUrl"
-           i18n-placeholder
-           placeholder="URL pointing to image..." /><br><br>
-    <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
-    <button id="saveChaseButton"
-            mat-raised-button
-            color="primary"
-            (click)="MediaUploader.click()"
-            i18n="@@upload_image">
-      <!--<mat-icon id="saveChaseButton" matTooltip="Bild für Chase hochladen">file_upload </mat-icon>-->
-      Upload image
-    </button>
-  </div>
+  <app-image-upload class="editor-image-outer-container"
+                    [imageUrl]="this.imageUrl"
+                    [chaseId]="getChaseId()"
+                    (updateUrl)="updateImageUrl($event)" >
+  </app-image-upload>
   <div class="editor-top-right-container">
 
     <form id="editor-meta-info-input">
