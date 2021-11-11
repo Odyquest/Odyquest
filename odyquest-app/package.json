@@ -10,6 +10,7 @@
     "build": "ng build --prod --localize --base-href /app/",
     "build:production": "ng build --prod --localize --base-href /app/",
     "build:static": "ng build --prod --localize --configuration=static --base-href /app/",
+    "build:gh-pages": "ng build --prod --localize --configuration=static --base-href /Odyquest/odyquest-app/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
