@@ -34,9 +34,8 @@ jobs:
     - name: Copy files
       run: |
         mkdir public
-        cp odyquest-app/dist/odyquest-app public/
-
-        cp odyquest-cms/dist/odyquest-cms public/
+        cp -r odyquest-app/dist/odyquest-app public/
+        cp -r odyquest-cms/dist/odyquest-cms public/
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
