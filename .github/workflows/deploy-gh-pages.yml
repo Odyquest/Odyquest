@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ master, main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build odyquest-shared
+      run: |
+        npm install
+        npm run build --if-present
+      working-directory: ./odyquest-shared/chase-model
+    - name: Build odyquest-frontend-shared
+      run: |
+        npm install
+        npm run build --if-present
+      working-directory: ./odyquest-frontend-shared
+    - name: Build app
+      run: |
+        npm install
+        npm run build:gh-pages --if-present
+      working-directory: ./odyquest-app
+    - name: Build CMS
+      run: |
+        npm install
+        npm run build:gh-pages --if-present
+      working-directory: ./odyquest-cms
+    - name: Copy files
+      run: |
+        mkdir public
+        cp odyquest-app/dist/odyquest-app public/
+
+        cp odyquest-cms/dist/odyquest-cms public/
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
+        branch: gh-pages
+        folder: public
