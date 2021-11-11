@@ -1,0 +1,449 @@
+{
+   "metaData": {
+      "chaseId": "julia",
+      "title": "Rätselhafte Sphinx",
+      "description": "Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+      "author": "Julia",
+      "preview": {
+         "description": {
+            "text": "Gehe mit Xaver auf eine Schnitzeljagt durch das Badische Landesmuseum!",
+            "image": "assets-shared/examples/julia/images/sphinx.jpg"
+         }
+      }
+   },
+   "_narratives": {
+      "1": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Hilfe, zu Hilfe! Ich, die Sphinx, wurde entführt, quasi ge-sphinx-nappt! Seit Jahrhunderten flattere ich durch das Schloss und mir nichts dir nichts kommt da jemand in weißem Kittel um die Ecke und fängt mich. Der fiese Sphinxnapper! Dabei hab ich gar nichts gemacht! Ich doch nicht! Bitte hilf mir!",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "helfen",
+               "destination": 2
+            }
+         ]
+      },
+      "2": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Darf ich mich dir, meine strahlende Rettung in der Not, vorstellen? Ich bin die Sphinx! Den muskulösen Körper habe ich vom Löwen, die starken, aber zarten Flügelchen vom Adler und mein Gesicht von deinesgleichen – dem Mensch! Deswegen bin ich so hübsch. Wie du… Wir Sphingen sind bekannt dafür, sehr hübsch zu sein.\n Mein größtes Hobby, eigentlich meine Berufung, ist es, Rätsel zu stellen. Wenn du alle Rätsel löst, kannst du mich aus den Fängen des fiesen Sphinxnappers befreien.",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 3
+            }
+         ]
+      },
+      "13": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Wie sieht es nun eigentlich mit dir aus, Meisterrätsellöser*in: Kannst du mein Lieblingsrätsel lösen?  „Was geht am Morgen auf vier Füßen, am Mittag auf zweien und am Abend auf dreien?“ Weißt du es? Dann gehe zurück, am Wald aus Meilensteinen vorbei, dann immer geradeaus weiter in die Dunkelheit bis es wieder hell wird. Dort triffst du auf… den fiesen Sphinxnapper im weißen Kittel! Sag ihm das Lösungswort und du kannst mich endlich befreien!",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "Ich weiß es.",
+               "destination": 14
+            },
+            {
+               "name": "Hilfe!",
+               "destination": 131
+            }
+         ]
+      },
+      "131": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Das ist das Lieblingsrätsel der durchtriebenen Sphinx! Es ist besonders schwierig. Es hat etwas mit dem Alter zu tun: Am Morgen ist die Lösung jung, am Abend alt. Um es zu lösen musst du in das Gebiet gehen, das die einheimischen Menschen „Archäologie in Baden“ nennen, und den Mensch suchen, den sie mit „Explainer“ ansprechen.",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "Jetzt weiß ich es.",
+               "destination": 13
+            },
+            {
+               "name": "Hilfe :-(",
+               "destination": 132
+            }
+         ]
+      },
+      "132": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Kaum ein Mensch kann dieses Rätsel lösen – der einzige Mensch bislang war ich. Vielleicht kannst es auch du: Die Lösung sind eigentlich auch wir beide, was sind wir denn?  ",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "ok",
+               "destination": 13
+            }
+         ]
+      },
+      "16": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "Noch mal!!!",
+               "destination": 1
+            },
+            {
+               "name": "Zum Glück nicht gefressen worden",
+               "destination": 1
+            }
+         ],
+         "narrativeStatus": "win"
+      },
+      "4": {
+         "description": {
+            "text": "Richtig, du schlauer Löwe! Meinem Löwenkörper fehlt der Löwenkopf. \nDiese Platte mit dem Löwenkopf ist ein Bildhauermodell. Es war also eine Vorlage, die ägyptische Steinmetze benutzten, wenn sie Reliefs anfertigten. Witzigerweise sind die überlieferten Modelle fast immer Köpfe – tatsächlich weiß nicht einmal ich, wie die Bildhauer die Körper gearbeitet haben. Obwohl ich so schlau bin. Wir Sphingen sind überaus schlau.",
+            "image": "assets-shared/examples/julia/images/loewenkopf.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 5
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "6": {
+         "description": {
+            "text": "Ja, schwarz! Das kleine Ölfläschchen gehört nämlich zu einem bestimmten Stil der griechischen Vasenmalerei, den die Menschen rotfigurige Vasenmalerei nennen – mit dem schwarz bemalten Grund werden die Figuren ausgespart, die dann rot hervortreten. \nSchau mich an: Bin ich nicht hübsch? Und so anmutig! Wie zart geschwungen meine Flügel sind, wie fein meine Federn. Und wie kräftig elegant meine Hinterläufe. Und erst meine Frisur! Kunstvoll, nicht wahr? Und mein sanftes Lächeln, so wissend, denn ich bin klug. Wir Sphingen sind bekannt dafür, sehr klug zu sein.",
+            "image": "assets-shared/examples/julia/images/vase.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 7
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "8": {
+         "description": {
+            "text": "Ja, es ist Geflügel! Ist das zu fassen? Immerhin sind die anderen Tiere in der Reihe doch irgendwie ähnlich besonders wie wir Sphingen, ein Löwe und ein Panther, wahre Könige des Tierreichs. Natürlich sind sie lange nicht so besonders wie ich! Mit hoch erhobenem Haupte schreite ich voran.\n Wir Sphingen waren bei den Etruskern als Wächter gegen Böses vor allem bei Gräbern gefragt. Denn wir beschützten die Toten vor allem Übel. Ich bin also sehr tapfer und mutig. Und wachsam. Wir Sphingen sind sehr wachsam.",
+            "image": "assets-shared/examples/julia/images/vase-2.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 9
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "10": {
+         "description": {
+            "text": "Richtig, du kannst zählen! Das ist ja sehr beeindruckend. Das konnten damals nicht alle.\n Außer mir ist auf dem Sarkophag auch noch meine gute Freundin, die Medusa, abgebildet. Wir haben viel gemeinsam (auch wenn sie nicht ganz so hübsch ist wie ich, mit ihren Schlangenhaaren). Du solltest sie aber besser nicht so anstarren, denn unter ihrem Blick erstarren Menschen zu Stein. Gehen wir weiter, zurück nach Griechenland. \nIn Griechenland war ich auch als Rätselstellerin bekannt. Das wundert dich jetzt wahrscheinlich nicht. Ich bin rätselhaft. Wir Sphingen sind bekannt dafür, sehr rätselhaft zu sein.",
+            "image": "assets-shared/examples/julia/images/sarkophag.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 11
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "111": {
+         "description": {
+            "text": "Sehr gut, du hast den Bronzespiegel gefunden! Fein poliert konnte man sich in dessen Oberfläche bewundern. Vielleicht wunderst du dich, dass ich hier den jungen Mann angreife. Aber es ist so: Er konnte mein Rätsel nicht lösen.\n Das mag dir jetzt etwas dünnhäutig erscheinen, aber mit Unwissenheit kann ich einfach nicht gut umgehen… Vielleicht bin ich etwas reizbar. Man sagt uns Sphingen tatsächlich nach, ein klein wenig reizbar zu sein.\n Du brauchst vor mir aber gar keine Angst zu haben, denn du bist ja wahrhaft meisterlich im Rätsellösen und ich tue dir nichts. Vorerst.",
+            "image": "assets-shared/examples/julia/images/spiegel.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 1111
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "12": {
+         "description": {
+            "text": "Du hast Ödipus tatsächlich gefunden – wirklich sehr beeindruckend, Mensch! Und ja, das ist ein Kopf in meiner Hand… Kuck nicht so vorwurfsvoll, bitte. Dem Menschen den Kopf abzureißen war keine Überreaktion. Der konnte mein Rätsel eben nicht beantworten – diese Unwissenheit! Das ertrage ich einfach nicht! Ab mit seinem Kopf! \nIch bin doch etwas impulsiv. Wir Sphingen können unter bestimmten Umständen recht impulsiv sein.",
+            "image": "assets-shared/examples/julia/images/oedipus.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 13
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "15": {
+         "description": {
+            "text": "Ja, der Mensch! Und ihr Menschen seid so naiv! Selbst du, Meisterrätsellöser*in. Du hast mich befreit. Mich, die mächtige Sphinx! \nIch fresse Menschen! Wir Sphingen sind bekannt dafür, dass wir Menschen erwürgen und fressen! Jetzt kann ich weiterflattern, Rätsel stellen und unwissende Menschen fressen!!! Wuahahaha!",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 16
+            }
+         ],
+         "narrativeStatus": "continue"
+      }
+   },
+   "_quests": {
+      "3": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Um mich zu befreien, musst du zuerst in mein Heimatland, nach Ägypten gehen. \nDer menschliche Kopf auf meinem Löwenkörper stellte in Ägypten übrigens den Pharao dar, deswegen habe ich dort oft einen Bart. In Ägypten wache ich vor Grabmälern, Pyramiden und Tempeln. Ich beschütze die Toten. Ist das nicht nett? Wir Sphingen sind sehr nett.\n Tritt durch das riesige graue Tor ein nach Ägypten – auf der linken Seite wirst du dann sehen, was  dem Tier, das meinen Körper bildet, fehlt. Was ist es?",
+            "image": "assets-shared/examples/julia/images/sphinx.jpg"
+         },
+         "questType": "text",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "Löwenkopf",
+               "Kopf",
+               "Bildhauermodell",
+               "Relief",
+               "Kopf eines Löwen",
+               "Kopf vom Löwen"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     true,
+                     true,
+                     true,
+                     true,
+                     true
+                  ],
+                  "logicType": "or",
+                  "description": {
+                     "text": "Richtig, du schlauer Löwe! Meinem Löwenkörper fehlt der Löwenkopf. \nDiese Platte mit dem Löwenkopf ist ein Bildhauermodell. Es war also eine Vorlage, die ägyptische Steinmetze benutzten, wenn sie Reliefs anfertigten. Witzigerweise sind die überlieferten Modelle fast immer Köpfe – tatsächlich weiß nicht einmal ich, wie die Bildhauer die Körper gearbeitet haben. Obwohl ich so schlau bin. Wir Sphingen sind überaus schlau.",
+                     "image": "assets-shared/examples/julia/images/loewenkopf.png"
+                  },
+                  "destination": 4
+               }
+            ]
+         },
+         "help": [
+            {
+               "text": "Hm… Ein schweres Rätsel, was die Sphinx hier gestellt hat! Was fehlt dem Löwenkörper der Sphinx… Es hat wohl mit dem Löwen zu tun… Es ist wohl etwas, was zum Löwenkörper gehört, wie ein Deckel auf einen Topf.",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            },
+            {
+               "text": "Tja, hm… Also, ich würde in das Gebiet gehen, das die Einheimischen hier „Antike 1, Ägypten“ nennen. Die Ägypter waren übrigens meisterhafte Bildhauer! Suche doch mal in dieser Vitrine nach dem passenden Löwendeckel zum Löwentopf… ",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            }
+         ]
+      },
+      "5": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Den größten Ruhm habe ich mir wohl bei den alten Griechen erworben. Dort wohnte ich auf dem Berg Phikeon und hielt – ebenso wie in Ägypten – Wache. Brav, nicht? Wir Sphingen sind gute Wächter und sehr brav. \nIm antiken Griechenland und auch im alten Italien bei den Römern, stellte man mich übrigens so gut wie immer weiblich und mit Frauenköpfen dar. \nIch bin auf zwei sehr kleine Gefäßchen gemalt. Zwei kopflose Menschen habe ich stets im Blick. Menschköpfe hab ich übrigens sehr gern!\n Welche Farbe haben die Gefäßchen, auf die man mich gemalt hat?",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "questType": "text",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "schwarz"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true
+                  ],
+                  "logicType": "or",
+                  "destination": 6
+               }
+            ]
+         },
+         "help": [
+            {
+               "text": "Hm… Wo sind diese Gefäßchen bloß… Wenn du vor dem Löwenkopf in Ägypten stehst, wende dich um und gehe geradeaus, gen Griechenland. Sobald du Griechenland erreicht hast, wende dich nach rechts. Und dann: Augen auf, dass du nicht nur Schwarz siehst!!",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            }
+         ]
+      },
+      "7": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Ich war in der Antike ein beliebtes Motiv für Gefäße. Für mich völlig unverständlich bekam ich dort manchmal keine besondere Stellung, sondern wurde zusammen mit ganz gewöhnlichen Tieren auf die Pötte gemalt. Durchschreite zwei Tore und gehe entlang der Grabsteine der Verstorbenen. Wenn du dann, Jupiter sei Dank!, nicht nur um die Ecke denkst, sondern auch gehst, siehst du diese – ich möchte fast sagen – Herabsetzung meiner Sphingen-Besonderheit auf einer etruskischen Kanne. Was für ein Tier läuft vor mir?",
+            "image": "assets-shared/examples/julia/images/sphinx.jpg"
+         },
+         "questType": "text",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "Vogel",
+               "Huhn",
+               "Gans",
+               "Ente"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     true,
+                     true,
+                     true
+                  ],
+                  "logicType": "or",
+                  "destination": 8
+               }
+            ]
+         },
+         "help": [
+            {
+               "text": "Nun, Mitratende*r, lass uns zunächst die Etrusker suchen. Sie wohnen in einem Land, Etrurien, das auf der anderen Seite der Treppen gen Himmel und Unterwelt befindet. Die Einheimischen hier nennen das Gebiet „Antike 2“. Dort steht – weit in die Landschaft – eine Reihe von Grabmonumenten und Sarkophagen. Und auf der linken Seite ist unser Ziel: Etrurien!",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            },
+            {
+               "text": "Wirklich schwierig zu finden, die Sphinx in Etrurien! Von der Gräberstraße aus musst du bei dem reitenden Gott, der Blitze schleudert, nach links gehen, bis ins hinterste Eckchen. Dann siehst du dein Ziel und das Geschöpf, das vor der Sphinx mit den Flügeln flattert!",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            }
+         ]
+      },
+      "9": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Als geflügelte Schutzdämonin spielte ich auch bei den alten Römern eine große Rolle im Begräbniskult – nämlich als Grabwächterin. Wenn du dich auf der Gräberstraße mit all den Grabsteinen und Sarkophagen näher umsiehst, findest du ein bleischweres Objekt, auf dem ich – ziemlich gut getroffen in meiner wachsamen Eleganz – zusammen Delphinen und Medusen dargestellt bin. Wie viele Bilder von mir sind auf der Vorderseite?",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "questType": "text",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "3",
+               "drei"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     true
+                  ],
+                  "logicType": "or",
+                  "destination": 10
+               }
+            ]
+         },
+         "help": [
+            {
+               "text": "Hm… an der Gräberstraße kamen wir doch eben vorbei… Hier muss es sein, ein großes, graues Objekt, recht lang, ein Mensch hat bequem darin Platz. Aber eile nicht so schnell, sonst komme ich nicht hinterher! Meine Beine sind schwer, dreimal so schwer wie Blei!",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            },
+            {
+               "text": "Dreimal verdammte Sphinx, dies ist ein schweres Rätsel! Dies ist das Objekt, das du suchst!",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            }
+         ]
+      },
+      "11": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Ich bewachte ja den Berg Phikeon und stellte den Reisenden, die über den Berg gehen wollten, ein Rätsel. Wer aber mein Rätsel nicht beantworten konnten, den habe ich... ähm… nicht durchgelassen. So geht das ja nicht. Wir Sphingen sind nämlich auch sehr konsequent. \nGehe den Weg zurück, woher du kamst, und halte dich nach dem zweiten Tor links. Dort kannst du das Heim einer Griechin betreten. Darin gibt es ein Objekt, das zeigt, was ich mit den Unwissenden tue. Einst konnte sich in diesem Objekt jeder und jede, die hineinsah, wiedererkennen. Heute hat es etwas von seinem Glanz verloren. Aus welchem Material ist es?",
+            "image": "assets-shared/examples/julia/images/sphinx.jpg"
+         },
+         "questType": "text",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "Bronze"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true
+                  ],
+                  "logicType": "and",
+                  "destination": 111
+               }
+            ]
+         },
+         "help": [
+            {
+               "text": "Wie stets spricht die Sphinx in Rätseln. Gut, gehen wir zurück, in das Land, das die Einheimischen „Antike 1“ nennen… Dort würde ich nach links gehen, in bislang unbekanntes Gebiet. Auf der rechten Seite, meine ich, führt eine Tür ins Haus der griechischen Frauen. Dort habe ich oft gesehen, wie sie sich ihr bronzefarbenes Haar in Form legten",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            },
+            {
+               "text": "Dass du noch mehr Hilfe benötigst, spiegelt wider, wie schwer das Rätsel der Sphinx ist! Das Heim der Frauen befindet sich hier: [Foto Eingang]\n Wenn du es betrittst, fällt dein Blick geradeaus auf die Sphinx, wenn sich deine bronzene Erscheinung nicht zu sehr im Glas der Vitrine spiegelt!",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            }
+         ]
+      },
+      "1111": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Ich hatte auch ein Lieblings-Rätsel, das Reisende beantwortet mussten: „Was geht am Morgen auf vier Füßen, am Mittag auf zweien und am Abend auf dreien?“\n Der einzige Mensch, der das Rätsel bislang lösen konnte, war Ödipus. Dieser Ödipus… Wenn du ihn finden möchtest, auf seinem Stein, musst du hinunter gehen, in die Unterwelt. Gehe zur römischen Provinz am Oberrhein und dann Richtung „ad Deos“ am Wald aus Meilensteinen vorbei. Ödipus, der einzige Bezwinger der mächtigen Sphinx, steht neben mir… Was halte ich in meinen Händen?",
+            "image": "assets-shared/examples/julia/images/xaver.png"
+         },
+         "questType": "text",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "Haupt",
+               "Kopf",
+               "Menschenkopf",
+               "Toter"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     true,
+                     true,
+                     true
+                  ],
+                  "logicType": "or",
+                  "destination": 12
+               }
+            ]
+         },
+         "help": [
+            {
+               "text": "Hm… Diese Sphinx und ihre Rätsel! In die Dunkelheit führen ja meist Treppen, vorhin kamen wir doch an dem, was die Einheimischen „Treppenhaus“ nennen, vorbei. Geh dort nach unten. Die römische Provinz Obergermanien liegt rechts von dem, was sie „Treppenhaus“ nennen. Meilensteine, so habe ich im Kopf, sind runde Steinsäulen – geh also links an diesen vorbei, aber nicht zu weit. Und dann: halte die Augen nach mir auf! Aber achte auf deinen Kopf, es ist so dunkel dort!",
+               "image": "assets-shared/examples/julia/images/hilfe.jpg"
+            },
+            {
+               "text": "Dies ist wirklich ein schwieriges Rätsel, diese gerissene Sphinx! Da muss ich meinen Kopf sehr anstrengen! Der Stein, den wir suchen, steht dicht nach dem Wald aus Steinsäulen, hinter einem eckigen Pfeiler, der sehr modern ist. Über dem Stein schwebt die Göttin Minerva. Die Sphinx und ich sind an der schmalen Seite dargestellt, du musst dich in eine enge Spalte zwängen, um uns zu sehen – achte auf deinen Kopf!",
+               "image": "assets-shared/examples/julia/images/sarkophag.png"
+            }
+         ]
+      },
+      "14": {
+         "title": "Rätselhafte Sphinx",
+         "description": {
+            "text": "Na, hast du den Mensch im weißen Kittel gefunden, Meisterrätsellöser*in? Und hast du mich befreit und blickst in mein Antlitz – in das Antlitz der mächtigen Sphinx? Wir Sphingen sind bekannt dafür, sehr mächtig zu sein!  Wer ist es nun also, am Morgen auf vier Füßen, am Mittag auf zweien und am Abend auf dreien geht – und die Sphinx befreit hat?",
+            "image": "assets-shared/examples/julia/images/zierplatte.png"
+         },
+         "questType": "text",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "Mensch",
+               "ich"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     true
+                  ],
+                  "logicType": "or",
+                  "destination": 15
+               }
+            ]
+         },
+         "help": []
+      }
+   },
+   "initialGameElement": 1
+}

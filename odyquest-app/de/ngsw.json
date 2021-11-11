@@ -1,0 +1,113 @@
+{
+  "configVersion": 1,
+  "timestamp": 1636659086019,
+  "index": "/Odyquest/odyquest-app/de/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Odyquest/odyquest-app/de/favicon.ico",
+        "/Odyquest/odyquest-app/de/index.html",
+        "/Odyquest/odyquest-app/de/main.4fa1d220bc8174acca50.js",
+        "/Odyquest/odyquest-app/de/manifest.webmanifest",
+        "/Odyquest/odyquest-app/de/polyfills.d02648205d653ed67be5.js",
+        "/Odyquest/odyquest-app/de/runtime.653c1c024cab125e312b.js",
+        "/Odyquest/odyquest-app/de/scripts.1db98f8b72daced1b79c.js",
+        "/Odyquest/odyquest-app/de/styles.98c857c1dfa7fd50b8f5.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Odyquest/odyquest-app/de/assets/color-theme.scss",
+        "/Odyquest/odyquest-app/de/assets/example_thumbnails/xaver.png",
+        "/Odyquest/odyquest-app/de/assets/example_thumbnails/xaver_museum.jpg",
+        "/Odyquest/odyquest-app/de/assets/example_thumbnails/xaver_sphinx.jpg",
+        "/Odyquest/odyquest-app/de/assets/example_thumbnails/xaver_zeitreise.png",
+        "/Odyquest/odyquest-app/de/assets/finished.de.md",
+        "/Odyquest/odyquest-app/de/assets/finished.en.md",
+        "/Odyquest/odyquest-app/de/assets/icons/icon-128x128.png",
+        "/Odyquest/odyquest-app/de/assets/icons/icon-144x144.png",
+        "/Odyquest/odyquest-app/de/assets/icons/icon-152x152.png",
+        "/Odyquest/odyquest-app/de/assets/icons/icon-192x192.png",
+        "/Odyquest/odyquest-app/de/assets/icons/icon-384x384.png",
+        "/Odyquest/odyquest-app/de/assets/icons/icon-512x512.png",
+        "/Odyquest/odyquest-app/de/assets/icons/icon-72x72.png",
+        "/Odyquest/odyquest-app/de/assets/icons/icon-96x96.png",
+        "/Odyquest/odyquest-app/de/assets/icons/logo.svg",
+        "/Odyquest/odyquest-app/de/assets/images/background-boot.svg",
+        "/Odyquest/odyquest-app/de/assets/images/title_background.jpg",
+        "/Odyquest/odyquest-app/de/assets/information.de.md",
+        "/Odyquest/odyquest-app/de/assets/information.en.md",
+        "/Odyquest/odyquest-app/de/assets/privacy.de.md",
+        "/Odyquest/odyquest-app/de/assets/privacy.en.md",
+        "/Odyquest/odyquest-app/de/background-boot.3c8a6174eb9130e7770f.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/Odyquest/odyquest-app/de/assets/color-theme.scss": "52770cd50e36c2cfd1965102d25a66e396b75387",
+    "/Odyquest/odyquest-app/de/assets/example_thumbnails/xaver.png": "436a5c777d9047a70d301ac1a4bfa25dfa17ef42",
+    "/Odyquest/odyquest-app/de/assets/example_thumbnails/xaver_museum.jpg": "50c256e6b69137c4de35e45ea02671037023f086",
+    "/Odyquest/odyquest-app/de/assets/example_thumbnails/xaver_sphinx.jpg": "9b249739b88917d86d562f967af8881cf3e237b5",
+    "/Odyquest/odyquest-app/de/assets/example_thumbnails/xaver_zeitreise.png": "7819838e807a6310dc77778a5e5524e6656c82aa",
+    "/Odyquest/odyquest-app/de/assets/finished.de.md": "81c86761c73a2affc35579e85abf76e888a7630c",
+    "/Odyquest/odyquest-app/de/assets/finished.en.md": "d6b97741c65f25ee2a609ddf3fdd4a93382735a0",
+    "/Odyquest/odyquest-app/de/assets/icons/icon-128x128.png": "2bbaab540c2bbe9b71663385c65fb9d461d90182",
+    "/Odyquest/odyquest-app/de/assets/icons/icon-144x144.png": "f334d72bb3e3efbeca075f06a761284f761ee41d",
+    "/Odyquest/odyquest-app/de/assets/icons/icon-152x152.png": "344811c0eaf91d89d5f063d77dabf25f56b01b24",
+    "/Odyquest/odyquest-app/de/assets/icons/icon-192x192.png": "57ea9308d3b7ba34a4d4f2cb8698870adbdc6fdc",
+    "/Odyquest/odyquest-app/de/assets/icons/icon-384x384.png": "45b2d29ad6488bd23b2816d4d05166dc3df6ecc6",
+    "/Odyquest/odyquest-app/de/assets/icons/icon-512x512.png": "e2ab6f5d2087592469f4f42eb0ec74456c3651af",
+    "/Odyquest/odyquest-app/de/assets/icons/icon-72x72.png": "0921e47301f6937b7d3ea76d078f12fe73020b5b",
+    "/Odyquest/odyquest-app/de/assets/icons/icon-96x96.png": "165c57d6e036f152dec5e6f0592aee8b21ba0fc4",
+    "/Odyquest/odyquest-app/de/assets/icons/logo.svg": "7d4098a57f07d959b14641177eff3ced41eb2f98",
+    "/Odyquest/odyquest-app/de/assets/images/background-boot.svg": "9cca7b042751cd1a309bb7fa7fb5b0a6999a335c",
+    "/Odyquest/odyquest-app/de/assets/images/title_background.jpg": "9061b86968ea02529cc666ed7e0fe908755fe89a",
+    "/Odyquest/odyquest-app/de/assets/information.de.md": "b65ba6d416d1fd611efbc02ccc7c16c8653e5233",
+    "/Odyquest/odyquest-app/de/assets/information.en.md": "81225e0c2143789aa2fa9070e39e0acf1ad6682c",
+    "/Odyquest/odyquest-app/de/assets/privacy.de.md": "049ba0f1f246dbe69b9a93e8eaadb28b9cc17cce",
+    "/Odyquest/odyquest-app/de/assets/privacy.en.md": "e1d3cc5130facd7172038ec8b4f1c019fb289960",
+    "/Odyquest/odyquest-app/de/background-boot.3c8a6174eb9130e7770f.svg": "9cca7b042751cd1a309bb7fa7fb5b0a6999a335c",
+    "/Odyquest/odyquest-app/de/favicon.ico": "ca252d6a6542573b7fe1bc8117ec2341899448c3",
+    "/Odyquest/odyquest-app/de/index.html": "3e5b8843ba8396486dab1876583402be6f4c7f9c",
+    "/Odyquest/odyquest-app/de/main.4fa1d220bc8174acca50.js": "00a89ed0cbc67864ad8899716483a8d9c4bf72c0",
+    "/Odyquest/odyquest-app/de/manifest.webmanifest": "3030217fd641c97ceb90c28c59be1ddf436ffeb2",
+    "/Odyquest/odyquest-app/de/polyfills.d02648205d653ed67be5.js": "93b32dc4242e22d65647a6c3410bd3c58e43775d",
+    "/Odyquest/odyquest-app/de/runtime.653c1c024cab125e312b.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/Odyquest/odyquest-app/de/scripts.1db98f8b72daced1b79c.js": "6122d595c1af3fc5d3f59fe1976edec87a78e3d7",
+    "/Odyquest/odyquest-app/de/styles.98c857c1dfa7fd50b8f5.css": "c5e4d6c75e67565327451a5a84243c354f1c2bcb"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

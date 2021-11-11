@@ -1,0 +1,458 @@
+{
+   "metaData": {
+      "chaseId": "silke",
+      "title": "Zeitreise mit Xaver",
+      "description": "Eine digitale Schnitzeljagd durch das Badische Landesmuseum",
+      "author": "Silke",
+      "preview": {
+         "description": {
+            "text": "Gehe mit Xaver auf eine Zeitreise durch das Badische Landesmuseum!",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         }
+      }
+   },
+   "_narratives": {
+      "1": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Oh nein, ich stecke völlig im Schlamassel. Ich habe mich hier im Museum umgesehen und wollte Fotos von den hübschen Kunstwerken machen, doch dabei habe ich wohl etwas falsch gemacht. Statt Fotos zu machen, habe ich irgendwie mehrere Objekte aus den verschiedenen Räumen des Museums verschwinden lassen! Keine Ahnung, wie das passieren konnte!",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 2
+            }
+         ]
+      },
+      "2": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Aber immerhin habe ich ja meinen eingebauten Supercomputer und ich habe herausgefunden, dass die verschwundenen Objekte an den Ort und zu der Zeit zurückgekehrt sind, in der man sie einst hergestellt und benutzt hat.",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 3
+            }
+         ]
+      },
+      "3": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Ich muss die Objekte wiederfinden und zurückbringen, bevor jemand bemerkt, dass sie fehlen! Doch das schaffe ich nicht alleine! Reist Du mit mir in die Vergangenheit und hilfst mir, die Museumsobjekte wieder zurückzubringen? ",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "Xaver helfen",
+               "destination": 4
+            }
+         ]
+      },
+      "4": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Ich bin sehr erleichtert, dass du mir hilfst! Dann lass uns sofort in die Vergangenheit aufbrechen. Unsere erste Zeitreise führt uns in das ANTIKE GRIECHENLAND, über 2400 Jahre zurück in das Jahr 390 v. Chr. Ich bin schon gespannt, was wir alles bei unserer Suche erleben werden!",
+            "image": "assets-shared/examples/silke/images/athen-agora.jpg"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 5
+            }
+         ]
+      },
+      "5": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Laufe ganz an das Ende des Raumes in der Ausstellung Antike I. Gehe vorbei an den Alten Kulturen, den Ägyptern, vorbei an griechischen Statuen. Verlasse den Raum nicht, sondern wende dich nach rechts zu der dem weißen Halbrund. Dort treffen wir uns wieder. Fahre fort, wenn du da bist. Die Zeitreise beginnt jetzt!",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "angekommen",
+               "destination": 6
+            }
+         ]
+      },
+      "6": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Wo sind wir denn? Ah, ich weiß! Das ist die Agora von Athen, der Marktplatz! Man merkt, dass es der Mittelpunkt des Lebens ist. Was für ein Trubel hier herrscht! Und um uns herum befinden sich Tempel, Säulenhallen und andere Gebäude.",
+            "image": "assets-shared/examples/silke/images/athen-agora-2.jpg"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 7
+            }
+         ]
+      },
+      "7": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Oh, nein ich bemerke gerade, dass wir ein Problem haben... Überall liegt ja Schotter und Sand! Ich kann aber nur über einen glatten Boden fahren! Du musst dich leider alleine auf die Suche begeben. Aber keine Sorge, ich halte mit dir Kontakt. Und ich befinde mich in bester Gesellschaft, wenn ich mich hier so umsehe. Überall um ihn herum befinden sich Statuen und Menschen tummeln sich auf dem Markt. Ich werde mir schon die Wartezeit vertreiben können und versuche, auch etwas in Erfahrung zu bringen. Fang doch schon mal da vorne bei den Statuen an und fang dort mit dem Suchen an.",
+            "image": "assets-shared/examples/silke/images/athen-modell.jpg"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 8
+            }
+         ]
+      },
+      "8": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Gehe zu der kleinen Statue. Das hier ist Sokrates. Er war ein bedeutender Mann, der viele Menschen beeinflusst hat. Schau dir mal sein Gesicht an: nicht gerade eine würdevolle Erscheinung, wenn man sich die platte Nase und Glupschaugen ansieht, oder?  Mit der Statuette stimmt etwas nicht. Teile sind im 17. Jahrhundert ergänzt worden.",
+            "image": "assets-shared/examples/silke/images/sokrates.png"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 9
+            }
+         ]
+      },
+      "11": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Sokrates war eigentlich Steinmetz, hatte aber wenig Lust zu arbeiten. Viel lieber ist er über die Plätze und Straßen Athens spaziert und hat den Menschen merkwürdige Fragen gestellt und Rededuelle geführt. Ihn interessierte immer nur die Wahrheit, zum Beispiel, was gottlos oder gerecht ist. Er war ein Philosoph, ein Liebhaber der Weisheit.<br/>  Kannst du eine Diskussion mit ihm führen? Vorsicht! Er wird dich – wie schon viele vor dir – vermutlich verunsichern.  ",
+            "image": "assets-shared/examples/silke/images/sokrates.png"
+         },
+         "buttons": [
+            {
+               "name": "spreche mit Sokrates",
+               "destination": 12
+            }
+         ]
+      },
+      "13": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Gut gemacht! Tapfer hast du mit Sokrates diskutiert und philosophiert. Das konnte er stundenlang. Hoffentlich hat er dich nicht verwirrt.<br/> Übrigens behauptet Sokrates nicht, dass er selbst schlaue Antworten geben kann. Er sagt von sich: \"Ich weiß, dass ich nichts weiß.\" Sehr ehrlich, oder?",
+            "image": "assets-shared/examples/silke/images/sokrates.png"
+         },
+         "buttons": [
+            {
+               "name": "spreche mit Sokrates",
+               "destination": 14
+            }
+         ]
+      },
+      "14": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Hey, ich habe gerade einen Tipp bekommen, wo sich das verschollene Objekt befinden könnte! Ein Händler hat gesagt, dass du in das Töpferviertel gehen sollst. Dort im Kerameikos arbeiten ganz viele Handwerker, die Keramik herstellen. Ich erinnere mich jetzt auch wieder, dass es etwas Getöpfertes und Verziertes war, was ich habe verschwinden lassen… Mit Pferdemenschen oder so… Kannst du es für uns finden?",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 15
+            }
+         ]
+      },
+      "15": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Schaue Sokrates direkt in die Augen und blicke dann rechts an ihm vorbei. Das ist die Richtung, die du einschlagen musst. Zähle von der Statue aus die Bodenfliesen oder deine Schritte. Am elften Trittstein befindet sich auf einer Anhöhe die Töpferwerkstatt.",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 16
+            }
+         ]
+      },
+      "16": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Du hast die Töpferwerkstatt gefunden!<br/> Freudig trittst du ein. Doch dein plötzliches Erscheinen lässt den in seine Arbeit vertieften Töpfer hochfahren. Dabei stößt er an ein Regal und ein fertig bemaltes Gefäß fällt von einem Regal herunter. Er spricht dich an: „Bei den Göttern! Hast du mich erschreckt. Ich hoffe, ich habe noch immer genug fertige Gefäße! Ich muss morgen eine Bestellung an einen Kunden abliefern. Leider kann ich nicht zählen. Kannst du mir bitte helfen?“",
+            "image": "assets-shared/examples/silke/images/toepferei.jpg"
+         },
+         "buttons": [
+            {
+               "name": "Ich helfe gerne",
+               "destination": 17
+            }
+         ]
+      },
+      "19": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Gehe von der Töpferwerkstatt aus 13 Schritte oder Bodenplatten in Richtung des Tageslichts. Wende dich an den zwei großen Gefäßen nach links und gehe weitere drei Schritte oder Bodenplatten. Wende dich erneut nach links und suche ganz oben nach deiner Trinkschale. Darauf sind Pferdemenschen, Kentauren, abgebildet.",
+            "image": "assets-shared/examples/silke/images/toepferei-3.jpg"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 20
+            }
+         ]
+      },
+      "20": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Du hast das erste verschwundene Objekt wiedergefunden! Das ist ja großartig! Danke dir. Und da steht etwas drauf… Das hat bestimmt mit dem Codewort zu tun, mit dem wir weiterkommen!",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "weiter",
+               "destination": 21
+            }
+         ]
+      },
+      "21": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Kannst du lesen, was auf der Trinkschale steht?<br/> XAIPE KAI ΠIEI EY – Das spricht man so aus: „Chaire kai piei eu“. <br/>Und übersetzt heißt es „Sei gegrüßt und trinke gut“. Ein guter Trinkspruch, oder?<br/> Gehe zu Xaver und sage ihm den Trinkspruch auf oder tippe ihn ein. Es ist der Code, um die nächste Zeitreise auszulösen.",
+            "image": "assets-shared/examples/silke/images/toepferei-4.png"
+         },
+         "buttons": [
+            {
+               "name": "auf gehts",
+               "destination": 22
+            }
+         ]
+      },
+      "24": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "folgt noch…",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "buttons": [
+            {
+               "name": "Neugierig auf die Fortsetzung warten",
+               "destination": 1
+            },
+            {
+               "name": "Gelangweilt beenden",
+               "destination": 1
+            }
+         ],
+         "narrativeStatus": "win"
+      },
+      "10": {
+         "description": {
+            "text": "Damals gab es noch keine Bücher, wie wir sie heute kennen. Man verwendete im Alltag Ton- oder Wachstafeln. Und man schrieb Bücher auf Papyrusbögen und rollte sie auf.  Schau dir die rechte Hand des Sokrates an! Darin hat er mal eine solche Schriftrolle gehalten.<br/> Die ersten Bücher, bei denen man rechteckige Blätter aus Pergament oder Papier zusammengebunden hat, stammen übrigens aus dem 5. Jahrhundert nach Christus.",
+            "image": "assets-shared/examples/silke/images/papyrus.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 11
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "121": {
+         "description": {
+            "text": "„Aber Starrsinnige geben doch auch nie auf. Sind die mutig?“",
+            "image": "assets-shared/examples/silke/images/sokrates.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 13
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "122": {
+         "description": {
+            "text": "„Ausdauer kann aus der Weisheit wie aus der Torheit erwachsen. In diesem Fall ist es wahrscheinlich tadelnswert. Mut dagegen ist immer gut und lobenswert. Daher kann Mut nicht Ausdauer sein.“",
+            "image": "assets-shared/examples/silke/images/sokrates.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 13
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "123": {
+         "description": {
+            "text": "zu 3: „Wenn Mut eine Art von Wissen ist, was ist das Wissen? Weisheit ist etwas anderes als Mut. Aber ja, Mut ist Wissen.“",
+            "image": "assets-shared/examples/silke/images/sokrates.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 13
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "18": {
+         "description": {
+            "text": "Der Töpfer freut sich. „Elf Stück sind es! Großartig. Das genügt und ich kann rechtzeitig meinen Kunden mit Vorratsgefäßen, Trinkschalen, Bechern und Trinkhörnern beliefern. Er will nämlich ein großes Trinkgelage veranstalten, ein Symposion! Die Schalen wurden mit Wein und Wasser gefüllt und herumgereicht. Eine solche möchte ich dir zum Dank schenken!“ Finde nun dein Geschenk.",
+            "image": "assets-shared/examples/silke/images/toepferei-2.jpg"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 19
+            }
+         ],
+         "narrativeStatus": "continue"
+      },
+      "23": {
+         "description": {
+            "text": "Ich bin dir sehr dankbar, dass du schon ein Objekt gefunden hast! Die anderen finden wir auch! Das von dir gefundene Codewort löst wieder eine Zeitreise aus. Und zwar reisen wir… in die RÖMERZEIT!",
+            "image": "assets-shared/examples/silke/images/sokrates.png"
+         },
+         "buttons": [
+            {
+               "name": "Weiter",
+               "destination": 24
+            }
+         ],
+         "narrativeStatus": "continue"
+      }
+   },
+   "_quests": {
+      "9": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Weißt du, was es damals noch nicht gegeben hat und an der Statue des Sokrates ergänzt wurde? Nenne nur ein Wort!",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "questType": "multiple_choice",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "Buch",
+               "Bücher",
+               "Papier"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     true,
+                     true
+                  ],
+                  "logicType": "or",
+                  "destination": 10
+               }
+            ]
+         },
+         "help": [
+            {
+               "text": "Auf was stellt Sokrates seinen Fuß? <br/>Frage: Weißt du, was es damals noch nicht gegeben hat und an der Statue des Sokrates ergänzt wurde? Nenne nur ein Wort!",
+               "image": "assets-shared/examples/silke/images/sokrates.png"
+            }
+         ]
+      },
+      "12": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Sokrates fragt: „Was ist Mut?“ Welche Antwort würdest du ihm geben?",
+            "image": "assets-shared/examples/silke/images/sokrates.png"
+         },
+         "questType": "multiple_choice",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "1. Mut ist, wenn man bereit ist, auf seinem Posten zu bleiben und sich gegen den Feind zu verteidigen. Mutige Menschen geben nie auf!",
+               "2. Mut ist eine Art Ausdauer der Seele.",
+               "3. Mut ist eine Art Wissen oder Weisheit."
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     false,
+                     false
+                  ],
+                  "logicType": "and",
+                  "destination": 121
+               },
+               {
+                  "requiredItems": [
+                     false,
+                     true,
+                     false
+                  ],
+                  "logicType": "and",
+                  "destination": 122
+               },
+               {
+                  "requiredItems": [
+                     false,
+                     false,
+                     true
+                  ],
+                  "logicType": "and",
+                  "destination": 123
+               }
+            ]
+         },
+         "help": []
+      },
+      "17": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "Du hilfst doch gerne. Wie viele Gefäße siehst du in dieser Vitrine? Hinweis: Schaue genau hin und zähle auch die abgebildeten Vasen…",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "questType": "multiple_choice",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "11",
+               "elf"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     false
+                  ],
+                  "logicType": "and",
+                  "destination": 18
+               }
+            ]
+         },
+         "help": []
+      },
+      "22": {
+         "title": "Zeitreise mit Xaver",
+         "description": {
+            "text": "[Xaver erwartet deine Eingabe]",
+            "image": "assets-shared/examples/silke/images/xaver.png"
+         },
+         "questType": "multiple_choice",
+         "maxTries": 7,
+         "requirementCombination": {
+            "solutionItems": [
+               "Chaire kai piei eu",
+               "Sei gegrüßt und trinke gut",
+               "Chaire",
+               "Trinke gut"
+            ],
+            "combinationMap": [
+               {
+                  "requiredItems": [
+                     true,
+                     true,
+                     true,
+                     true
+                  ],
+                  "logicType": "or",
+                  "destination": 23
+               }
+            ]
+         },
+         "help": []
+      }
+   },
+   "initialGameElement": 1
+}
