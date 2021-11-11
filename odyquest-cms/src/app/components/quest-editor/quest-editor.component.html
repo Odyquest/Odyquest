@@ -1,33 +1,39 @@
 <div class="editor-top-container">
-  <div class="editor-image-outer-container">
-    <div class="editor-image-container">
-      <img [src]="image_url">
-    </div>
-    <input type="text" id="image-name" name="quest_name" [(ngModel)]="image_url"
-      placeholder="URL für das Bild..."><br><br>
-    <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
-    <button id="saveChaseButton" mat-raised-button color="primary" (click)="MediaUploader.click()">Bild
-      Hochladen</button>
-  </div>
+  <app-image-upload class="editor-image-outer-container"
+                    [imageUrl]="this.image_url"
+                    [chaseId]="getChaseId()"
+                    (updateUrl)="updateImageUrl($event)" >
+  </app-image-upload>
   <div class="editor-top-right-container">
 
     <form id="editor-meta-info-input">
       <mat-form-field>
-        <mat-label for="fname">Titel:</mat-label>
+        <mat-label for="quest_name" i18n="@@quest_editor.title">Title:</mat-label>
         <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="title" (change)="onTitleChange()">
       </mat-form-field>
 
-
-      <label for="fname">Aufgabenbeschreibung:</label>
       <mat-form-field>
-        <textarea matInput type="text" id="bug_brief" placeholder="Hier steht der Beschreibungstext für den User..."
-          name="fname" class="input_field_big" [(ngModel)]="description"></textarea>
+        <label for="fname" i18n="@@quest_editor.description">Description:</label>
+        <textarea matInput
+                  type="text"
+                  id="bug_brief"
+                  i18n-placeholder
+                  placeholder="Description text..."
+                  name="fname"
+                  class="input_field_big"
+                  [(ngModel)]="description"></textarea>
       </mat-form-field>
     </form>
     <div class="row">
       <div class="column">
-        <a href="https://www.markdownguide.org/cheat-sheet#basic-syntax">Hilfe Textformatierung</a>
-        <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">Hilfe Emojis</a>
+        <a href="https://www.markdownguide.org/cheat-sheet#basic-syntax"
+           i18n="@@quest_editor.markdown_tutorial">
+          Tutorial for text formatting
+        </a>
+        <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md"
+           i18n="@@quest_editor.emoji_tutorial">
+          Tutorial for inserting emojis
+        </a>
       </div>
       <div class="column">
         <button mat-raised-button color="primary" (click)="main_editor.tryInApp()">Ausprobieren</button>
@@ -58,7 +64,7 @@
       <div class="quest-top-mini-container">
         <form>
           <mat-form-field>
-            <mat-label for="num_tries">Versuche (0 = ∞):</mat-label>
+            <mat-label for="num_tries" i18n="@@quest_editor.number_tries">Tries (0 = ∞):</mat-label>
             <input matInput type="number" id="num_tries" name="num_tries" min="0" [(ngModel)]="maxTries">
           </mat-form-field>
         </form>
@@ -66,13 +72,13 @@
       <div class="quest-top-mini-container">
         <form>
           <mat-form-field>
-            <mat-label for="max_time">Sekunden Zeit (0 = ∞):</mat-label>
+            <mat-label for="max_time" i18n="@@quest_editor.max_time">Seconds for solving (0 = ∞):</mat-label>
             <input matInput type="number" id="max_time" name="max_time" min="0" [(ngModel)]="maxTime">
           </mat-form-field>
         </form>
       </div>
       <div class="quest-top-mini-container">
-        <label for="disp_image_first">Bild zuerst anzeigen</label>
+        <label for="disp_image_first" i18n>Bild zuerst anzeigen</label>
         <!-- <input type="checkbox" id="disp_image_first" name="disp_image_first" [(ngModel)]="display_image_first"> -->
         <mat-checkbox class="example-margin" [checked]="display_image_first" color="primary">
         </mat-checkbox>
@@ -83,7 +89,7 @@
 
     <div class="quest-bottom-container border">
       <div class="row combinationmap_header">
-        <h3>Lösungen:</h3>
+        <h3 i18n="@@quest_editor.solution.title">Solutions:</h3>
       </div>
       <div class="row quest-solution-list-container">
         <div class="solution-input-wrapper">
@@ -94,8 +100,8 @@
                 <div class="combination-map-bottom-row-attributes">
                   <mat-form-field class="solution-list-form-field" appearance="fill">
                     <mat-select [(ngModel)]="solution_type_status_int[j]">
-                      <mat-option [value]="1">Alle</mat-option>
-                      <mat-option [value]="2">Eins</mat-option>
+                      <mat-option [value]="1" i18n="@@solution_option.all">all</mat-option>
+                      <mat-option [value]="2" i18n="@@solution_option.one">one</mat-option>
                     </mat-select>
                   </mat-form-field>
 
@@ -110,7 +116,9 @@
                 </div>
               </div>
             </ng-container>
-            <div class="delete-icon-wrapper"></div>
+            <div class="delete-icon-wrapper">
+              <mat-icon class="chase-menu-icon add-table-button" (click)="addSolutionCombination()" matTooltip="add combination">add</mat-icon>
+            </div>
           </div>
           <ng-container *ngFor="let solution of solutionItems; let i = index">
             <div class="single-solution-item-container">
@@ -124,7 +132,6 @@
                 </form>
               </div>
 
-
               <ng-container *ngFor="let combination of combinationMap; let j = index">
                 <div class="combination_map_checkbox_width combination_map_checkbox_container">
                   <mat-checkbox class="example-margin" color="primary" name="combination_map_check"
@@ -137,70 +144,24 @@
               </div>
             </div>
           </ng-container>
+
           <div class="combination-map-delete-column-wrapper">
-            <div class="combination_map_name_width"></div>
+            <div class="combination_map_name_width">
+                <mat-icon class="chase-menu-icon add-table-button" (click)="addSolutionItem()" matTooltip="add solution">add</mat-icon>
+            </div>
             <ng-container *ngFor="let combination of combinationMap; let j = index">
-
-
-
               <div class="combination_map_checkbox_width">
                 <div class="quest-delete-column-wrapper" [hidden]="this.combinationMap.length < 2">
                   <mat-icon class="delete_icon" (click)=deleteSolutionCombination(j)>delete</mat-icon>
                 </div>
               </div>
-
-
             </ng-container>
             <div class="delete-icon-wrapper"></div>
-
           </div>
 
-
-          <div class=combination_map_name_width> <button class="saveCancelButton" mat-raised-button color="primary"
-              (click)="addSolutionItem()">↓ Lösung
-              Hinzufügen ↓</button></div>
-
-
-        </div>
-        <div class="quest-add-solution-container">
-          <button class="saveCancelButton" mat-raised-button color="primary" (click)="addSolutionCombination()">→
-            Kombination Hinzufügen</button>
         </div>
       </div>
-
     </div>
-
-    <div class="button-array-container border">
-      <div>
-        Hilfetexte
-      </div>
-      <form>
-        <div *ngFor="let help_entry of help; let i = index">
-          <div class="single-button-container">
-            <span>{{i+1}}</span>
-            <mat-form-field>
-              <mat-label>Beschreibung</mat-label>
-              <textarea matInput type="textarea" [name]="'quest_name_' + i" [(ngModel)]="help[i].text"></textarea>
-            </mat-form-field>
-            <img *ngIf="help[i].image" class="help-image" [src]="help[i].image" alt="">
-            <mat-icon class="default-image" *ngIf="!help[i].image || help[i].image.length < 1">collections</mat-icon>
-
-            <mat-form-field>
-              <mat-label>Bild URL</mat-label>
-              <input matInput type="text" [name]="'quest_image_' + i" [(ngModel)]="help[i].image">
-            </mat-form-field>
-            <input hidden type="file" #MediaUploader (change)="uploadMediaForHelp($event, i)" />
-            <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Hilfe hochladen" color="primary"
-              (click)="MediaUploader.click()">file_upload
-            </mat-icon>
-            <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
-          </div>
-        </div>
-      </form>
-
-    </div>
-    <button class="saveCancelButton" mat-raised-button color="primary" (click)="addHelpText()">Hilfetext
-      Hinzufügen</button>
 
   </div>
 </div>
@@ -243,18 +204,18 @@
     </div>
     <div id=narrator-button-array-container class="border">
       <div class="row">
-        <h3> Verfügbare Buttons:
+        <h3 i18n="@@quest_editor.button.available_buttons">
+          Available Buttons:
         </h3>
       </div>
 
       <ng-container *ngFor="let button of buttons; let i = index">
-
         <div *ngIf="i === 0" class="row">
           <div class="column">
-            <h3>Button Text:</h3>
+            <h3 i18n="@@quest_editor.button.text_header">Label:</h3>
           </div>
           <div class="column">
-            <h3>Ziel:</h3>
+            <h3 i18n="@@quest_editor.button.destination_header">Destination:</h3>
           </div>
           <div class="column">
             <h3><!--placeholder for delete button column--></h3>
@@ -264,7 +225,7 @@
         <div class="row">
           <div class="column">
             <mat-form-field>
-              <mat-label>Text für den Button eingeben</mat-label>
+              <mat-label i18n="@@quest_editor.button.text_input">label of the button</mat-label>
               <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name">
             </mat-form-field>
           </div>
@@ -286,48 +247,53 @@
         </div>
       </ng-container>
 
-
-
-      <div class="row"> <button class="saveCancelButton" mat-raised-button color="primary" (click)="addButton()">Button
-          Hinzufügen</button>
+      <div class="row">
+        <button class="saveCancelButton"
+                mat-raised-button
+                color="primary"
+                (click)="addButton()"
+                i18n="@@quest_editor.add_button">
+          add button
+        </button>
       </div>
 
-
-
     </div>
+  </div>
+</div>
 
+<!-- ! ============================ -->
+<!-- ! ========== HINTS =========== -->
+<!-- ! ============================ -->
 
+<div class="content-all-types">
+  <div class=content-type-hint>
     <div class="button-array-container border">
-      <h3>Hilfetexte</h3>
+      <h3 i18n="@@quest_editor.hints">Hints</h3>
       <form>
         <div *ngFor="let help_entry of help; let i = index">
+          <hr />
           <div class="single-button-container">
-            <span>{{i+1}}</span>
+            <span i18n="@@quest_editor.hint_page">Page {{i+1}}</span>
             <mat-form-field>
               <mat-label></mat-label>
-              <textarea matInput type="text" name="quest_name" [(ngModel)]="help[i].text"></textarea>
+              <textarea matInput type="text" name="hint_text_{{i}}" [(ngModel)]="this.help[i].text"></textarea>
             </mat-form-field>
-            <div class="help-image-container">
-              <img *ngIf="help[i].image" class="help-image" [src]="help[i].image" alt="">
-              <mat-icon class="default-image" *ngIf="!help[i].image || help[i].image.length < 1">collections</mat-icon>
-
-            </div>
-
-            <mat-form-field>
-              <mat-label>Bild URL</mat-label>
-              <input matInput type="text" [name]="'quest_image_' + i" [(ngModel)]="help[i].image">
-            </mat-form-field>
-            <input hidden type="file" #MediaUploader (change)="uploadMediaForHelp($event, i)" />
-            <mat-icon id="saveChaseButton" mat-icon-button matTooltip="Bild für Hilfe hochladen" color="primary"
-              (click)="MediaUploader.click()">file_upload
-            </mat-icon>
+            <app-image-upload class="editor-image-outer-container"
+                              [imageUrl]="this.help[i].image"
+                              [chaseId]="getChaseId()"
+                              (updateUrl)="updateHelpImageUrl(i, $event)" >
+            </app-image-upload>
             <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
           </div>
         </div>
       </form>
     </div>
-    <button class="saveCancelButton" mat-raised-button color="primary" (click)="addHelpText()">Hilfetext
-      Hinzufügen</button>
-
+    <button class="saveCancelButton"
+            mat-raised-button
+            color="primary"
+            (click)="addHelpText()"
+            i18n="@@quest_editor.add_hint">
+      add hint
+    </button>
   </div>
 </div>

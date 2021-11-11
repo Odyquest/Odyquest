@@ -18,6 +18,18 @@ export class RuntimeConfigurationService {
   get(): any {
     return this.config;
   }
+
+  isApiBased(): boolean {
+    return this.config.api.api_based;
+  }
+
+  getTitleText(locale: string): string {
+    return this.config.title['title_text_' + locale];
+  }
+
+  getSubtitleText(locale: string): string {
+    return this.config.title['subtitle_text_' + locale];
+  }
 }
 
 /**

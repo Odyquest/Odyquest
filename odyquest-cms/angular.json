@@ -32,7 +32,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets-shared",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/chase-services/assets",
+                "output": "/assets-shared"
+              },
               "src/silent-refresh.html"
             ],
             "styles": [
@@ -114,7 +118,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets-shared",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/chase-services/assets",
+                "output": "/assets-shared"
+              },
               "src/silent-refresh.html"
             ],
             "styles": [

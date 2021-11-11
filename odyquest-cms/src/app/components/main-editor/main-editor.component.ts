@@ -5,6 +5,7 @@ import { deserialize, serialize } from 'typescript-json-serializer';
 
 import { ChaseService } from 'chase-services';
 import { ChaseStorageService } from 'chase-services';
+import { RuntimeConfigurationService } from 'chase-services';
 import { Description } from 'chase-model';
 import { GameElement } from 'chase-model';
 import { Narrative } from 'chase-model';
@@ -35,6 +36,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private configuration: RuntimeConfigurationService,
     private chaseService: ChaseService,
     public chaseStorage: ChaseStorageService
   ) {
@@ -244,5 +246,10 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.chaseStorage.setRunningChase(this.chase);
     this.chaseStorage.setCurrentPosition(this.selectedQuest);
     window.open("/app/de/chase?id=", "_blank");
+  }
+
+  hasModifiableApi(): boolean {
+    return this.configuration.isApiBased();
+
   }
 }

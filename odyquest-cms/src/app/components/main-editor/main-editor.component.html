@@ -4,23 +4,21 @@
     <input hidden type="file" #uploader (change)="uploadChase($event)" />
     <div class="button-wrapper">
       <mat-icon class="chase-menu-icon" (click)="createNewChase()" matTooltip="Neue Jagd">add</mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="pushChase()" matTooltip="Jagd speichern">save</mat-icon>
-
+      <mat-icon *ngIf="hasModifiableApi()" class="chase-menu-icon" (click)="pushChase()" matTooltip="Jagd speichern">save</mat-icon>
       <mat-icon class="chase-menu-icon" (click)="uploader.click()" matTooltip="Jagd hochladen">file_upload</mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="downloadChase()" matTooltip="Jagd herunterladen">file_download
-      </mat-icon>
-      <mat-icon class="chase-menu-icon" (click)="deleteChase()" matTooltip="Jagd löschen">delete</mat-icon>
+      <mat-icon class="chase-menu-icon" (click)="downloadChase()" matTooltip="Jagd herunterladen">file_download</mat-icon>
+      <mat-icon *ngIf="hasModifiableApi()" class="chase-menu-icon" (click)="deleteChase()" matTooltip="Jagd löschen">delete</mat-icon>
     </div>
 
-      <mat-selection-list #selected [multiple]="false" #questlist>
-        <mat-list-option>
-          <div class=text-and-delete-container (click)="metaDataSelectorClicked()">
-            Allgemein
-          </div>
-        </mat-list-option>
-      </mat-selection-list>
+    <mat-selection-list #selected [multiple]="false" #questlist>
+      <mat-list-option>
+        <div class=text-and-delete-container (click)="metaDataSelectorClicked()">
+          Allgemein
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
 
-    <div class="quest_selector_header">Rätsel</div>
+    <div class="quest_selector_header" i18n="@@main_editor.quest">Quests</div>
 
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
@@ -32,9 +30,15 @@
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addQuest()">Neues Rätsel</button>
+      <button id="addQuestButton"
+              mat-raised-button
+              color="primary"
+              (click)="addQuest()"
+              i18n="@@main_editor.add_quest">
+        Add Quest
+      </button>
     </div>
-    <div class="quest_selector_header">Erzählelement</div>
+    <div class="quest_selector_header" i18n="@@main_editor.narratives">Narratives</div>
     <div class="quest_selector">
       <mat-selection-list #selected [multiple]="false" #questlist>
         <mat-list-option *ngFor="let quest of narrativeList">
@@ -45,8 +49,12 @@
         </mat-list-option>
       </mat-selection-list>
 
-      <button id="addQuestButton" mat-raised-button color="primary" (click)="addNarrative()">
-        Neues Erzählelement
+      <button id="addQuestButton"
+              mat-raised-button
+              color="primary"
+              (click)="addNarrative()"
+              i18n="@main_editor.add_narrative">
+        Add Narrative
       </button>
     </div>
 

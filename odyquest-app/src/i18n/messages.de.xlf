@@ -33,27 +33,18 @@
         <target>Vorwärts</target>
       <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/hint/hint.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit><trans-unit id="chase.element.hint" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>live_help<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Hint</source><target state="translated"><x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon>"/>live_help<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon>"/> Hinweis</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/components/narrative/narrative.component.html</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/narrative/narrative.component.html</context><context context-type="linenumber">35</context></context-group><context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">30</context></context-group></trans-unit>
       <trans-unit id="chase.quest.go-on" datatype="html">
-        <source>Go on</source>
+        <source> Go on </source>
         <target>Weiter</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="chase.quest.remaining-tries" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="chase.quest.remaining-tries" datatype="html">
         <source> <x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries </source><target state="translated">
         noch <x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> Versuche
       </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">36</context></context-group></trans-unit>
       <trans-unit id="chase.submit-solution.verify" datatype="html">
         <source>Verify</source>
         <target>Lösung prüfen</target>
@@ -67,21 +58,15 @@
         <target>Lösung</target>
       <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/submit-solution/submit-solution.component.html</context><context context-type="linenumber">3</context></context-group></trans-unit>
       <trans-unit id="chase.quest.remaining-time" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{remainingTime.hours}}"/>:</source>
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span *ngIf=&quot;remainingTime.hours > 0&quot;>"/><x id="INTERPOLATION" equiv-text="{{remainingTime.hours}}"/>:<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/> <x id="INTERPOLATION_1" equiv-text="{{remainingTime.minutes | number:'2.0-0'}}"/>:<x id="INTERPOLATION_2" equiv-text="{{remainingTime.seconds | number:'2.0-0'}}"/> </source>
         <target><x id="INTERPOLATION" equiv-text="{{remainingTime.hours}}"/>:</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">36</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">42</context></context-group></trans-unit>
       <trans-unit id="chase.quest.enter-solution" datatype="html">
         <source>Enter solution</source>
         <target>Lösung eingeben</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit>
-      <trans-unit id="welcome.title" datatype="html">
-        <source>Welcome to scavenger hunts with Xaver</source>
-        <target>Willkommen zur Schnitzeljagd mit Xaver!</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context><context context-type="linenumber">2</context></context-group></trans-unit>
-      <trans-unit id="welcome.subtitle" datatype="html">
-        <source>at Badisches Landesmuseum</source>
-        <target>im Badischen Landesmuseum</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context><context context-type="linenumber">3</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context><context context-type="linenumber">16</context></context-group></trans-unit>
+      
+      
       <trans-unit id="welcome.nav.list" datatype="html">
         <source>Select scavenger hunt</source>
         <target>Schnitzeljagd aussuchen</target>
@@ -89,7 +74,17 @@
       <trans-unit id="nav.information" datatype="html">
         <source>About this app</source>
         <target>Über diese App</target>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit><trans-unit id="locale" datatype="html">
+        <source>en</source><target state="translated">de</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
       
       
       <trans-unit id="finished.go-on" datatype="html">

@@ -1,3 +1,26 @@
+@media screen and (orientation: landscape) {
+  .editor-top-container {
+    flex-direction: row;
+  }
+  .editor-image-outer-container {
+    width: 25%;
+  }
+  .editor-top-right-container {
+    width: 75%;
+  }
+}
+@media screen and (orientation: portrait) {
+  .editor-top-container {
+    flex-direction: column;
+  }
+  .editor-image-outer-container {
+    width: 90%;
+  }
+  .editor-top-right-container {
+    width: 90%;
+  }
+}
+
 :host {
   display: flex;
   flex-direction: column;
@@ -13,7 +36,6 @@
 
 .editor-top-container {
   display: flex;
-  flex-direction: row;
   width: 100%;
   border-radius: 16px;
   background: white;
@@ -29,7 +51,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 75%;
   height: 100%;
   padding: 20px;
 }
@@ -41,29 +62,6 @@
   justify-content: center;
   width: 100%;
   height: 30%;
-}
-
-
-.editor-image-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: 96%;
-  height: 90%;
-  margin: 10px;
-}
-
-.editor-image-outer-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: 25%;
-  height: 90%;
-  margin: 10px;
 }
 
 label {
@@ -79,7 +77,6 @@ label {
 .content-all-types {
   margin: 5px;
   margin: 10px;
-  overflow:auto;
   border-radius: 16px;
   background: white;
   width: 98%;

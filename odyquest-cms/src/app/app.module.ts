@@ -54,6 +54,7 @@ import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.compo
 import { environment } from '../environments/environment';
 import { ElementEditorComponent } from './components/element-editor/element-editor.component';
 import { MetaDataEditorComponent } from './components/meta-data-editor/meta-data-editor.component';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 
 function getAuthConfig(): AuthConfig {
   const config: AuthConfig = {
@@ -105,6 +106,7 @@ const appRoutes: Routes = [
     SidebarComponent,
     ElementEditorComponent,
     MetaDataEditorComponent,
+    ImageUploadComponent,
   ],
   imports: [
     BrowserModule,
