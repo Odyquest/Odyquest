@@ -36,6 +36,7 @@ jobs:
         mkdir public
         cp -r odyquest-app/dist/odyquest-app public/
         cp -r odyquest-cms/dist/odyquest-cms public/
+        cp .github/pages-templates/index.html public/
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
