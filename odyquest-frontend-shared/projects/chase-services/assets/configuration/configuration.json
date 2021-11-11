@@ -6,5 +6,11 @@
   "auth": {
     "issuer": "https://cms.schnitzeljagd.landesmuseum.de/auth/realms/master",
     "client_id": "test-cms"
+  },
+  "title": {
+    "title_text_en": "Welcome to scavenger hunts with Odyquest",
+    "subtitle_text_en": "the scavenger hunt app",
+    "title_text_de": "Willkommen zur Schnitzeljagd mit Odyquest",
+    "subtitle_text_de": "die Schnitzeljagd-App"
   }
 }

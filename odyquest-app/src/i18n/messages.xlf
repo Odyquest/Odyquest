@@ -56,35 +56,35 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="chase.quest.enter-solution" datatype="html">
         <source>Enter solution</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="chase.quest.go-on" datatype="html">
-        <source>Go on</source>
+        <source> Go on </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="chase.quest.remaining-tries" datatype="html">
         <source> <x id="INTERPOLATION" equiv-text="{{questStatus.remainingTries}}"/> remaining tries </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">31,33</context>
+          <context context-type="linenumber">36,38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="chase.quest.remaining-time" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{remainingTime.hours}}"/>:</source>
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span *ngIf=&quot;remainingTime.hours &gt; 0&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{remainingTime.hours}}"/>:<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> <x id="INTERPOLATION_1" equiv-text="{{remainingTime.minutes | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_2" equiv-text="{{remainingTime.seconds | number:&apos;2.0-0&apos;}}"/> </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/components/quest/quest.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">42,44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="chase.submit-solution.solution" datatype="html">
@@ -164,20 +164,6 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="welcome.title" datatype="html">
-        <source>Welcome to scavenger hunts with Odyquest</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
-          <context context-type="linenumber">2</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="welcome.subtitle" datatype="html">
-        <source>at Badisches Landesmuseum</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="welcome.nav.list" datatype="html">
         <source>Select scavenger hunt</source>
         <context-group purpose="location">
@@ -190,6 +176,17 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.html</context>
           <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="locale" datatype="html">
+        <source>en</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/pages/welcome/welcome.component.ts</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
     </body>
