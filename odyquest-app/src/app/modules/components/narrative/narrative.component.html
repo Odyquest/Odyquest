@@ -3,9 +3,9 @@
     <h3 class="game_element_title" >{{narrative.title}}</h3>
   </div>
   <div *ngIf="isDefaultLayout()" class="game_element_columns">
-    <div class="game_element_image">
-      <img [src]="getImage()"/>
-    </div>
+    <app-image class="game_element_image"
+               [imgClass]="getImgClass()"
+               [description]="narrative.description"></app-image>
     <div class="game_element_text">
       <div *ngIf="isAudioType()"> Audioplayer </div>
       <div markdown emoji>{{narrative.description.text}}</div>

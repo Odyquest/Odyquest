@@ -79,4 +79,8 @@ export class NarrativeComponent implements OnInit {
   isVideoType(): boolean {
     return this.narrative.narrativeType === NarrativeType.Video;
   }
+
+  getImgClass(): string {
+    return 'game_element_image';
+  }
 }

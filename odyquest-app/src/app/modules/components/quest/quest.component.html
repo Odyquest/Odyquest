@@ -6,9 +6,9 @@
     <div class="game_element_text">
       <div markdown emoji>{{quest.description.text}}</div>
     </div>
-    <div class="game_element_image" >
-      <img  [src]="getImage()" />
-    </div>
+    <app-image class="game_element_image"
+               [imgClass]="getImgClass()"
+               [description]="quest.description"></app-image>
   </div>
 </article>
 <nav class="game_element_buttons">

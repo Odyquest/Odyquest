@@ -61,6 +61,7 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import { ImageComponent } from './modules/components/image/image.component';
 // import { AuthGuard } from './services/auth/auth.guard.service';
 // import { LoggedOutComponent } from './components/logged-out/logged-out.component';
 
@@ -105,6 +106,7 @@ function getAuthModuleConfig(): OAuthModuleConfig {
     PrivacyComponent,
     InformationComponent,
     SettingsComponent,
+    ImageComponent,
   ],
   entryComponents: [
     SubmitSolutionComponent,

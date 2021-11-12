@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 import { Description } from 'chase-model';
 import { Quest, QuestType } from 'chase-model';
@@ -19,7 +18,7 @@ export class HintComponent {
   pageNumber: string;
 
   constructor(public dialogRef: MatDialogRef<HintComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private sanitizer: DomSanitizer) {
+              @Inject(MAT_DIALOG_DATA) public data: any) {
     this.help = this.data.quest.help;
     if (this.help.length < 1) {
       console.log('No help available, close immediately');
@@ -58,11 +57,15 @@ export class HintComponent {
     this.setPageNumber();
   }
 
-  getImage(): SafeResourceUrl {
-     return this.sanitizer.bypassSecurityTrustUrl(this.help[this.index].image);
+  getDescription(): Description {
+     return this.help[this.index];
   }
 
   getCurrentHelpText(): string {
     return this.help[this.index].text;
+  }
+
+  getImgClass(): string {
+    return 'game_element_image';
   }
 }

@@ -68,5 +68,9 @@ export class ListComponent implements OnInit {
     }, 1500);
   }
 
+
+  getMatCardImageClass(): string {
+    return 'card-image';
+  }
 }
 
