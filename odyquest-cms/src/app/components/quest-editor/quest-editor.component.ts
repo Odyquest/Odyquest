@@ -46,7 +46,7 @@ export class QuestEditorComponent implements OnInit {
   narrative_status: NarrativeStatus;
   public selected_narrative_status_int = 1; //"Continue" = 1, "Win" = 2, "Loose" = 3
   narrative_type: NarrativeType;
-  public selected_narrative_type_int = 1; //"Text" = 1, "Panorama" = 2
+  public selected_narrative_type_int = 1; //"Text" = 1
 
   buttons: Array<XButton>;
   buttonDestinationList: Array<string>;
@@ -111,10 +111,6 @@ export class QuestEditorComponent implements OnInit {
     switch (value) {
       case 1: // "Text"
         this.narrative_type = NarrativeType.Text;
-        console.log(this.selected_narrative_type_int);
-        break;
-      case 2: // "Panorama"
-        this.narrative_type = NarrativeType.Panorama;
         console.log(this.selected_narrative_type_int);
         break;
     }
@@ -319,11 +315,7 @@ export class QuestEditorComponent implements OnInit {
       }
 
       this.narrative_type = this.gameElement.narrativeType;
-      if (this.narrative_type == NarrativeType.Panorama) {
-        this.selected_narrative_type_int = 2;
-      } else {
-        this.selected_narrative_type_int = 1;
-      }
+      this.selected_narrative_type_int = 1; // text
 
       console.log('loaded narrative status as: ', this.narrative_status);
       this.buttons = this.gameElement.buttons;

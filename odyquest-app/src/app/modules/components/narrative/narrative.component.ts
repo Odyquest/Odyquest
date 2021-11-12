@@ -69,10 +69,6 @@ export class NarrativeComponent implements OnInit {
     return this.narrative.narrativeType === NarrativeType.Text
       || this.narrative.narrativeType === NarrativeType.Audio;
   }
-  isPanoramaLayout(): boolean {
-    return this.narrative.narrativeType === NarrativeType.Panorama
-      || this.narrative.narrativeType === NarrativeType.Video;
-  }
   isAudioType(): boolean {
     return this.narrative.narrativeType === NarrativeType.Audio;
   }

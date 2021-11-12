@@ -10,7 +10,7 @@ import { XButton } from './x_button';
 export enum NarrativeType {
   Text = 'text',
   Audio = 'audio',
-  Panorama = 'panorama',
+  Panorama = 'panorama', // deprecated
   Video = 'video',
 }
 

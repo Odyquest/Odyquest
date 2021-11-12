@@ -11,16 +11,6 @@
       <div markdown emoji>{{narrative.description.text}}</div>
     </div>
   </div>
-  <div *ngIf="isPanoramaLayout()" class="game_element_columns">
-    <div class="game_element_panorama">
-      <div *ngIf="isVideoType();then video else image"></div>
-      <ng-template #image><img [src]="getImage()"/></ng-template>
-      <ng-template #video><div> Videoplayer </div></ng-template>
-    </div>
-    <div class="game_element_footnote">
-      <div markdown emoji>{{narrative.description.text}}</div>
-    </div>
-  </div>
 </article>
 <nav class="game_element_buttons">
   <button *ngFor="let button of narrative.buttons"
