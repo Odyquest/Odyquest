@@ -9,7 +9,7 @@ if (environment.production) {
 }
 
 (async () => {
-  const response = await fetch('/assets-shared/configuration/configuration.json');
+  const response = await fetch('assets-shared/configuration/configuration.json');
   const config = await response.json();
 
   environment['allowedUrls'] = config.api.base_uri;

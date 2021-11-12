@@ -8,7 +8,7 @@ export class RuntimeConfigurationService {
   constructor(private http: HttpClient) { }
 
   load(): Promise<any> {
-    return this.http.get('/assets-shared/configuration/configuration.json')
+    return this.http.get('assets-shared/configuration/configuration.json')
       .toPromise()
       .then(data => {
         this.config = data;
