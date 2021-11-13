@@ -12,6 +12,7 @@ export enum NarrativeType {
   Audio = 'audio',
   Panorama = 'panorama', // deprecated
   Video = 'video',
+  AugmentedReality = 'ar',
 }
 
 /**

@@ -126,14 +126,17 @@ app.get('/media/*', (req, res) => {
   });
 });
 
+function getMimetype(req:express.Request): string {
+  return req.file.mimetype;
+}
 function addMedia(req:express.Request): string {
-  return database.createMedia(req.body.chaseId, req.body.name, req.file.mimetype, req.file.buffer);
+  return database.createMedia(req.body.chaseId, req.body.name, getMimetype(req), req.file.buffer);
 }
 
 app.post('/protected/media', upload.single('file'), function (req, res) {
   console.log('received media data');
   const id = addMedia(req);
-  res.send('media/' + id);
+  res.send('{ url: "media/' + id + '", mimetype: "' + getMimetype(req) + '" }');
 });
 
 app.delete('/protected/media/*', upload.single('file'), function (req, res) {

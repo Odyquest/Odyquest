@@ -194,13 +194,22 @@
           <mat-select
             name="narrative-type"
             id="narrative-type-selector"
-            [(ngModel)]="selected_narrative_type_int">
-            <mat-option [value]="1" (click)="onNarrativeTypeChange(1)">Text</mat-option>
+            [(ngModel)]="narrative_type">
+            <mat-option [value]="getNarrativeType('text')" (click)="onNarrativeTypeChange(getNarrativeType('text'))">Text</mat-option>
+            <mat-option [value]="getNarrativeType('audio')" (click)="onNarrativeTypeChange(getNarrativeType('audio'))">Audio</mat-option>
+            <mat-option [value]="getNarrativeType('video')" (click)="onNarrativeTypeChange(getNarrativeType('video'))">Video</mat-option>
           </mat-select>
         </mat-form-field>
 
       </div>
     </div>
+    <app-media-upload class="narrative-media-container border"
+                      *ngIf="needsMediaUpload()"
+                      [mediaUrl]="getMediaUrl()"
+                      [mediaType]="getMediaType()"
+                      [chaseId]="getChaseId()"
+                      (updateUrl)="updateMedia($event)" >
+    </app-media-upload>
     <div id=narrator-button-array-container class="border">
       <div class="row">
         <h3 i18n="@@quest_editor.button.available_buttons">

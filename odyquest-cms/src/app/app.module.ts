@@ -55,6 +55,7 @@ import { environment } from '../environments/environment';
 import { ElementEditorComponent } from './components/element-editor/element-editor.component';
 import { MetaDataEditorComponent } from './components/meta-data-editor/meta-data-editor.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import { MediaUploadComponent } from './components/media-upload/media-upload.component';
 
 function getAuthConfig(): AuthConfig {
   const config: AuthConfig = {
@@ -107,6 +108,7 @@ const appRoutes: Routes = [
     ElementEditorComponent,
     MetaDataEditorComponent,
     ImageUploadComponent,
+    MediaUploadComponent,
   ],
   imports: [
     BrowserModule,
