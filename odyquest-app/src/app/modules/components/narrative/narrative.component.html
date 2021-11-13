@@ -20,6 +20,11 @@
       <source [src]="getMediaUrl()" [type]="getMediaType()" />
         Your browser does not support video. There is a transcript below.
     </video>
+    <div *ngIf="isArType()"
+         class="game_element_text"
+         style="">
+      <iframe class="game_element_ar" src="assets/ar.html"></iframe>
+    </div>
     <div class="game_element_text"
          id="text_show_button"
          (click)="showText()"

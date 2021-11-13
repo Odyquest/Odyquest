@@ -27,3 +27,9 @@ mat-icon {
   vertical-align: middle;
 }
 
+.game_element_ar {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+}

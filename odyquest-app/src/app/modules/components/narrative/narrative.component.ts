@@ -87,6 +87,9 @@ export class NarrativeComponent implements OnInit {
   isVideoType(): boolean {
     return this.narrative.narrativeType === NarrativeType.Video;
   }
+  isArType(): boolean {
+    return this.narrative.narrativeType === NarrativeType.AugmentedReality;
+  }
 
   showImage(): boolean {
     return this.isTextType() || this.isAudioType();
