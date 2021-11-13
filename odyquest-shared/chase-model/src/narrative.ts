@@ -40,12 +40,22 @@ export class Narrative extends GameElement {
 	@JsonProperty() narrativeType = NarrativeType.Text;
 	/** Game continues or is finished */
 	@JsonProperty() narrativeStatus = NarrativeStatus.Continue;
+	/** Additional field used by different media types defined by narrative type pointing to a media file */
+	@JsonProperty() media_url = '';
+	/** Additional field used by different media types defined by narrative type with the mime type of the file */
+	@JsonProperty() media_type = '';
 
   copyFromNarrative(narrative:Narrative) {
     this.copyFromGameElement(narrative);
     this.buttons = narrative.buttons;
     this.narrativeType = narrative.narrativeType;
     this.narrativeStatus = narrative.narrativeStatus;
+    if (narrative.media_url) {
+      this.media_url = narrative.media_url;
+    }
+    if (narrative.media_type) {
+      this.media_type = narrative.media_type;
+    }
   }
 
   /**
