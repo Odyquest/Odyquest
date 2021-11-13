@@ -112,4 +112,14 @@ export class NarrativeComponent implements OnInit {
     document.getElementById('text_show_button').style.display = 'block';
     document.getElementById('text_hide_button').style.display = 'none';
   }
+
+  getArUrl(): SafeResourceUrl {
+    let url: string;
+    if (this.narrative.media_url.indexOf('http') === 0) {
+      url = btoa(this.narrative.media_url);
+    } else {
+      url = btoa('../' + this.narrative.media_url);
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl('assets/ar.html?marker=hiro&model=' + url);
+  }
 }

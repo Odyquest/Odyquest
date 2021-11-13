@@ -21,9 +21,8 @@
         Your browser does not support video. There is a transcript below.
     </video>
     <div *ngIf="isArType()"
-         class="game_element_text"
-         style="">
-      <iframe class="game_element_ar" src="assets/ar.html"></iframe>
+         class="game_element_text">
+      <iframe class="game_element_ar" [src]="getArUrl()"></iframe>
     </div>
     <div class="game_element_text"
          id="text_show_button"
