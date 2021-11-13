@@ -2,13 +2,40 @@
   <div *ngIf="needsTitleRow()" class="game_element_title_row">
     <h3 class="game_element_title" >{{narrative.title}}</h3>
   </div>
-  <div *ngIf="isDefaultLayout()" class="game_element_columns">
+  <div class="game_element_columns">
     <app-image class="game_element_image"
+               *ngIf="showImage()"
                [imgClass]="getImgClass()"
-               [description]="narrative.description"></app-image>
-    <div class="game_element_text">
-      <div *ngIf="isAudioType()"> Audioplayer </div>
-      <div markdown emoji>{{narrative.description.text}}</div>
+               [description]="narrative.description">
+    </app-image>
+    <audio controls
+           *ngIf="isAudioType()"
+           class="game_element_text">
+      <source [src]="getMediaUrl()" [type]="getMediaType()" />
+        Your browser does not support audio. There is a transcript below.
+    </audio>
+    <video controls
+           *ngIf="isVideoType()"
+           class="game_element_text">
+      <source [src]="getMediaUrl()" [type]="getMediaType()" />
+        Your browser does not support video. There is a transcript below.
+    </video>
+    <div class="game_element_text"
+         id="text_show_button"
+         (click)="showText()"
+         i18n="@@chase.element.show_text">
+      <mat-icon>unfold_more</mat-icon><span class="text_button">Show transcript</span>
+    </div>
+    <div class="game_element_text"
+         id="text_hide_button"
+         (click)="hideText()"
+         i18n="@@chase.element.hide_text">
+      <mat-icon>unfold_less</mat-icon><span class="text_button">Hide transkript</span>
+    </div>
+    <div class="game_element_text"
+         id="game_element_text"
+         markdown emoji>
+      {{narrative.description.text}}
     </div>
   </div>
 </article>

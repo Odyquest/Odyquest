@@ -1,2 +1,29 @@
 @import "../game_element";
 
+audio {
+  padding-top: 8px; // gap between image and control element
+  width: 100%;
+}
+
+video {
+  width: 100%;
+}
+
+#text_show_button {
+  display: none;
+  margin: 8px;
+  vertical-align: middle;
+}
+#text_hide_button {
+  display: none;
+  margin: 8px;
+  vertical-align: middle;
+}
+
+.text_button {
+  vertical-align: middle;
+}
+mat-icon {
+  vertical-align: middle;
+}
+
