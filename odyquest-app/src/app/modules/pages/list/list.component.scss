@@ -25,7 +25,37 @@ img {
   background-size: cover;
 }
 
-.card-flag {
-  margin: 8px;
-  float: right;
+mat-card-actions {
+  text-align: right;
 }
+
+.card-flags {
+  margin: 8px;
+  float: left;
+}
+
+#text_show_button {
+  display: visible;
+  margin: 8px;
+  vertical-align: middle;
+  float: left;
+}
+#text_hide_button {
+  display: none;
+  margin: 8px;
+  vertical-align: middle;
+}
+#running_chase_img {
+  display: none;
+}
+#running_chase_text {
+  display: none;
+}
+
+.text_button {
+  vertical-align: middle;
+}
+mat-icon {
+  vertical-align: middle;
+}
+

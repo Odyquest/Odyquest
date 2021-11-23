@@ -2,15 +2,30 @@
 
 <div *ngIf="!loading" class="chaseList">
   <section>
-    <mat-card *ngIf="hasRunningChase()" (click)="startChase('')">
+    <mat-card *ngIf="hasRunningChase()">
       <header>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
+          <mat-card-title i18n="@@list.continue_with">Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
+		  <!--<mat-card-subtitle>started today</mat-card-subtitle>-->
         </mat-card-header>
       </header>
+      <mat-card-content>
+        <div id="text_show_button"
+             (click)="showRunningChase()"
+             i18n="@@list.show_running">
+          <mat-icon>unfold_more</mat-icon><span class="text_button">Show details</span>
+        </div>
+        <div id="text_hide_button"
+             (click)="hideRunningChase()"
+             i18n="@@list.hide_running">
+          <mat-icon>unfold_less</mat-icon><span class="text_button">Hide details</span>
+        </div>
+		<app-image id="running_chase_img" [imgClass]="getMatCardImageClass()" [description]="getRunningChaseDescription()"></app-image>
+		<p markdown emoji id="running_chase_text">{{getRunningChaseText()}}</p>
+      </mat-card-content>
       <mat-card-actions>
-        <button primary mat-button>CONTINUE</button>
+        <button primary mat-button (click)="startChase('')" i18n="@@list.continue">CONTINUE</button>
       </mat-card-actions>
     </mat-card>
   </section>
@@ -30,10 +45,12 @@
           <p markdown emoji>{{chase.preview.description.text}}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button primary mat-button>START</button>
+		  <div class="card-flags">
+			  <mat-icon tooltip="chase already succeeded" *ngIf="isSucceeded(chase.chaseId)" >done</mat-icon>
+		  </div>
+          <button primary mat-button i18n="@@list.start">START</button>
           <!--<button mat-button>LIKE</button>-->
           <!--<button mat-button>SHARE</button>-->
-          <mat-icon class="card-flag" *ngIf="isSucceeded(chase.chaseId)" >done</mat-icon>
         </mat-card-actions>
       </mat-card>
     </section>
