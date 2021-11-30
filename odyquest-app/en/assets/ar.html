@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <style type="text/css" media="screen">
+      .a-enter-vr-button {
+        visibility: hidden;
+      }
+    </style>
+    <body style="margin : 0px; overflow: hidden;">
+        <a-scene embedded arjs>
+        <a-marker id="marker" preset="test">
+           <a-entity id="model"
+                     position="0 0 0"
+                     scale="0.05 0.05 0.05"
+                     gltf-model="">
+           </a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+        </a-scene>
+        <script>
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const marker = urlParams.get('marker');
+          var marker_element = document.getElementById('marker');
+          marker_element.setAttribute("preset", marker);
+          const model = urlParams.get('model');
+          var model_element = document.getElementById('model');
+          model_element.setAttribute("gltf-model", atob(model));
+        </script>
+    </body>
+</html>
