@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChaseServicesComponent } from './chase-services.component';
+import { MediaUploadComponent } from './media-upload.component';
 
-describe('ChaseServicesComponent', () => {
-  let component: ChaseServicesComponent;
-  let fixture: ComponentFixture<ChaseServicesComponent>;
+describe('MediaUploadComponent', () => {
+  let component: MediaUploadComponent;
+  let fixture: ComponentFixture<MediaUploadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChaseServicesComponent ]
+      declarations: [ MediaUploadComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChaseServicesComponent);
+    fixture = TestBed.createComponent(MediaUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

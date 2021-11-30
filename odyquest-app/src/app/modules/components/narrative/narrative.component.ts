@@ -22,6 +22,10 @@ export class NarrativeComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (!this.showTextByDefault()) {
+      // hide text field
+      this.hideText();
+    }
   }
 
   select(button: number): void {
@@ -60,23 +64,62 @@ export class NarrativeComponent implements OnInit {
     return this.narrative.help.length > 0;
   }
 
-
-  getImage(): SafeResourceUrl {
-     return this.sanitizer.bypassSecurityTrustUrl(this.narrative.description.image);
+  getMediaUrl(): SafeResourceUrl {
+    if (!this.narrative.media_url) {
+      return this.sanitizer.bypassSecurityTrustUrl('');
+    }
+    return this.sanitizer.bypassSecurityTrustUrl(this.narrative.media_url);
   }
 
-  isDefaultLayout(): boolean {
-    return this.narrative.narrativeType === NarrativeType.Text
-      || this.narrative.narrativeType === NarrativeType.Audio;
+  getMediaType(): string {
+    if (!this.narrative.media_type) {
+      return '';
+    }
+    return this.narrative.media_type;
   }
-  isPanoramaLayout(): boolean {
-    return this.narrative.narrativeType === NarrativeType.Panorama
-      || this.narrative.narrativeType === NarrativeType.Video;
+
+  isTextType(): boolean {
+    return this.narrative.narrativeType === NarrativeType.Text;
   }
   isAudioType(): boolean {
     return this.narrative.narrativeType === NarrativeType.Audio;
   }
   isVideoType(): boolean {
     return this.narrative.narrativeType === NarrativeType.Video;
+  }
+  isArType(): boolean {
+    return this.narrative.narrativeType === NarrativeType.AugmentedReality;
+  }
+
+  showImage(): boolean {
+    return this.isTextType() || this.isAudioType();
+  }
+  showTextByDefault(): boolean {
+    return this.isTextType();
+  }
+
+  getImgClass(): string {
+    return 'game_element_image';
+  }
+
+  showText(): void {
+    document.getElementById('game_element_text').style.display = 'block';
+    document.getElementById('text_show_button').style.display = 'none';
+    document.getElementById('text_hide_button').style.display = 'block';
+  }
+  hideText(): void {
+    document.getElementById('game_element_text').style.display = 'none';
+    document.getElementById('text_show_button').style.display = 'block';
+    document.getElementById('text_hide_button').style.display = 'none';
+  }
+
+  getArUrl(): SafeResourceUrl {
+    let url: string;
+    if (this.narrative.media_url.indexOf('http') === 0) {
+      url = btoa(this.narrative.media_url);
+    } else {
+      url = btoa('../' + this.narrative.media_url);
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl('assets/ar.html?marker=hiro&model=' + url);
   }
 }

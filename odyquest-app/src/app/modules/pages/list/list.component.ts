@@ -45,6 +45,12 @@ export class ListComponent implements OnInit {
   getRunningChaseTitle(): any {
     return this.chaseStorage.getRunningChase().metaData.title;
   }
+  getRunningChaseDescription(): any {
+    return this.chaseStorage.getRunningChase().metaData.preview.description;
+  }
+  getRunningChaseText(): any {
+    return this.chaseStorage.getRunningChase().metaData.preview.description.text;
+  }
   getRunningChaseId(): any {
     return this.chaseStorage.getRunningChase().metaData.chaseId;
   }
@@ -66,6 +72,24 @@ export class ListComponent implements OnInit {
         this.loading = false;
         this.router.navigateByUrl('/chase?id=' + id);
     }, 1500);
+  }
+
+
+  getMatCardImageClass(): string {
+    return 'card-image';
+  }
+
+  showRunningChase(): void {
+    document.getElementById('running_chase_text').style.display = 'block';
+    document.getElementById('running_chase_img').style.display = 'block';
+    document.getElementById('text_show_button').style.display = 'none';
+    document.getElementById('text_hide_button').style.display = 'block';
+  }
+  hideRunningChase(): void {
+    document.getElementById('running_chase_text').style.display = 'none';
+    document.getElementById('running_chase_img').style.display = 'none';
+    document.getElementById('text_show_button').style.display = 'block';
+    document.getElementById('text_hide_button').style.display = 'none';
   }
 
 }

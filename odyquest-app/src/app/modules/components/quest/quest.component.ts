@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, OnDestroy, Output} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import * as moment from 'moment';
 import {Subscription, TimeInterval} from 'rxjs';
 
@@ -35,7 +34,7 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   subscriptions = new Array<Subscription>();
   timeTicker;
-  constructor(public dialog: MatDialog, public timeService: TimeService, private sanitizer: DomSanitizer) {
+  constructor(public dialog: MatDialog, public timeService: TimeService) {
   }
 
   ngOnInit(): void {
@@ -160,7 +159,7 @@ export class QuestComponent implements OnInit, OnDestroy {
     clearInterval(this.timeTicker);
   }
 
-  getImage(): SafeResourceUrl {
-     return this.sanitizer.bypassSecurityTrustUrl(this.quest.description.image);
+  getImgClass(): string {
+    return 'game_element_image';
   }
 }

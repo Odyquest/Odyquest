@@ -37,7 +37,7 @@ export class ImageUploadComponent implements OnInit {
         .subscribe((res) => {
           console.log('...done: ' + res);
           // update image and url fields
-          this.imageUrl = res;
+          this.imageUrl = res.url;
         });
     });
     reader.readAsArrayBuffer($event.target.files[0]);

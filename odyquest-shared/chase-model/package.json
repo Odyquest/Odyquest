@@ -7,12 +7,19 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "lint": "tslint --project \"./tsconfig.json\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc && karma start --coverage"
   },
   "author": "",
   "license": "GPL-3.0",
   "devDependencies": {
+    "@types/jasmine": "^3.10.2",
     "@types/node": "^12.11.1",
+    "jasmine": "^3.10.0",
+    "jasmine-core": "^3.10.1",
+    "karma": "^6.3.8",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^4.0.1",
+    "karma-typescript": "^5.5.2",
     "tslint": "~6.1.0",
     "typescript": "~4.1.5",
     "typescript-json-serializer": "2.5.0"

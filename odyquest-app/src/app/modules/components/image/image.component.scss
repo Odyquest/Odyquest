@@ -1,0 +1,15 @@
+.game_element_image {
+  display:block;
+  max-width: 100%;
+  // full height - top bar
+  max-height: calc(100vh - 80px);
+  border-radius: 8px;
+}
+
+.card-image {
+  object-fit: cover;
+  object-position: center;
+  max-height: 30vh;
+  width: calc(100% + 32px);
+  margin: 0 -16px 16px -16px;
+}

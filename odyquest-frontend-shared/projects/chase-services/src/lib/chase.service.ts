@@ -122,9 +122,12 @@ export class ChaseService {
     return this.httpClient.post(
       this.configuration.get().api.base_uri + 'protected/media', form, this.getHttpOptions())
       .pipe(
-        map(url => {
+        map(data => {
           console.log("Successfull pushed media to server:");
-          return this.configuration.get().api.base_uri + url;
+          return {
+            url: this.configuration.get().api.base_uri + data['url'],
+            mimetype: data['mimetype']
+          };
         }),
         catchError(error => {
           if (error.status === 200) {

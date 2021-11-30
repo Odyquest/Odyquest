@@ -1,35 +1,3 @@
-@media screen and (orientation: landscape) {
-  /* applies to mobiles in landscape mode */
-
-  .game_element_columns {
-    flex-direction: row;
-  }
-
-  .game_element_image {
-    width: 30%;
-  }
-
-  .game_element_text {
-    width: 70%;
-  }
-}
-
-@media screen and (orientation: portrait) {
-  /* applies to mobiles in portrait mode */
-
-  .game_element_columns {
-    flex-direction: column;
-  }
-
-  .game_element_image {
-    text-align: center;
-  }
-
-  .game_element_text {
-    width: 100%;
-  }
-}
-
 .game_element_title_row {
   display: flex;
 }
@@ -51,6 +19,7 @@
 
 .game_element_columns {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -59,17 +28,13 @@
 
 .game_element_image {
   float: left;
-  padding: 0px;
-}
-.game_element_image img {
-  display:block;
-  max-width: 100%;
-  max-height: 100%;
+  text-align: center;
+  margin: 1em auto;
 }
 
 .game_element_text {
   float: left;
-  padding: 15px;
+  width: 100%;
 }
 
 .game_element_buttons {

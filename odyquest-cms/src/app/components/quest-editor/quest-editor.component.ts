@@ -46,7 +46,6 @@ export class QuestEditorComponent implements OnInit {
   narrative_status: NarrativeStatus;
   public selected_narrative_status_int = 1; //"Continue" = 1, "Win" = 2, "Loose" = 3
   narrative_type: NarrativeType;
-  public selected_narrative_type_int = 1; //"Text" = 1, "Panorama" = 2
 
   buttons: Array<XButton>;
   buttonDestinationList: Array<string>;
@@ -106,18 +105,9 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
-  onNarrativeTypeChange(value: number) {
+  onNarrativeTypeChange(value: NarrativeType) {
     console.log('Narrative type to ' + value);
-    switch (value) {
-      case 1: // "Text"
-        this.narrative_type = NarrativeType.Text;
-        console.log(this.selected_narrative_type_int);
-        break;
-      case 2: // "Panorama"
-        this.narrative_type = NarrativeType.Panorama;
-        console.log(this.selected_narrative_type_int);
-        break;
-    }
+    this.narrative_type = value;
   }
 
   parseIdFromGEString(text: string): number {
@@ -319,11 +309,6 @@ export class QuestEditorComponent implements OnInit {
       }
 
       this.narrative_type = this.gameElement.narrativeType;
-      if (this.narrative_type == NarrativeType.Panorama) {
-        this.selected_narrative_type_int = 2;
-      } else {
-        this.selected_narrative_type_int = 1;
-      }
 
       console.log('loaded narrative status as: ', this.narrative_status);
       this.buttons = this.gameElement.buttons;
@@ -456,8 +441,45 @@ export class QuestEditorComponent implements OnInit {
     this.image_url = url;
   }
 
+  updateMedia(mediaData: Array<string>): void {
+    (this.gameElement as Narrative).media_url = mediaData[0];
+    (this.gameElement as Narrative).media_type = mediaData[1];
+  }
+
   updateHelpImageUrl(helpId: number, url: string): void {
     this.help[helpId].image = url;
   }
 
+  getNarrativeType(type: string): NarrativeType {
+    switch (type) {
+      case NarrativeType.Text:
+        return NarrativeType.Text;
+      case NarrativeType.Audio:
+        return NarrativeType.Audio;
+      case NarrativeType.Video:
+        return NarrativeType.Video;
+    }
+  }
+
+  needsMediaUpload(): boolean {
+    if (this.gameElement && this.gameElement instanceof Narrative) {
+      return this.narrative_type === NarrativeType.Audio || this.narrative_type === NarrativeType.Video;
+    } else {
+      return false;
+    }
+  }
+  getMediaUrl(): string {
+    if (this.gameElement && this.gameElement instanceof Narrative) {
+      return (this.gameElement as Narrative).media_url;
+    } else {
+      return '';
+    }
+  }
+  getMediaType(): string {
+    if (this.gameElement && this.gameElement instanceof Narrative) {
+      return (this.gameElement as Narrative).media_type;
+    } else {
+      return '';
+    }
+  }
 }

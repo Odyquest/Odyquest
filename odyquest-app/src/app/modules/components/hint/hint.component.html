@@ -11,9 +11,9 @@
         <div class="game_element_text">
           <p markdown emoji [data]="getCurrentHelpText()"></p>
         </div>
-        <div class="game_element_image">
-          <img [src]="getImage()" />
-        </div>
+        <app-image class="game_element_image"
+                   [imgClass]="getImgClass()"
+                   [description]="getDescription()"></app-image>
       </div>
     </section>
 </article>
