@@ -2,10 +2,10 @@ import { createConnection } from 'mongoose';
 
 import { getMongoDbUrl } from './environment';
 
-import { Chase, ChaseList, ChaseMetaData } from 'chase-model';
-import { GameElement } from 'chase-model';
-import { Narrative } from 'chase-model';
-import { Quest } from 'chase-model';
+import { Chase, ChaseList, ChaseMetaData } from './chase-model';
+import { GameElement } from './chase-model';
+import { Narrative } from './chase-model';
+import { Quest } from './chase-model';
 
 import { ChaseDocument } from './models/chaseDocument';
 import { ChaseMetaDataSchema } from './models/chaseSchema';

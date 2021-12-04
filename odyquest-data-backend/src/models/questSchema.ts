@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
-import { Quest, QuestType } from 'chase-model';
-import { LogicType } from 'chase-model';
+import { Quest, QuestType } from '../chase-model';
+import { LogicType } from '../chase-model';
 import { DescriptionSchema } from './descriptionSchema';
 
 /**
