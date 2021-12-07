@@ -101,7 +101,7 @@ app.get('/chase/*', (req, res) => {
 app.post('/protected/chase', function (req, res) {
   console.log('received chase');
   database.createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
-    res.send('{ chaseId: "' + id + '" }');
+    res.send('{ "chaseId": "' + id + '" }');
   }).catch(() => {
     //TODO set error code
     res.send('{}');
@@ -110,10 +110,10 @@ app.post('/protected/chase', function (req, res) {
 
 app.delete('/protected/chase/*', function (req, res) {
   database.deleteChase(req.params[0]).then(id => {
-    res.send('{status:"success"}');
+    res.send('{ "status": "success" }');
   }).catch(() => {
     //TODO set error code
-    res.send('{status:"failed"}');
+    res.send('{ "status": "failed" }');
   });
 });
 
@@ -136,7 +136,7 @@ function addMedia(req:express.Request): string {
 app.post('/protected/media', upload.single('file'), function (req, res) {
   console.log('received media data');
   const id = addMedia(req);
-  res.send('{ url: "media/' + id + '", mimetype: "' + getMimetype(req) + '" }');
+  res.send('{ "url": "media/' + id + '", "mimetype": "' + getMimetype(req) + '" }');
 });
 
 app.delete('/protected/media/*', upload.single('file'), function (req, res) {
