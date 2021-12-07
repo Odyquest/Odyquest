@@ -1,0 +1,37 @@
+version: "3.4"
+
+services:
+  data-backend:
+    build:
+      context: ./container-instance
+    container_name: data-backend
+    environment:
+      ODYQUEST_CORS_ORIGIN: "http://localhost:4200"
+      ODYQUEST_MONGODB_URL: "mongodb://data-mongodb:27017/production"
+      ODYQUEST_API_PORT: "8080"
+      ODYQUEST_USE_AUTH: "false"
+    networks:
+      - default
+      - data-database
+    ports:
+      - 8400:8080
+    volumes:
+      - ../../:/home/node/Odyquest
+  data-mongodb:
+    image: mongo:latest
+    container_name: data-mongodb
+    networks:
+      - data-database
+
+  test-script:
+    build:
+      context: ./container-test-script
+    container_name: test-script
+    depends_on:
+      - data-backend
+    volumes:
+      - ../../:/home/ubuntu/Odyquest
+
+networks:
+  data-database:
+
