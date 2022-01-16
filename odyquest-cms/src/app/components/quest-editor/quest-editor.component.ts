@@ -6,6 +6,7 @@ import {
   NarrativeType,
   NarrativeStatus,
 } from 'chase-model';
+import { Media } from 'chase-model';
 import { XButton } from 'chase-model';
 import { Chase } from 'chase-model';
 import { LogicType, SolutionTerm } from 'chase-model';
@@ -254,7 +255,7 @@ export class QuestEditorComponent implements OnInit {
     //common to all GameElements
     this.title = this.gameElement.title;
     this.description = this.gameElement.description.text;
-    this.image_url = this.gameElement.description.image;
+    this.image_url = this.gameElement.description.image.baseUrl;
     this.help = this.gameElement.help;
     if (this.help === undefined) {
       this.help = [];
@@ -325,7 +326,7 @@ export class QuestEditorComponent implements OnInit {
     this.gameElement.title = this.title;
     console.log(this.gameElement.title);
     this.gameElement.description.text = this.description;
-    this.gameElement.description.image = this.image_url;
+    this.gameElement.description.image.baseUrl = this.image_url;
     this.gameElement.help = this.help;
 
     //Individual stuff
@@ -442,12 +443,12 @@ export class QuestEditorComponent implements OnInit {
   }
 
   updateMedia(mediaData: Array<string>): void {
-    (this.gameElement as Narrative).media_url = mediaData[0];
-    (this.gameElement as Narrative).media_type = mediaData[1];
+    (this.gameElement as Narrative).getCurrentMedia().baseUrl = mediaData[0];
+    (this.gameElement as Narrative).getCurrentMedia().mimeType = mediaData[1];
   }
 
   updateHelpImageUrl(helpId: number, url: string): void {
-    this.help[helpId].image = url;
+    this.help[helpId].image.baseUrl = url;
   }
 
   getNarrativeType(type: string): NarrativeType {
@@ -461,23 +462,31 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
+  hasMedia(): boolean {
+    return this.gameElement && this.gameElement instanceof Narrative;
+  }
+
+  getMedia(): Media {
+    return (this.gameElement as Narrative).getCurrentMedia();
+  }
+
   needsMediaUpload(): boolean {
-    if (this.gameElement && this.gameElement instanceof Narrative) {
+    if (this.hasMedia()) {
       return this.narrative_type === NarrativeType.Audio || this.narrative_type === NarrativeType.Video;
     } else {
       return false;
     }
   }
   getMediaUrl(): string {
-    if (this.gameElement && this.gameElement instanceof Narrative) {
-      return (this.gameElement as Narrative).media_url;
+    if (this.hasMedia()) {
+      return this.getMedia().baseUrl;
     } else {
       return '';
     }
   }
   getMediaType(): string {
-    if (this.gameElement && this.gameElement instanceof Narrative) {
-      return (this.gameElement as Narrative).media_type;
+    if (this.hasMedia()) {
+      return this.getMedia().mimeType;
     } else {
       return '';
     }

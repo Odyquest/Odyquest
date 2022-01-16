@@ -21,8 +21,29 @@ export const NarrativeSchema = new Schema(
       name: {type: String, required: true },
       destination: {type: Number, required: true },
     }], required: true },
-    narrativeType: {type: String, default: NarrativeType.Text, enum: Object.values(NarrativeType), required: true },
-    narrativeStatus: {type: String, default: NarrativeStatus.Continue, enum: Object.values(NarrativeStatus), required: true },
+    narrativeType: {
+      type: String, default: NarrativeType.Text, enum: Object.values(NarrativeType), required: true
+    },
+    narrativeStatus: {
+      type: String, default: NarrativeStatus.Continue, enum: Object.values(NarrativeStatus), required: true
+    },
+    media: { type: {
+      audio: { type: {
+        alternative: {type: String, required: true},
+        baseUrl: {type: String, required: true},
+        formatResolutionTuples: {type: [[Number]], required: true}
+      }, required: false },
+      video: { type: {
+        alternative: {type: String, required: true},
+        baseUrl: {type: String, required: true},
+        formatResolutionTuples: {type: [[Number]], required: true}
+      }, required: false },
+      augmentedReality: { type: {
+        alternative: {type: String, required: true},
+        baseUrl: {type: String, required: true},
+        formatResolutionTuples: {type: [[Number]], required: true}
+      }, required: false }
+    }}
   }, { _id: false }
 );
 

@@ -5,6 +5,14 @@ import { Narrative } from './narrative';
 import { Quest } from './quest';
 import { GameElement } from './game_element';
 
+@Serializable()
+export class EditingData {
+  @JsonProperty() creationDate?: Date;
+  @JsonProperty() publicationDate?: Date;
+  @JsonProperty() lastEdition?: Date;
+  @JsonProperty() comments?: string;
+}
+
 /**
  * Containing the meta data of a chase
  *
@@ -21,10 +29,8 @@ export class ChaseMetaData {
   @JsonProperty() description: string = '';
 
   @JsonProperty() preview: Preview = new Preview();
-  @JsonProperty() author?: string; //Author;
-  @JsonProperty() lastEdited?: Date;
-  @JsonProperty() creationDate?: Date;
-  @JsonProperty() comment?: string;
+  @JsonProperty() author?: string;
+  @JsonProperty() editing?: EditingData;
 }
 
 /**

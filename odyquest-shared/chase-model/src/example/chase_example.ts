@@ -1,6 +1,7 @@
 import { Chase, ChaseMetaData } from '../chase';
 import { Description } from '../description';
 import { GameElement } from '../game_element';
+import { Image, ImageFile } from '../media';
 import { Narrative } from '../narrative';
 import { Quest, QuestType } from '../quest';
 import { Preview } from '../preview';
@@ -25,7 +26,8 @@ export function getSimpleExample(): Chase {
   narrative.title = 'Error occured!';
   narrative.description = new Description();
   narrative.description.text = 'If you can see this, something went wrong.';
-  narrative.description.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
+  narrative.description.image = new Image();
+  narrative.description.image.files = [new ImageFile('https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg', 0)];
   const forward = new XButton();
   forward.name = 'stay';
   forward.destination = 0;
@@ -53,7 +55,8 @@ export function getTestChase(): Chase {
   narrative.title = 'narrative_title';
   narrative.description = new Description();
   narrative.description.text = 'Some text!';
-  narrative.description.image = 'image_url';
+  narrative.description.image = new Image();
+  narrative.description.image.files = [new ImageFile('image_url', 0)];
   const forward = new XButton();
   forward.name = 'continue';
   forward.destination = 1;
@@ -67,7 +70,8 @@ export function getTestChase(): Chase {
   quest.title = 'quest_title';
   quest.description = new Description();
   quest.description.text = 'Some text!';
-  quest.description.image = 'image_url';
+  quest.description.image = new Image();
+  quest.description.image.files = [new ImageFile('image_url', 0)];
   chase.gameElements.set(1,quest);
 
   return chase;

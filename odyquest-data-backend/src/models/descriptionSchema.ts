@@ -7,7 +7,12 @@ import { Description } from '../chase-model';
 export const DescriptionSchema = new Schema(
   {
     text: {type: String, required: false },
-    image: {type: String, required: false }
+    image: {type: {
+      baseUrl: {type: String, required: false },
+      alternative: {type: String, required: false },
+      preview: {type: String, required: false },
+      resolutions: [{type: Number, required: false  }]
+    } }
   }
 )
 

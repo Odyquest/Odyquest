@@ -41,7 +41,7 @@ export class MetaDataEditorComponent implements OnInit {
     this.title = this.chase.metaData.title;
     this.author = this.chase.metaData.author;
     this.description = this.chase.metaData.preview.description.text;
-    this.imageUrl = this.chase.metaData.preview.description.image;
+    this.imageUrl = this.chase.metaData.preview.description.image.baseUrl;
 
     // create gameelementsmap (id -> string)
     // also create simple array used to generate dropdown values
@@ -69,7 +69,7 @@ export class MetaDataEditorComponent implements OnInit {
     this.chase.metaData.title = this.title;
     this.chase.metaData.author = this.author;
     this.chase.metaData.preview.description.text = this.description;
-    this.chase.metaData.preview.description.image = this.imageUrl;
+    this.chase.metaData.preview.description.image.baseUrl = this.imageUrl;
     this.chase.metaData.published = this.published;
   }
 

@@ -11,13 +11,13 @@
     <audio controls
            *ngIf="isAudioType()"
            class="game_element_text">
-      <source [src]="getMediaUrl()" [type]="getMediaType()" />
+      <source [src]="getMediaUrl()" [type]="getMimeType()" />
         Your browser does not support audio. There is a transcript below.
     </audio>
     <video controls
            *ngIf="isVideoType()"
            class="game_element_text">
-      <source [src]="getMediaUrl()" [type]="getMediaType()" />
+      <source [src]="getMediaUrl()" [type]="getMimeType()" />
         Your browser does not support video. There is a transcript below.
     </video>
     <div *ngIf="isArType()"

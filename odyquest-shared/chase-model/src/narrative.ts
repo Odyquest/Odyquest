@@ -1,19 +1,8 @@
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { GameElement } from './game_element';
 import { XButton } from './x_button';
-
-/**
- * Display type of the narrative element
- *
- * Caution: Not all types are fully implemented yet.
- */
-export enum NarrativeType {
-  Text = 'text',
-  Audio = 'audio',
-  Panorama = 'panorama', // deprecated
-  Video = 'video',
-  AugmentedReality = 'ar',
-}
+import { Media, MediaCollection } from './media';
+import { NarrativeType } from './narrative_type';
 
 /**
  * Status of a narrative element
@@ -41,22 +30,15 @@ export class Narrative extends GameElement {
 	@JsonProperty() narrativeType = NarrativeType.Text;
 	/** Game continues or is finished */
 	@JsonProperty() narrativeStatus = NarrativeStatus.Continue;
-	/** Additional field used by different media types defined by narrative type pointing to a media file */
-	@JsonProperty() media_url = '';
-	/** Additional field used by different media types defined by narrative type with the mime type of the file */
-	@JsonProperty() media_type = '';
+	/** Additional field used by different media types defined by narrative type */
+	@JsonProperty() media = new MediaCollection();
 
   copyFromNarrative(narrative:Narrative) {
     this.copyFromGameElement(narrative);
     this.buttons = narrative.buttons;
     this.narrativeType = narrative.narrativeType;
     this.narrativeStatus = narrative.narrativeStatus;
-    if (narrative.media_url) {
-      this.media_url = narrative.media_url;
-    }
-    if (narrative.media_type) {
-      this.media_type = narrative.media_type;
-    }
+    this.media = narrative.media;
   }
 
   /**
@@ -65,5 +47,13 @@ export class Narrative extends GameElement {
    */
   isFinal(): boolean {
     return this.narrativeStatus !== NarrativeStatus.Continue;
+  }
+
+  getCurrentMedia(): Media {
+    return this.media.getMedia(this.narrativeType);
+  }
+
+  setCurrentMedia(media: Media): void {
+    return this.media.setMedia(this.narrativeType, media);
   }
 }

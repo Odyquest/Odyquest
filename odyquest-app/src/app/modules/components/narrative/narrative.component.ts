@@ -65,17 +65,17 @@ export class NarrativeComponent implements OnInit {
   }
 
   getMediaUrl(): SafeResourceUrl {
-    if (!this.narrative.media_url) {
+    if (!this.narrative.getCurrentMedia().baseUrl) {
       return this.sanitizer.bypassSecurityTrustUrl('');
     }
-    return this.sanitizer.bypassSecurityTrustUrl(this.narrative.media_url);
+    return this.sanitizer.bypassSecurityTrustUrl(this.narrative.getCurrentMedia().baseUrl);
   }
 
-  getMediaType(): string {
-    if (!this.narrative.media_type) {
+  getMimeType(): string {
+    if (!this.narrative.getCurrentMedia().mimeType) {
       return '';
     }
-    return this.narrative.media_type;
+    return this.narrative.getCurrentMedia().mimeType;
   }
 
   isTextType(): boolean {
@@ -115,10 +115,10 @@ export class NarrativeComponent implements OnInit {
 
   getArUrl(): SafeResourceUrl {
     let url: string;
-    if (this.narrative.media_url.indexOf('http') === 0) {
-      url = btoa(this.narrative.media_url);
+    if (this.narrative.getCurrentMedia().baseUrl.indexOf('http') === 0) {
+      url = btoa(this.narrative.getCurrentMedia().baseUrl);
     } else {
-      url = btoa('../' + this.narrative.media_url);
+      url = btoa('../' + this.narrative.getCurrentMedia().baseUrl);
     }
     return this.sanitizer.bypassSecurityTrustResourceUrl('assets/ar.html?marker=hiro&model=' + url);
   }
