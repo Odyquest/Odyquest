@@ -1,15 +1,15 @@
+import { deserialize, serialize } from 'typescript-json-serializer';
+import { getSimpleJwksService, secure } from 'express-oauth-jwt';
+
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
 
-import { deserialize, serialize } from 'typescript-json-serializer';
-
-import {getSimpleJwksService, secure} from 'express-oauth-jwt';
 
 import { Database } from './database';
 import { getCorsOrigin, getApiPort, getUseAuth, getAuthIssuesBaseUrl, getAuthJwksUrl } from './environment';
-import { Chase, ChaseList, ChaseMetaData } from 'chase-model';
+import { Chase, ChaseList, ChaseMetaData } from './chase-model';
 
 var database = new Database();
 

@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Narrative, NarrativeType, NarrativeStatus } from 'chase-model';
+import { Narrative, NarrativeType, NarrativeStatus } from '../chase-model';
 import { DescriptionSchema } from './descriptionSchema';
 
 /**
