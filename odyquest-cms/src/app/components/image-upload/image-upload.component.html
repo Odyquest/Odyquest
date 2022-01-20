@@ -1,11 +1,11 @@
 <div class="editor-image-container">
-  <img *ngIf="imageUrl" [src]="imageUrl">
-  <mat-icon class="default-image" *ngIf="!imageUrl || imageUrl.length < 1">collections</mat-icon>
+  <img *ngIf="image.hasFiles()" [src]="image.getDefaultFile().url">
+  <mat-icon class="default-image" *ngIf="!image.hasFiles()">collections</mat-icon>
 </div>
 <input type="text"
        id="image-name"
        name="quest_name"
-       [(ngModel)]="imageUrl"
+       [ngModel]="image.getDefaultFile().url"
        (change)="updateImageUrl($event)"
        i18n-placeholder
        placeholder="URL pointing to image..." />

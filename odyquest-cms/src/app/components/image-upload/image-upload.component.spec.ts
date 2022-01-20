@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ChaseService, ChaseServiceMock } from 'chase-services';
+
 import { ImageUploadComponent } from './image-upload.component';
 
 describe('ImageUploadComponent', () => {
@@ -8,7 +10,8 @@ describe('ImageUploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImageUploadComponent ]
+      declarations: [ ImageUploadComponent ],
+      providers: [{provide: ChaseService, useClass: ChaseServiceMock}]
     })
     .compileComponents();
   });

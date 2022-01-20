@@ -6,24 +6,20 @@
     <app-image class="game_element_image"
                *ngIf="showImage()"
                [imgClass]="getImgClass()"
-               [description]="narrative.description">
+               [image]="getImage()">
     </app-image>
-    <audio controls
-           *ngIf="isAudioType()"
-           class="game_element_text">
-      <source [src]="getMediaUrl()" [type]="getMimeType()" />
-        Your browser does not support audio. There is a transcript below.
-    </audio>
-    <video controls
-           *ngIf="isVideoType()"
-           class="game_element_text">
-      <source [src]="getMediaUrl()" [type]="getMimeType()" />
-        Your browser does not support video. There is a transcript below.
-    </video>
-    <div *ngIf="isArType()"
-         class="game_element_text">
-      <iframe class="game_element_ar" [src]="getArUrl()"></iframe>
-    </div>
+    <app-audio class="game_element_text"
+               *ngIf="isAudioType()"
+               [audio]="getAudio()">
+    </app-audio>
+    <app-video class="game_element_text"
+               *ngIf="isVideoType()"
+               [video]="getVideo()">
+    </app-video>
+    <app-augmented-reality class="game_element_text"
+               *ngIf="isAugmentedRealityType()"
+               [video]="getAugmentedReality()">
+    </app-augmented-reality>
     <div class="game_element_text"
          id="text_show_button"
          (click)="showText()"

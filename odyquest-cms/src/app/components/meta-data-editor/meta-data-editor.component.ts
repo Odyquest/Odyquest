@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ChaseService } from 'chase-services';
-import { Chase, ChaseMetaData, GameElement } from 'chase-model';
+import { Chase, ChaseMetaData, GameElement, Image } from 'chase-model';
 
 @Component({
   selector: 'app-meta-data-editor',
@@ -16,7 +16,7 @@ export class MetaDataEditorComponent implements OnInit {
   description = '';
   published = false;
   initialElement = '';
-  imageUrl = '';
+  image: Image;
 
   gameElementsMap = new Map<number, string>();
   gameElementsList = [];
@@ -41,7 +41,7 @@ export class MetaDataEditorComponent implements OnInit {
     this.title = this.chase.metaData.title;
     this.author = this.chase.metaData.author;
     this.description = this.chase.metaData.preview.description.text;
-    this.imageUrl = this.chase.metaData.preview.description.image.baseUrl;
+    this.image = this.chase.metaData.preview.description.image;
 
     // create gameelementsmap (id -> string)
     // also create simple array used to generate dropdown values
@@ -69,7 +69,7 @@ export class MetaDataEditorComponent implements OnInit {
     this.chase.metaData.title = this.title;
     this.chase.metaData.author = this.author;
     this.chase.metaData.preview.description.text = this.description;
-    this.chase.metaData.preview.description.image.baseUrl = this.imageUrl;
+    this.chase.metaData.preview.description.image = this.image;
     this.chase.metaData.published = this.published;
   }
 
@@ -79,8 +79,8 @@ export class MetaDataEditorComponent implements OnInit {
     }
   }
 
-  updateImageUrl(url: string): void {
-    this.imageUrl = url;
+  updateImage(image: Image): void {
+    this.image = image;
   }
 
 }

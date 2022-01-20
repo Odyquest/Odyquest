@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import {MatDialog} from '@angular/material/dialog';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Narrative, NarrativeStatus, NarrativeType } from 'chase-model';
+import { Audio, Image, Media, Video, AugmentedReality } from 'chase-model';
 import { ChaseStatus } from 'chase-model';
 import { GameService } from 'src/app/core/services/game.service';
 import { HintComponent } from '../hint/hint.component';
@@ -18,7 +18,7 @@ export class NarrativeComponent implements OnInit {
   @Output() selection: EventEmitter<number> = new EventEmitter();
   @Output() chaseStatus: EventEmitter<ChaseStatus> = new EventEmitter();
 
-  constructor(public dialog: MatDialog, private sanitizer: DomSanitizer) { }
+  constructor(public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -64,20 +64,6 @@ export class NarrativeComponent implements OnInit {
     return this.narrative.help.length > 0;
   }
 
-  getMediaUrl(): SafeResourceUrl {
-    if (!this.narrative.getCurrentMedia().baseUrl) {
-      return this.sanitizer.bypassSecurityTrustUrl('');
-    }
-    return this.sanitizer.bypassSecurityTrustUrl(this.narrative.getCurrentMedia().baseUrl);
-  }
-
-  getMimeType(): string {
-    if (!this.narrative.getCurrentMedia().mimeType) {
-      return '';
-    }
-    return this.narrative.getCurrentMedia().mimeType;
-  }
-
   isTextType(): boolean {
     return this.narrative.narrativeType === NarrativeType.Text;
   }
@@ -87,7 +73,7 @@ export class NarrativeComponent implements OnInit {
   isVideoType(): boolean {
     return this.narrative.narrativeType === NarrativeType.Video;
   }
-  isArType(): boolean {
+  isAugmentedRealityType(): boolean {
     return this.narrative.narrativeType === NarrativeType.AugmentedReality;
   }
 
@@ -113,13 +99,20 @@ export class NarrativeComponent implements OnInit {
     document.getElementById('text_hide_button').style.display = 'none';
   }
 
-  getArUrl(): SafeResourceUrl {
-    let url: string;
-    if (this.narrative.getCurrentMedia().baseUrl.indexOf('http') === 0) {
-      url = btoa(this.narrative.getCurrentMedia().baseUrl);
-    } else {
-      url = btoa('../' + this.narrative.getCurrentMedia().baseUrl);
-    }
-    return this.sanitizer.bypassSecurityTrustResourceUrl('assets/ar.html?marker=hiro&model=' + url);
+  getImage(): Image {
+    return this.narrative.description.image;
   }
+  getMedia<T extends Media>(): T {
+    return this.narrative.getCurrentMedia() as T;
+  }
+  getAudio(): Audio {
+    return this.getMedia<Audio>();
+  }
+  getVideo(): Video {
+    return this.getMedia<Video>();
+  }
+  getAugmentedReality(): AugmentedReality {
+    return this.getMedia<AugmentedReality>();
+  }
+
 }

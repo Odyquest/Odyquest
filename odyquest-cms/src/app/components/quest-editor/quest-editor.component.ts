@@ -5,6 +5,7 @@ import {
   Narrative,
   NarrativeType,
   NarrativeStatus,
+  Image
 } from 'chase-model';
 import { Media } from 'chase-model';
 import { XButton } from 'chase-model';
@@ -27,7 +28,7 @@ export class QuestEditorComponent implements OnInit {
   //current state of the form:
   title: string;
   description: string;
-  image_url: string;
+  image: Image;
 
   is_quest: boolean;
   is_narrative: boolean;
@@ -255,7 +256,7 @@ export class QuestEditorComponent implements OnInit {
     //common to all GameElements
     this.title = this.gameElement.title;
     this.description = this.gameElement.description.text;
-    this.image_url = this.gameElement.description.image.baseUrl;
+    this.image = this.gameElement.description.image;
     this.help = this.gameElement.help;
     if (this.help === undefined) {
       this.help = [];
@@ -326,7 +327,7 @@ export class QuestEditorComponent implements OnInit {
     this.gameElement.title = this.title;
     console.log(this.gameElement.title);
     this.gameElement.description.text = this.description;
-    this.gameElement.description.image.baseUrl = this.image_url;
+    this.gameElement.description.image = this.image;
     this.gameElement.help = this.help;
 
     //Individual stuff
@@ -438,17 +439,16 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
-  updateImageUrl(url: string): void {
-    this.image_url = url;
+  updateImage(image: Image): void {
+    this.image = image;
   }
 
-  updateMedia(mediaData: Array<string>): void {
-    (this.gameElement as Narrative).getCurrentMedia().baseUrl = mediaData[0];
-    (this.gameElement as Narrative).getCurrentMedia().mimeType = mediaData[1];
+  updateMedia(media: Media): void {
+    (this.gameElement as Narrative).setCurrentMedia(media);
   }
 
-  updateHelpImageUrl(helpId: number, url: string): void {
-    this.help[helpId].image.baseUrl = url;
+  updateHelpImage(helpId: number, image: Image): void {
+    this.help[helpId].image = image;
   }
 
   getNarrativeType(type: string): NarrativeType {
@@ -475,20 +475,6 @@ export class QuestEditorComponent implements OnInit {
       return this.narrative_type === NarrativeType.Audio || this.narrative_type === NarrativeType.Video;
     } else {
       return false;
-    }
-  }
-  getMediaUrl(): string {
-    if (this.hasMedia()) {
-      return this.getMedia().baseUrl;
-    } else {
-      return '';
-    }
-  }
-  getMediaType(): string {
-    if (this.hasMedia()) {
-      return this.getMedia().mimeType;
-    } else {
-      return '';
     }
   }
 }

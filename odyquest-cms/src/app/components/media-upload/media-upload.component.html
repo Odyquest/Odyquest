@@ -1,23 +1,31 @@
 <div class="editor-media-container">
-  <audio controls
-         *ngIf="hasAudio()"
-         class="game_element_text">
-    <source [src]="mediaUrl" [type]="mediaType" />
-      Your browser does not support audio.
-  </audio>
-  <video controls
-         *ngIf="hasVideo()"
-         class="game_element_text">
-    <source [src]="mediaUrl" [type]="mediaType" />
-      Your browser does not support audio.
-  </video>
-  <mat-icon class="default-media" *ngIf="!mediaUrl || mediaUrl.length < 1">collections</mat-icon>
+  <div *ngIf="hasAudio()">
+    <audio controls
+     class="game_element_text">
+      <source [src]="getDefaultFileUrl()" />
+        Your browser does not support audio.
+    </audio>
+    <!--<div *ngFor="let typeFormat of getTypesFormats()">
+      {{typeFormat[0]}} in {{typeFormat[1]}} bit
+    </div>-->
+  </div>
+  <div *ngIf="hasVideo()">
+    <video controls
+     class="game_element_text">
+      <source [src]="getDefaultFileUrl()" />
+        Your browser does not support audio.
+    </video>
+    <!--<div *ngFor="let typeFormat of getTypesFormats()">
+      {{typeFormat[0]}} in {{typeFormat[1]}}p
+    </div>-->
+  </div>
+  <mat-icon class="default-media" *ngIf="!media.hasFiles()">collections</mat-icon>
 </div>
 <input type="text"
        id="media-name"
        name="quest_name"
-       [(ngModel)]="mediaUrl"
-       (change)="updateMedia($event)"
+       [ngModel]="getDefaultFileUrl()"
+       (change)="addMedia($event)"
        i18n-placeholder
        placeholder="URL pointing to media..." />
 <br />

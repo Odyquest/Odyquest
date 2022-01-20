@@ -7,7 +7,7 @@
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title i18n="@@list.continue_with">Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
-		  <!--<mat-card-subtitle>started today</mat-card-subtitle>-->
+          <!--<mat-card-subtitle>started today</mat-card-subtitle>-->
         </mat-card-header>
       </header>
       <mat-card-content>
@@ -21,8 +21,8 @@
              i18n="@@list.hide_running">
           <mat-icon>unfold_less</mat-icon><span class="text_button">Hide details</span>
         </div>
-		<app-image id="running_chase_img" [imgClass]="getMatCardImageClass()" [description]="getRunningChaseDescription()"></app-image>
-		<p markdown emoji id="running_chase_text">{{getRunningChaseText()}}</p>
+        <app-image id="running_chase_img" [imgClass]="getMatCardImageClass()" [image]="getRunningChaseDescription().image"></app-image>
+        <p markdown emoji id="running_chase_text">{{getRunningChaseText()}}</p>
       </mat-card-content>
       <mat-card-actions>
         <button primary mat-button (click)="startChase('')" i18n="@@list.continue">CONTINUE</button>
@@ -40,14 +40,14 @@
             <mat-card-subtitle>{{chase.author}}</mat-card-subtitle>
           </mat-card-header>
         </header>
-        <app-image [imgClass]="getMatCardImageClass()" [description]="chase.preview.description"></app-image>
+        <app-image [imgClass]="getMatCardImageClass()" [image]="chase.preview.description.image"></app-image>
         <mat-card-content>
           <p markdown emoji>{{chase.preview.description.text}}</p>
         </mat-card-content>
         <mat-card-actions>
-		  <div class="card-flags">
-			  <mat-icon tooltip="chase already succeeded" *ngIf="isSucceeded(chase.chaseId)" >done</mat-icon>
-		  </div>
+          <div class="card-flags">
+            <mat-icon tooltip="chase already succeeded" *ngIf="isSucceeded(chase.chaseId)" >done</mat-icon>
+          </div>
           <button primary mat-button i18n="@@list.start">START</button>
           <!--<button mat-button>LIKE</button>-->
           <!--<button mat-button>SHARE</button>-->

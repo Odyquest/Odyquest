@@ -1,0 +1,45 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { OAuthStorage } from 'angular-oauth2-oidc';
+import { Observable, of } from 'rxjs';
+
+import { Chase, ChaseList } from 'chase-model';
+
+import { ChaseService } from './chase.service';
+import { RuntimeConfigurationService } from './runtime-configuration.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ChaseServiceMock implements AbstractChaseService {
+
+  constructor(
+  ) {
+  }
+
+  public getAllChases(addProtected = false): Observable<any> {
+    const list = new ChaseList();
+    return of(list);
+  }
+
+  public getChase(id: string): Observable<any> {
+    const chase = new Chase();
+    return of(chase);
+  }
+
+  public createOrUpdateChase(chase: Chase): Observable<any> {
+    return of({ chaseId: 'chase_id' });
+  }
+
+  public deleteChase(id: string): Observable<any> {
+    return of({ status: 'success' });
+  }
+
+  public createMedia(chaseId: string, mediaId: string, file: File): Observable<any> {
+    return of({ url: 'media_id', mimetype: 'image/png'});
+  }
+
+  public deleteMedia(id: string): Observable<any> {
+    return of('success');
+  }
+}

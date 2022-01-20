@@ -62,6 +62,9 @@ import { MarkdownModule } from 'ngx-markdown';
 import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { ImageComponent } from './modules/components/image/image.component';
+import { AudioComponent } from './modules/components/audio/audio.component';
+import { VideoComponent } from './modules/components/video/video.component';
+import { AugmentedRealityComponent } from './modules/components/augmented-reality/augmented-reality.component';
 // import { AuthGuard } from './services/auth/auth.guard.service';
 // import { LoggedOutComponent } from './components/logged-out/logged-out.component';
 
@@ -107,6 +110,9 @@ function getAuthModuleConfig(): OAuthModuleConfig {
     InformationComponent,
     SettingsComponent,
     ImageComponent,
+    AudioComponent,
+    VideoComponent,
+    AugmentedRealityComponent,
   ],
   entryComponents: [
     SubmitSolutionComponent,

@@ -2,7 +2,7 @@ import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { NarrativeType } from './narrative_type';
 
 @Serializable()
-class MediaFile {
+export class MediaFile {
   @JsonProperty() url;
 
   constructor(url: string) {
@@ -11,21 +11,32 @@ class MediaFile {
 }
 
 @Serializable()
-export class Media {
+export abstract class Media {
   @JsonProperty() id = "";
   /**
    * Alternative text to media.
    */
   @JsonProperty() alternativeText = "";
+  public abstract hasFiles(): boolean;
+
+  public abstract getDefaultFile(): MediaFile;
 }
 
 @Serializable()
-export class MediaWithFilelist<T> extends Media {
+export class MediaWithFilelist<T extends MediaFile> extends Media {
   @JsonProperty() files = new Array<T>();
   @JsonProperty() defaultIndex: number | undefined;
 
   public hasFiles(): boolean {
     return this.files.length !== 0;
+  }
+
+  public getDefaultFile(): T {
+    if (this.defaultIndex) {
+      return this.files[this.defaultIndex];
+    } else {
+      return this.files[0];
+    }
   }
 }
 
@@ -84,6 +95,17 @@ export class Video extends MediaWithFilelist<VideoFile> {
 
 @Serializable()
 export class AugmentedReality extends Media {
+  baseUrl = '';
+
+  public hasFiles(): boolean {
+    // TODO implement
+    return false;
+  }
+
+  public getDefaultFile(): MediaFile {
+    // TODO implement
+    return new MediaFile(this.baseUrl);
+  }
 }
 
 /**

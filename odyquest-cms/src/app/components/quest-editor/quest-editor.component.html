@@ -1,8 +1,8 @@
 <div class="editor-top-container">
   <app-image-upload class="editor-image-outer-container"
-                    [imageUrl]="this.image_url"
+                    [image]="this.image"
                     [chaseId]="getChaseId()"
-                    (updateUrl)="updateImageUrl($event)" >
+                    (imageChange)="updateImage($event)" >
   </app-image-upload>
   <div class="editor-top-right-container">
 
@@ -205,10 +205,9 @@
     </div>
     <app-media-upload class="narrative-media-container border"
                       *ngIf="needsMediaUpload()"
-                      [mediaUrl]="getMediaUrl()"
-                      [mediaType]="getMediaType()"
+                      [media]="getMedia()"
                       [chaseId]="getChaseId()"
-                      (updateUrl)="updateMedia($event)" >
+                      (updateMedia)="updateMedia($event)" >
     </app-media-upload>
     <div id=narrator-button-array-container class="border">
       <div class="row">
@@ -287,9 +286,9 @@
               <textarea matInput type="text" name="hint_text_{{i}}" [(ngModel)]="this.help[i].text"></textarea>
             </mat-form-field>
             <app-image-upload class="editor-image-outer-container"
-                              [imageUrl]="this.help[i].image"
+                              [image]="this.help[i].image"
                               [chaseId]="getChaseId()"
-                              (updateUrl)="updateHelpImageUrl(i, $event)" >
+                              (imageUrl)="updateHelpImage(i, $event)" >
             </app-image-upload>
             <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
           </div>

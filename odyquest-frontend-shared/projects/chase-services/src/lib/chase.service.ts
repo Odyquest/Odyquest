@@ -1,12 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { OAuthStorage } from 'angular-oauth2-oidc';
 
-import { Chase, ChaseList } from 'chase-model'
+import { Chase, ChaseList } from 'chase-model';
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { RuntimeConfigurationService } from './runtime-configuration.service';
+
+export abstract class AbstractChaseService {
+  public abstract getAllChases(addProtected: boolean): Observable<any>;
+
+  public abstract getChase(id: string): Observable<any>;
+
+  public abstract createOrUpdateChase(chase: Chase): Observable<any>;
+
+  public abstract deleteChase(id: string): Observable<any>;
+
+  public abstract createMedia(chaseId: string, mediaId: string, file: File): Observable<any>;
+
+  public abstract deleteMedia(id: string): Observable<any>;
+}
 
 /**
  * Connection to data source for reading and writing chases
@@ -16,7 +30,7 @@ import { RuntimeConfigurationService } from './runtime-configuration.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ChaseService {
+export class ChaseService implements AbstractChaseService {
 
   constructor(
     private httpClient: HttpClient,

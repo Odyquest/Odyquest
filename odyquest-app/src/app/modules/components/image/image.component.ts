@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RuntimeConfigurationService } from 'chase-services';
 
-import { Description } from 'chase-model';
+import { Description, Image, ImageFile, Media } from 'chase-model';
 
 @Component({
   selector: 'app-image',
@@ -11,9 +11,9 @@ import { Description } from 'chase-model';
 })
 export class ImageComponent implements OnInit {
 
-  @Input() description: Description;
+  @Input() image: Image;
   @Input() imgClass: string;
-  smallestResolution: number;
+  files: ImageFile[];
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -22,28 +22,20 @@ export class ImageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.hasDifferentImageSizes()) {
-      this.smallestResolution = this.description.image.resolutions[0];
-      for (const res of this.description.image.resolutions) {
-        if (res < this.smallestResolution) {
-          this.smallestResolution = res;
-        }
-      }
+    console.log('got image with id ', this.image.id);
+    console.log('image has ', this.image.files.length, ' files');
+    console.log('image is Media ', this.image instanceof Media);
+    if (this.image.hasFiles()) {
+      this.files = this.image.getFilesSortedByResolution();
     }
   }
 
   getImage(): SafeResourceUrl {
-    let imageUrl = this.description.image.baseUrl;
-    if (this.hasDifferentImageSizes()) {
-      // use smallest resolution for initial value, the browser may loads this image first and then the image with the
-      // correct resolution
-      imageUrl = this.getImageUrl(this.smallestResolution);
+    let imageUrl = '';
+    if (this.image.files.length !== 0) {
+      imageUrl = this.image.files[0].url;
     }
     return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-  }
-
-  hasDifferentImageSizes(): boolean {
-    return this.description.image.resolutions && this.description.image.resolutions.length !== 0;
   }
 
   /**
@@ -52,25 +44,10 @@ export class ImageComponent implements OnInit {
   getImageSrcset(): string {
     let srcset = '';
 
-    for (const res of this.description.image.resolutions) {
-      srcset += this.getImageUrl(res) + ' ' + res + 'w, ';
+    for (const file of this.image.files) {
+      srcset += file.url + ' ' + file.width + 'w, ';
     }
     return srcset;
-  }
-
-  /**
-   * Returns url to image with given size
-   */
-  getImageUrl(res: number): string {
-    if (this.configuration.isApiBased()) {
-      return this.description.image + '?res=' + res;
-    } else {
-      const posExtension = this.description.image.baseUrl.lastIndexOf('.');
-      const length = this.description.image.baseUrl.length;
-      const name = this.description.image.baseUrl.substring(0, posExtension);
-      const extension = this.description.image.baseUrl.substring(posExtension, length);
-      return name + '_' + res + extension;
-    }
   }
 
   getClass(): string {

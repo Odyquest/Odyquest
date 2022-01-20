@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { NarrativeType } from 'chase-model';
+import { Audio, AudioFile, Media, MediaFile, NarrativeType, Video, VideoFile } from 'chase-model';
 import { ChaseService } from 'chase-services';
 import { RuntimeConfigurationService } from 'chase-services';
 
@@ -11,11 +11,10 @@ import { RuntimeConfigurationService } from 'chase-services';
 })
 export class MediaUploadComponent implements OnInit {
 
-  @Input() mediaUrl: string;
-  @Input() mediaType: string;
+  @Input() media: Media;
   @Input() narrativeType: NarrativeType;
   @Input() chaseId: string;
-  @Output() updateUrl: EventEmitter<Array<string>> = new EventEmitter();
+  @Output() mediaChange: EventEmitter<Media> = new EventEmitter();
 
   constructor(
     private chaseService: ChaseService,
@@ -39,17 +38,26 @@ export class MediaUploadComponent implements OnInit {
         )
         .subscribe((res) => {
           console.log('...done: ' + res);
-          // update media and url fields
-          this.mediaUrl = res.url;
-          this.mediaType = res.mimetype;
+          if (this.hasAudio()) {
+            const audio = new AudioFile(res.url, res.mimetype, 1);
+            (this.media as Audio).files = [audio];
+            (this.media as Audio).defaultIndex = 0;
+          } else if (this.hasVideo()) {
+            const video = new VideoFile(res.url, res.mimetype, 1);
+            (this.media as Video).files = [video];
+            (this.media as Video).defaultIndex = 0;
+          } else {
+            console.error('media upload is not implemented for ', this.narrativeType);
+          }
+          this.mediaChange.emit(this.media);
         });
     });
     reader.readAsArrayBuffer($event.target.files[0]);
   }
 
-  updateMedia(url: string): void {
+  addMedia(url: string): void {
     // TODO get type
-    this.updateUrl.emit([this.mediaUrl, this.mediaType]);
+    this.mediaChange.emit(this.media);
   }
 
   canUploadMedia(): boolean {
@@ -63,4 +71,16 @@ export class MediaUploadComponent implements OnInit {
   hasVideo(): boolean {
     return this.narrativeType === NarrativeType.Video;
   }
+  getDefaultFileUrl(): string {
+    return this.media.getDefaultFile().url;
+  }
+  // getTypesFormats(): Array<[string, number]> {
+  //   if (this.hasAudio()) {
+  //     return (this.media as Audio).formatResolutionTuples;
+  //   } else if (this.hasVideo()) {
+  //     return (this.media as Video).formatResolutionTuples;
+  //   } else {
+  //     return [];
+  //   }
+  // }
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ChaseService } from 'chase-services';
 import { RuntimeConfigurationService } from 'chase-services';
+import { Image, ImageFile } from 'chase-model';
 
 @Component({
   selector: 'app-image-upload',
@@ -10,9 +11,9 @@ import { RuntimeConfigurationService } from 'chase-services';
 })
 export class ImageUploadComponent implements OnInit {
 
-  @Input() imageUrl: string;
+  @Input() image: Image;
   @Input() chaseId: string;
-  @Output() updateUrl: EventEmitter<string> = new EventEmitter();
+  @Output() imageChange: EventEmitter<Image> = new EventEmitter();
 
   constructor(
     private chaseService: ChaseService,
@@ -36,19 +37,20 @@ export class ImageUploadComponent implements OnInit {
         )
         .subscribe((res) => {
           console.log('...done: ' + res);
-          // update image and url fields
-          this.imageUrl = res.url;
+          this.updateImageUrl(res.url);
         });
     });
     reader.readAsArrayBuffer($event.target.files[0]);
   }
 
   updateImageUrl(url: string): void {
-    this.updateUrl.emit(this.imageUrl);
+    // replace all existing files with given url
+    this.image.files = [new ImageFile(url, 1)];
+    this.image.defaultIndex = 0;
+    this.imageChange.emit(this.image);
   }
 
   canUploadImage(): boolean {
     return this.configuration.isApiBased();
-
   }
 }
