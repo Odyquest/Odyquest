@@ -25,7 +25,7 @@ export class QuestEditorComponent implements OnInit {
   chase: Chase;
   gameElement: GameElement;
 
-  //current state of the form:
+  // current state of the form:
   title: string;
   description: string;
   image: Image;
@@ -33,20 +33,20 @@ export class QuestEditorComponent implements OnInit {
   is_quest: boolean;
   is_narrative: boolean;
 
-  //Quest
+  // Quest
   solutionItems: Array<string>;
   combinationMap: Array<SolutionTerm>;
   maxTries: number;
   maxTime: number;
-  public quest_type_status_int; //"Text" = 1, "MultipleChoice" = 2
+  public quest_type_status_int; // "Text" = 1, "MultipleChoice" = 2
   questType: QuestType;
   display_image_first: boolean;
   solution_type_status_int: Array<number>;
   solution_destination_description: Array<string>;
 
-  //Narrative
+  // Narrative
   narrative_status: NarrativeStatus;
-  public selected_narrative_status_int = 1; //"Continue" = 1, "Win" = 2, "Loose" = 3
+  public selected_narrative_status_int = 1; // "Continue" = 1, "Win" = 2, "Loose" = 3
   narrative_type: NarrativeType;
 
   buttons: Array<XButton>;
@@ -65,7 +65,7 @@ export class QuestEditorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onQuestTypeChange(value: String) {
+  onQuestTypeChange(value: string) {
     console.log('Changed quest type to ' + value);
     switch (value) {
       case '1':
@@ -77,7 +77,7 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
-  onSolutionTypeStatusChange(value: String, index: number) {
+  onSolutionTypeStatusChange(value: string, index: number) {
     console.log('Changed solution type on index ' + index + ' to ' + value);
     switch (value) {
       case '1':
@@ -113,7 +113,7 @@ export class QuestEditorComponent implements OnInit {
   }
 
   parseIdFromGEString(text: string): number {
-    let id_text = text.substr(text.lastIndexOf('(') + 1); //)
+    let id_text = text.substr(text.lastIndexOf('(') + 1);
     id_text = id_text.substr(0, id_text.length - 1);
 
     return +id_text;
@@ -156,7 +156,7 @@ export class QuestEditorComponent implements OnInit {
   onTitleChange(): void {
     console.log('title changed!');
 
-    //save data so the MainCOmponent can access it, then recreate the quest list
+    // save data so the MainCOmponent can access it, then recreate the quest list
     this.localToGameElement();
     this.main_editor.loadDataFromChase();
   }
@@ -165,11 +165,11 @@ export class QuestEditorComponent implements OnInit {
     console.log('deleteQuestSolution(' + index + ')');
 
     this.solutionItems.splice(index, 1);
-    for (var cm of this.combinationMap) {
+    for (const cm of this.combinationMap) {
       cm.requiredItems.splice(index, 1);
     }
 
-    //todo need to update various other stuff
+    // todo need to update various other stuff
   }
 
   deleteSolutionCombination(index: number) {
@@ -177,7 +177,7 @@ export class QuestEditorComponent implements OnInit {
 
     this.combinationMap.splice(index, 1);
     this.solution_type_status_int.splice(index, 1);
-    //this.solution_destination_description.splice(index, 1);
+    // this.solution_destination_description.splice(index, 1);
   }
 
   updateSolutionItem(event, index) {
@@ -188,15 +188,15 @@ export class QuestEditorComponent implements OnInit {
     console.log('addButton()');
     console.log(this.buttons.length);
 
-    let button = new XButton();
+    const button = new XButton();
     button.name = 'Weiter';
-    //just use some id which is actually existing
+    // just use some id which is actually existing
     button.destination = this.parseIdFromGEString(
       this.gameElementsList[0]
     );
 
     this.buttons.push(button);
-    this.buttonDestinationList[this.gameElementsList[0]];
+    // this.buttonDestinationList[this.gameElementsList[0]];
 
     console.log(this.buttons.length);
   }
@@ -215,15 +215,15 @@ export class QuestEditorComponent implements OnInit {
   addSolutionItem() {
     console.log('addSolutionItem()');
 
-    let solution = 'Neue Lösung';
+    const solution = 'Neue Lösung';
 
-    //todo need to update various other stuff
-    for (var comb = 0; comb < this.combinationMap.length; comb++) {
+    // todo need to update various other stuff
+    for (let comb = 0; comb < this.combinationMap.length; comb++) {
       this.combinationMap[comb].requiredItems.push(true);
     }
 
-    //just use some id which is actually existing
-    //button.destination = this.parseIdFromGEString(this.gameElementsMap.values().next().value);
+    // just use some id which is actually existing
+    // button.destination = this.parseIdFromGEString(this.gameElementsMap.values().next().value);
 
     this.solutionItems.push(solution);
   }
@@ -231,14 +231,14 @@ export class QuestEditorComponent implements OnInit {
   addSolutionCombination() {
     console.log('addSolutionCombination()');
 
-    //let combination = this.combinationMap.values().next().value;
+    // let combination = this.combinationMap.values().next().value;
     let new_comb = new SolutionTerm();
     new_comb.destination = 1;
     new_comb.logicType = LogicType.And;
     new_comb.requiredItems = [];
 
     for (
-      var i = 0;
+      let i = 0;
       i < this.combinationMap.values().next().value.requiredItems.length;
       i++
     ) {
@@ -253,7 +253,7 @@ export class QuestEditorComponent implements OnInit {
   // hardly a sexy solution...
   // input forms can't read directly from GameElement?
   gameElementToLocal(): void {
-    //common to all GameElements
+    // common to all GameElements
     this.title = this.gameElement.title;
     this.description = this.gameElement.description.text;
     this.image = this.gameElement.description.image;
@@ -262,7 +262,7 @@ export class QuestEditorComponent implements OnInit {
       this.help = [];
     }
 
-    //Individual stuff
+    // Individual stuff
     if (this.gameElement instanceof Quest) {
       this.solutionItems =
         this.gameElement.requirementCombination.solutionItems;
@@ -290,10 +290,10 @@ export class QuestEditorComponent implements OnInit {
 
       this.solution_type_status_int = [];
       this.solution_destination_description = new Array<string>();
-      var counter = 0;
-      for (var cm of this.gameElement.requirementCombination.combinationMap) {
+      let counter = 0;
+      for (const cm of this.gameElement.requirementCombination.combinationMap) {
         this.solution_destination_description.push(this.gameElementsMap.get(cm.destination));
-        if (cm.logicType == LogicType.And) {
+        if (cm.logicType === LogicType.And) {
           this.solution_type_status_int[counter] = 1;
         } else {
           this.solution_type_status_int[counter] = 2;
@@ -302,9 +302,9 @@ export class QuestEditorComponent implements OnInit {
       }
     } else if (this.gameElement instanceof Narrative) {
       this.narrative_status = this.gameElement.narrativeStatus;
-      if (this.narrative_status == NarrativeStatus.Continue) {
+      if (this.narrative_status === NarrativeStatus.Continue) {
         this.selected_narrative_status_int = 1;
-      } else if (this.narrative_status == NarrativeStatus.Win) {
+      } else if (this.narrative_status === NarrativeStatus.Win) {
         this.selected_narrative_status_int = 2;
       } else {
         this.selected_narrative_status_int = 3;
@@ -323,14 +323,14 @@ export class QuestEditorComponent implements OnInit {
   }
 
   localToGameElement(): void {
-    //common to all GameElements
+    // common to all GameElements
     this.gameElement.title = this.title;
     console.log(this.gameElement.title);
     this.gameElement.description.text = this.description;
     this.gameElement.description.image = this.image;
     this.gameElement.help = this.help;
 
-    //Individual stuff
+    // Individual stuff
     if (this.gameElement instanceof Quest) {
       this.gameElement.requirementCombination.solutionItems =
         this.solutionItems;
@@ -341,22 +341,22 @@ export class QuestEditorComponent implements OnInit {
 
       this.gameElement.displayImageFirst = this.display_image_first;
 
-      var counter = 0;
-      for (var cm of this.gameElement.requirementCombination.combinationMap) {
+      let counter = 0;
+      for (const cm of this.gameElement.requirementCombination.combinationMap) {
         cm.destination = this.parseIdFromGEString(this.solution_destination_description[counter]);
-        if (this.solution_type_status_int[counter] == 1) {
+        if (this.solution_type_status_int[counter] === 1) {
           cm.logicType = LogicType.And;
         } else {
           cm.logicType = LogicType.Or;
         }
         counter++;
       }
-      //why use date?
-      var t = new Date(0); // Epoch
+      // why use date?
+      const t = new Date(0); // Epoch
       t.setSeconds(this.maxTime);
       this.gameElement.maxTime = t;
 
-      if (this.quest_type_status_int == 1) {
+      if (this.quest_type_status_int === 1) {
         this.gameElement.questType = QuestType.Text;
       } else {
         this.gameElement.questType = QuestType.MultipleChoice;
@@ -371,7 +371,7 @@ export class QuestEditorComponent implements OnInit {
   setChase(chase: Chase): void {
     this.chase = chase;
 
-    //create gameelementsmap (id -> string)
+    // create gameelementsmap (id -> string)
     // also create simple array used to generate dropdown values
     this.gameElementsMap = new Map<number, string>();
     this.gameElementsList = [];
@@ -384,7 +384,7 @@ export class QuestEditorComponent implements OnInit {
     });
 
     console.log('GameElementsList length:', this.gameElementsList.length);
-    this.gameElementsList.forEach(function (value) {
+    this.gameElementsList.forEach(value => {
       console.log(value);
     });
   }
@@ -412,7 +412,7 @@ export class QuestEditorComponent implements OnInit {
 
     this.gameElementToLocal();
 
-    //we need to manually tell angular that changes occured:
+    // we need to manually tell angular that changes occured:
     this.cd.detectChanges();
   }
 

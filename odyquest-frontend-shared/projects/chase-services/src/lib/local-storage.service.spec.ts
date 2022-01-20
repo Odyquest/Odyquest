@@ -10,7 +10,7 @@ describe('LocalStorageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-	});
+    });
     service = TestBed.inject(LocalStorageService);
   });
 
@@ -23,13 +23,13 @@ describe('LocalStorageService', () => {
   });
 
   it('value should be writable', () => {
-    expect(service.set("test", "world")).toBeTruthy();
-    expect(service.get("test")).toEqual("world");
+    expect(service.set('test', 'world')).toBeTruthy();
+    expect(service.get('test')).toEqual('world');
   });
 
   it('value should be removable', () => {
-    expect(service.set("test", "world")).toBeTruthy();
-    expect(service.remove("test")).toBeTruthy();
-    expect(service.get("test")).toBe(null);
+    expect(service.set('test', 'world')).toBeTruthy();
+    expect(service.remove('test')).toBeTruthy();
+    expect(service.get('test')).toBe(null);
   });
 });

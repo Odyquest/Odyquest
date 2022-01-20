@@ -41,7 +41,7 @@ export class ChaseService implements AbstractChaseService {
   private getHttpOptions() {
     return {
       headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + this.authStorage.getItem('access_token')
+        Authorization: 'Bearer ' + this.authStorage.getItem('access_token')
       })
     };
   }
@@ -62,7 +62,7 @@ export class ChaseService implements AbstractChaseService {
           // console.log("error: " + JSON.stringify(error));
           return error;
         })
-      )
+      );
   }
 
   /**
@@ -89,10 +89,10 @@ export class ChaseService implements AbstractChaseService {
    *
    * @return observable containing chaseId
    */
-  public createOrUpdateChase(p_chase: Chase): Observable<any> {
+  public createOrUpdateChase(chase: Chase): Observable<any> {
     // TODO return error if 'api_based' is false: not allowed
     return this.httpClient.post(
-      this.configuration.get().api.base_uri + 'protected/chase', serialize(p_chase), this.getHttpOptions())
+      this.configuration.get().api.base_uri + 'protected/chase', serialize(chase), this.getHttpOptions())
       .pipe(
         map(chaseId => {
           console.log("Successfull pushed chase to server");
@@ -127,17 +127,17 @@ export class ChaseService implements AbstractChaseService {
    *
    * @return observable containing url to data relative to 'base_uri'
    */
-  public createMedia(chaseId: string, name: string, file: File): Observable<any> {
+  public createMedia(chaseId: string, mediaId: string, file: File): Observable<any> {
     const form = new FormData();
     form.append('file', file);
     form.append('chaseId', chaseId);
-    form.append('name', name);
-    console.log('create media ' + name);
+    form.append('name', mediaId);
+    console.log('create media ' + mediaId);
     return this.httpClient.post(
       this.configuration.get().api.base_uri + 'protected/media', form, this.getHttpOptions())
       .pipe(
         map(data => {
-          console.log("Successfull pushed media to server:");
+          console.log('Successfull pushed media to server:');
           return {
             url: this.configuration.get().api.base_uri + data['url'],
             mimetype: data['mimetype']
@@ -146,10 +146,10 @@ export class ChaseService implements AbstractChaseService {
         catchError(error => {
           if (error.status === 200) {
             // This should not be an error, handle it like success
-            console.log("Pushed media to server");
+            console.log('Pushed media to server');
             return of(this.configuration.get().api.base_uri + error.error.text);
           } else {
-            console.log("Failure while pushing media to server");
+            console.log('Failure while pushing media to server');
             console.log(error);
             return error;
           }
@@ -165,14 +165,14 @@ export class ChaseService implements AbstractChaseService {
       this.configuration.get().api.base_uri + 'protected/media/' + id, this.getHttpOptions())
       .pipe(
         map(chase => {
-          console.log("Successfull deleted media");
+          console.log('Successfull deleted media');
           return chase;
         }),
         catchError(error => {
-          console.log("Failure while deleting media");
+          console.log('Failure while deleting media');
           return error;
         })
-      )
+      );
   }
 
   private getChaseListPath(addProtected: boolean): string {
@@ -187,7 +187,7 @@ export class ChaseService implements AbstractChaseService {
     }
   }
 
-  private getChasePath(id: string, modify=false): string {
+  private getChasePath(id: string, modify = false): string {
     // TODO check if user is logged in -> use 'protected' prefix
     if (this.configuration.get().api.api_based === true) {
       let prefix = '';

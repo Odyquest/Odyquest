@@ -10,14 +10,14 @@ describe('ChaseService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-		imports: [
-			HttpClientTestingModule,
-		],
-		providers: [
-			RuntimeConfigurationService,
-			OAuthStorage
-		]
-	});
+      imports: [
+        HttpClientTestingModule,
+      ],
+      providers: [
+        RuntimeConfigurationService,
+        OAuthStorage
+      ]
+    });
     service = TestBed.inject(ChaseService);
   });
 

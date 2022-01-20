@@ -14,17 +14,17 @@ describe('ChaseStorageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-		providers: [
-			LocalStorageService,
-		]
-	});
+      providers: [
+        LocalStorageService,
+      ]
+    });
     service = TestBed.inject(ChaseStorageService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  
+
   /* Running Chase */
   it('running chase should be write- and readable', () => {
     service.setRunningChase(getSimpleExample());
@@ -38,7 +38,7 @@ describe('ChaseStorageService', () => {
     expect(service.deleteRunningChase()).toBeTruthy();
     expect(service.hasRunningChase()).toBeFalsy();
   });
-  
+
   /* Current Position */
   it('current position should be write- and readable', () => {
     service.setCurrentPosition(75);
