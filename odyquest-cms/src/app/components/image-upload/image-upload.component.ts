@@ -43,6 +43,13 @@ export class ImageUploadComponent implements OnInit {
     reader.readAsArrayBuffer($event.target.files[0]);
   }
 
+  getDefaultImageUrl(): string {
+    if (!this.image.getDefaultFile()) {
+      return '';
+    }
+    return this.image.getDefaultFile().url;
+  }
+
   updateImageUrl(url: string): void {
     // replace all existing files with given url
     this.image.files = [new ImageFile(url, 1)];

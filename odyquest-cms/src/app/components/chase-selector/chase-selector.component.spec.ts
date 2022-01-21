@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
+import { ChaseService, ChaseServiceMock } from 'chase-services';
 import { ChaseSelectorComponent } from './chase-selector.component';
 
 describe('ChaseSelectorComponent', () => {
@@ -8,7 +10,14 @@ describe('ChaseSelectorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChaseSelectorComponent ]
+      imports: [ RouterTestingModule ],
+      declarations: [ ChaseSelectorComponent ],
+      providers: [
+        {
+          provide: ChaseService,
+          useClass: ChaseServiceMock
+        }
+      ]
     })
     .compileComponents();
   }));

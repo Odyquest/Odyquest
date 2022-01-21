@@ -37,5 +37,5 @@ jobs:
       working-directory: ./odyquest-cms
     - run: npm run build --if-present
       working-directory: ./odyquest-cms
-    #- run: npm test
-    #  working-directory: ./odyquest-cms
+    - run: npm test -- --no-watch --no-progress --browsers=ChromeHeadless
+      working-directory: ./odyquest-cms

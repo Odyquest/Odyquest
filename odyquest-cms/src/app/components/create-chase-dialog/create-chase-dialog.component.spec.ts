@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { CreateChaseDialogComponent } from './create-chase-dialog.component';
 
@@ -8,7 +9,11 @@ describe('CreateChaseDialogComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateChaseDialogComponent ]
+      declarations: [ CreateChaseDialogComponent ],
+      imports: [ MatDialogModule ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   }));

@@ -19,7 +19,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./main-editor.component.scss'],
 })
 export class MainEditorComponent implements OnInit, AfterViewInit {
-  public chase: Chase;
+  chase: Chase;
   selectedQuest: number;
   chaseID: string;
   editorAction: string;

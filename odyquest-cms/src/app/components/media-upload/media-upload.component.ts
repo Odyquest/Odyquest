@@ -71,7 +71,11 @@ export class MediaUploadComponent implements OnInit {
   hasVideo(): boolean {
     return this.narrativeType === NarrativeType.Video;
   }
+
   getDefaultFileUrl(): string {
+    if (!this.media.getDefaultFile()) {
+      return '';
+    }
     return this.media.getDefaultFile().url;
   }
   // getTypesFormats(): Array<[string, number]> {
