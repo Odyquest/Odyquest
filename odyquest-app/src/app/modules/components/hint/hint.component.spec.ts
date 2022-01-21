@@ -1,21 +1,28 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { ProvideHelpComponent } from './provide-help.component';
+import { Quest } from 'chase-model';
+import { HintComponent } from './hint.component';
 
-describe('ProvideHelpComponent', () => {
-  let component: ProvideHelpComponent;
-  let fixture: ComponentFixture<ProvideHelpComponent>;
+describe('HintComponent', () => {
+  let component: HintComponent;
+  let fixture: ComponentFixture<HintComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProvideHelpComponent ]
-    })
-    .compileComponents();
+      declarations: [ HintComponent ],
+      imports: [ MatDialogModule ],
+      providers: [
+        {provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {  quest: new Quest() } }
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProvideHelpComponent);
+    fixture = TestBed.createComponent(HintComponent);
     component = fixture.componentInstance;
+    //component.hint = new Hint();
     fixture.detectChanges();
   });
 

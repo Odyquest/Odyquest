@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { Chase, ChaseList } from 'chase-model';
 
 import { ChaseService } from './chase.service';
-import { RuntimeConfigurationService } from './runtime-configuration.service';
+import { AbstractChaseService } from './chase.service';
 
 @Injectable({
   providedIn: 'root'

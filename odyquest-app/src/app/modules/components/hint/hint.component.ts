@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Inject } from '@angular/core';
+import { Inject, Optional } from '@angular/core';
 
-import { Description } from 'chase-model';
+import { Description, Image } from 'chase-model';
 import { Quest, QuestType } from 'chase-model';
 import { QuestStatus } from '../../../core/services/game.service';
 
@@ -61,8 +61,18 @@ export class HintComponent {
      return this.help[this.index];
   }
 
-  getCurrentHelpText(): string {
+  getCurrentText(): string {
+    if (!this.help[this.index]) {
+      return '';
+    }
     return this.help[this.index].text;
+  }
+
+  getCurrentImage(): Image {
+    if (!this.help[this.index]) {
+      return new Image();
+    }
+    return this.help[this.index].image;
   }
 
   getImgClass(): string {

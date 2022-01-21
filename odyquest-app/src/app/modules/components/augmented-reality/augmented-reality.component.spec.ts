@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AugmentedReality } from 'chase-model';
 import { AugmentedRealityComponent } from './augmented-reality.component';
 
 describe('AugmentedRealityComponent', () => {
@@ -16,6 +17,7 @@ describe('AugmentedRealityComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AugmentedRealityComponent);
     component = fixture.componentInstance;
+    component.ar = new AugmentedReality();
     fixture.detectChanges();
   });
 

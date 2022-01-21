@@ -1,21 +1,27 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { TaskComponent } from './task.component';
+import { Quest } from 'chase-model';
+import { QuestComponent } from './quest.component';
 
-describe('TaskComponent', () => {
-  let component: TaskComponent;
-  let fixture: ComponentFixture<TaskComponent>;
+describe('QuestComponent', () => {
+  let component: QuestComponent;
+  let fixture: ComponentFixture<QuestComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaskComponent ]
-    })
-    .compileComponents();
+      declarations: [ QuestComponent ],
+      imports: [ MatDialogModule ],
+       providers: [
+         { provide: MAT_DIALOG_DATA, useValue: {} }
+       ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TaskComponent);
+    fixture = TestBed.createComponent(QuestComponent);
     component = fixture.componentInstance;
+    component.quest = new Quest();
     fixture.detectChanges();
   });
 

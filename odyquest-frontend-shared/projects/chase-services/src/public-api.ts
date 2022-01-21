@@ -11,3 +11,5 @@ export * from './lib/runtime-configuration.service';
  * Mocks for testing
  */
 export * from './lib/chase.service.mock';
+export * from './lib/chase-storage.service.mock';
+export * from './lib/runtime-configuration.service.mock';

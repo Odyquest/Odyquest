@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export abstract class AbstractRuntimeConfigurationService {
+  public abstract get(): any;
+  public abstract isApiBased(): boolean;
+  public abstract getTitleText(locale: string): string;
+  public abstract getSubtitleText(locale: string): string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class RuntimeConfigurationService {
+export class RuntimeConfigurationService implements AbstractRuntimeConfigurationService {
   private config;
 
   constructor(private http: HttpClient) { }
