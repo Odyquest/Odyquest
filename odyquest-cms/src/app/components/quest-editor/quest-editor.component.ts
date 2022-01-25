@@ -23,13 +23,7 @@ import { ChaseEditorService } from 'src/app/services/chase-editor.service';
   styleUrls: ['./quest-editor.component.scss'],
 })
 export class QuestEditorComponent implements OnInit {
-  // chase: Chase;
-  gameElement: GameElement;
-
-  // current state of the form:
-  title: string;
-  description: string;
-  image = new Image();
+  gameElement: GameElement = new Narrative();
 
   is_quest: boolean;
   is_narrative: boolean;
@@ -52,7 +46,6 @@ export class QuestEditorComponent implements OnInit {
 
   buttons: Array<XButton>;
   buttonDestinationList: Array<string>;
-  help: Array<Description>;
 
   initial_setup = true;
 
@@ -113,35 +106,21 @@ export class QuestEditorComponent implements OnInit {
   onNarrativeButtonDestinationChange(index: number, value: string) {
     this.buttons[index].destination = this.chaseEditor.getElementIdByName(value);
     this.buttonDestinationList[index] = value;
-    console.log(
-      'Set Destination of buttons[' +
-        index +
-        '], to ' +
-        this.buttons[index].destination
-    );
   }
 
   onCombinationMapDestinationChange(index: number, value: string) {
     this.combinationMap[index].destination = this.chaseEditor.getElementIdByName(value);
-    console.log(
-      'Set Destination of CombinationMap[' +
-        index +
-        '], to ' +
-        this.combinationMap[index].destination
-    );
   }
 
   deleteNarrativeButton(index: number) {
     console.log('deleteNarrativeButton(' + index + ')');
-
     this.buttons.splice(index, 1);
     this.buttonDestinationList.splice(index, 1);
   }
 
   deleteHelpText(index: number) {
     console.log('deleteHelpText(' + index + ')');
-
-    this.help.splice(index, 1);
+    this.gameElement.help.splice(index, 1);
   }
 
   onTitleChange(): void {
@@ -154,7 +133,6 @@ export class QuestEditorComponent implements OnInit {
 
   deleteQuestSolution(index: number) {
     console.log('deleteQuestSolution(' + index + ')');
-
     this.solutionItems.splice(index, 1);
     for (const cm of this.combinationMap) {
       cm.requiredItems.splice(index, 1);
@@ -177,10 +155,9 @@ export class QuestEditorComponent implements OnInit {
 
   addButton() {
     console.log('addButton()');
-    console.log(this.buttons.length);
 
     const button = new XButton();
-    button.name = 'Weiter';
+    button.name = 'Weiter'; // FIXME localize
     // just use some id which is actually existing
     button.destination = this.chaseEditor.getElementIdByName(
       this.chaseEditor.getElementNames()[0]
@@ -188,19 +165,15 @@ export class QuestEditorComponent implements OnInit {
 
     this.buttons.push(button);
     // this.buttonDestinationList[this.gameElementsList[0]];
-
-    console.log(this.buttons.length);
   }
 
   addHelpText() {
-    console.log('addHelpText()', this.help);
-    console.log(this.help.length);
+    console.log('addHelpText()', this.gameElement.help);
 
-    let help_text = new Description();
-    help_text.text = 'HilfeText';
-    this.help.push(help_text);
+    const helpText = new Description();
+    helpText.text = 'HilfeText'; // FIXME localize
+    this.gameElement.help.push(helpText);
 
-    console.log(this.help.length);
   }
 
   addSolutionItem() {
@@ -241,18 +214,7 @@ export class QuestEditorComponent implements OnInit {
     this.solution_destination_description.push(this.chaseEditor.getElementNames()[0]);
   }
 
-  // hardly a sexy solution...
-  // input forms can't read directly from GameElement?
   gameElementToLocal(): void {
-    // common to all GameElements
-    this.title = this.gameElement.title;
-    this.description = this.gameElement.description.text;
-    this.image = this.gameElement.description.image;
-    this.help = this.gameElement.help;
-    if (this.help === undefined) {
-      this.help = [];
-    }
-
     // Individual stuff
     if (this.gameElement instanceof Quest) {
       this.solutionItems =
@@ -315,11 +277,7 @@ export class QuestEditorComponent implements OnInit {
 
   localToGameElement(): void {
     // common to all GameElements
-    this.gameElement.title = this.title;
-    console.log(this.gameElement.title);
-    this.gameElement.description.text = this.description;
-    this.gameElement.description.image = this.image;
-    this.gameElement.help = this.help;
+    // this.gameElement.help = this.help;
 
     // Individual stuff
     if (this.gameElement instanceof Quest) {
@@ -417,7 +375,7 @@ export class QuestEditorComponent implements OnInit {
   }
 
   updateImage(image: Image): void {
-    this.image = image;
+    this.gameElement.description.image = image;
   }
 
   updateMedia(media: Media): void {
@@ -425,7 +383,7 @@ export class QuestEditorComponent implements OnInit {
   }
 
   updateHelpImage(helpId: number, image: Image): void {
-    this.help[helpId].image = image;
+    this.gameElement.help[helpId].image = image;
   }
 
   getNarrativeType(type: string): NarrativeType {
@@ -456,6 +414,6 @@ export class QuestEditorComponent implements OnInit {
   }
 
   getImage(): Image {
-    return this.image || new Image();
+    return this.gameElement.description.image || new Image();
   }
 }

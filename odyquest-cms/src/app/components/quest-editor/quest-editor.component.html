@@ -9,7 +9,7 @@
     <form id="editor-meta-info-input">
       <mat-form-field>
         <mat-label for="quest_name" i18n="@@quest_editor.title">Title:</mat-label>
-        <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="title" (change)="onTitleChange()">
+        <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="gameElement.title">
       </mat-form-field>
 
       <mat-form-field>
@@ -21,7 +21,7 @@
                   placeholder="Description text..."
                   name="fname"
                   class="input_field_big"
-                  [(ngModel)]="description"></textarea>
+                  [(ngModel)]="gameElement.description.text"></textarea>
       </mat-form-field>
     </form>
     <div class="row">
@@ -277,16 +277,16 @@
     <div class="button-array-container border">
       <h3 i18n="@@quest_editor.hints">Hints</h3>
       <form>
-        <div *ngFor="let help_entry of help; let i = index">
+        <div *ngFor="let hint of gameElement.help; let i = index">
           <hr />
           <div class="single-button-container">
             <span i18n="@@quest_editor.hint_page">Page {{i+1}}</span>
             <mat-form-field>
               <mat-label></mat-label>
-              <textarea matInput type="text" name="hint_text_{{i}}" [(ngModel)]="this.help[i].text"></textarea>
+              <textarea matInput type="text" name="hint_text_{{i}}" [(ngModel)]="hint.text"></textarea>
             </mat-form-field>
             <app-image-upload class="editor-image-outer-container"
-                              [image]="this.help[i].image"
+                              [image]="hint.image"
                               [chaseId]="getChaseId()"
                               (imageUrl)="updateHelpImage(i, $event)" >
             </app-image-upload>
