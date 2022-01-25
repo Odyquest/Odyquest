@@ -11,7 +11,7 @@
         <mat-label for="quest_name" i18n="@@quest_editor.title">Title:</mat-label>
         <input matInput type="text" id="quest-name" name="quest_name"
                         [(ngModel)]="gameElement.title"
-                        [ngModelChange]="chaseEditor.notifyElementTitleChanged()">
+                        (ngModelChange)="chaseEditor.notifyElementTitleChanged()">
       </mat-form-field>
 
       <mat-form-field>
@@ -24,7 +24,7 @@
                   name="fname"
                   class="input_field_big"
                   [(ngModel)]="gameElement.description.text"
-                  [ngModelChange]="chaseEditor.notifyElementChanged()"></textarea>
+                  (ngModelChange)="chaseEditor.notifyElementChanged()"></textarea>
       </mat-form-field>
     </form>
     <div class="row">
@@ -38,9 +38,9 @@
           Tutorial for inserting emojis
         </a>
       </div>
-      <div class="column">
+      <!--<div class="column">
         <button mat-raised-button color="primary" (click)="main_editor.tryInApp()">Ausprobieren</button>
-      </div>
+      </div>-->
     </div>
   </div>
 </div>

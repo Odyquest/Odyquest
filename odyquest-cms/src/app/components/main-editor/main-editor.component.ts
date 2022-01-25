@@ -32,7 +32,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     private configuration: RuntimeConfigurationService,
     private chaseService: ChaseService,
     private chaseStorage: ChaseStorageService,
-    private chaseEditor: ChaseEditorService
+    public chaseEditor: ChaseEditorService
   ) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
     this.editorAction = this.activatedRoute.snapshot.queryParams.action;
@@ -178,5 +178,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   hasModifiableApi(): boolean {
     return this.configuration.isApiBased();
 
+  }
+
+  createNewChase(): void {
+    // TODO
   }
 }

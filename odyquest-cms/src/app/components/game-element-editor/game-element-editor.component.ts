@@ -20,7 +20,7 @@ export class GameElementEditorComponent implements OnInit {
   @ViewChild('quest_editor') questEditor;
 
   constructor(
-    private chaseEditor: ChaseEditorService
+    public chaseEditor: ChaseEditorService
   ) {}
 
   ngOnInit(): void {

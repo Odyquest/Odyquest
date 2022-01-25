@@ -13,7 +13,7 @@ export class MetaDataEditorComponent implements OnInit {
   initialElement = '';
 
   constructor(
-    private chaseEditor: ChaseEditorService,
+    public chaseEditor: ChaseEditorService,
   ) { }
 
   ngOnInit(): void {

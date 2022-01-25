@@ -29,7 +29,7 @@ export class QuestEditorComponent implements OnInit {
 
   constructor(
     private cd: ChangeDetectorRef,
-    private chaseEditor: ChaseEditorService
+    public chaseEditor: ChaseEditorService
   ) {}
 
   ngOnInit(): void {}
