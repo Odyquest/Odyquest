@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
+import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
+
 import { GameElement } from 'chase-model';
 import { Quest, QuestType } from 'chase-model';
 import {
@@ -11,10 +13,9 @@ import { Media } from 'chase-model';
 import { XButton } from 'chase-model';
 import { Chase } from 'chase-model';
 import { LogicType, SolutionTerm } from 'chase-model';
-import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
 import { Description } from 'chase-model';
-import { MainEditorComponent } from '../main-editor/main-editor.component';
-import { ChaseService } from 'chase-services';
+
+import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 
 @Component({
   selector: 'app-quest-editor',
@@ -22,13 +23,13 @@ import { ChaseService } from 'chase-services';
   styleUrls: ['./quest-editor.component.scss'],
 })
 export class QuestEditorComponent implements OnInit {
-  chase: Chase;
+  // chase: Chase;
   gameElement: GameElement;
 
   // current state of the form:
   title: string;
   description: string;
-  image: Image;
+  image = new Image();
 
   is_quest: boolean;
   is_narrative: boolean;
@@ -51,16 +52,13 @@ export class QuestEditorComponent implements OnInit {
 
   buttons: Array<XButton>;
   buttonDestinationList: Array<string>;
-  gameElementsMap: Map<number, string>;
-  gameElementsList: string[];
   help: Array<Description>;
 
   initial_setup = true;
 
   constructor(
-    @Inject(MainEditorComponent) public main_editor: MainEditorComponent,
     private cd: ChangeDetectorRef,
-    private chaseService: ChaseService
+    private chaseEditor: ChaseEditorService
   ) {}
 
   ngOnInit(): void {}
@@ -112,15 +110,8 @@ export class QuestEditorComponent implements OnInit {
     this.narrative_type = value;
   }
 
-  parseIdFromGEString(text: string): number {
-    let id_text = text.substr(text.lastIndexOf('(') + 1);
-    id_text = id_text.substr(0, id_text.length - 1);
-
-    return +id_text;
-  }
-
   onNarrativeButtonDestinationChange(index: number, value: string) {
-    this.buttons[index].destination = this.parseIdFromGEString(value);
+    this.buttons[index].destination = this.chaseEditor.getElementIdByName(value);
     this.buttonDestinationList[index] = value;
     console.log(
       'Set Destination of buttons[' +
@@ -131,7 +122,7 @@ export class QuestEditorComponent implements OnInit {
   }
 
   onCombinationMapDestinationChange(index: number, value: string) {
-    this.combinationMap[index].destination = this.parseIdFromGEString(value);
+    this.combinationMap[index].destination = this.chaseEditor.getElementIdByName(value);
     console.log(
       'Set Destination of CombinationMap[' +
         index +
@@ -158,7 +149,7 @@ export class QuestEditorComponent implements OnInit {
 
     // save data so the MainCOmponent can access it, then recreate the quest list
     this.localToGameElement();
-    this.main_editor.loadDataFromChase();
+    // TODO this.main_editor.loadDataFromChase();
   }
 
   deleteQuestSolution(index: number) {
@@ -191,8 +182,8 @@ export class QuestEditorComponent implements OnInit {
     const button = new XButton();
     button.name = 'Weiter';
     // just use some id which is actually existing
-    button.destination = this.parseIdFromGEString(
-      this.gameElementsList[0]
+    button.destination = this.chaseEditor.getElementIdByName(
+      this.chaseEditor.getElementNames()[0]
     );
 
     this.buttons.push(button);
@@ -223,7 +214,7 @@ export class QuestEditorComponent implements OnInit {
     }
 
     // just use some id which is actually existing
-    // button.destination = this.parseIdFromGEString(this.gameElementsMap.values().next().value);
+    // button.destination = this.this.chaseEditor.getElementIdByName(this.gameElementsMap.values().next().value);
 
     this.solutionItems.push(solution);
   }
@@ -247,7 +238,7 @@ export class QuestEditorComponent implements OnInit {
 
     this.combinationMap.push(new_comb);
     this.solution_type_status_int.push(1);
-    this.solution_destination_description.push(this.gameElementsList[0]);
+    this.solution_destination_description.push(this.chaseEditor.getElementNames()[0]);
   }
 
   // hardly a sexy solution...
@@ -292,7 +283,7 @@ export class QuestEditorComponent implements OnInit {
       this.solution_destination_description = new Array<string>();
       let counter = 0;
       for (const cm of this.gameElement.requirementCombination.combinationMap) {
-        this.solution_destination_description.push(this.gameElementsMap.get(cm.destination));
+        this.solution_destination_description.push(this.chaseEditor.getElementNameById(cm.destination));
         if (cm.logicType === LogicType.And) {
           this.solution_type_status_int[counter] = 1;
         } else {
@@ -316,7 +307,7 @@ export class QuestEditorComponent implements OnInit {
       this.buttons = this.gameElement.buttons;
       this.buttonDestinationList = new Array<string>();
       for (const button of this.buttons) {
-        this.buttonDestinationList.push(this.gameElementsMap.get(button.destination));
+        this.buttonDestinationList.push(this.chaseEditor.getElementNameById(button.destination));
       }
       console.log('Number of Buttons: ', this.buttons.length);
     }
@@ -343,7 +334,7 @@ export class QuestEditorComponent implements OnInit {
 
       let counter = 0;
       for (const cm of this.gameElement.requirementCombination.combinationMap) {
-        cm.destination = this.parseIdFromGEString(this.solution_destination_description[counter]);
+        cm.destination = this.chaseEditor.getElementIdByName(this.solution_destination_description[counter]);
         if (this.solution_type_status_int[counter] === 1) {
           cm.logicType = LogicType.And;
         } else {
@@ -368,25 +359,11 @@ export class QuestEditorComponent implements OnInit {
     }
   }
 
-  setChase(chase: Chase): void {
-    this.chase = chase;
+  reloadChase(): void {
+    // this.chaseEditor.getChase() = chase;
 
     // create gameelementsmap (id -> string)
     // also create simple array used to generate dropdown values
-    this.gameElementsMap = new Map<number, string>();
-    this.gameElementsList = [];
-
-    this.chase.gameElements.forEach((value: GameElement, key: number) => {
-      let title_with_id = value.title + ' (' + key + ')';
-      console.log('Key', key, 'GameElement' + title_with_id);
-      this.gameElementsMap.set(key, title_with_id);
-      this.gameElementsList.push(title_with_id);
-    });
-
-    console.log('GameElementsList length:', this.gameElementsList.length);
-    this.gameElementsList.forEach(value => {
-      console.log(value);
-    });
   }
 
   setGameElementToEdit(gm: GameElement): void {
@@ -417,7 +394,7 @@ export class QuestEditorComponent implements OnInit {
   }
 
   getElementFromMap(index: number): string {
-    return this.gameElementsMap.get(index);
+    return this.chaseEditor.getElementNameById(index);
   }
 
   save(): void {
@@ -434,8 +411,8 @@ export class QuestEditorComponent implements OnInit {
   }
 
   getChaseId(): string {
-    if (this.chase && this.chase.metaData.chaseId) {
-      return this.chase.metaData.chaseId;
+    if (this.chaseEditor.getChase() && this.chaseEditor.getChase().metaData.chaseId) {
+      return this.chaseEditor.getChase().metaData.chaseId;
     }
   }
 
@@ -476,5 +453,9 @@ export class QuestEditorComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  getImage(): Image {
+    return this.image || new Image();
   }
 }

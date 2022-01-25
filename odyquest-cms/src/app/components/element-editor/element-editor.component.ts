@@ -24,9 +24,9 @@ export class ElementEditorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setChase(chase: Chase): void {
-    this.metaDataEditor.setChase(chase);
-    this.questEditor.setChase(chase);
+  reloadChase(): void {
+    this.metaDataEditor.reloadChase();
+    this.questEditor.reloadChase();
   }
 
   setMetaDataToEdit(): void {

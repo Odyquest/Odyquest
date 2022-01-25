@@ -2,7 +2,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterTestingModule } from '@angular/router/testing';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthService, OAuthSuccessEvent } from 'angular-oauth2-oidc';
 
 import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
 import { AppComponent } from './app.component';
@@ -14,7 +14,6 @@ describe('AppComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         MatMenuModule,
-        OAuthModule.forRoot()
       ],
       declarations: [
         AppComponent
@@ -23,6 +22,20 @@ describe('AppComponent', () => {
         {
           provide: RuntimeConfigurationService,
           useClass: RuntimeConfigurationServiceMock
+        },
+        {
+          provide: OAuthService,
+          useValue: {
+            loadDiscoveryDocument: () => new Promise<OAuthSuccessEvent>((resolve, reject) => {
+}),
+            tryLogin: () => {},
+            hasValidAccessToken: () =>  true,
+            silentRefresh: () => {},
+            getIdentityClaims: () => 'user_name',
+            setupAutomaticSilentRefresh: () => 'user_name',
+            initImplicitFlow: () => 'user_name',
+            logOut: () => 'user_name',
+          }
         }
       ]
     }).compileComponents();

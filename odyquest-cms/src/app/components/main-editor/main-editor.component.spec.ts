@@ -5,6 +5,7 @@ import { Chase } from 'chase-model';
 import { ChaseService, ChaseServiceMock } from 'chase-services';
 import { ChaseStorageService, ChaseStorageServiceMock } from 'chase-services';
 import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
+import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 import { MainEditorComponent } from './main-editor.component';
 
 describe('MainEditorComponent', () => {
@@ -27,7 +28,8 @@ describe('MainEditorComponent', () => {
         {
           provide: ChaseService,
           useClass: ChaseServiceMock
-        }
+        },
+        ChaseEditorService
       ]
     })
     .compileComponents();
@@ -37,7 +39,6 @@ describe('MainEditorComponent', () => {
     fixture = TestBed.createComponent(MainEditorComponent);
     component = fixture.componentInstance;
     // FIXME should not be necessary
-    component.chase = new Chase();
     fixture.detectChanges();
   });
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChaseService, ChaseServiceMock } from 'chase-services';
+import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 import { MetaDataEditorComponent } from './meta-data-editor.component';
 
 describe('MetaDataEditorComponent', () => {
@@ -10,12 +11,7 @@ describe('MetaDataEditorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ MetaDataEditorComponent ],
-      providers: [
-        {
-          provide: ChaseService,
-          useClass: ChaseServiceMock
-        }
-      ]
+      providers: [ ChaseEditorService ]
     })
     .compileComponents();
   });

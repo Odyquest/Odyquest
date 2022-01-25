@@ -1,6 +1,6 @@
 <div class="editor-top-container">
   <app-image-upload class="editor-image-outer-container"
-                    [image]="this.image"
+                    [image]="getImage()"
                     [chaseId]="getChaseId()"
                     (imageChange)="updateImage($event)" >
   </app-image-upload>
