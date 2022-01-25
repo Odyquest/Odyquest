@@ -19,15 +19,8 @@ import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 })
 export class NarrativeEditorComponent implements OnInit {
   gameElement: Narrative = new Narrative();
-
-  narrative_status: NarrativeStatus;
-  public selected_narrative_status_int = 1; // "Continue" = 1, "Win" = 2, "Loose" = 3
-  narrative_type: NarrativeType;
-
-  buttons: Array<XButton>;
   buttonDestinationList: Array<string>;
-
-  initial_setup = true;
+  initialSetup = true;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -40,51 +33,29 @@ export class NarrativeEditorComponent implements OnInit {
   gameElementToLocal(): void {
     // Individual stuff
     if (this.gameElement instanceof Narrative) {
-      this.narrative_status = this.gameElement.narrativeStatus;
-      if (this.narrative_status === NarrativeStatus.Continue) {
-        this.selected_narrative_status_int = 1;
-      } else if (this.narrative_status === NarrativeStatus.Win) {
-        this.selected_narrative_status_int = 2;
-      } else {
-        this.selected_narrative_status_int = 3;
-      }
-
-      this.narrative_type = this.gameElement.narrativeType;
-
-      console.log('loaded narrative status as: ', this.narrative_status);
-      this.buttons = this.gameElement.buttons;
       this.buttonDestinationList = new Array<string>();
-      for (const button of this.buttons) {
+      for (const button of this.gameElement.buttons) {
         this.buttonDestinationList.push(this.chaseEditor.getElementNameById(button.destination));
       }
-      console.log('Number of Buttons: ', this.buttons.length);
+      console.log('Number of Buttons: ', this.gameElement.buttons.length);
     }
   }
 
   localToGameElement(): void {
-    if (this.gameElement instanceof Narrative) {
-      this.gameElement.narrativeStatus = this.narrative_status;
-      this.gameElement.narrativeType = this.narrative_type;
-      this.gameElement.buttons = this.buttons;
-    }
   }
 
   reloadChase(): void {
-    // this.chaseEditor.getChase() = chase;
   }
 
   setGameElementToEdit(gm: Narrative): void {
-    if (this.initial_setup) {
-      this.initial_setup = false;
+    if (this.initialSetup) {
+      this.initialSetup = false;
     } else {
       // save all stuff that was done in the old editor
       this.localToGameElement();
     }
 
     this.gameElement = gm;
-
-    console.log('Title: ' + this.gameElement.title);
-
     this.gameElementToLocal();
 
     // we need to manually tell angular that changes occured:
@@ -93,54 +64,47 @@ export class NarrativeEditorComponent implements OnInit {
 
   addButton() {
     console.log('addButton()');
-
     const button = new XButton();
     button.name = 'Weiter'; // FIXME localize
-    // just use some id which is actually existing
     button.destination = this.chaseEditor.getElementIdByName(
-      this.chaseEditor.getElementNames()[0]
-    );
-
-    this.buttons.push(button);
-    // this.buttonDestinationList[this.gameElementsList[0]];
+                           this.chaseEditor.getElementNames()[0]);
+    this.gameElement.buttons.push(button);
   }
 
   deleteNarrativeButton(index: number) {
     console.log('deleteNarrativeButton(' + index + ')');
-    this.buttons.splice(index, 1);
+    this.gameElement.buttons.splice(index, 1);
     this.buttonDestinationList.splice(index, 1);
   }
 
   onNarrativeButtonDestinationChange(index: number, value: string) {
-    this.buttons[index].destination = this.chaseEditor.getElementIdByName(value);
+    this.gameElement.buttons[index].destination = this.chaseEditor.getElementIdByName(value);
     this.buttonDestinationList[index] = value;
   }
 
   onNarrativeTypeChange(value: NarrativeType) {
     console.log('Narrative type to ' + value);
-    this.narrative_type = value;
+    this.gameElement.narrativeType = value;
   }
 
-  onNarrativeStatusChange(value: number) {
+  onNarrativeStatusChange(value: NarrativeStatus) {
     console.log('Narrative status to ' + value);
-    switch (value) {
-      case 1: // "Continue"
-        this.narrative_status = NarrativeStatus.Continue;
-        console.log(this.selected_narrative_status_int);
-        break;
-      case 2: // "Win"
-        this.narrative_status = NarrativeStatus.Win;
-        console.log(this.selected_narrative_status_int);
-        break;
-      case 3: // "Loose"
-        this.narrative_status = NarrativeStatus.Loose;
-        console.log(this.selected_narrative_status_int);
-        break;
-    }
+    this.gameElement.narrativeStatus = value;
   }
 
   updateMedia(media: Media): void {
     (this.gameElement as Narrative).setCurrentMedia(media);
+  }
+
+  getNarrativeStatus(type: string): NarrativeStatus {
+    switch (type) {
+      case NarrativeStatus.Continue:
+        return NarrativeStatus.Continue;
+      case NarrativeStatus.Win:
+        return NarrativeStatus.Win;
+      case NarrativeStatus.Loose:
+        return NarrativeStatus.Loose;
+    }
   }
 
   getNarrativeType(type: string): NarrativeType {
@@ -164,7 +128,8 @@ export class NarrativeEditorComponent implements OnInit {
 
   needsMediaUpload(): boolean {
     if (this.hasMedia()) {
-      return this.narrative_type === NarrativeType.Audio || this.narrative_type === NarrativeType.Video;
+      return this.gameElement.narrativeType === NarrativeType.Audio
+        || this.gameElement.narrativeType === NarrativeType.Video;
     } else {
       return false;
     }

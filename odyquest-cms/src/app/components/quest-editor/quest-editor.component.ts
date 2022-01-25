@@ -3,12 +3,7 @@ import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest'
 
 import { GameElement } from 'chase-model';
 import { Quest, QuestType } from 'chase-model';
-import {
-  Narrative,
-  NarrativeType,
-  NarrativeStatus,
-  Image
-} from 'chase-model';
+import { Image } from 'chase-model';
 import { Media } from 'chase-model';
 import { Chase } from 'chase-model';
 import { LogicType, SolutionTerm } from 'chase-model';
@@ -26,15 +21,11 @@ export class QuestEditorComponent implements OnInit {
 
   solutionItems: Array<string>;
   combinationMap: Array<SolutionTerm>;
-  maxTries: number;
   maxTime: number;
-  public quest_type_status_int; // "Text" = 1, "MultipleChoice" = 2
-  questType: QuestType;
-  display_image_first: boolean;
   solution_type_status_int: Array<number>;
   solution_destination_description: Array<string>;
 
-  initial_setup = true;
+  initialSetup = true;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -43,27 +34,12 @@ export class QuestEditorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onQuestTypeChange(value: string) {
-    console.log('Changed quest type to ' + value);
+  getQuestType(value: string): QuestType {
     switch (value) {
-      case '1':
-        this.questType = QuestType.Text;
-        break;
-      case '2':
-        this.questType = QuestType.MultipleChoice;
-        break;
-    }
-  }
-
-  onSolutionTypeStatusChange(value: string, index: number) {
-    console.log('Changed solution type on index ' + index + ' to ' + value);
-    switch (value) {
-      case '1':
-        this.questType = QuestType.Text;
-        break;
-      case '2':
-        this.questType = QuestType.MultipleChoice;
-        break;
+      case QuestType.Text:
+        return QuestType.Text;
+      case QuestType.MultipleChoice:
+        return QuestType.MultipleChoice;
     }
   }
 
@@ -96,16 +72,12 @@ export class QuestEditorComponent implements OnInit {
   addSolutionItem() {
     console.log('addSolutionItem()');
 
-    const solution = 'Neue Lösung';
+    const solution = 'Neue Lösung'; // FIXME localize
 
     // todo need to update various other stuff
     for (let comb = 0; comb < this.combinationMap.length; comb++) {
       this.combinationMap[comb].requiredItems.push(true);
     }
-
-    // just use some id which is actually existing
-    // button.destination = this.this.chaseEditor.getElementIdByName(this.gameElementsMap.values().next().value);
-
     this.solutionItems.push(solution);
   }
 
@@ -138,24 +110,11 @@ export class QuestEditorComponent implements OnInit {
         this.gameElement.requirementCombination.solutionItems;
       this.combinationMap =
         this.gameElement.requirementCombination.combinationMap;
-      this.maxTries = this.gameElement.maxTries;
-      this.questType = this.gameElement.questType;
-
-      this.display_image_first = this.gameElement.displayImageFirst;
 
       if (this.gameElement.maxTime !== undefined) {
         this.maxTime = this.gameElement.maxTime.getTime() / 1000;
       } else {
         this.maxTime = 0;
-      }
-
-      switch (this.questType) {
-        case QuestType.Text:
-          this.quest_type_status_int = 1;
-          break;
-        case QuestType.MultipleChoice:
-          this.quest_type_status_int = 2;
-          break;
       }
 
       this.solution_type_status_int = [];
@@ -180,10 +139,6 @@ export class QuestEditorComponent implements OnInit {
         this.solutionItems;
       this.gameElement.requirementCombination.combinationMap =
         this.combinationMap;
-      this.gameElement.maxTries = this.maxTries;
-      this.gameElement.questType = this.questType;
-
-      this.gameElement.displayImageFirst = this.display_image_first;
 
       let counter = 0;
       for (const cm of this.gameElement.requirementCombination.combinationMap) {
@@ -200,11 +155,6 @@ export class QuestEditorComponent implements OnInit {
       t.setSeconds(this.maxTime);
       this.gameElement.maxTime = t;
 
-      if (this.quest_type_status_int === 1) {
-        this.gameElement.questType = QuestType.Text;
-      } else {
-        this.gameElement.questType = QuestType.MultipleChoice;
-      }
     }
   }
 
@@ -212,17 +162,14 @@ export class QuestEditorComponent implements OnInit {
   }
 
   setGameElementToEdit(gm: Quest): void {
-    if (this.initial_setup) {
-      this.initial_setup = false;
+    if (this.initialSetup) {
+      this.initialSetup = false;
     } else {
       // save all stuff that was done in the old editor
       this.localToGameElement();
     }
 
     this.gameElement = gm;
-
-    console.log('Title: ' + this.gameElement.title);
-
     this.gameElementToLocal();
 
     // we need to manually tell angular that changes occured:
