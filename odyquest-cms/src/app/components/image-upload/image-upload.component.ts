@@ -44,7 +44,7 @@ export class ImageUploadComponent implements OnInit {
   }
 
   getDefaultImageUrl(): string {
-    if (!this.image.getDefaultFile()) {
+    if (!(this.image instanceof Image) || !this.image.getDefaultFile()) {
       return '';
     }
     return this.image.getDefaultFile().url;
@@ -59,5 +59,9 @@ export class ImageUploadComponent implements OnInit {
 
   canUploadImage(): boolean {
     return this.configuration.isApiBased();
+  }
+
+  hasFiles(): boolean {
+    return this.image instanceof Image && this.image.hasFiles();
   }
 }

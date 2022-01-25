@@ -1,0 +1,98 @@
+<div class="content-all-types">
+  <div class=content-type-narrative>
+    <h2>Erzählelement hinzufügen</h2>
+    <div class="narrative-top-section border">
+      <div class=narrative-status>
+        <mat-form-field>
+          <mat-label for="narrative-status">Aktion</mat-label>
+          <mat-select
+            name="narrative-status-selector"
+            id="narrative-status-selector"
+            [(ngModel)]="selected_narrative_status_int">
+            <mat-option [value]="1" (click)="onNarrativeStatusChange(1)">Weiter</mat-option>
+            <mat-option [value]="2" (click)="onNarrativeStatusChange(2)">Gewinnen</mat-option>
+            <mat-option [value]="3" (click)="onNarrativeStatusChange(3)">Verlieren</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <div class=narrative-status>
+        <mat-form-field>
+          <mat-label for="narrative-type">Typ:</mat-label>
+          <mat-select
+            name="narrative-type"
+            id="narrative-type-selector"
+            [(ngModel)]="narrative_type">
+            <mat-option [value]="getNarrativeType('text')" (click)="onNarrativeTypeChange(getNarrativeType('text'))">Text</mat-option>
+            <mat-option [value]="getNarrativeType('audio')" (click)="onNarrativeTypeChange(getNarrativeType('audio'))">Audio</mat-option>
+            <mat-option [value]="getNarrativeType('video')" (click)="onNarrativeTypeChange(getNarrativeType('video'))">Video</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+    </div>
+    <app-media-upload class="narrative-media-container border"
+                      *ngIf="needsMediaUpload()"
+                      [media]="getMedia()"
+                      [chaseId]="chaseEditor.getChaseId()"
+                      (updateMedia)="updateMedia($event)" >
+    </app-media-upload>
+    <div id=narrator-button-array-container class="border">
+      <div class="row">
+        <h3 i18n="@@quest_editor.button.available_buttons">
+          Available Buttons:
+        </h3>
+      </div>
+
+      <ng-container *ngFor="let button of buttons; let i = index">
+        <div *ngIf="i === 0" class="row">
+          <div class="column">
+            <h3 i18n="@@quest_editor.button.text_header">Label:</h3>
+          </div>
+          <div class="column">
+            <h3 i18n="@@quest_editor.button.destination_header">Destination:</h3>
+          </div>
+          <div class="column">
+            <h3><!--placeholder for delete button column--></h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <mat-form-field>
+              <mat-label i18n="@@quest_editor.button.text_input">label of the button</mat-label>
+              <input matInput type="text" id="quest-name" name="quest_name" [(ngModel)]="button.name">
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <mat-form-field>
+              <mat-select [(ngModel)]="buttonDestinationList[i]">
+                <mat-option *ngFor="let target of chaseEditor.getElementNames()" [value]='target'
+                  [attr.selected]="chaseEditor.getElementIdByName(target)==button.destination ? true : null"
+                  (click)="onNarrativeButtonDestinationChange(i, target)">{{target}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="column">
+            <button mat-icon-button [disabled]="this.buttons.length < 2" (click)=deleteNarrativeButton(i)>
+              <mat-icon>delete
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="row">
+        <button class="saveCancelButton"
+                mat-raised-button
+                color="primary"
+                (click)="addButton()"
+                i18n="@@quest_editor.add_button">
+          add button
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

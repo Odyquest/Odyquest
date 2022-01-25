@@ -1,0 +1,237 @@
+@import "src/styles";
+@import "src/app/components/editor-styles.scss";
+
+.editor-hidden {
+  display: none;
+}
+.editor-visible {
+  //display: visible;
+}
+.help-image-container {
+  display: flex;
+  min-width: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.help-image {
+  max-height: 42px;
+  width: auto !important;
+}
+
+.default-image {
+  color: grey;
+}
+
+.quest-top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 15px;
+  flex-wrap: wrap;
+}
+
+#combination-type-selector {
+  margin-bottom: 10px;
+  width: 70%;
+}
+
+.switchable-quest-content {
+  width: 90%;
+  height: 60%;
+  //border: 1px solid white;
+}
+
+.content-for-object-search {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border: 1px solid white;
+  justify-content: space-between;
+  //background: blue;
+}
+
+.object-select-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  //background: green;
+}
+
+.object-select-container-single {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  //background:red;
+}
+
+.object-misc-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  //background: yellow;
+}
+
+
+.content-for-input-term {
+  width: 100%;
+  height: 100%;
+  //display: flex;
+  //flex-direction: column;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+.content-for-multiple-choice {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+.content-type-narrative {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.content-type-quest{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.content-type-hint {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 50px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.add-table-button {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background: #bea05a;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.saveCancelButton {
+  margin: 10px;
+  max-width: 250px;
+}
+
+img {
+  width: 100%;
+}
+
+li {
+  list-style-type: none;
+}
+
+.delete_icon {
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+
+.delete_icon:hover {
+  //color: red;
+  //border: 2px solid red;
+}
+
+h3 {
+  font-weight: 500;
+  text-align: center;
+}
+
+#editor-meta-info-input{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-icon-wrapper {
+  display: flex;
+  width: 100%;
+  min-width: 50px;
+  max-width: 55px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.button-array-container {
+  padding-top: 10px;
+  width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+  .single-button-container {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 900px) {
+  .single-button-container {
+    flex-direction: row;
+  }
+}
+.single-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+
+}

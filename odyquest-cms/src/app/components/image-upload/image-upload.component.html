@@ -1,6 +1,6 @@
 <div class="editor-image-container">
-  <img *ngIf="image.hasFiles()" [src]="getDefaultImageUrl()">
-  <mat-icon class="default-image" *ngIf="!image.hasFiles()">collections</mat-icon>
+  <img *ngIf="hasFiles()" [src]="getDefaultImageUrl()">
+  <mat-icon class="default-image" *ngIf="!hasFiles()">collections</mat-icon>
 </div>
 <input type="text"
        id="image-name"

@@ -86,4 +86,23 @@ export class ChaseEditorService {
   public getQuestNames(): string[] {
     return this.questNames;
   }
+
+  public getChaseId(): string {
+    if (this.chase && this.chase.metaData.chaseId) {
+      return this.chase.metaData.chaseId;
+    }
+  }
+
+  public notifyElementChanged(): void {
+    // TODO
+  }
+
+  public notifyElementTitleChanged(): void {
+    // TODO
+    this.notifyElementChanged();
+  }
+
+  public notifySaved(): void {
+    // TODO
+  }
 }
