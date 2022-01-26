@@ -15,13 +15,11 @@
       </mat-form-field>
 
       <mat-form-field>
-        <label for="fname" i18n="@@quest_editor.description">Description:</label>
+        <mat-label for="description_name" i18n="@@quest_editor.description">Description:</mat-label>
         <textarea matInput
                   type="text"
                   id="bug_brief"
-                  i18n-placeholder
-                  placeholder="Description text..."
-                  name="fname"
+                  name="description_name"
                   class="input_field_big"
                   [(ngModel)]="gameElement.description.text"
                   (ngModelChange)="chaseEditor.notifyElementChanged()"></textarea>

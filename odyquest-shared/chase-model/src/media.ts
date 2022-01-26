@@ -94,18 +94,8 @@ export class Video extends MediaWithFilelist<VideoFile> {
 }
 
 @Serializable()
-export class AugmentedReality extends Media {
+export class AugmentedReality extends MediaWithFilelist<MediaFile> {
   baseUrl = '';
-
-  public hasFiles(): boolean {
-    // TODO implement
-    return false;
-  }
-
-  public getDefaultFile(): MediaFile {
-    // TODO implement
-    return new MediaFile(this.baseUrl);
-  }
 }
 
 /**

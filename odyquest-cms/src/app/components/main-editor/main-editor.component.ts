@@ -47,11 +47,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
       });
     } else {
       console.log('create new chase');
-      const chase = new Chase();
-      this.chaseEditor.setChase(chase);
-      // add default element
-      this.addQuest();
-      this.loadDataFromChase();
+      this.createNewChase();
     }
   }
 
@@ -177,10 +173,13 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   hasModifiableApi(): boolean {
     return this.configuration.isApiBased();
-
   }
 
   createNewChase(): void {
-    // TODO
+    // TODO check for unsaved changes
+    const chase = new Chase();
+    this.chaseEditor.setChase(chase);
+    this.addQuest();
+    this.loadDataFromChase();
   }
 }

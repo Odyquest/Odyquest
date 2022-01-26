@@ -6,7 +6,7 @@ import { Quest } from './quest';
 import { GameElement } from './game_element';
 
 @Serializable()
-export class EditingData {
+export class ChaseEditingData {
   @JsonProperty() creationDate?: Date;
   @JsonProperty() publicationDate?: Date;
   @JsonProperty() lastEdition?: Date;
@@ -25,12 +25,9 @@ export class ChaseMetaData {
   @JsonProperty() version?: number;
   @JsonProperty() title: string = '';
 
-  /** deprecated -> replaced by preview */
-  @JsonProperty() description: string = '';
-
   @JsonProperty() preview: Preview = new Preview();
   @JsonProperty() author?: string;
-  @JsonProperty() editing?: EditingData;
+  @JsonProperty() editing?: ChaseEditingData;
 }
 
 /**

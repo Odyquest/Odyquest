@@ -15,7 +15,6 @@ export function getSimpleExample(): Chase {
   const metaData = new ChaseMetaData();
   metaData.chaseId = 'simple_id';
   metaData.title = 'This is an example chase!';
-  metaData.description = 'This chase has no content';
   metaData.preview = new Preview()
   metaData.preview.description = new Description()
   metaData.preview.description.text = 'This chase has no content';
@@ -44,7 +43,6 @@ export function getTestChase(): Chase {
   const metaData = new ChaseMetaData();
   metaData.chaseId = 'simple_id';
   metaData.title = 'This is an example chase!';
-  metaData.description = 'This chase has no content';
   metaData.preview = new Preview()
   metaData.preview.description = new Description()
   metaData.preview.description.text = 'This chase has no content';
