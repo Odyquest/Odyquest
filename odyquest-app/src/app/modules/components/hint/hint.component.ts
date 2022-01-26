@@ -5,7 +5,7 @@ import { Inject, Optional } from '@angular/core';
 
 import { Description, Image } from 'chase-model';
 import { Quest, QuestType } from 'chase-model';
-import { QuestStatus } from '../../../core/services/game.service';
+import { GameService, QuestStatus } from '../../../core/services/game.service';
 
 @Component({
   selector: 'app-hint',
@@ -18,6 +18,7 @@ export class HintComponent {
   pageNumber: string;
 
   constructor(public dialogRef: MatDialogRef<HintComponent>,
+              private game: GameService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.hint = this.data.quest.hint;
     if (this.hint.length < 1) {
@@ -69,10 +70,11 @@ export class HintComponent {
   }
 
   getCurrentImage(): Image {
-    if (!this.hint[this.index]) {
+    const image = this.game.chase.getImage(this.hint[this.index].image);
+    if (!this.hint[this.index] || !image) {
       return new Image();
     }
-    return this.hint[this.index].image;
+    return image;
   }
 
   getImgClass(): string {

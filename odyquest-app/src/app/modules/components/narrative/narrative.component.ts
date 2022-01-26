@@ -18,7 +18,10 @@ export class NarrativeComponent implements OnInit {
   @Output() selection: EventEmitter<number> = new EventEmitter();
   @Output() chaseStatus: EventEmitter<ChaseStatus> = new EventEmitter();
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private game: GameService
+  ) { }
 
 
   ngOnInit(): void {
@@ -100,7 +103,12 @@ export class NarrativeComponent implements OnInit {
   }
 
   getImage(): Image {
-    return this.narrative.description.image;
+    const image = this.game.chase.getImage(this.narrative.description.image);
+    if (!image) {
+      console.log('image not found');
+      return new Image();
+    }
+    return image;
   }
   getMedia<T extends Media>(): T {
     return this.narrative.getCurrentMedia() as T;

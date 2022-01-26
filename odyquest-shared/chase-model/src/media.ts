@@ -48,7 +48,6 @@ export class ImageFile extends MediaFile {
     super(url);
     this.width = width;
   }
-
 }
 
 @Serializable()
@@ -57,7 +56,6 @@ export class Image extends MediaWithFilelist<ImageFile> {
 
   public getFilesSortedByResolution(): ImageFile[] {
     return this.files.sort((first, second) => 0 - (first.width > second.width ? -1 : 1));
-
   }
 }
 

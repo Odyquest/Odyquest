@@ -26,7 +26,6 @@ import { getSimpleExample } from 'chase-model';
 })
 export class ChaseComponent implements OnInit {
   chaseID: string | undefined;
-  game: GameService;
   displayElement: GameElement;
   isFinalElement = false;
 
@@ -39,6 +38,7 @@ export class ChaseComponent implements OnInit {
               private chaseService: ChaseService,
               private router: Router,
               private uiService: UiService,
+              private game: GameService,
               private chaseStorage: ChaseStorageService) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
     // FIXME try remove display simple example as default
@@ -47,14 +47,14 @@ export class ChaseComponent implements OnInit {
 
   start_game(chase: Chase): void {
     console.log('start new game: ' + chase.metaData.title);
-    this.game = new GameService(this.chaseStorage, chase);
+    this.game.startChase(chase);
     this.displayElement = this.game.start();
     this.uiService.toolbarTitle.next(this.game.chase.metaData.title);
   }
 
   ngOnInit(): void {
     if (!this.chaseID && this.chaseStorage.hasRunningChase()) {
-      this.game = GameService.fromStorage(this.chaseStorage);
+      this.game.startChaseFromStorage();
       this.displayElement = this.game.start();
       this.uiService.toolbarTitle.next(this.game.chase.metaData.title);
     } else {

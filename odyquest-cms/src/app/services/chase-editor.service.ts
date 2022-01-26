@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Chase, GameElement, Narrative, Quest } from 'chase-model';
+import { Chase, GameElement, Image, Narrative, Quest } from 'chase-model';
 
 @Injectable({
   providedIn: 'root'
@@ -91,6 +91,13 @@ export class ChaseEditorService {
     if (this.chase && this.chase.metaData.chaseId) {
       return this.chase.metaData.chaseId;
     }
+  }
+
+  public getImage(id: string): Image {
+    return this.chase.getImage(id) || new Image();
+  }
+  public setImage(id: string, image: Image): void {
+    this.chase.images.set(id, image);
   }
 
   public notifyElementChanged(): void {

@@ -9,5 +9,6 @@ import {Image} from './media';
 @Serializable()
 export class Description {
   @JsonProperty('text') text = "";
-  @JsonProperty('image') image: Image = new Image();
+  /* id of image */
+  @JsonProperty('image') image = "";
 }

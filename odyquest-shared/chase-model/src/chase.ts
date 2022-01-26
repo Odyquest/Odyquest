@@ -4,6 +4,7 @@ import { Preview } from './preview';
 import { Narrative } from './narrative';
 import { Quest } from './quest';
 import { GameElement } from './game_element';
+import { Image } from './media';
 
 @Serializable()
 export class ChaseEditingData {
@@ -93,6 +94,38 @@ export class Chase {
   }) gameElements: Map<number, GameElement> = new Map<number, GameElement>();
   /** Index of first element in gameElements to start the chase with */
   @JsonProperty() initialGameElement: number = -1; // GameElementID
+
+  @JsonProperty({
+    names: ['_images'],
+    isDictionary: true,
+    /** Merge specialized maps together to original map */
+    onDeserialize: value => {
+      console.log("deserialize images");
+      const images = new Map<string, Image>();
+      for (const v in value._images) {
+        images.set(v, deserialize<Image>(value._images[v], Image));
+        console.log('deserialize image with id ', images.get(v));
+      }
+      return images;
+    },
+    /** Split up images for serialization to keep type safety */
+    onSerialize: value => {
+      console.log("serialize images");
+      const images: {[index: number]:any} = new Object();
+      for (const element of value.keys()) {
+        if (value.get(element) instanceof Image) {
+          images[element] = serialize(value.get(element));
+          console.log('serialize image with id ', images[element].id);
+        } else {
+          console.log('can not serialize image of unknown type');
+        }
+      }
+      return {
+        _images: images
+      };
+    }
+  }) images: Map<string, Image> = new Map<string, Image>();
+
   @JsonProperty() tags?: Array<string>;
 
   /**
@@ -102,6 +135,7 @@ export class Chase {
         this.metaData = chase.metaData;
         this.initialGameElement = chase.initialGameElement;
         this.gameElements = chase.gameElements;
+        this.images = chase.images;
         if (chase.tags) {
           this.tags = chase.tags;
         }
@@ -114,6 +148,7 @@ export class Chase {
         chase.metaData = this.metaData;
         chase.initialGameElement = this.initialGameElement;
         chase.gameElements = this.gameElements;
+        chase.images = this.images;
         if (this.tags) {
           chase.tags = this.tags;
         }
@@ -122,6 +157,11 @@ export class Chase {
   /** Get the game element with the given id */
   getElement(destination: number): GameElement | undefined {
     return this.gameElements.get(destination);
+  }
+
+  /** Get the image with the given id */
+  getImage(id: string): Image | undefined {
+    return this.images.get(id) as Image;
   }
 
 }

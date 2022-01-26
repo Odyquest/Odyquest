@@ -4,11 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ChaseService } from 'chase-services';
-import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseMetaData } from 'chase-model';
-import { ChaseStorageService } from 'chase-services';
+import { ChaseList, ChaseMetaData, Image } from 'chase-model';
 import { ChaseStatus } from 'chase-model';
+import { ChaseService } from 'chase-services';
+import { ChaseStorageService } from 'chase-services';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'app-list',
@@ -45,11 +45,11 @@ export class ListComponent implements OnInit {
   getRunningChaseTitle(): any {
     return this.chaseStorage.getRunningChase().metaData.title;
   }
-  getRunningChaseDescription(): any {
-    return this.chaseStorage.getRunningChase().metaData.preview.description;
+  getRunningChaseImage(): any {
+    return this.chaseStorage.getRunningChase().metaData.preview.image;
   }
   getRunningChaseText(): any {
-    return this.chaseStorage.getRunningChase().metaData.preview.description.text;
+    return this.chaseStorage.getRunningChase().metaData.preview.text;
   }
   getRunningChaseId(): any {
     return this.chaseStorage.getRunningChase().metaData.chaseId;
@@ -57,6 +57,10 @@ export class ListComponent implements OnInit {
 
   hasNoChases(): boolean {
     return this.getChaseList().length === 0;
+  }
+
+  getImage(chase: ChaseMetaData): Image {
+    return chase.preview.image || new Image();
   }
 
   isSucceeded(chaseId: string): boolean {

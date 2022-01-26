@@ -39,10 +39,10 @@ export class MetaDataEditorComponent implements OnInit {
   }
 
   updateImage(image: Image): void {
-    this.chaseEditor.getChase().metaData.preview.description.image = image;
+    this.chaseEditor.getChase().metaData.preview.image = image;
   }
 
   getImage(): Image {
-    return this.chaseEditor.getChase().metaData.preview.description.image || new Image();
+    return this.chaseEditor.getChase().metaData.preview.image;
   }
 }

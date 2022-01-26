@@ -101,11 +101,11 @@ export class GameElementEditorComponent implements OnInit {
   }
 
   getImage(): Image {
-    return this.gameElement.description.image || new Image();
+    return this.chaseEditor.getImage(this.gameElement.description.image);
   }
   getHelpImage(index: number): Image {
     if (this.gameElement.hint[index] && this.gameElement.hint[index].image) {
-      return this.gameElement.hint[index].image;
+      return this.chaseEditor.getImage(this.gameElement.hint[index].image);
     }
     return new Image();
   }
