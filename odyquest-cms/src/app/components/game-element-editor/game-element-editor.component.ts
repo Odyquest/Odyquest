@@ -74,7 +74,7 @@ export class GameElementEditorComponent implements OnInit {
 
   deleteHelpText(index: number) {
     console.log('deleteHelpText(' + index + ')');
-    this.gameElement.help.splice(index, 1);
+    this.gameElement.hint.splice(index, 1);
   }
 
   onTitleChange(): void {
@@ -82,16 +82,16 @@ export class GameElementEditorComponent implements OnInit {
   }
 
   addHelpText() {
-    console.log('addHelpText()', this.gameElement.help);
+    console.log('addHelpText()', this.gameElement.hint);
 
-    const helpText = new Description();
-    helpText.text = 'HilfeText'; // FIXME localize
-    this.gameElement.help.push(helpText);
+    const hintText = new Description();
+    hintText.text = 'HilfeText'; // FIXME localize
+    this.gameElement.hint.push(hintText);
 
   }
 
-  updateHelpImage(helpId: number, image: Image): void {
-    this.gameElement.help[helpId].image = image;
+  updateHelpImage(hintId: number, image: Image): void {
+    this.gameElement.hint[hintId].image = image;
   }
 
 
@@ -104,8 +104,8 @@ export class GameElementEditorComponent implements OnInit {
     return this.gameElement.description.image || new Image();
   }
   getHelpImage(index: number): Image {
-    if (this.gameElement.help[index] && this.gameElement.help[index].image) {
-      return this.gameElement.help[index].image;
+    if (this.gameElement.hint[index] && this.gameElement.hint[index].image) {
+      return this.gameElement.hint[index].image;
     }
     return new Image();
   }

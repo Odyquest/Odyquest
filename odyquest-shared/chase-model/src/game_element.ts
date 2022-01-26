@@ -16,7 +16,7 @@ export class GameElement {
 	@JsonProperty() version?: number;
 	@JsonProperty() title: string = '';
 	@JsonProperty() description = new Description();
-	@JsonProperty({ type: Description }) help: Array<Description> = new Array<Description>();
+	@JsonProperty({ type: Description }) hint: Array<Description> = new Array<Description>();
 
 	/** Url to external presenter of this element like Xaver
 	 * if variable is defined, the given presenter will be used
@@ -25,7 +25,7 @@ export class GameElement {
   @JsonProperty() executionTarget?: ExecutionTarget;
 
   constructor() {
-    this.help = new Array<Description>();
+    this.hint = new Array<Description>();
   }
 
   copyFromGameElement(element:GameElement) {
@@ -37,6 +37,6 @@ export class GameElement {
     }
     this.title = element.title;
     this.description = element.description;
-    this.help = element.help;
+    this.hint = element.hint;
   }
 }

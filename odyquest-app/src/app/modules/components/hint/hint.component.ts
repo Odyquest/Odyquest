@@ -13,29 +13,29 @@ import { QuestStatus } from '../../../core/services/game.service';
   styleUrls: ['./hint.component.scss']
 })
 export class HintComponent {
-  help = new Array<Description>();
+  hint = new Array<Description>();
   index = 0;
   pageNumber: string;
 
   constructor(public dialogRef: MatDialogRef<HintComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.help = this.data.quest.help;
-    if (this.help.length < 1) {
-      console.log('No help available, close immediately');
+    this.hint = this.data.quest.hint;
+    if (this.hint.length < 1) {
+      console.log('No hint available, close immediately');
       this.closeDialog();
     }
     this.setPageNumber();
   }
 
   setPageNumber(): void {
-    this.pageNumber = ' ' + (this.index + 1) + '/' + this.help.length + ' ';
+    this.pageNumber = ' ' + (this.index + 1) + '/' + this.hint.length + ' ';
   }
 
   closeDialog(): void  {
   }
 
   has_next(): boolean {
-    return this.index < this.help.length - 1;
+    return this.index < this.hint.length - 1;
   }
 
   next(): void {
@@ -58,21 +58,21 @@ export class HintComponent {
   }
 
   getDescription(): Description {
-     return this.help[this.index];
+     return this.hint[this.index];
   }
 
   getCurrentText(): string {
-    if (!this.help[this.index]) {
+    if (!this.hint[this.index]) {
       return '';
     }
-    return this.help[this.index].text;
+    return this.hint[this.index].text;
   }
 
   getCurrentImage(): Image {
-    if (!this.help[this.index]) {
+    if (!this.hint[this.index]) {
       return new Image();
     }
-    return this.help[this.index].image;
+    return this.hint[this.index].image;
   }
 
   getImgClass(): string {

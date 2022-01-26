@@ -61,7 +61,7 @@ export class NarrativeComponent implements OnInit {
   }
 
   hasHelp(): boolean {
-    return this.narrative.help.length > 0;
+    return this.narrative.hint.length > 0;
   }
 
   isTextType(): boolean {

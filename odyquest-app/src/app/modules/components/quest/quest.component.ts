@@ -131,7 +131,7 @@ export class QuestComponent implements OnInit, OnDestroy {
   }
 
   hasHelp(): boolean {
-    return this.quest.help.length > 0;
+    return this.quest.hint.length > 0;
   }
 
   hasSolution(): boolean {
