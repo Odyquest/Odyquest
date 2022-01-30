@@ -22,20 +22,13 @@ export class ImageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('got image with id ', this.image.id);
-    console.log('image has ', this.image.files.length, ' files');
-    console.log('image is Media ', this.image instanceof Media);
     if (this.image.hasFiles()) {
       this.files = this.image.getFilesSortedByResolution();
     }
   }
 
   getImage(): SafeResourceUrl {
-    let imageUrl = '';
-    if (this.image.files.length !== 0) {
-      imageUrl = this.image.files[0].url;
-    }
-    return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+    return this.sanitizer.bypassSecurityTrustUrl(this.image.getDefaultUrl(this.configuration.getMediaUrlPrefix()));
   }
 
   /**
@@ -45,7 +38,7 @@ export class ImageComponent implements OnInit {
     let srcset = '';
 
     for (const file of this.image.files) {
-      srcset += file.url + ' ' + file.width + 'w, ';
+      srcset += this.image.getUrlByName(this.configuration.getMediaUrlPrefix(), file.filename) + ' ' + file.width + 'w, ';
     }
     return srcset;
   }

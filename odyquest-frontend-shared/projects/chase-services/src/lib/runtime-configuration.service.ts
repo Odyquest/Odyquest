@@ -39,6 +39,13 @@ export class RuntimeConfigurationService implements AbstractRuntimeConfiguration
   getSubtitleText(locale: string): string {
     return this.config.title['subtitle_text_' + locale];
   }
+
+  getMediaUrlPrefix(): string {
+    if (!this.isApiBased()) {
+      return '';
+    }
+    return this.config.api.api.base_uri + 'files/';
+  }
 }
 
 /**

@@ -76,7 +76,7 @@ export class MediaUploadComponent implements OnInit {
     if (!this.media.getDefaultFile()) {
       return '';
     }
-    return this.media.getDefaultFile().url;
+    return this.media.getDefaultUrl(this.configuration.getMediaUrlPrefix());
   }
   // getTypesFormats(): Array<[string, number]> {
   //   if (this.hasAudio()) {

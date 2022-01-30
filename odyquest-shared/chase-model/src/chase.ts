@@ -57,33 +57,26 @@ export class Chase {
     isDictionary: true,
     /** Merge specialized maps together to original map */
     onDeserialize: value => {
-      console.log('deserialize gameElement');
       const gameElements = new Map<number, GameElement>();
       for (const v in value._narratives) {
-        console.log('add ' + v + ' as narrative');
         gameElements.set(+v, deserialize<Narrative>(value._narratives[v], Narrative));
       }
       for (const v in value._quests) {
-        console.log('add ' + v + ' as Quest');
         gameElements.set(+v, deserialize<Quest>(value._quests[v], Quest));
       }
-      console.log("number of GameElements: ", gameElements.size);
       return gameElements;
     },
     /** Split up gameElements for serialization to keep type safety */
     onSerialize: value => {
-      console.log('serialize gameElement');
       const narratives: {[index: number]:any} = new Object();
       const quests: {[index: number]:any} = new Object();
       for (const element of value.keys()) {
         if (value.get(element) instanceof Narrative) {
-          console.log('serialize narrative');
           narratives[element] = serialize(value.get(element));
         } else if (value.get(element) instanceof Quest) {
-          console.log('serialize quest');
           quests[element] = serialize(value.get(element));
         } else {
-          console.log('can not serialize game element of unknown type');
+          console.warn('can not serialize game element of unknown type');
         }
       }
       return {
@@ -104,7 +97,7 @@ export class Chase {
       const images = new Map<string, Image>();
       for (const v in value._images) {
         images.set(v, deserialize<Image>(value._images[v], Image));
-        console.log('deserialize image with id ', images.get(v));
+        // console.log('deserialize image with id ', images.get(v));
       }
       return images;
     },
@@ -115,9 +108,9 @@ export class Chase {
       for (const element of value.keys()) {
         if (value.get(element) instanceof Image) {
           images[element] = serialize(value.get(element));
-          console.log('serialize image with id ', images[element].id);
+          // console.log('serialize image with id ', images[element].id);
         } else {
-          console.log('can not serialize image of unknown type');
+          console.warn('can not serialize image of unknown type');
         }
       }
       return {

@@ -91,12 +91,12 @@ export class GameElementEditorComponent implements OnInit {
   }
 
   updateHelpImage(hintId: number, image: Image): void {
-    this.gameElement.hint[hintId].image = image;
+    // TODO this.gameElement.hint[hintId].image = image;
   }
 
 
   updateImage(image: Image): void {
-    this.gameElement.description.image = image;
+    // TODO this.gameElement.description.image = image;
     this.chaseEditor.notifyElementChanged();
   }
 

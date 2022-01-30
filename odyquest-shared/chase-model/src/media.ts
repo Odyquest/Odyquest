@@ -3,23 +3,52 @@ import { NarrativeType } from './narrative_type';
 
 @Serializable()
 export class MediaFile {
-  @JsonProperty() url;
+  /**
+   * The filename is either the name of the file in the backend, an url or a relative path to a static file starting
+   * with './'
+   */
+  @JsonProperty() filename;
 
-  constructor(url: string) {
-    this.url = url;
+  constructor(filename: string) {
+    this.filename = filename;
   }
 }
 
 @Serializable()
 export abstract class Media {
-  @JsonProperty() id = "";
+  /**
+   * Global unique identifier
+   */
+  @JsonProperty() mediaId?: string;
+  /**
+   * Id of corresponding chase
+   *
+   * Only necessary when handling outside of a chase object.
+   */
+  @JsonProperty() chaseId = "";
   /**
    * Alternative text to media.
+   *
+   * Describing the content of the media in text e.g. for blind persons.
    */
-  @JsonProperty() alternativeText = "";
-  public abstract hasFiles(): boolean;
+  @JsonProperty() alternative= "";
+  @JsonProperty() annotation = "";
 
+  public abstract hasFiles(): boolean;
   public abstract getDefaultFile(): MediaFile;
+  public abstract getUrlByIndex(backendPrefix: string, index: number): string;
+  public abstract getDefaultUrl(backendPrefix: string): string;
+  /**
+   * If the returned url does not start with 'https://' or './', the base url for loading files from backend has to be
+   * prefixed.
+   */
+  public getUrlByName(backendPrefix: string, filename: string): string {
+    if (filename.indexOf('http') === 0 || filename.indexOf('./') === 0) {
+      return filename;
+    } else {
+      return backendPrefix + this.chaseId + '/' + this.mediaId + '/' + filename;
+    }
+  }
 }
 
 @Serializable()
@@ -37,6 +66,16 @@ export class MediaWithFilelist<T extends MediaFile> extends Media {
     } else {
       return this.files[0];
     }
+  }
+
+  public getUrlByIndex(backendPrefix: string, index: number): string {
+    if (!this.files[index] || !this.files[index].filename) {
+      return '';
+    }
+    return this.getUrlByName(backendPrefix, this.files[index].filename);
+  };
+  public getDefaultUrl(backendPrefix: string): string {
+    return this.getUrlByIndex(backendPrefix, this.defaultIndex || 0);
   }
 }
 

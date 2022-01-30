@@ -33,3 +33,7 @@ export function getAuthIssuesBaseUrl(): string {
 export function getAuthJwksUrl(): string {
   return getEnv(process.env.ODYQUEST_AUTH_JWKS_URL, "https://localhost:8080/auth/realms/master/protocol/openid-connect/certs");
 }
+
+export function getFilesystemPath(): string {
+  return getEnv(process.env.ODYQUEST_FILESYSTEM_PATH, "data");
+}

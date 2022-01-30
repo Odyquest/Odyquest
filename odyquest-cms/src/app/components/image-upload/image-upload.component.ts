@@ -47,7 +47,7 @@ export class ImageUploadComponent implements OnInit {
     if (!(this.image instanceof Image) || !this.image.getDefaultFile()) {
       return '';
     }
-    return this.image.getDefaultFile().url;
+    return this.image.getDefaultUrl(this.configuration.getMediaUrlPrefix());
   }
 
   updateImageUrl(url: string): void {

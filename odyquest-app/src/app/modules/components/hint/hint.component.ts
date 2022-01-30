@@ -70,8 +70,11 @@ export class HintComponent {
   }
 
   getCurrentImage(): Image {
+    if (!this.hint[this.index]) {
+      return new Image();
+    }
     const image = this.game.chase.getImage(this.hint[this.index].image);
-    if (!this.hint[this.index] || !image) {
+    if (!image) {
       return new Image();
     }
     return image;

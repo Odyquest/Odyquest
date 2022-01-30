@@ -8,8 +8,9 @@
       "preview": {
         "text":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam\n\n_Images by Johannes Bleier, CC BY-SA 4.0_",
         "image": {
-          "id": "title",
-          "alternativText": "text describing the image",
+          "mediaId": "title",
+          "chaseId": "lorem",
+          "alternative": "text describing the image",
           "defaultIndex": 0,
           "files": [
             { "url":  "assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },

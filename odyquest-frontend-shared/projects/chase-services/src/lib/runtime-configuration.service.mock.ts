@@ -24,5 +24,9 @@ export class RuntimeConfigurationServiceMock implements AbstractRuntimeConfigura
   getSubtitleText(locale: string): string {
     return 'subtitle_text';
   }
+
+  getMediaUrlPrefix(): string {
+    return 'https://localhost/files/';
+  }
 }
 

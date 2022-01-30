@@ -2,15 +2,11 @@ import { createConnection } from 'mongoose';
 
 import { getMongoDbUrl } from './environment';
 
-import { Chase, ChaseList, ChaseMetaData } from './chase-model';
-import { GameElement } from './chase-model';
-import { Narrative } from './chase-model';
-import { Quest } from './chase-model';
+import { Chase, ChaseList, ChaseMetaData, Media } from './chase-model';
 
 import { ChaseDocument } from './models/chaseDocument';
 import { ChaseMetaDataSchema } from './models/chaseSchema';
 import { ChaseSchema } from './models/chaseSchema';
-import { DescriptionSchema } from './models/descriptionSchema';
 import { MediaDocument } from './models/mediaDocument';
 import { MediaSchema } from './models/mediaSchema';
 
@@ -30,23 +26,9 @@ export class Database {
       if (item && (item as ChaseDocument)) {
         const document = item as ChaseDocument;
 
-        // copy chase data
+        // copy relevant chase data e.g. meta data
         const chase = new Chase();
         chase.copyFromChase(document);
-        chase.gameElements = new Map<number, GameElement>();
-
-        // copy game elements
-        for (let i = 0; i < document.narrativeKeys.length; i++) {
-          const element = new Narrative();
-          element.copyFromNarrative(document.narrativeValues[i]);
-          chase.gameElements.set(document.narrativeKeys[i], element);
-        }
-        for (let i = 0; i < document.questKeys.length; i++) {
-          const element:Quest = new Quest();
-          element.copyFromQuest(document.questValues[i]);
-          chase.gameElements.set(document.questKeys[i], element);
-        }
-
         return chase;
       } else {
           console.log('getChase() either chase is undefined or no game element keys are available');
@@ -77,27 +59,6 @@ export class Database {
   }
 
   /**
-   * convert map of game elements into arrays of specialized types
-   */
-  private gameElementMapToArrays(from: Chase, to:ChaseDocument) {
-    to.narrativeKeys = new Array<number>();
-    to.narrativeValues = new Array<Narrative>();
-    to.questKeys = new Array<number>();
-    to.questValues = new Array<Quest>();
-    for (let [key, value] of from.gameElements.entries()) {
-      if (value instanceof Narrative) {
-        to.narrativeKeys.push(key);
-        to.narrativeValues.push(value as Narrative);
-      } else if (value instanceof Quest) {
-        to.questKeys.push(key);
-        to.questValues.push(value as Quest);
-      } else {
-        console.log('createChase(): unknown type of game element');
-      }
-    }
-  }
-
-  /**
    * create new chase entry in database
    *
    * @param chase - data to add to database
@@ -105,7 +66,6 @@ export class Database {
    */
   private createChase(chase: Chase): Promise<string> {
     const doc = chase as ChaseDocument;
-    this.gameElementMapToArrays(doc, doc);
     const entry = new ChaseModel(doc);
     console.log('createChase(): save with id ' + entry._id)
     entry.get('metaData').chaseId = entry._id;
@@ -121,7 +81,6 @@ export class Database {
    */
   private updateChase(new_chase: Chase, document:ChaseDocument) {
     new_chase.copyToChase(document);
-    this.gameElementMapToArrays(new_chase, document);
     document.save();
   }
 
@@ -144,7 +103,6 @@ export class Database {
         return chase.metaData.chaseId;
       } else {
         console.log('create new chase');
-        // console.log('updateChase() either chase is undefined or no game element keys are available');
         return db.createChase(chase);
       }
     }).catch(error => {
@@ -158,7 +116,7 @@ export class Database {
       console.log('delete chase ' + chaseId);
       console.log('delete containing media...');
       for (const media in db.getMediaInChase(chaseId)) {
-        db.deleteMedia(media);
+        //db.deleteMedia(media);
       }
       return 'success';
     }).catch(error => {
@@ -177,34 +135,33 @@ export class Database {
     });
   }
 
-  getMedia(id: string): Promise<Buffer> {
-    return MediaModel.findOne({ _id: id }).then(function(item) {
-      if (item && (item as MediaDocument)) {
-        const media = (item as MediaDocument);
-        return media.binary;
-      }
-    });
-  }
+  //  getMedia(id: string): Promise<Buffer> {
+  //    return MediaModel.findOne({ _id: id }).then(function(item) {
+  //      if (item && (item as MediaDocument)) {
+  //        const media = (item as MediaDocument);
+  //        return media.binary;
+  //      }
+  //    });
+  //  }
 
-  createMedia(chaseId: string, name: string, mimetype: string, data: Buffer): string {
-    const entry = new MediaModel();
-    const doc = entry as MediaDocument;
-    doc.chaseId = chaseId;
-    doc.name = name;
-    doc.mimetype = mimetype;
-    doc.binary = data;
-    entry.save();
-    console.log("saved media document");
-    return entry._id;
-  }
+  // createOrUpdateMedia(media: Media): string {
+  //   const entry = new MediaModel();
+  //   const doc = entry as MediaDocument;
+  //   // TODO set correct attributes
+  //   // TODO set correct id field
+  //   media.copyToMedia(doc);
+  //   entry.save();
+  //   console.log("saved media document");
+  //   return entry._id;
+  // }
 
-  deleteMedia(id: string): Promise<string> {
-    var db = this;
-    return MediaModel.deleteOne({_id: id}).then(function(item) {
-      console.log('delete media ' + id);
-      return 'success';
-    }).catch(error => {
-      return error;
-    });
-  }
+  // deleteMedia(id: string): Promise<string> {
+  //   var db = this;
+  //   return MediaModel.deleteOne({_id: id}).then(function(item) {
+  //     console.log('delete media ' + id);
+  //     return 'success';
+  //   }).catch(error => {
+  //     return error;
+  //   });
+  // }
 };

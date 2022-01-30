@@ -7,8 +7,9 @@
     "preview": {
       "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam\n\n_Images by Johannes Bleier, CC BY-SA 4.0_",
       "image": {
-        "id": "title",
-        "alternativText": "text describing the image",
+        "mediaId": "title",
+        "chaseId": "lorem",
+        "alternative": "text describing the image",
         "defaultIndex": 0,
         "files": [
           { "url":  "assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
@@ -27,7 +28,7 @@
         "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
         "image": "01"
       },
-      "help": [],
+      "hint": [],
       "buttons": [
         {
           "name": "Lorem ipsum",
@@ -43,7 +44,7 @@
         "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
         "image": "04"
       },
-      "help": [],
+      "hint": [],
       "buttons": [
         {
           "name": "Lorem ipsum",
@@ -61,11 +62,10 @@
         "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
         "image": "02"
       },
-      "help": [
+      "hint": [
         {
           "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
-          "image": "assets-shared/examples/lorem/images/title.jpg",
-          "image_res": [200, 700, 1100, 1500, 1980]
+          "image": "title"
         }
       ],
       "questType": "multiple_choice",
@@ -97,7 +97,7 @@
         "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
         "image": "03"
       },
-      "help": [
+      "hint": [
         {
           "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
           "image": "title"
@@ -130,8 +130,9 @@
   "initialGameElement": 0,
   "_images": {
     "title": {
-      "id": "title",
-      "alternativText": "text describing the image",
+      "mediaId": "title",
+      "chaseId": "lorem",
+      "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
         { "url":  "assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
@@ -142,8 +143,9 @@
       ]
     },
     "01":{
-      "id": "01",
-      "alternativText": "text describing the image",
+      "mediaId": "01",
+      "chaseId": "lorem",
+      "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
         { "url":  "assets-shared/examples/lorem/images/01_200.jpg", "width": 200 },
@@ -154,8 +156,9 @@
       ]
     },
     "02": {
-      "id": "02",
-      "alternativText": "text describing the image",
+      "mediaId": "02",
+      "chaseId": "lorem",
+      "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
         { "url":  "assets-shared/examples/lorem/images/02_200.jpg", "width": 200 },
@@ -166,8 +169,9 @@
       ]
     },
     "03": {
-      "id": "03",
-      "alternativText": "text describing the image",
+      "mediaId": "03",
+      "chaseId": "lorem",
+      "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
         { "url":  "assets-shared/examples/lorem/images/03_200.jpg", "width": 200 },
@@ -178,8 +182,9 @@
       ]
     },
     "04": {
-      "id": "04",
-      "alternativText": "text describing the image",
+      "mediaId": "04",
+      "chaseId": "lorem",
+      "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
         { "url":  "assets-shared/examples/lorem/images/04_200.jpg", "width": 200 },

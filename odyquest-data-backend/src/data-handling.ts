@@ -1,0 +1,111 @@
+import { Chase, ChaseList, ChaseMetaData,
+  Audio, AudioFile,
+  Image, ImageFile,
+  Video, VideoFile,
+  AugmentedReality,
+  Media, MediaFile } from './chase-model';
+import { getFilesystemPath } from './environment';
+import { FileHandling } from './file-handling';
+import { File } from './file';
+
+export class DataHandling {
+  private filehandling = new FileHandling();
+
+  public getChaseList(protectedAccess = false): Promise<ChaseList> {
+    if (protectedAccess) {
+      return this.filehandling.readProtectedChaseList();
+    } else {
+      return this.filehandling.readPublicChaseList();
+    }
+  }
+
+  public getChase(id: string): Promise<Chase> {
+    return this.filehandling.readPublicChase(id);
+  }
+
+  public getProtectedChase(id: string): Promise<Chase> {
+    return this.filehandling.readProtectedChase(id);
+  }
+
+  public createOrUpdateChase(chase: Chase): Promise<string> {
+    let id: string;
+    if (chase.metaData.chaseId) {
+      id = chase.metaData.chaseId;
+    } else {
+      id = this.filehandling.getFreeChaseId();
+      chase.metaData.chaseId = id;
+    }
+    return new Promise<string>((resolve, reject) => {
+      this.filehandling.writeChase(chase);
+      resolve(id)
+    });
+  }
+
+  public deleteChase(id: string): Promise<boolean> {
+    // TODO implement
+    return new Promise<boolean>(() => false);
+  }
+
+  public getMedia(chaseId: string, mediaId: string): Promise<Media> {
+    return this.filehandling.readPublicMedia(chaseId, mediaId);
+  }
+
+  public getProtectedMedia(chaseId: string, mediaId: string): Promise<Media> {
+    return this.filehandling.readProtectedMedia(chaseId, mediaId);
+  }
+
+  public createOrUpdateMedia(media: Media): Promise<Media> {
+    return new Promise((resolve, reject) => {
+      if (!media.mediaId) {
+        media.mediaId = this.filehandling.getFreeMediaId(media.chaseId);
+      }
+      this.filehandling.writeMedia(media);
+      resolve(media);
+    });
+  }
+
+  public deleteMedia(chaseId: string, mediaId: string): Promise<boolean> {
+    // TODO
+    return new Promise<boolean>(() => false);
+  }
+
+  public getMediaFile(chaseId: string, mediaId: string, filename:string): Promise<File> {
+    return this.filehandling.readMediaFile(chaseId, mediaId, filename);
+  }
+
+  public addMediaFile(chaseId: string, mediaId: string, name: string, mimetype: string, data: Buffer): Promise<Media> {
+    return new Promise((resolve, reject) => {
+      this.getProtectedMedia(chaseId, mediaId).then(media => {
+        this.filehandling.writeMediaFile(chaseId, mediaId, name, data);
+        if (media instanceof Image) {
+          // TODO add file attributes
+          const file = new ImageFile(name);
+          (media as Image).files.push(file);
+        } else if (media instanceof Audio) {
+          const file = new AudioFile(name, mimetype, 0);
+          (media as Audio).files.push(file);
+        } else if (media instanceof Video) {
+          const file = new VideoFile(name, mimetype, 0);
+          (media as Video).files.push(file);
+        } else if (media instanceof AugmentedReality) {
+          const file = new MediaFile(name);
+          (media as AugmentedReality).files.push(file);
+        }
+        this.createOrUpdateMedia(media);
+        resolve(media);
+      });
+    });
+  }
+
+  public deleteMediaFile(chaseId: string, mediaId: string, filename:string): Promise<Media> {
+    return new Promise((resolve, reject) => {
+      this.getProtectedMedia(chaseId, mediaId).then(media => {
+        // TODO delete file
+        // TODO remove file from media entry
+        // TODO get updated media entry
+        this.createOrUpdateMedia(media);
+        resolve(media);
+      });
+    });
+  }
+};
