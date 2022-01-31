@@ -13,11 +13,11 @@
           "alternative": "text describing the image",
           "defaultIndex": 0,
           "files": [
-            { "url":  "assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
-            { "url":  "assets-shared/examples/lorem/images/title_700.jpg", "width": 700 },
-            { "url":  "assets-shared/examples/lorem/images/title_1100.jpg", "width": 1100 },
-            { "url":  "assets-shared/examples/lorem/images/title_1500.jpg", "width": 1500 },
-            { "url":  "assets-shared/examples/lorem/images/title_1980.jpg", "width": 1980 }
+            { "filename":  "./assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
+            { "filename":  "./assets-shared/examples/lorem/images/title_700.jpg", "width": 700 },
+            { "filename":  "./assets-shared/examples/lorem/images/title_1100.jpg", "width": 1100 },
+            { "filename":  "./assets-shared/examples/lorem/images/title_1500.jpg", "width": 1500 },
+            { "filename":  "./assets-shared/examples/lorem/images/title_1980.jpg", "width": 1980 }
           ]
         }
       }

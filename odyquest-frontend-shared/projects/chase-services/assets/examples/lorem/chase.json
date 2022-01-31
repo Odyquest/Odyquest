@@ -12,11 +12,11 @@
         "alternative": "text describing the image",
         "defaultIndex": 0,
         "files": [
-          { "url":  "assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
-          { "url":  "assets-shared/examples/lorem/images/title_700.jpg", "width": 700 },
-          { "url":  "assets-shared/examples/lorem/images/title_1100.jpg", "width": 1100 },
-          { "url":  "assets-shared/examples/lorem/images/title_1500.jpg", "width": 1500 },
-          { "url":  "assets-shared/examples/lorem/images/title_1980.jpg", "width": 1980 }
+          { "filename":  "./assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
+          { "filename":  "./assets-shared/examples/lorem/images/title_700.jpg", "width": 700 },
+          { "filename":  "./assets-shared/examples/lorem/images/title_1100.jpg", "width": 1100 },
+          { "filename":  "./assets-shared/examples/lorem/images/title_1500.jpg", "width": 1500 },
+          { "filename":  "./assets-shared/examples/lorem/images/title_1980.jpg", "width": 1980 }
         ]
       }
     }
@@ -135,11 +135,11 @@
       "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
-        { "url":  "assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
-        { "url":  "assets-shared/examples/lorem/images/title_700.jpg", "width": 700 },
-        { "url":  "assets-shared/examples/lorem/images/title_1100.jpg", "width": 1100 },
-        { "url":  "assets-shared/examples/lorem/images/title_1500.jpg", "width": 1500 },
-        { "url":  "assets-shared/examples/lorem/images/title_1980.jpg", "width": 1980 }
+        { "filename":  "./assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
+        { "filename":  "./assets-shared/examples/lorem/images/title_700.jpg", "width": 700 },
+        { "filename":  "./assets-shared/examples/lorem/images/title_1100.jpg", "width": 1100 },
+        { "filename":  "./assets-shared/examples/lorem/images/title_1500.jpg", "width": 1500 },
+        { "filename":  "./assets-shared/examples/lorem/images/title_1980.jpg", "width": 1980 }
       ]
     },
     "01":{
@@ -148,11 +148,11 @@
       "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
-        { "url":  "assets-shared/examples/lorem/images/01_200.jpg", "width": 200 },
-        { "url":  "assets-shared/examples/lorem/images/01_700.jpg", "width": 700 },
-        { "url":  "assets-shared/examples/lorem/images/01_1100.jpg", "width": 1100 },
-        { "url":  "assets-shared/examples/lorem/images/01_1500.jpg", "width": 1500 },
-        { "url":  "assets-shared/examples/lorem/images/01_1980.jpg", "width": 1980 }
+        { "filename":  "./assets-shared/examples/lorem/images/01_200.jpg", "width": 200 },
+        { "filename":  "./assets-shared/examples/lorem/images/01_700.jpg", "width": 700 },
+        { "filename":  "./assets-shared/examples/lorem/images/01_1100.jpg", "width": 1100 },
+        { "filename":  "./assets-shared/examples/lorem/images/01_1500.jpg", "width": 1500 },
+        { "filename":  "./assets-shared/examples/lorem/images/01_1980.jpg", "width": 1980 }
       ]
     },
     "02": {
@@ -161,11 +161,11 @@
       "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
-        { "url":  "assets-shared/examples/lorem/images/02_200.jpg", "width": 200 },
-        { "url":  "assets-shared/examples/lorem/images/02_700.jpg", "width": 700 },
-        { "url":  "assets-shared/examples/lorem/images/02_1100.jpg", "width": 1100 },
-        { "url":  "assets-shared/examples/lorem/images/02_1500.jpg", "width": 1500 },
-        { "url":  "assets-shared/examples/lorem/images/02_1980.jpg", "width": 1980 }
+        { "filename":  "./assets-shared/examples/lorem/images/02_200.jpg", "width": 200 },
+        { "filename":  "./assets-shared/examples/lorem/images/02_700.jpg", "width": 700 },
+        { "filename":  "./assets-shared/examples/lorem/images/02_1100.jpg", "width": 1100 },
+        { "filename":  "./assets-shared/examples/lorem/images/02_1500.jpg", "width": 1500 },
+        { "filename":  "./assets-shared/examples/lorem/images/02_1980.jpg", "width": 1980 }
       ]
     },
     "03": {
@@ -174,11 +174,11 @@
       "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
-        { "url":  "assets-shared/examples/lorem/images/03_200.jpg", "width": 200 },
-        { "url":  "assets-shared/examples/lorem/images/03_700.jpg", "width": 700 },
-        { "url":  "assets-shared/examples/lorem/images/03_1100.jpg", "width": 1100 },
-        { "url":  "assets-shared/examples/lorem/images/03_1500.jpg", "width": 1500 },
-        { "url":  "assets-shared/examples/lorem/images/03_1980.jpg", "width": 1980 }
+        { "filename":  "./assets-shared/examples/lorem/images/03_200.jpg", "width": 200 },
+        { "filename":  "./assets-shared/examples/lorem/images/03_700.jpg", "width": 700 },
+        { "filename":  "./assets-shared/examples/lorem/images/03_1100.jpg", "width": 1100 },
+        { "filename":  "./assets-shared/examples/lorem/images/03_1500.jpg", "width": 1500 },
+        { "filename":  "./assets-shared/examples/lorem/images/03_1980.jpg", "width": 1980 }
       ]
     },
     "04": {
@@ -187,11 +187,11 @@
       "alternative": "text describing the image",
       "defaultIndex": 0,
       "files": [
-        { "url":  "assets-shared/examples/lorem/images/04_200.jpg", "width": 200 },
-        { "url":  "assets-shared/examples/lorem/images/04_700.jpg", "width": 700 },
-        { "url":  "assets-shared/examples/lorem/images/04_1100.jpg", "width": 1100 },
-        { "url":  "assets-shared/examples/lorem/images/04_1500.jpg", "width": 1500 },
-        { "url":  "assets-shared/examples/lorem/images/04_1980.jpg", "width": 1980 }
+        { "filename":  "./assets-shared/examples/lorem/images/04_200.jpg", "width": 200 },
+        { "filename":  "./assets-shared/examples/lorem/images/04_700.jpg", "width": 700 },
+        { "filename":  "./assets-shared/examples/lorem/images/04_1100.jpg", "width": 1100 },
+        { "filename":  "./assets-shared/examples/lorem/images/04_1500.jpg", "width": 1500 },
+        { "filename":  "./assets-shared/examples/lorem/images/04_1980.jpg", "width": 1980 }
       ]
     }
   }
