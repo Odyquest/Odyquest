@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ChaseService, ChaseServiceMock } from 'chase-services';
 import { GameElementEditorComponent } from './game-element-editor.component';
 
 describe('GameElementEditorComponent', () => {
@@ -8,7 +9,13 @@ describe('GameElementEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameElementEditorComponent ]
+      declarations: [ GameElementEditorComponent ],
+      providers: [
+        {
+          provide: ChaseService,
+          useClass: ChaseServiceMock
+        }
+      ]
     })
     .compileComponents();
   });

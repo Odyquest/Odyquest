@@ -1,8 +1,8 @@
 // import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseMetaData } from 'chase-model';
+import { ChaseList, ChaseMetaData, Image } from 'chase-model';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ChaseService } from 'chase-services';
+import { ChaseService, RuntimeConfigurationService } from 'chase-services';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -21,12 +21,19 @@ export class ChaseSelectorComponent implements OnInit {
   inputUrl: boolean;
   chaseList = new ChaseList();
   loading = false;
+  imageUrls = new Map<string, string>();
 
   constructor(private chaseService: ChaseService,
+              private configuration: RuntimeConfigurationService,
               private router: Router) { }
 
   ngOnInit(): void {
     this.chaseService.getAllChases(true).subscribe(chases => this.chaseList = chases);
+    this.chaseList.chases.forEach((chase: ChaseMetaData) => {
+      this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
+        this.imageUrls.set(chase.chaseId, media.getDefaultUrl(this.configuration.getMediaUrlPrefix()));
+      });
+    });
   }
 
   onInputUrl(): void {

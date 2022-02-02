@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { Description, Image, GameElement, Narrative, Quest } from 'chase-model';
-
+import { Description, GameElement, Narrative, Quest } from 'chase-model';
+import { ChaseService } from 'chase-services';
 import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 
 @Component({
@@ -20,7 +20,8 @@ export class GameElementEditorComponent implements OnInit {
   @ViewChild('quest_editor') questEditor;
 
   constructor(
-    public chaseEditor: ChaseEditorService
+    public chaseEditor: ChaseEditorService,
+    public chaseService: ChaseService,
   ) {}
 
   ngOnInit(): void {
@@ -90,24 +91,20 @@ export class GameElementEditorComponent implements OnInit {
 
   }
 
-  updateHelpImage(hintId: number, image: Image): void {
-    // TODO this.gameElement.hint[hintId].image = image;
+  updateHelpImage(hintId: number, mediaId: string): void {
+    this.gameElement.hint[hintId].image = mediaId;
   }
 
 
-  updateImage(image: Image): void {
-    // TODO this.gameElement.description.image = image;
-    this.chaseEditor.notifyElementChanged();
+  updateImage(mediaId: string): void {
+    this.gameElement.description.image = mediaId;
   }
 
-  getImage(): Image {
-    return this.chaseEditor.getImage(this.gameElement.description.image);
+  getImage(): string {
+    return this.gameElement.description.image;
   }
-  getHelpImage(index: number): Image {
-    if (this.gameElement.hint[index] && this.gameElement.hint[index].image) {
-      return this.chaseEditor.getImage(this.gameElement.hint[index].image);
-    }
-    return new Image();
+  getHelpImage(index: number): string {
+    return this.gameElement.hint[index].image;
   }
 
 }

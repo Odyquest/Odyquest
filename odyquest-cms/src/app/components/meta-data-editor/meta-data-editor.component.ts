@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Chase, ChaseMetaData, GameElement, Image } from 'chase-model';
+import { ChaseService } from 'chase-services';
 
 import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 
@@ -14,6 +15,7 @@ export class MetaDataEditorComponent implements OnInit {
 
   constructor(
     public chaseEditor: ChaseEditorService,
+    public chaseService: ChaseService,
   ) { }
 
   ngOnInit(): void {
@@ -38,11 +40,11 @@ export class MetaDataEditorComponent implements OnInit {
     }
   }
 
-  updateImage(image: Image): void {
-    this.chaseEditor.getChase().metaData.preview.image = image;
+  updateImage(mediaId: string): void {
+    this.chaseEditor.getChase().metaData.preview.image= mediaId;
   }
 
-  getImage(): Image {
+  getImage(): string {
     return this.chaseEditor.getChase().metaData.preview.image;
   }
 }

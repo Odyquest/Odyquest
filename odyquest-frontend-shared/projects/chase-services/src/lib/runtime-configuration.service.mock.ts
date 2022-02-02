@@ -26,7 +26,7 @@ export class RuntimeConfigurationServiceMock implements AbstractRuntimeConfigura
   }
 
   getMediaUrlPrefix(): string {
-    return 'https://localhost/files/';
+    return 'https://localhost/file/';
   }
 }
 

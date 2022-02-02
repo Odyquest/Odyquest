@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ChaseList, ChaseMetaData, Image } from 'chase-model';
+import { ChaseList, ChaseMetaData, Image, Preview } from 'chase-model';
 import { ChaseStatus } from 'chase-model';
 import { ChaseService } from 'chase-services';
 import { ChaseStorageService } from 'chase-services';
@@ -19,6 +19,7 @@ export class ListComponent implements OnInit {
   inputUrl: boolean;
   chaseList = new ChaseList();
   loading = false;
+  images = new Map<string, Image>();
 
   constructor(private chaseService: ChaseService,
               private router: Router,
@@ -28,6 +29,11 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.uiService.toolbarTitle.next('Wähle eine Schnitzeljagd');
     this.chaseService.getAllChases().subscribe(chases => this.chaseList = chases);
+    this.chaseList.chases.forEach((chase: ChaseMetaData) => {
+      this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
+        this.images.set(chase.chaseId, media as Image);
+      });
+    });
   }
 
   onInputUrl(): void {
@@ -46,7 +52,7 @@ export class ListComponent implements OnInit {
     return this.chaseStorage.getRunningChase().metaData.title;
   }
   getRunningChaseImage(): any {
-    return this.chaseStorage.getRunningChase().metaData.preview.image;
+    return this.getImage(this.chaseStorage.getRunningChase().metaData);
   }
   getRunningChaseText(): any {
     return this.chaseStorage.getRunningChase().metaData.preview.text;
@@ -60,7 +66,7 @@ export class ListComponent implements OnInit {
   }
 
   getImage(chase: ChaseMetaData): Image {
-    return chase.preview.image || new Image();
+    return this.images.get(chase.chaseId);
   }
 
   isSucceeded(chaseId: string): boolean {

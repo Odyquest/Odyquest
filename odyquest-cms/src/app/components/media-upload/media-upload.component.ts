@@ -31,24 +31,24 @@ export class MediaUploadComponent implements OnInit {
     reader.addEventListener('load', (e) => {
       console.log('upload file...');
       this.chaseService
-        .createMedia(
+        .createMediaFile(
           this.chaseId,
-          '(unnamed)',
+          this.media.mediaId,
           $event.target.files[0]
         )
         .subscribe((res) => {
           console.log('...done: ' + res);
-          if (this.hasAudio()) {
-            const audio = new AudioFile(res.url, res.mimetype, 1);
-            (this.media as Audio).files = [audio];
-            (this.media as Audio).defaultIndex = 0;
-          } else if (this.hasVideo()) {
-            const video = new VideoFile(res.url, res.mimetype, 1);
-            (this.media as Video).files = [video];
-            (this.media as Video).defaultIndex = 0;
-          } else {
-            console.error('media upload is not implemented for ', this.narrativeType);
-          }
+          //if (this.hasAudio()) {
+          //  const audio = new AudioFile(res.url, res.mimetype, 1);
+          //  (this.media as Audio).files = [audio];
+          //  (this.media as Audio).defaultIndex = 0;
+          //} else if (this.hasVideo()) {
+          //  const video = new VideoFile(res.url, res.mimetype, 1);
+          //  (this.media as Video).files = [video];
+          //  (this.media as Video).defaultIndex = 0;
+          //} else {
+          //  console.error('media upload is not implemented for ', this.narrativeType);
+          //}
           this.mediaChange.emit(this.media);
         });
     });

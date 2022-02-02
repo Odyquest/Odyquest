@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { OAuthStorage } from 'angular-oauth2-oidc';
 import { Observable, of } from 'rxjs';
 
-import { Chase, ChaseList } from 'chase-model';
+import { Chase, ChaseList, Media, Image } from 'chase-model';
 
 import { ChaseService } from './chase.service';
 import { AbstractChaseService } from './chase.service';
@@ -35,11 +35,24 @@ export class ChaseServiceMock implements AbstractChaseService {
     return of({ status: 'success' });
   }
 
-  public createMedia(chaseId: string, mediaId: string, file: File): Observable<any> {
-    return of({ url: 'media_id', mimetype: 'image/png'});
+  public getMedia(chaseId: string, mediaId: string): Observable<any> {
+    const media = new Image();
+    return of(media);
   }
 
-  public deleteMedia(id: string): Observable<any> {
+  public createOrUpdateMedia(media: Media): Observable<any> {
+    return of({ media_id: 'media_id' });
+  }
+
+  public deleteMedia(chaseId: string, mediaId: string): Observable<any> {
+    return of('success');
+  }
+
+  public createMediaFile(chaseId: string, mediaId: string, file: File): Observable<any> {
+    return of(new Image());
+  }
+
+  public deleteMediaFile(chaseId: string, mediaId: string, filename: string): Observable<any> {
     return of('success');
   }
 }

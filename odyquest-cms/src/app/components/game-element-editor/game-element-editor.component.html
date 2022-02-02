@@ -1,8 +1,7 @@
 <div class="editor-top-container">
   <app-image-upload class="editor-image-outer-container"
-                    [image]="getImage()"
-                    [chaseId]="chaseEditor.getChaseId()"
-                    (imageChange)="updateImage($event)" >
+                    [mediaId]="getImage()"
+                    (mediaIdChange)="updateImage($event)" >
   </app-image-upload>
   <div class="editor-top-right-container">
 
@@ -68,9 +67,8 @@
               <textarea matInput type="text" name="hint_text_{{i}}" [(ngModel)]="hint.text"></textarea>
             </mat-form-field>
             <app-image-upload class="editor-image-outer-container"
-                              [image]="hint.image"
-                              [chaseId]="chaseEditor.getChaseId()"
-                              (imageUrl)="updateHelpImage(i, $event)" >
+                              [mediaId]="hint.image"
+                              (mediaIdChange)="updateHelpImage(i, $event)" >
             </app-image-upload>
             <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
           </div>

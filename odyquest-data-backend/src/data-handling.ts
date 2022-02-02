@@ -37,7 +37,7 @@ export class DataHandling {
     }
     return new Promise<string>((resolve, reject) => {
       this.filehandling.writeChase(chase);
-      resolve(id)
+      resolve(id);
     });
   }
 

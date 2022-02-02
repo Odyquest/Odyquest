@@ -143,9 +143,8 @@ app.get('/protected/media/*/*', (req, res) => {
 app.post('/protected/media', upload.single('file'), function (req, res) {
   console.log('received media data');
   const media: Media = deserialize(req.body, Image);
-  dataHandling.createOrUpdateMedia(media).then(id => {
-    // TODO
-    res.send('{ "url": "media/' + id + '", "mimetype": "' + getMimetype(req) + '" }');
+  dataHandling.createOrUpdateMedia(media).then(media => {
+    res.send('{ "mediaId": "' + media.mediaId + '" }');
   }).catch(() => {
     res.send('error');
   });
@@ -162,6 +161,16 @@ app.delete('/protected/media/*/*', upload.single('file'), function (req, res) {
 });
 
 app.get('/file/*/*/*', (req, res) => {
+  dataHandling.getMediaFile(req.params[0], req.params[1], req.params[2]).then(file => {
+    res.setHeader("Content-Type", file.mimetype);
+    res.send(file.data);
+  }).catch(() => {
+    res.status(500);
+    res.send('');
+  });
+});
+
+app.get('/protected/file/*/*/*', (req, res) => {
   dataHandling.getMediaFile(req.params[0], req.params[1], req.params[2]).then(file => {
     res.setHeader("Content-Type", file.mimetype);
     res.send(file.data);

@@ -87,9 +87,19 @@ export class ChaseEditorService {
     return this.questNames;
   }
 
+  public hasChaseId(): boolean {
+    if (this.chase && this.chase.metaData.chaseId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public getChaseId(): string {
     if (this.chase && this.chase.metaData.chaseId) {
       return this.chase.metaData.chaseId;
+    } else {
+      return '';
     }
   }
 

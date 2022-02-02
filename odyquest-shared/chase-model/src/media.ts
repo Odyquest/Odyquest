@@ -7,7 +7,7 @@ export class MediaFile {
    * The filename is either the name of the file in the backend, an url or a relative path to a static file starting
    * with './'
    */
-  @JsonProperty() filename;
+  @JsonProperty() filename: string;
 
   constructor(filename: string) {
     this.filename = filename;
@@ -31,8 +31,8 @@ export abstract class Media {
    *
    * Describing the content of the media in text e.g. for blind persons.
    */
-  @JsonProperty() alternative= "";
-  @JsonProperty() annotation = "";
+  @JsonProperty() alternative = "";
+  @JsonProperty() annotation? = "";
 
   public abstract hasFiles(): boolean;
   public abstract getDefaultFile(): MediaFile;
@@ -83,15 +83,15 @@ export class MediaWithFilelist<T extends MediaFile> extends Media {
 export class ImageFile extends MediaFile {
   @JsonProperty() width: number;
 
-  constructor(url = "", width = 0) {
-    super(url);
+  constructor(filename = "", width = 0) {
+    super(filename);
     this.width = width;
   }
 }
 
 @Serializable()
 export class Image extends MediaWithFilelist<ImageFile> {
-  @JsonProperty() preview = "";
+  @JsonProperty() preview? = "";
 
   public getFilesSortedByResolution(): ImageFile[] {
     return this.files.sort((first, second) => 0 - (first.width > second.width ? -1 : 1));
@@ -103,8 +103,8 @@ export class AudioFile extends MediaFile {
   @JsonProperty() mimetype:string;
   @JsonProperty() bitrate:number;
 
-  constructor(url: string, mimetype: string, bitrate: number) {
-    super(url);
+  constructor(filename: string, mimetype: string, bitrate: number) {
+    super(filename);
     this.mimetype = mimetype;
     this.bitrate = bitrate;
   }
@@ -119,8 +119,8 @@ export class VideoFile extends MediaFile {
   @JsonProperty() mimetype:string;
   @JsonProperty() resolution:number;
 
-  constructor(url: string, mimetype: string, resolution: number) {
-    super(url);
+  constructor(filename: string, mimetype: string, resolution: number) {
+    super(filename);
     this.mimetype = mimetype;
     this.resolution = resolution;
   }

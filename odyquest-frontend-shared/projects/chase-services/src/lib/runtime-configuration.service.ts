@@ -32,6 +32,10 @@ export class RuntimeConfigurationService implements AbstractRuntimeConfiguration
     return this.config.api.api_based;
   }
 
+  getApiBaseUri(): boolean {
+    return this.config.api.base_uri;
+  }
+
   getTitleText(locale: string): string {
     return this.config.title['title_text_' + locale];
   }
@@ -44,7 +48,7 @@ export class RuntimeConfigurationService implements AbstractRuntimeConfiguration
     if (!this.isApiBased()) {
       return '';
     }
-    return this.config.api.api.base_uri + 'files/';
+    return this.getApiBaseUri() + 'file/';
   }
 }
 

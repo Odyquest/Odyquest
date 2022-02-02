@@ -173,7 +173,7 @@ export class QuestEditorComponent implements OnInit {
     this.gameElementToLocal();
 
     // we need to manually tell angular that changes occured:
-    this.cd.detectChanges();
+    // this.cd.detectChanges();
   }
 
   save(): void {

@@ -37,7 +37,8 @@ class Path {
   }
 
   public static getPublicMediaPath(chaseId: string, mediaId: string): string {
-    return Path.getPublicChaseFilepath(chaseId) + 'media/' + mediaId + '/';
+    // TODO change to public
+    return Path.getProtectedChaseFilepath(chaseId) + 'media/' + mediaId + '/';
   }
   public static getProtectedMediaPath(chaseId: string, mediaId: string): string {
     return Path.getProtectedChaseFilepath(chaseId) + 'media/' + mediaId + '/';
@@ -47,7 +48,8 @@ class Path {
   }
 
   public static getPublicMediaFile(chaseId: string, mediaId: string, filename: string): string {
-    return Path.getPublicMediaPath(chaseId, mediaId) + filename;
+    // TODO change to public
+    return Path.getProtectedMediaPath(chaseId, mediaId) + filename;
   }
   public static getProtectedMediaFilePath(chaseId: string, mediaId: string, filename: string): string {
     return Path.getProtectedMediaPath(chaseId, mediaId);
@@ -83,7 +85,7 @@ export class FileHandling {
     if (chase.metaData.published) {
       createSymlink('../' + Path.getProtectedDirName(), Path.getPublicChaseFilepath(id));
     } else {
-      removeFile(Path.getPublicChaseFilepath(id));
+      // TODO if file: removeFile(Path.getPublicChaseFilepath(id));
     }
   }
 

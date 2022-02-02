@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ChaseService, ChaseServiceMock } from 'chase-services';
+import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
 import { ChaseSelectorComponent } from './chase-selector.component';
 
 describe('ChaseSelectorComponent', () => {
@@ -13,6 +14,10 @@ describe('ChaseSelectorComponent', () => {
       imports: [ RouterTestingModule ],
       declarations: [ ChaseSelectorComponent ],
       providers: [
+        {
+          provide: RuntimeConfigurationService,
+          useClass: RuntimeConfigurationServiceMock
+        },
         {
           provide: ChaseService,
           useClass: ChaseServiceMock
