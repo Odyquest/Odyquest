@@ -4,6 +4,7 @@ import { readFileSync,
   writeFile,
   existsSync,
   mkdirSync,
+  readdirSync,
   rmdirSync,
   rmSync,
   symlinkSync } from 'fs';
@@ -12,8 +13,12 @@ import FileType from 'file-type';
 import { Chase, ChaseList, ChaseMetaData } from './chase-model';
 import { File } from './file';
 
+function readObjectSync<T>(file: string,  type: new (...params: any[]) => T): T {
+  return deserialize(JSON.parse(readFileSync(file, 'utf8')), type);
+}
+
 export function readObject<T>(file: string,  type: new (...params: any[]) => T): Promise<T> {
-  return new Promise((resolve, reject) => resolve(deserialize(JSON.parse(readFileSync(file, 'utf8')), type)));
+  return new Promise((resolve, reject) => resolve(readObjectSync<T>(file, type)));
 }
 
 export function readSpecializedObject<Parent, Child1 extends Parent, Child2 extends Parent, Child3 extends Parent, Child4 extends Parent>(
@@ -44,6 +49,7 @@ export function readSpecializedObject<Parent, Child1 extends Parent, Child2 exte
         return;
       } catch(e) {
       }
+      console.error("could not convert media file to specific media type");
     });
   }
 
@@ -85,4 +91,19 @@ export function createSymlink(target: string, file: string) {
 
 export function removeFile(file: string) {
   rmSync(file);
+}
+
+export function listDirs(prefixPath: string): string[] {
+    return readdirSync(prefixPath, {encoding: 'utf8'});
+}
+export function listObjects<T>(prefixPath: string, suffixPath: string,  type: new (...params: any[]) => T): Promise<T[]> {
+  return new Promise((resolve, reject) => {
+    const files = listDirs(prefixPath);
+    //const files = readdirSync(prefixPath, {encoding: 'utf8'});
+    const list = new Array<T>();
+    files.forEach(file => {
+      list.push(readObjectSync<T>(prefixPath + file + '/' + suffixPath, type));
+    });
+    resolve(list);
+  });
 }

@@ -8,6 +8,8 @@ import { readObject,
   hasDir,
   createDir,
   createSymlink,
+  listObjects,
+  listDirs,
   removeFile,
   removeDir } from './filesystem';
 import { File } from './file';
@@ -21,7 +23,7 @@ class Path {
   }
 
   private static getChaseFilepath(chaseId: string): string {
-    return getFilesystemPath() + '/chases/' + chaseId + '/';
+    return Path.getChasesPrefixPath() + chaseId + '/';
   }
   public static getPublicChaseFilepath(chaseId: string): string {
     return Path.getChaseFilepath(chaseId) + Path.getPublicDirName();
@@ -32,19 +34,29 @@ class Path {
   public static getChaseFilename(chaseId: string): string {
     return 'chase.json';
   }
-  public static getChaseMetaDataFilename(chaseId: string): string {
+  public static getChaseMetaDataFilename(): string {
     return 'chase_meta_data.json';
+  }
+  public static getChasesPrefixPath(): string {
+    return getFilesystemPath() + '/chases/';
+  }
+  public static getChaseMetaDataSuffixPath(): string {
+    // TODO change to public
+    return Path.getProtectedDirName() + Path.getChaseMetaDataFilename();
   }
 
   public static getPublicMediaPath(chaseId: string, mediaId: string): string {
     // TODO change to public
-    return Path.getProtectedChaseFilepath(chaseId) + 'media/' + mediaId + '/';
+    return Path.getProtectedMediaPrefixPath(chaseId) + mediaId + '/';
   }
   public static getProtectedMediaPath(chaseId: string, mediaId: string): string {
-    return Path.getProtectedChaseFilepath(chaseId) + 'media/' + mediaId + '/';
+    return Path.getProtectedMediaPrefixPath(chaseId) + mediaId + '/';
   }
   public static getMediaFilename(): string {
     return 'media.json';
+  }
+  public static getProtectedMediaPrefixPath(chaseId: string): string {
+    return Path.getProtectedChaseFilepath(chaseId) + 'media/';
   }
 
   public static getPublicMediaFile(chaseId: string, mediaId: string, filename: string): string {
@@ -81,7 +93,15 @@ export class FileHandling {
       console.warn("Could not find folder ", path, ", created if for adding a chase");
     }
     writeObject<Chase>(path + Path.getChaseFilename(id), chase);
-    writeObject<ChaseMetaData>(path + Path.getChaseMetaDataFilename(id), chase.metaData);
+    writeObject<ChaseMetaData>(path + Path.getChaseMetaDataFilename(), chase.metaData);
+    for (const mediaId in chase.images.keys()) {
+      const media = chase.images.get(mediaId);
+      if (!media) {
+        return;
+      }
+      this.writeMedia(media);
+    }
+    console.log('check publishing status');
     if (chase.metaData.published) {
       createSymlink('../' + Path.getProtectedDirName(), Path.getPublicChaseFilepath(id));
     } else {
@@ -90,15 +110,23 @@ export class FileHandling {
   }
 
   public readPublicChaseList(): Promise<ChaseList> {
-    // TODO
+    // TODO public vs. protected
     return new Promise<ChaseList>((resolve, reject) => {
-      resolve(new ChaseList());
+      listObjects<ChaseMetaData>(Path.getChasesPrefixPath(), Path.getChaseMetaDataSuffixPath(), ChaseMetaData).then(list => {
+        const chaseList = new ChaseList()
+        chaseList.chases = list;
+        resolve(chaseList);
+      });
     });
   }
   public readProtectedChaseList(): Promise<ChaseList> {
-    // TODO
+    // TODO public vs. protected
     return new Promise<ChaseList>((resolve, reject) => {
-      resolve(new ChaseList());
+      listObjects<ChaseMetaData>(Path.getChasesPrefixPath(), Path.getChaseMetaDataSuffixPath(), ChaseMetaData).then(list => {
+        const chaseList = new ChaseList()
+        chaseList.chases = list;
+        resolve(chaseList);
+      });
     });
   }
 
@@ -150,14 +178,26 @@ export class FileHandling {
     writeData(path + Path.getProtectedMediaFileFilename(fileId), data);
   }
 
+  private getUniqueId(): string {
+    // tslint:disable-next-line:no-bitwise
+    const S6 = (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
+    return S6;
+  }
+
   public getFreeChaseId(): string {
-    // TODO get random id generator
-    // TODO get Chase list and filter
-    return 'free_id';
+    const list = listDirs(Path.getChasesPrefixPath());
+    let uuid;
+    do {
+      uuid = this.getUniqueId();
+    } while (list.includes(uuid));
+    return uuid;
   }
   public getFreeMediaId(chaseId: string): string {
-    // TODO get random id generator
-    // TODO get chase and find
-    return 'free_id';
+    const list = listDirs(Path.getProtectedMediaPrefixPath(chaseId));
+    let uuid;
+    do {
+      uuid = this.getUniqueId();
+    } while (list.includes(uuid));
+    return uuid;
   }
 }

@@ -11,7 +11,12 @@ describe('MetaDataEditorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ MetaDataEditorComponent ],
-      providers: [ ChaseEditorService ]
+      providers: [ ChaseEditorService,
+        {
+          provide: ChaseService,
+          useClass: ChaseServiceMock
+        }
+      ]
     })
     .compileComponents();
   });

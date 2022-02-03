@@ -24,7 +24,7 @@
       </header>
       <img mat-card-image src="{{imageUrls.get(chase.chaseId)}}">
       <mat-card-content>
-        <p markdown emoji>{{chase.preview.description.text}}</p>
+        <p markdown emoji>{{chase.preview.text}}</p>
       </mat-card-content>
       <mat-card-actions>
         <mat-checkbox primary [checked]="chase.published" disabled i18n="@@chase-selector.published_flag">Published</mat-checkbox>

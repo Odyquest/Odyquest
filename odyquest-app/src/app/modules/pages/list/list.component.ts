@@ -28,10 +28,12 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.uiService.toolbarTitle.next('Wähle eine Schnitzeljagd');
-    this.chaseService.getAllChases().subscribe(chases => this.chaseList = chases);
-    this.chaseList.chases.forEach((chase: ChaseMetaData) => {
-      this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
-        this.images.set(chase.chaseId, media as Image);
+    this.chaseService.getAllChases().subscribe(chases => {
+      this.chaseList = chases;
+      this.chaseList.chases.forEach((chase: ChaseMetaData) => {
+        this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
+          this.images.set(chase.chaseId, media as Image);
+        });
       });
     });
   }

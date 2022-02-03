@@ -29,8 +29,7 @@ describe('ImageUploadComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageUploadComponent);
     component = fixture.componentInstance;
-    component.image = new Image();
-    component.chaseId = 'chase_id';
+    component.mediaId = 'media_id';
     fixture.detectChanges();
   });
 

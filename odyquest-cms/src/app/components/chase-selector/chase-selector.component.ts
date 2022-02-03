@@ -9,9 +9,6 @@ import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { deserialize } from 'typescript-json-serializer';
 
-// import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
-// import { ChaseStatus } from 'src/app/core/models/chase_status';
-
 @Component({
   selector: 'app-chase-selector',
   templateUrl: './chase-selector.component.html',
@@ -28,10 +25,13 @@ export class ChaseSelectorComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.chaseService.getAllChases(true).subscribe(chases => this.chaseList = chases);
-    this.chaseList.chases.forEach((chase: ChaseMetaData) => {
-      this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
-        this.imageUrls.set(chase.chaseId, media.getDefaultUrl(this.configuration.getMediaUrlPrefix()));
+    this.chaseService.getAllChases(true).subscribe(chases => {
+      this.chaseList = chases;
+      this.chaseList.chases.forEach((chase: ChaseMetaData) => {
+        this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
+          console.log('get media data for chase ', chase.chaseId);
+          this.imageUrls.set(chase.chaseId, media.getDefaultUrl(this.configuration.getMediaUrlPrefix()));
+        });
       });
     });
   }
