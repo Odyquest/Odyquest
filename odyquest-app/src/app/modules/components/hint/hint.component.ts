@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject, Optional } from '@angular/core';
 
-import { Description, Image } from 'chase-model';
+import { Description, Media, Image } from 'chase-model';
 import { Quest, QuestType } from 'chase-model';
 import { GameService, QuestStatus } from '../../../core/services/game.service';
 
@@ -73,7 +73,7 @@ export class HintComponent {
     if (!this.hint[this.index]) {
       return new Image();
     }
-    const image = this.game.chase.getImage(this.hint[this.index].image);
+    const image = this.game.chase.getMedia<Image>(this.hint[this.index].image);
     if (!image) {
       return new Image();
     }

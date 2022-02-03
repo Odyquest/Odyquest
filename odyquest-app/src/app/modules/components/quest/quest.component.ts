@@ -168,7 +168,7 @@ export class QuestComponent implements OnInit, OnDestroy {
   }
 
   getImage(): Image {
-    const image = this.game.chase.getImage(this.quest.description.image);
+    const image = this.game.chase.getMedia<Image>(this.quest.description.image);
     if (!image) {
       console.log('image not found');
       return new Image();

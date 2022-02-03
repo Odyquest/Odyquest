@@ -41,9 +41,10 @@ export class DataHandling {
     });
   }
 
-  public deleteChase(id: string): Promise<boolean> {
-    // TODO implement
-    return new Promise<boolean>(() => false);
+  public deleteChase(id: string): Promise<void> {
+    return new Promise(() => {
+      this.filehandling.removeChase(id);
+    });
   }
 
   public getMedia(chaseId: string, mediaId: string): Promise<Media> {
@@ -64,9 +65,10 @@ export class DataHandling {
     });
   }
 
-  public deleteMedia(chaseId: string, mediaId: string): Promise<boolean> {
-    // TODO
-    return new Promise<boolean>(() => false);
+  public deleteMedia(chaseId: string, mediaId: string): Promise<void> {
+    return new Promise(() => {
+      this.filehandling.removeMedia(chaseId, mediaId);
+    });
   }
 
   public getMediaFile(chaseId: string, mediaId: string, filename:string): Promise<File> {
@@ -76,15 +78,19 @@ export class DataHandling {
   public addMediaFile(chaseId: string, mediaId: string, name: string, mimetype: string, data: Buffer): Promise<Media> {
     return new Promise((resolve, reject) => {
       this.getProtectedMedia(chaseId, mediaId).then(media => {
-        this.filehandling.writeMediaFile(chaseId, mediaId, name, data);
+        const attributes = this.filehandling.writeMediaFile(chaseId, mediaId, name, data);
         if (media instanceof Image) {
-          // TODO add file attributes
+          // TODO create image pyramide
+          const attributes = this.filehandling.getImageAttributes(chaseId, mediaId, name);
           const file = new ImageFile(name);
+          file.width = attributes.width;
           (media as Image).files.push(file);
         } else if (media instanceof Audio) {
+          const attributes = this.filehandling.getAudioAttributes(chaseId, mediaId, name);
           const file = new AudioFile(name, mimetype, 0);
           (media as Audio).files.push(file);
         } else if (media instanceof Video) {
+          const attributes = this.filehandling.getVideoAttributes(chaseId, mediaId, name);
           const file = new VideoFile(name, mimetype, 0);
           (media as Video).files.push(file);
         } else if (media instanceof AugmentedReality) {
@@ -100,6 +106,7 @@ export class DataHandling {
   public deleteMediaFile(chaseId: string, mediaId: string, filename:string): Promise<Media> {
     return new Promise((resolve, reject) => {
       this.getProtectedMedia(chaseId, mediaId).then(media => {
+        console.warn('Deleting media files is not yet implemented');
         // TODO delete file
         // TODO remove file from media entry
         // TODO get updated media entry

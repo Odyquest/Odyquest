@@ -103,7 +103,7 @@ export class NarrativeComponent implements OnInit {
   }
 
   getImage(): Image {
-    const image = this.game.chase.getImage(this.narrative.description.image);
+    const image = this.game.chase.getMedia<Image>(this.narrative.description.image);
     if (!image) {
       console.log('image not found');
       return new Image();

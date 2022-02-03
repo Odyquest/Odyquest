@@ -84,7 +84,7 @@ app.get('/protected/chase', (req, res) => {
 });
 
 app.get('/chase/*', (req, res) => {
-  dataHandling.getProtectedChase(req.params[0]).then(chase => {
+  dataHandling.getChase(req.params[0]).then(chase => {
     res.send(serialize(chase as Chase));
   }).catch(() => {
     res.status(500);

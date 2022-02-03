@@ -15,21 +15,21 @@ import { readObject,
 import { File } from './file';
 
 class Path {
-  private static getPublicDirName(): string {
+  public static getPublicDirName(): string {
     return 'public/';
   }
   public static getProtectedDirName(): string {
     return 'protected/';
   }
 
-  private static getChaseFilepath(chaseId: string): string {
+  public static getChaseFolderpath(chaseId: string): string {
     return Path.getChasesPrefixPath() + chaseId + '/';
   }
   public static getPublicChaseFilepath(chaseId: string): string {
-    return Path.getChaseFilepath(chaseId) + Path.getPublicDirName();
+    return Path.getChaseFolderpath(chaseId) + Path.getPublicDirName();
   }
   public static getProtectedChaseFilepath(chaseId: string): string {
-    return Path.getChaseFilepath(chaseId) + Path.getProtectedDirName();
+    return Path.getChaseFolderpath(chaseId) + Path.getProtectedDirName();
   }
   public static getChaseFilename(chaseId: string): string {
     return 'chase.json';
@@ -40,13 +40,15 @@ class Path {
   public static getChasesPrefixPath(): string {
     return getFilesystemPath() + '/chases/';
   }
-  public static getChaseMetaDataSuffixPath(): string {
-    // TODO change to public
+  public static getPublicChaseMetaDataSuffixPath(): string {
+    return Path.getPublicDirName() + Path.getChaseMetaDataFilename();
+  }
+  public static getProtectedChaseMetaDataSuffixPath(): string {
     return Path.getProtectedDirName() + Path.getChaseMetaDataFilename();
   }
 
   public static getPublicMediaPath(chaseId: string, mediaId: string): string {
-    // TODO change to public
+    // TODO change to public for correct access management
     return Path.getProtectedMediaPrefixPath(chaseId) + mediaId + '/';
   }
   public static getProtectedMediaPath(chaseId: string, mediaId: string): string {
@@ -60,7 +62,7 @@ class Path {
   }
 
   public static getPublicMediaFile(chaseId: string, mediaId: string, filename: string): string {
-    // TODO change to public
+    // TODO change to public for correct access management
     return Path.getProtectedMediaPath(chaseId, mediaId) + filename;
   }
   public static getProtectedMediaFilePath(chaseId: string, mediaId: string, filename: string): string {
@@ -74,7 +76,7 @@ class Path {
 export class FileHandling {
 
   public readPublicChase(id: string): Promise<Chase> {
-    return readObject<Chase>(Path.getPublicChaseFilepath(id) + Path.getChaseFilename(id), Chase);
+    return readObject<Chase>(Path.getProtectedChaseFilepath(id) + Path.getChaseFilename(id), Chase);
   }
   public readProtectedChase(id: string): Promise<Chase> {
     // may add hidden data to the chase
@@ -94,8 +96,8 @@ export class FileHandling {
     }
     writeObject<Chase>(path + Path.getChaseFilename(id), chase);
     writeObject<ChaseMetaData>(path + Path.getChaseMetaDataFilename(), chase.metaData);
-    for (const mediaId in chase.images.keys()) {
-      const media = chase.images.get(mediaId);
+    for (const mediaId in chase.media.keys()) {
+      const media = chase.media.get(mediaId);
       if (!media) {
         return;
       }
@@ -105,14 +107,20 @@ export class FileHandling {
     if (chase.metaData.published) {
       createSymlink('../' + Path.getProtectedDirName(), Path.getPublicChaseFilepath(id));
     } else {
-      // TODO if file: removeFile(Path.getPublicChaseFilepath(id));
+    const list = listDirs(Path.getChaseFolderpath(id));
+      if (list.includes(Path.getPublicDirName())) {
+        removeFile(Path.getPublicChaseFilepath(id));
+      }
     }
   }
 
+  public removeChase(chaseId: string): void {
+    removeDir(Path.getChaseFolderpath(chaseId));
+  }
+
   public readPublicChaseList(): Promise<ChaseList> {
-    // TODO public vs. protected
     return new Promise<ChaseList>((resolve, reject) => {
-      listObjects<ChaseMetaData>(Path.getChasesPrefixPath(), Path.getChaseMetaDataSuffixPath(), ChaseMetaData).then(list => {
+      listObjects<ChaseMetaData>(Path.getChasesPrefixPath(), Path.getPublicChaseMetaDataSuffixPath(), ChaseMetaData).then(list => {
         const chaseList = new ChaseList()
         chaseList.chases = list;
         resolve(chaseList);
@@ -120,9 +128,8 @@ export class FileHandling {
     });
   }
   public readProtectedChaseList(): Promise<ChaseList> {
-    // TODO public vs. protected
     return new Promise<ChaseList>((resolve, reject) => {
-      listObjects<ChaseMetaData>(Path.getChasesPrefixPath(), Path.getChaseMetaDataSuffixPath(), ChaseMetaData).then(list => {
+      listObjects<ChaseMetaData>(Path.getChasesPrefixPath(), Path.getProtectedChaseMetaDataSuffixPath(), ChaseMetaData).then(list => {
         const chaseList = new ChaseList()
         chaseList.chases = list;
         resolve(chaseList);
@@ -165,6 +172,11 @@ export class FileHandling {
     }
   }
 
+  public removeMedia(chaseId: string, mediaId: string): void {
+    removeDir(Path.getProtectedMediaPath(chaseId, mediaId));
+  }
+
+
   public readMediaFile(chaseId: string, mediaId: string, fileId: string): Promise<File> {
     return readData(Path.getPublicMediaFile(chaseId, mediaId, fileId));
   }
@@ -176,6 +188,16 @@ export class FileHandling {
       console.warn("Could not find folder ", path, ", created if for adding a media file");
     }
     writeData(path + Path.getProtectedMediaFileFilename(fileId), data);
+  }
+
+  public getImageAttributes(chaseId: string, mediaId: string, fileId: string): any {
+    return { witdh: 0 };
+  }
+
+  public getAudioAttributes(chaseId: string, mediaId: string, fileId: string): any {
+  }
+
+  public getVideoAttributes(chaseId: string, mediaId: string, fileId: string): any {
   }
 
   private getUniqueId(): string {

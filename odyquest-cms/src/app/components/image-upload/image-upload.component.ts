@@ -18,7 +18,7 @@ export class ImageUploadComponent implements OnInit {
 
   constructor(
     private chaseService: ChaseService,
-    private chaseEditor: ChaseEditorService,
+    public chaseEditor: ChaseEditorService,
     private configuration: RuntimeConfigurationService
   ) { }
 

@@ -21,7 +21,7 @@ export function getSimpleExample(): Chase {
   chase.gameElements = new Map<number, GameElement>();
   const image = new Image();
   image.files = [new ImageFile('https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg', 0)];
-  chase.images.set('image_id', image);
+  chase.media.set('image_id', image);
 
   const narrative = new Narrative();
   narrative.title = 'Error occured!';

@@ -4,7 +4,7 @@ import { Preview } from './preview';
 import { Narrative } from './narrative';
 import { Quest } from './quest';
 import { GameElement } from './game_element';
-import { Image } from './media';
+import { Media, Image } from './media';
 
 @Serializable()
 export class ChaseEditingData {
@@ -93,7 +93,6 @@ export class Chase {
     isDictionary: true,
     /** Merge specialized maps together to original map */
     onDeserialize: value => {
-      console.log("deserialize images");
       const images = new Map<string, Image>();
       for (const v in value._images) {
         images.set(v, deserialize<Image>(value._images[v], Image));
@@ -103,7 +102,6 @@ export class Chase {
     },
     /** Split up images for serialization to keep type safety */
     onSerialize: value => {
-      console.log("serialize images");
       const images: {[index: number]:any} = new Object();
       for (const element of value.keys()) {
         if (value.get(element) instanceof Image) {
@@ -117,7 +115,7 @@ export class Chase {
         _images: images
       };
     }
-  }) images: Map<string, Image> = new Map<string, Image>();
+  }) media: Map<string, Media> = new Map<string, Media>();
 
   @JsonProperty() tags?: Array<string>;
 
@@ -128,7 +126,7 @@ export class Chase {
         this.metaData = chase.metaData;
         this.initialGameElement = chase.initialGameElement;
         this.gameElements = chase.gameElements;
-        this.images = chase.images;
+        this.media = chase.media;
         if (chase.tags) {
           this.tags = chase.tags;
         }
@@ -141,7 +139,7 @@ export class Chase {
         chase.metaData = this.metaData;
         chase.initialGameElement = this.initialGameElement;
         chase.gameElements = this.gameElements;
-        chase.images = this.images;
+        chase.media = this.media;
         if (this.tags) {
           chase.tags = this.tags;
         }
@@ -152,9 +150,9 @@ export class Chase {
     return this.gameElements.get(destination);
   }
 
-  /** Get the image with the given id */
-  getImage(id: string): Image | undefined {
-    return this.images.get(id) as Image;
+  /** Get media with the given id */
+  getMedia<T extends Media>(id: string): T | undefined {
+    return this.media.get(id) as T;
   }
 
 }

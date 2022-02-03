@@ -104,10 +104,10 @@ export class ChaseEditorService {
   }
 
   public getImage(id: string): Image {
-    return this.chase.getImage(id) || new Image();
+    return this.chase.getMedia<Image>(id) || new Image();
   }
   public setImage(id: string, image: Image): void {
-    this.chase.images.set(id, image);
+    this.chase.media.set(id, image);
   }
 
   public notifyElementChanged(): void {
