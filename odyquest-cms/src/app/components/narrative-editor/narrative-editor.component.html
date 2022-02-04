@@ -39,9 +39,9 @@
     </div>
     <app-media-upload class="narrative-media-container border"
                       *ngIf="needsMediaUpload()"
-                      [media]="getMedia()"
-                      [chaseId]="chaseEditor.getChaseId()"
-                      (updateMedia)="updateMedia($event)" >
+                      [mediaId]="getMedia()"
+                      [narrativeType]="getSelectedType()"
+                      (mediaIdChange)="updateMedia($event)" >
     </app-media-upload>
     <div id=narrator-button-array-container class="border">
       <div class="row">

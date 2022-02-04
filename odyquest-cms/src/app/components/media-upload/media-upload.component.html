@@ -1,31 +1,41 @@
+<div *ngIf="!hasMedia()">
+<button id="addMediaButton"
+        mat-raised-button
+        color="primary"
+        (click)="addMedia()"
+        i18n="@@add_media">
+  Add media
+</button>
+</div>
+<div *ngIf="hasMedia()">
 <div class="editor-media-container">
-  <div *ngIf="hasAudio()">
+  <div *ngIf="hasAudio() && hasFiles()">
     <audio controls
      class="game_element_text">
-      <source [src]="getDefaultFileUrl()" />
+      <source [src]="getDefaultMediaUrl()" />
         Your browser does not support audio.
     </audio>
     <!--<div *ngFor="let typeFormat of getTypesFormats()">
       {{typeFormat[0]}} in {{typeFormat[1]}} bit
     </div>-->
   </div>
-  <div *ngIf="hasVideo()">
+  <div *ngIf="hasVideo() && hasFiles()">
     <video controls
      class="game_element_text">
-      <source [src]="getDefaultFileUrl()" />
+      <source [src]="getDefaultMediaUrl()" />
         Your browser does not support audio.
     </video>
     <!--<div *ngFor="let typeFormat of getTypesFormats()">
       {{typeFormat[0]}} in {{typeFormat[1]}}p
     </div>-->
   </div>
-  <mat-icon class="default-media" *ngIf="!media.hasFiles()">collections</mat-icon>
+  <mat-icon class="default-media" *ngIf="!hasFiles()">collections</mat-icon>
 </div>
 <input type="text"
        id="media-name"
        name="quest_name"
-       [ngModel]="getDefaultFileUrl()"
-       (change)="addMedia($event)"
+       [ngModel]="getDefaultMediaUrl()"
+       (change)="updateMediaUrl($event)"
        i18n-placeholder
        placeholder="URL pointing to media..." />
 <br />
@@ -40,3 +50,4 @@
   <!--<mat-icon id="saveChaseButton" matTooltip="Bild für Chase hochladen">file_upload </mat-icon>-->
   Upload media
 </button>
+</div>

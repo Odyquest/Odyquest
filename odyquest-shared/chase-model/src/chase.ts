@@ -4,7 +4,7 @@ import { Preview } from './preview';
 import { Narrative } from './narrative';
 import { Quest } from './quest';
 import { GameElement } from './game_element';
-import { Media, Image } from './media';
+import { Media, Audio, AugmentedReality, Image, Video } from './media';
 
 @Serializable()
 export class ChaseEditingData {
@@ -89,30 +89,52 @@ export class Chase {
   @JsonProperty() initialGameElement: number = -1; // GameElementID
 
   @JsonProperty({
-    names: ['_images'],
+    names: ['_images', '_audios', '_videos', '_augmented_reality'],
     isDictionary: true,
     /** Merge specialized maps together to original map */
     onDeserialize: value => {
-      const images = new Map<string, Image>();
+      const medias = new Map<string, Media>();
       for (const v in value._images) {
-        images.set(v, deserialize<Image>(value._images[v], Image));
-        // console.log('deserialize image with id ', images.get(v));
+        medias.set(v, deserialize<Image>(value._images[v], Image));
       }
-      return images;
+      const audios = new Map<string, Audio>();
+      for (const v in value._audios) {
+        medias.set(v, deserialize<Audio>(value._audios[v], Audio));
+      }
+      const videos = new Map<string, Video>();
+      for (const v in value._videos) {
+        medias.set(v, deserialize<Video>(value._videos[v], Video));
+      }
+      const augmentedRealitys = new Map<string, AugmentedReality>();
+      for (const v in value._augmented_reality) {
+        medias.set(v, deserialize<AugmentedReality>(value._augmented_reality[v], AugmentedReality));
+      }
+      return medias;
     },
     /** Split up images for serialization to keep type safety */
     onSerialize: value => {
       const images: {[index: number]:any} = new Object();
+      const audios: {[index: number]:any} = new Object();
+      const videos: {[index: number]:any} = new Object();
+      const ars: {[index: number]:any} = new Object();
       for (const element of value.keys()) {
         if (value.get(element) instanceof Image) {
           images[element] = serialize(value.get(element));
-          // console.log('serialize image with id ', images[element].id);
+        } else if (value.get(element) instanceof Audio) {
+          audios[element] = serialize(value.get(element));
+        } else if (value.get(element) instanceof Video) {
+          videos[element] = serialize(value.get(element));
+        } else if (value.get(element) instanceof AugmentedReality) {
+          ars[element] = serialize(value.get(element));
         } else {
           console.warn('can not serialize image of unknown type');
         }
       }
       return {
-        _images: images
+        _images: images,
+        _audios: audios,
+        _videos: videos,
+        _augmented_reality: ars
       };
     }
   }) media: Map<string, Media> = new Map<string, Media>();

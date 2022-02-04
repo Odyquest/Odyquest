@@ -93,7 +93,8 @@ export class NarrativeEditorComponent implements OnInit {
   }
 
   updateMedia(media: Media): void {
-    (this.gameElement as Narrative).setCurrentMedia(media);
+    return this.chaseEditor.setMedia(media.mediaId, media);
+    //(this.gameElement as Narrative).setCurrentMedia(media);
   }
 
   getNarrativeStatus(type: string): NarrativeStatus {
@@ -118,12 +119,16 @@ export class NarrativeEditorComponent implements OnInit {
     }
   }
 
+  getSelectedType(): NarrativeType {
+    return (this.gameElement as Narrative).narrativeType;
+  }
+
   hasMedia(): boolean {
     return this.gameElement && this.gameElement instanceof Narrative;
   }
 
-  getMedia(): Media {
-    return (this.gameElement as Narrative).getCurrentMedia();
+  getMedia(): string {
+    return (this.gameElement as Narrative).media;
   }
 
   needsMediaUpload(): boolean {

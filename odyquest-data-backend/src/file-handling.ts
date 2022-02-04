@@ -26,7 +26,8 @@ class Path {
     return Path.getChasesPrefixPath() + chaseId + '/';
   }
   public static getPublicChaseFilepath(chaseId: string): string {
-    return Path.getChaseFolderpath(chaseId) + Path.getPublicDirName();
+    // TODO change to public for correct access management
+    return Path.getChaseFolderpath(chaseId) + Path.getProtectedDirName();
   }
   public static getProtectedChaseFilepath(chaseId: string): string {
     return Path.getChaseFolderpath(chaseId) + Path.getProtectedDirName();
@@ -76,7 +77,7 @@ class Path {
 export class FileHandling {
 
   public readPublicChase(id: string): Promise<Chase> {
-    return readObject<Chase>(Path.getProtectedChaseFilepath(id) + Path.getChaseFilename(id), Chase);
+    return readObject<Chase>(Path.getPublicChaseFilepath(id) + Path.getChaseFilename(id), Chase);
   }
   public readProtectedChase(id: string): Promise<Chase> {
     // may add hidden data to the chase

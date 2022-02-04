@@ -43,6 +43,14 @@ export class ImageComponent implements OnInit {
     return srcset;
   }
 
+  getAlternativeText(): string {
+    return this.image.alternative;
+  }
+
+  getAnnotation(): string {
+    return this.image.annotation;
+  }
+
   getClass(): string {
     return this.imgClass;
   }

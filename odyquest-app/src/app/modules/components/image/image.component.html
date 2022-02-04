@@ -1,3 +1,7 @@
-<img class="{{getClass()}}"
+<img [class]="getClass()"
      [src]="getImage()"
-     [srcset]="getImageSrcset()" />
+     [srcset]="getImageSrcset()"
+     [alt]="getAlternativeText()"/>
+<div class="image-annotation">
+  {{getAnnotation()}}
+</div>

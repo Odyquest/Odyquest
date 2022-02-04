@@ -30,8 +30,8 @@ export class Narrative extends GameElement {
 	@JsonProperty() narrativeType = NarrativeType.Text;
 	/** Game continues or is finished */
 	@JsonProperty() narrativeStatus = NarrativeStatus.Continue;
-	/** Additional field used by different media types defined by narrative type */
-	@JsonProperty() media = new MediaCollection();
+	/** Additional field pointing to media entry according to narrative type */
+	@JsonProperty() media = "";
 
   copyFromNarrative(narrative:Narrative) {
     this.copyFromGameElement(narrative);
@@ -47,13 +47,5 @@ export class Narrative extends GameElement {
    */
   isFinal(): boolean {
     return this.narrativeStatus !== NarrativeStatus.Continue;
-  }
-
-  getCurrentMedia(): Media {
-    return this.media.getMedia(this.narrativeType);
-  }
-
-  setCurrentMedia(media: Media): void {
-    return this.media.setMedia(this.narrativeType, media);
   }
 }

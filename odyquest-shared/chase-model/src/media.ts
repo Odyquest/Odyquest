@@ -91,7 +91,7 @@ export class ImageFile extends MediaFile {
 
 @Serializable()
 export class Image extends MediaWithFilelist<ImageFile> {
-  @JsonProperty() preview? = "";
+  @JsonProperty() preview = "";
 
   public getFilesSortedByResolution(): ImageFile[] {
     return this.files.sort((first, second) => 0 - (first.width > second.width ? -1 : 1));

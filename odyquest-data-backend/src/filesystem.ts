@@ -1,5 +1,7 @@
 import { readFileSync,
   rm,
+  constants,
+  accessSync,
   writeFileSync,
   writeFile,
   existsSync,
@@ -102,7 +104,12 @@ export function listObjects<T>(prefixPath: string, suffixPath: string,  type: ne
     //const files = readdirSync(prefixPath, {encoding: 'utf8'});
     const list = new Array<T>();
     files.forEach(file => {
-      list.push(readObjectSync<T>(prefixPath + file + '/' + suffixPath, type));
+      const path = prefixPath + file + '/' + suffixPath;
+      try {
+      accessSync(path, constants.R_OK)
+        list.push(readObjectSync<T>(path , type));
+      } catch(e) {
+      }
     });
     resolve(list);
   });
