@@ -115,6 +115,10 @@ export class NarrativeEditorComponent implements OnInit {
         return NarrativeType.Audio;
       case NarrativeType.Video:
         return NarrativeType.Video;
+      case NarrativeType.AugmentedReality:
+        return NarrativeType.AugmentedReality;
+      default:
+        console.error('Unknown narrative type ', type);
     }
   }
 
@@ -133,7 +137,8 @@ export class NarrativeEditorComponent implements OnInit {
   needsMediaUpload(): boolean {
     if (this.hasMedia()) {
       return this.gameElement.narrativeType === NarrativeType.Audio
-        || this.gameElement.narrativeType === NarrativeType.Video;
+        || this.gameElement.narrativeType === NarrativeType.Video
+        || this.gameElement.narrativeType === NarrativeType.AugmentedReality;
     } else {
       return false;
     }

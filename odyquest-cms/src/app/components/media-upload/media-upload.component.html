@@ -29,6 +29,9 @@
       {{typeFormat[0]}} in {{typeFormat[1]}}p
     </div>-->
   </div>
+  <div *ngIf="hasFiles()">
+    show files
+  </div>
   <mat-icon class="default-media" *ngIf="!hasFiles()">collections</mat-icon>
 </div>
 <input type="text"

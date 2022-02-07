@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AugmentedReality } from 'chase-model';
+import { RuntimeConfigurationService } from 'chase-services';
 
 @Component({
   selector: 'app-augmented-reality',
@@ -11,17 +12,24 @@ import { AugmentedReality } from 'chase-model';
 export class AugmentedRealityComponent implements OnInit {
   @Input() ar: AugmentedReality;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(
+    private sanitizer: DomSanitizer,
+    private configuration: RuntimeConfigurationService,
+  ) { }
 
   ngOnInit(): void {
   }
 
   getArUrl(): SafeResourceUrl {
     let url: string;
-    if (this.ar.baseUrl.indexOf('http') === 0) {
-      url = btoa(this.ar.baseUrl);
+    if (this.ar && this.ar.hasFiles()) {
+      url = btoa(this.ar.getDefaultUrl(this.configuration.getMediaUrlPrefix()));
     } else {
-      url = btoa('../' + this.ar.baseUrl);
+      if (this.ar.baseUrl.indexOf('http') === 0) {
+        url = btoa(this.ar.baseUrl);
+      } else {
+        url = btoa('../' + this.ar.baseUrl);
+      }
     }
     return this.sanitizer.bypassSecurityTrustResourceUrl('assets/ar.html?marker=hiro&model=' + url);
   }
