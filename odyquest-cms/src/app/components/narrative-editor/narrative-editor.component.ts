@@ -92,9 +92,8 @@ export class NarrativeEditorComponent implements OnInit {
     this.gameElement.narrativeStatus = value;
   }
 
-  updateMedia(media: Media): void {
-    return this.chaseEditor.setMedia(media.mediaId, media);
-    //(this.gameElement as Narrative).setCurrentMedia(media);
+  updateMedia(mediaId: string): void {
+    this.gameElement.media = mediaId;
   }
 
   getNarrativeStatus(type: string): NarrativeStatus {

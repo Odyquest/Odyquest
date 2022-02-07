@@ -111,7 +111,7 @@ export class NarrativeComponent implements OnInit {
     return image;
   }
   getMedia<T extends Media>(): T {
-    return this.narrative.getCurrentMedia() as T;
+    return this.game.chase.getMedia<T>(this.narrative.media);
   }
   getAudio(): Audio {
     return this.getMedia<Audio>();

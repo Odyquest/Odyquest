@@ -1,5 +1,5 @@
-<video controls
+<video controls *ngFor="let src of getSources()"
   class="game_element_text">
-  <source [src]="url" [type]="mimetype" />
+  <source [src]="src.url" [type]="src.mimetype" />
     Your browser does not support video. There is a transcript below.
 </video>
