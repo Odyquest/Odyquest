@@ -5,6 +5,8 @@ import { readObject,
   writeObject,
   readData,
   writeData,
+  readFilesize,
+  readStream,
   hasDir,
   createDir,
   createSymlink,
@@ -184,6 +186,14 @@ export class FileHandling {
       console.warn("Could not find folder ", path, ", created if for adding a media file");
     }
     writeData(path + Path.getProtectedMediaFileFilename(fileId), data);
+  }
+
+  public readMediaFileSize(chaseId: string, mediaId: string, fileId: string): number {
+    return readFilesize(Path.getPublicMediaFile(chaseId, mediaId, fileId));
+  }
+
+  public readMediaFileStream(chaseId: string, mediaId: string, fileId: string, start: number, end: number): any {
+    return readStream(Path.getPublicMediaFile(chaseId, mediaId, fileId), {start, end });
   }
 
   public getImageAttributes(chaseId: string, mediaId: string, fileId: string): any {

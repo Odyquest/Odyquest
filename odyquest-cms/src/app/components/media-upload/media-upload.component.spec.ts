@@ -29,9 +29,8 @@ describe('MediaUploadComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MediaUploadComponent);
     component = fixture.componentInstance;
-    component.media = new Audio();
+    component.mediaId = 'audio_id';
     component.narrativeType = NarrativeType.Audio;
-    component.chaseId = 'chase_id';
     fixture.detectChanges();
   });
 

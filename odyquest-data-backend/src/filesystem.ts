@@ -1,6 +1,7 @@
 import { readFileSync,
   rm,
   constants,
+  createReadStream,
   accessSync,
   writeFileSync,
   writeFile,
@@ -9,7 +10,10 @@ import { readFileSync,
   readdirSync,
   rmdirSync,
   rmSync,
-  symlinkSync } from 'fs';
+  statSync,
+  symlinkSync,
+  ReadStream
+} from 'fs';
 import { deserialize, serialize } from 'typescript-json-serializer';
 import FileType from 'file-type';
 import { Chase, ChaseList, ChaseMetaData } from './chase-model';
@@ -113,4 +117,12 @@ export function listObjects<T>(prefixPath: string, suffixPath: string,  type: ne
     });
     resolve(list);
   });
+}
+
+export function readFilesize(file: string): number {
+  return statSync(file).size;
+}
+
+export function readStream(file: string, options: any): ReadStream {
+  return createReadStream(file, options);
 }

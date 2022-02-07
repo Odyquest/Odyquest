@@ -115,4 +115,12 @@ export class DataHandling {
       });
     });
   }
+
+  public getMediaFileSize(chaseId: string, mediaId: string, filename:string): number {
+    return this.filehandling.readMediaFileSize(chaseId, mediaId, filename);
+  }
+
+  public getMediaFileStream(chaseId: string, mediaId: string, filename:string, start: number, end: number): any {
+    return this.filehandling.readMediaFileStream(chaseId, mediaId, filename, start, end);
+  }
 };

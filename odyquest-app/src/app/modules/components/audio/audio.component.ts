@@ -35,7 +35,7 @@ export class AudioComponent implements OnInit {
     const sources: AudioSource[] = [];
     if (this.audio.hasFiles()) {
       for (let i = 0; i < this.audio.files.length; i++) {
-        sources.push(new AudioSource(this.audio.getUrlByIndex(this.configuration.getMediaUrlPrefix(), i), this.audio.files[i].mimetype));
+        sources.push(new AudioSource(this.audio.getUrlByIndex(this.configuration.getStreamUrlPrefix(), i), this.audio.files[i].mimetype));
       }
     }
     return sources;

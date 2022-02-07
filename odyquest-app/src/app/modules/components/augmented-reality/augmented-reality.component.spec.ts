@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AugmentedReality } from 'chase-model';
+import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
 import { AugmentedRealityComponent } from './augmented-reality.component';
 
 describe('AugmentedRealityComponent', () => {
@@ -9,7 +10,13 @@ describe('AugmentedRealityComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AugmentedRealityComponent ]
+      declarations: [ AugmentedRealityComponent ],
+      providers: [
+        {
+          provide: RuntimeConfigurationService,
+          useClass: RuntimeConfigurationServiceMock
+        }
+      ]
     })
     .compileComponents();
   });

@@ -35,7 +35,7 @@ export class VideoComponent implements OnInit {
     const sources: VideoSource[] = [];
     if (this.video.hasFiles()) {
       for (let i = 0; i < this.video.files.length; i++) {
-        sources.push(new VideoSource(this.video.getUrlByIndex(this.configuration.getMediaUrlPrefix(), i), this.video.files[i].mimetype));
+        sources.push(new VideoSource(this.video.getUrlByIndex(this.configuration.getStreamUrlPrefix(), i), this.video.files[i].mimetype));
       }
     }
     return sources;

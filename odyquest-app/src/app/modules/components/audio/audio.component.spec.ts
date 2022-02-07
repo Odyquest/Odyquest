@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { Audio } from 'chase-model';
+import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
 import { AudioComponent } from './audio.component';
 
 describe('AudioComponent', () => {
@@ -8,7 +10,13 @@ describe('AudioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AudioComponent ]
+      declarations: [ AudioComponent ],
+      providers: [
+        {
+          provide: RuntimeConfigurationService,
+          useClass: RuntimeConfigurationServiceMock
+        }
+      ]
     })
     .compileComponents();
   });
@@ -16,6 +24,7 @@ describe('AudioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AudioComponent);
     component = fixture.componentInstance;
+    component.audio = new Audio();
     fixture.detectChanges();
   });
 

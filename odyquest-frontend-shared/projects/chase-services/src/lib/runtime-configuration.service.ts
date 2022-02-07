@@ -50,6 +50,13 @@ export class RuntimeConfigurationService implements AbstractRuntimeConfiguration
     }
     return this.getApiBaseUri() + 'file/';
   }
+
+  getStreamUrlPrefix(): string {
+    if (!this.isApiBased()) {
+      return '';
+    }
+    return this.getApiBaseUri() + 'stream/';
+  }
 }
 
 /**
