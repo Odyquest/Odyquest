@@ -1,4 +1,4 @@
-import { Chase, ChaseList, ChaseMetaData, Audio, AugmentedReality, Image, Video, Media } from './chase-model';
+import { Chase, ChaseList, ChaseMetaData, Image, Media, MediaContainer } from './chase-model';
 import { getFilesystemPath } from './environment';
 import { readObject,
   readSpecializedObject,
@@ -92,8 +92,8 @@ export class FileHandling {
     const id = chase.metaData.chaseId || 'undefined';
     const path = Path.getProtectedChaseFilepath(id);
     if (!hasDir(path)) {
+      console.warn("Could not find folder ", path, ", create it for adding a chase");
       createDir(path);
-      console.warn("Could not find folder ", path, ", created if for adding a chase");
     }
     writeObject<Chase>(path + Path.getChaseFilename(id), chase);
     writeObject<ChaseMetaData>(path + Path.getChaseMetaDataFilename(), chase.metaData);
@@ -140,37 +140,32 @@ export class FileHandling {
 
   public readPublicMedia(chaseId: string, mediaId: string): Promise<Media> {
     const file = Path.getPublicMediaPath(chaseId, mediaId) + Path.getMediaFilename();
-    return readSpecializedObject<Media, Image, Audio, Video, AugmentedReality>(
-      file, Image, Audio, Video, AugmentedReality);
+    return readObject<MediaContainer>(file, MediaContainer).then(container => container.get());
+    // return readSpecializedObject<Media, Image, Audio, Video, AugmentedReality>(
+      // file, Image, Audio, Video, AugmentedReality);
   }
 
   public readProtectedMedia(chaseId: string, mediaId: string): Promise<Media> {
     const file = Path.getProtectedMediaPath(chaseId, mediaId) + Path.getMediaFilename();
-    //return readObject<Media>(file, Image);
-    return readSpecializedObject<Media, Image, Audio, Video, AugmentedReality>(
-      file, Image, Audio, Video, AugmentedReality);
+    return readObject<MediaContainer>(file, MediaContainer).then(container => container.get());
+    // return readSpecializedObject<Media, Image, Audio, Video, AugmentedReality>(
+      // file, Image, Audio, Video, AugmentedReality);
   }
 
   public writeMedia(media: Media): void {
+    console.log("writing media");
     if (!media.mediaId) {
       console.error("Media has no id, can not write it!");
       return;
     }
     const path = Path.getProtectedMediaPath(media.chaseId, media.mediaId || '');
     if (!hasDir(path)) {
+      console.warn("Could not find folder ", path, ", create it for adding media");
       createDir(path);
-      console.warn("Could not find folder ", path, ", created if for adding media");
     }
     const file =  path + Path.getMediaFilename();
-    if (media instanceof Image) {
-      writeObject<Image>(file, media);
-    } else if (media instanceof Audio) {
-      writeObject<Audio>(file, media);
-    } else if (media instanceof Video) {
-      writeObject<Video>(file, media);
-    } else if (media instanceof AugmentedReality) {
-      writeObject<AugmentedReality>(file, media);
-    }
+    const container = new MediaContainer(media);
+    writeObject<MediaContainer>(file, container);
   }
 
   public removeMedia(chaseId: string, mediaId: string): void {
@@ -216,7 +211,11 @@ export class FileHandling {
     return uuid;
   }
   public getFreeMediaId(chaseId: string): string {
-    const list = listDirs(Path.getProtectedMediaPrefixPath(chaseId));
+    let list: string[] = [];
+    try {
+       list = listDirs(Path.getProtectedMediaPrefixPath(chaseId));
+    } catch (e) {
+    }
     let uuid;
     do {
       uuid = this.getUniqueId();

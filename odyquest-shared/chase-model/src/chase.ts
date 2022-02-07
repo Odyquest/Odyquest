@@ -127,7 +127,7 @@ export class Chase {
         } else if (value.get(element) instanceof AugmentedReality) {
           ars[element] = serialize(value.get(element));
         } else {
-          console.warn('can not serialize image of unknown type');
+          console.warn('can not serialize media of unknown type');
         }
       }
       return {

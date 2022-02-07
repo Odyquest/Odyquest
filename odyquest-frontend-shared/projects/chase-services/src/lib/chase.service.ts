@@ -4,7 +4,7 @@ import { Observable, Subject, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { OAuthStorage } from 'angular-oauth2-oidc';
 
-import { Chase, ChaseList, Media, Image, Audio, Video, AugmentedReality } from 'chase-model';
+import { Chase, ChaseList, Media, MediaContainer, Image } from 'chase-model';
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { RuntimeConfigurationService } from './runtime-configuration.service';
 
@@ -141,8 +141,9 @@ export class ChaseService implements AbstractChaseService {
   }
 
   public createOrUpdateMedia(media: Media): Observable<string> {
+    const container = new MediaContainer(media);
     return this.httpClient.post(
-      this.configuration.getApiBaseUri() + 'protected/media', serialize(media), this.getHttpOptions())
+      this.configuration.getApiBaseUri() + 'protected/media', serialize(container), this.getHttpOptions())
       .pipe(
         map(mediaId => {
           console.log('Successfull pushed media to server');
@@ -259,19 +260,7 @@ export class ChaseService implements AbstractChaseService {
   }
 
   private deserializeMedia(data: any): Media {
-    try {
-      return deserialize<Media>(data, Image);
-    } catch (e) {}
-    try {
-      return deserialize<Media>(data, Audio);
-    } catch (e) {}
-    try {
-      return deserialize<Media>(data, Video);
-    } catch (e) {}
-    try {
-      return deserialize<Media>(data, AugmentedReality);
-    } catch (e) {}
-    return new Image();
+    return deserialize<MediaContainer>(data, MediaContainer).get();
   }
 
 }

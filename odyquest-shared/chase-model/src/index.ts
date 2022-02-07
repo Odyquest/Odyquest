@@ -15,6 +15,7 @@ export {
    Video,
   VideoFile
 } from './media';
+export { MediaContainer } from './media-container';
 export { Narrative, NarrativeStatus } from './narrative';
 export { NarrativeType } from './narrative_type';
 export { Preview } from './preview';

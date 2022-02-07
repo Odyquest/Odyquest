@@ -9,7 +9,7 @@ import multer from 'multer';
 
 import { DataHandling } from './data-handling';
 import { getCorsOrigin, getApiPort, getUseAuth, getAuthIssuesBaseUrl, getAuthJwksUrl } from './environment';
-import { Chase, ChaseList, ChaseMetaData, Audio, AugmentedReality, Image, Media, Video } from './chase-model';
+import { Chase, ChaseList, ChaseMetaData, Image, Media, MediaContainer } from './chase-model';
 
 const dataHandling = new DataHandling();
 
@@ -124,7 +124,7 @@ app.delete('/protected/chase/*', function (req, res) {
 
 app.get('/media/*/*', (req, res) => {
   dataHandling.getMedia(req.params[0], req.params[1]).then(data => {
-    res.send(serialize(data));
+    res.send(serialize(new MediaContainer(data)));
   }).catch(() => {
     res.status(500);
     res.send('');
@@ -133,7 +133,7 @@ app.get('/media/*/*', (req, res) => {
 
 app.get('/protected/media/*/*', (req, res) => {
   dataHandling.getProtectedMedia(req.params[0], req.params[1]).then(data => {
-    res.send(serialize(data));
+    res.send(serialize(new MediaContainer(data)));
   }).catch(() => {
     res.status(500);
     res.send('');
@@ -142,7 +142,10 @@ app.get('/protected/media/*/*', (req, res) => {
 
 app.post('/protected/media', upload.single('file'), function (req, res) {
   console.log('received media data');
-  const media: Media = deserialize(req.body, Image);
+  const container = deserialize<MediaContainer>(req.body, MediaContainer);
+  console.log('deserialized media data');
+  const media = container.get();
+  console.log('extracted media data from container: ', media);
   dataHandling.createOrUpdateMedia(media).then(media => {
     res.send('{ "mediaId": "' + media.mediaId + '" }');
   }).catch(() => {
@@ -190,7 +193,7 @@ function addMediaFile(req:express.Request): Promise<Media> {
 app.post('/protected/file', upload.single('file'), function (req, res) {
   console.log('received media data');
   addMediaFile(req).then(media => {
-    res.send(serialize(media));
+    res.send(serialize(new MediaContainer(media)));
   }).catch(() => {
     res.send('error');
   });
@@ -198,7 +201,7 @@ app.post('/protected/file', upload.single('file'), function (req, res) {
 
 app.delete('/protected/file/*/*/*', upload.single('file'), function (req, res) {
   dataHandling.deleteMediaFile(req.params[0], req.params[1], req.params[2]).then(media => {
-    res.send(serialize(media));
+    res.send(serialize(new MediaContainer(media)));
   }).catch(() => {
     res.status(500);
     res.send('');
