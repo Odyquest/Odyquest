@@ -6,9 +6,14 @@ import {
   AugmentedReality,
   Media, MediaFile
 } from './chase-model';
+import { Access } from './access';
 
 export class MediaHandling {
-  private filehanding = new FileHandling();
+  private filehanding: FileHandling;
+
+  constructor(access: Access) {
+    this.filehanding = new FileHandling(access);
+  }
 
   public createMultipleImageResolutions(chaseId: string, mediaId: string, origin: string): ImageFile[] {
     const list = new Array<ImageFile>();

@@ -9,8 +9,7 @@ import multer from 'multer';
 import { DataHandling } from './data-handling';
 import { getCorsOrigin, getApiPort, getUseAuth, getAuthIssuesBaseUrl, getAuthJwksUrl } from './environment';
 import { Chase, ChaseList, ChaseMetaData, Image, Media, MediaContainer } from './chase-model';
-
-const dataHandling = new DataHandling();
+import { Access, AccessLevel } from './access';
 
 const app = express();
 const upload = multer();
@@ -63,7 +62,7 @@ app.get('/protected/test', (req, res) => {
 });
 
 app.get('/chase', (req, res) => {
-  dataHandling.getChaseList().then(list => {
+  new DataHandling(new Access(AccessLevel.Public)).getChaseList().then(list => {
     res.send(serialize(list as ChaseList));
   }).catch(() => {
     res.status(500);
@@ -73,7 +72,7 @@ app.get('/chase', (req, res) => {
 });
 
 app.get('/protected/chase', (req, res) => {
-  dataHandling.getChaseList(true).then(list => {
+  new DataHandling(new Access(AccessLevel.Protected)).getChaseList().then(list => {
     res.send(serialize(list as ChaseList));
   }).catch(() => {
     res.status(500);
@@ -83,7 +82,7 @@ app.get('/protected/chase', (req, res) => {
 });
 
 app.get('/chase/*', (req, res) => {
-  dataHandling.getChase(req.params[0]).then(chase => {
+  new DataHandling(new Access(AccessLevel.Public)).getChase(req.params[0]).then(chase => {
     res.send(serialize(chase as Chase));
   }).catch(() => {
     res.status(500);
@@ -92,7 +91,7 @@ app.get('/chase/*', (req, res) => {
 });
 
 app.get('/protected/chase/*', (req, res) => {
-  dataHandling.getProtectedChase(req.params[0]).then(chase => {
+  new DataHandling(new Access(AccessLevel.Protected)).getChase(req.params[0]).then(chase => {
     res.send(serialize(chase as Chase));
   }).catch(() => {
     res.status(500);
@@ -102,7 +101,7 @@ app.get('/protected/chase/*', (req, res) => {
 
 app.post('/protected/chase', function (req, res) {
   console.log('received chase');
-  dataHandling.createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
+  new DataHandling(new Access(AccessLevel.Protected)).createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
     // TODO
     res.send('{ "chaseId": "' + id + '" }');
   }).catch(() => {
@@ -112,7 +111,7 @@ app.post('/protected/chase', function (req, res) {
 });
 
 app.delete('/protected/chase/*', function (req, res) {
-  dataHandling.deleteChase(req.params[0]).then(id => {
+  new DataHandling(new Access(AccessLevel.Protected)).deleteChase(req.params[0]).then(id => {
     // TODO
     res.send('{ "status": "success" }');
   }).catch(() => {
@@ -122,7 +121,7 @@ app.delete('/protected/chase/*', function (req, res) {
 });
 
 app.get('/media/*/*', (req, res) => {
-  dataHandling.getMedia(req.params[0], req.params[1]).then(data => {
+  new DataHandling(new Access(AccessLevel.Public)).getMedia(req.params[0], req.params[1]).then(data => {
     res.send(serialize(new MediaContainer(data)));
   }).catch(() => {
     res.status(500);
@@ -131,7 +130,7 @@ app.get('/media/*/*', (req, res) => {
 });
 
 app.get('/protected/media/*/*', (req, res) => {
-  dataHandling.getProtectedMedia(req.params[0], req.params[1]).then(data => {
+  new DataHandling(new Access(AccessLevel.Protected)).getMedia(req.params[0], req.params[1]).then(data => {
     res.send(serialize(new MediaContainer(data)));
   }).catch(() => {
     res.status(500);
@@ -145,7 +144,7 @@ app.post('/protected/media', upload.single('file'), function (req, res) {
   console.log('deserialized media data');
   const media = container.get();
   console.log('extracted media data from container: ', media);
-  dataHandling.createOrUpdateMedia(media).then(media => {
+  new DataHandling(new Access(AccessLevel.Protected)).createOrUpdateMedia(media).then(media => {
     res.send('{ "mediaId": "' + media.mediaId + '" }');
   }).catch(() => {
     res.send('error');
@@ -153,7 +152,7 @@ app.post('/protected/media', upload.single('file'), function (req, res) {
 });
 
 app.delete('/protected/media/*/*', upload.single('file'), function (req, res) {
-  dataHandling.deleteMedia(req.params[0], req.params[1]).then(data => {
+  new DataHandling(new Access(AccessLevel.Protected)).deleteMedia(req.params[0], req.params[1]).then(data => {
     // TODO
     res.send(data);
   }).catch(() => {
@@ -163,7 +162,7 @@ app.delete('/protected/media/*/*', upload.single('file'), function (req, res) {
 });
 
 app.get('/file/*/*/*', (req, res) => {
-  dataHandling.getMediaFile(req.params[0], req.params[1], req.params[2]).then(file => {
+  new DataHandling(new Access(AccessLevel.Public)).getMediaFile(req.params[0], req.params[1], req.params[2]).then(file => {
     res.setHeader("Content-Type", file.mimetype);
     res.send(file.data);
   }).catch(() => {
@@ -173,7 +172,7 @@ app.get('/file/*/*/*', (req, res) => {
 });
 
 app.get('/protected/file/*/*/*', (req, res) => {
-  dataHandling.getMediaFile(req.params[0], req.params[1], req.params[2]).then(file => {
+  new DataHandling(new Access(AccessLevel.Protected)).getMediaFile(req.params[0], req.params[1], req.params[2]).then(file => {
     res.setHeader("Content-Type", file.mimetype);
     res.send(file.data);
   }).catch(() => {
@@ -185,13 +184,14 @@ app.get('/protected/file/*/*/*', (req, res) => {
 function getMimetype(req:express.Request): string {
   return req.file.mimetype;
 }
-function addMediaFile(req:express.Request): Promise<Media> {
-  return dataHandling.addMediaFile(req.body.chaseId, req.body.mediaId, req.file.originalname, getMimetype(req), req.file.buffer);
+function addMediaFile(handling: DataHandling, req:express.Request): Promise<Media> {
+  return handling.addMediaFile(req.body.chaseId, req.body.mediaId, req.file.originalname, getMimetype(req), req.file.buffer);
 }
 
 app.post('/protected/file', upload.single('file'), function (req, res) {
+  const handling = new DataHandling(new Access(AccessLevel.Protected))
   console.log('received media data');
-  addMediaFile(req).then(media => {
+  addMediaFile(handling, req).then(media => {
     res.send(serialize(new MediaContainer(media)));
   }).catch(() => {
     res.send('error');
@@ -199,7 +199,7 @@ app.post('/protected/file', upload.single('file'), function (req, res) {
 });
 
 app.delete('/protected/file/*/*/*', upload.single('file'), function (req, res) {
-  dataHandling.deleteMediaFile(req.params[0], req.params[1], req.params[2]).then(media => {
+  new DataHandling(new Access(AccessLevel.Protected)).deleteMediaFile(req.params[0], req.params[1], req.params[2]).then(media => {
     res.send(serialize(new MediaContainer(media)));
   }).catch(() => {
     res.status(500);
@@ -208,12 +208,13 @@ app.delete('/protected/file/*/*/*', upload.single('file'), function (req, res) {
 });
 
 app.get("/stream/*/*/*", function (req, res) {
+  const handling = new DataHandling(new Access(AccessLevel.Public));
   const range = req.headers.range;
   if (!range) {
     res.status(400).send("Requires Range header");
   }
 
-  const videoSize = dataHandling.getMediaFileSize(req.params[0], req.params[1], req.params[2]);
+  const videoSize = handling.getMediaFileSize(req.params[0], req.params[1], req.params[2]);
 
   // Parse Range
   // Example: "bytes=32324-"
@@ -231,7 +232,7 @@ app.get("/stream/*/*/*", function (req, res) {
 
   res.writeHead(206, headers); // Partial Content
 
-  const videoStream = dataHandling.getMediaFileStream(req.params[0], req.params[1], req.params[2], start, end);
+  const videoStream = handling.getMediaFileStream(req.params[0], req.params[1], req.params[2], start, end);
   videoStream.pipe(res);
 });
 

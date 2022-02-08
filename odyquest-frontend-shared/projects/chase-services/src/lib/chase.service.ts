@@ -37,6 +37,7 @@ export abstract class AbstractChaseService {
   providedIn: 'root'
 })
 export class ChaseService implements AbstractChaseService {
+  private protectedAccess = false;
 
   constructor(
     private httpClient: HttpClient,
@@ -53,12 +54,21 @@ export class ChaseService implements AbstractChaseService {
   }
 
   /**
+   * Set access for protected data
+   *
+   * Needs authentication for access.
+   */
+  public setProtectedAccess(): void {
+    this.protectedAccess = true;
+  }
+
+  /**
    * Get list of ChaseMetaData from configured data source.
    *
    * @return observable of type ChaseList
    */
-  public getAllChases(addProtected = false): Observable<ChaseList> {
-    return this.httpClient.get(this.getChaseListPath(addProtected), this.getHttpOptions())
+  public getAllChases(): Observable<ChaseList> {
+    return this.httpClient.get(this.getChaseListPath(), this.getHttpOptions())
       .pipe(
         map(chases => {
           return deserialize<ChaseList>(chases, ChaseList);
@@ -220,9 +230,9 @@ export class ChaseService implements AbstractChaseService {
       );
   }
 
-  private getChaseListPath(addProtected: boolean): string {
+  private getChaseListPath(): string {
     let prefix = '';
-    if (addProtected) {
+    if (this.protectedAccess) {
       prefix = 'protected/';
     }
     if (this.configuration.isApiBased() === true) {
@@ -232,11 +242,11 @@ export class ChaseService implements AbstractChaseService {
     }
   }
 
-  private getChasePath(id: string, modify = false): string {
+  private getChasePath(id: string): string {
     // TODO check if user is logged in -> use 'protected' prefix
     if (this.configuration.isApiBased() === true) {
       let prefix = '';
-      if (modify) {
+      if (this.protectedAccess) {
         prefix = 'protected/';
       }
       return this.configuration.getApiBaseUri() + prefix + 'chase/' + id;
@@ -245,11 +255,11 @@ export class ChaseService implements AbstractChaseService {
     }
   }
 
-  private getMediaPath(chaseId: string, mediaId: string, modify = false): string {
+  private getMediaPath(chaseId: string, mediaId: string): string {
     // TODO check if user is logged in -> use 'protected' prefix
     if (this.configuration.isApiBased() === true) {
       let prefix = '';
-      if (modify) {
+      if (this.protectedAccess) {
         prefix = 'protected/';
       }
       return this.configuration.getApiBaseUri() + prefix + 'media/' + chaseId + '/' + mediaId;
