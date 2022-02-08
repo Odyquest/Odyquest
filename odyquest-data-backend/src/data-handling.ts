@@ -6,10 +6,12 @@ import { Chase, ChaseList, ChaseMetaData,
   Media, MediaFile } from './chase-model';
 import { getFilesystemPath } from './environment';
 import { FileHandling } from './file-handling';
+import { MediaHandling } from './media-handling';
 import { File } from './file';
 
 export class DataHandling {
   private filehandling = new FileHandling();
+  private mediahandling = new MediaHandling();
 
   public getChaseList(protectedAccess = false): Promise<ChaseList> {
     if (protectedAccess) {
@@ -78,13 +80,10 @@ export class DataHandling {
   public addMediaFile(chaseId: string, mediaId: string, name: string, mimetype: string, data: Buffer): Promise<Media> {
     return new Promise((resolve, reject) => {
       this.getProtectedMedia(chaseId, mediaId).then(media => {
-        const attributes = this.filehandling.writeMediaFile(chaseId, mediaId, name, data);
+        this.filehandling.writeMediaFile(chaseId, mediaId, name, data);
         if (media instanceof Image) {
-          // TODO create image pyramide
-          const attributes = this.filehandling.getImageAttributes(chaseId, mediaId, name);
-          const file = new ImageFile(name);
-          file.width = attributes.width;
-          (media as Image).files.push(file);
+          (media as Image).files.concat(
+            this.mediahandling.createMultipleImageResolutions(chaseId, mediaId, name));
         } else if (media instanceof Audio) {
           const attributes = this.filehandling.getAudioAttributes(chaseId, mediaId, name);
           const file = new AudioFile(name, mimetype, 0);
