@@ -162,7 +162,8 @@ app.delete('/protected/media/*/*', upload.single('file'), function (req, res) {
 });
 
 app.get('/file/*/*/*', (req, res) => {
-  new DataHandling(new Access(AccessLevel.Public)).getMediaFile(req.params[0], req.params[1], req.params[2]).then(file => {
+  // do not limit file access right now
+  new DataHandling(new Access(AccessLevel.Protected)).getMediaFile(req.params[0], req.params[1], req.params[2]).then(file => {
     res.setHeader("Content-Type", file.mimetype);
     res.send(file.data);
   }).catch(() => {
@@ -208,7 +209,8 @@ app.delete('/protected/file/*/*/*', upload.single('file'), function (req, res) {
 });
 
 app.get("/stream/*/*/*", function (req, res) {
-  const handling = new DataHandling(new Access(AccessLevel.Public));
+  // do not limit file access right now
+  const handling = new DataHandling(new Access(AccessLevel.Protected));
   const range = req.headers.range;
   if (!range) {
     res.status(400).send("Requires Range header");
