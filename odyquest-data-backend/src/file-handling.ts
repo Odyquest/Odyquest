@@ -106,12 +106,16 @@ export class FileHandling {
       }
       this.writeMedia(media);
     }
-    console.log('check publishing status');
-    if (chase.metaData.published) {
-      createSymlink('../' + Path.getProtectedDirName(), Path.getPublicChaseFilepath(id));
-    } else {
     const list = listDirs(Path.getChaseFolderpath(id));
+    if (chase.metaData.published) {
+      if (!list.includes(Path.getPublicDirName())) {
+        console.log('publish chase, create symlink: ',
+          Path.getPublicChaseFilepath(id), '->', Path.getProtectedDirName());
+        createSymlink('../' + Path.getProtectedDirName(), Path.getPublicChaseFilepath(id));
+      }
+    } else {
       if (list.includes(Path.getPublicDirName())) {
+        console.log('unpublish chase, remove symlink');
         removeFile(Path.getPublicChaseFilepath(id));
       }
     }
