@@ -76,8 +76,9 @@ export class DataHandling {
       this.getMedia(chaseId, mediaId).then(media => {
         this.filehandling.writeMediaFile(chaseId, mediaId, name, data);
         if (media instanceof Image) {
-          (media as Image).files.concat(
-            this.mediahandling.createMultipleImageResolutions(chaseId, mediaId, name));
+          const list = this.mediahandling.createMultipleImageResolutions(chaseId, mediaId, name);
+          list.forEach((item:ImageFile) => (media as Image).files.push(item));
+          console.log('media entry has following files now: ', (media as Image).files);
         } else if (media instanceof Audio) {
           const file = new AudioFile(name, mimetype, 0);
           (media as Audio).files.push(file);

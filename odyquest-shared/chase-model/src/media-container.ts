@@ -27,7 +27,6 @@ export class MediaContainer {
     onDeserialize: value => {
       let media: Media;
       if (value._image) {
-        console.error('deserialize image: ', value._image.data);
         media = deserialize<Image>(value._image.data, Image);
       } else if (value._audio) {
         media = deserialize<Audio>(value._audio.data, Audio);
