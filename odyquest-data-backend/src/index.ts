@@ -11,7 +11,7 @@ import { getCorsOrigin, getApiPort, getUseAuth, getAuthIssuesBaseUrl, getAuthJwk
 import { Chase, ChaseList, ChaseMetaData, Image, Media, MediaContainer } from './chase-model';
 import { Access, AccessLevel } from './access';
 
-const app = express();
+export const app = express();
 const upload = multer();
 
 const options: cors.CorsOptions = {
