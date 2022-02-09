@@ -25,7 +25,7 @@ export class ChaseSelectorComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.chaseService.getAllChases(true).subscribe(chases => {
+    this.chaseService.getAllChases().subscribe(chases => {
       this.chaseList = chases;
       this.chaseList.chases.forEach((chase: ChaseMetaData) => {
         this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {

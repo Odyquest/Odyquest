@@ -1,9 +1,9 @@
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { getSimpleJwksService, secure } from 'express-oauth-jwt';
 
+import bodyParser from 'body-parser';
 import cors from 'cors';
-import express from 'express';
-import mongoose from 'mongoose';
+import express, { RequestHandler } from 'express';
 import multer from 'multer';
 
 import { DataHandling } from './data-handling';
@@ -29,7 +29,7 @@ const options: cors.CorsOptions = {
   preflightContinue: false,
 };
 app.use(cors(options));
-app.use(express.json());
+app.use(bodyParser.json() as RequestHandler);
 
 app.get('/', (req, res) => {
     res.send('Boom!');
@@ -100,9 +100,9 @@ app.get('/protected/chase/*', (req, res) => {
 });
 
 app.post('/protected/chase', function (req, res) {
-  console.log('received chase');
-  new DataHandling(new Access(AccessLevel.Protected)).createOrUpdateChase(deserialize(req.body, Chase)).then(id => {
-    // TODO
+  const chase = deserialize(req.body, Chase);
+  console.log('received chase', chase, ' from string ', req.body);
+  new DataHandling(new Access(AccessLevel.Protected)).createOrUpdateChase(chase).then(id => {
     res.send('{ "chaseId": "' + id + '" }');
   }).catch(() => {
     res.status(500);
@@ -112,7 +112,6 @@ app.post('/protected/chase', function (req, res) {
 
 app.delete('/protected/chase/*', function (req, res) {
   new DataHandling(new Access(AccessLevel.Protected)).deleteChase(req.params[0]).then(id => {
-    // TODO
     res.send('{ "status": "success" }');
   }).catch(() => {
     res.status(500);

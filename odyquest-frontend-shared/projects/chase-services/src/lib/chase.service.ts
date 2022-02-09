@@ -124,7 +124,7 @@ export class ChaseService implements AbstractChaseService {
    * Delete chase with given id from configured data source.
    */
   public deleteChase(id: string): Observable<any> {
-    return this.httpClient.delete(this.getChasePath(id, true), this.getHttpOptions())
+    return this.httpClient.delete(this.getChasePath(id), this.getHttpOptions())
       .pipe(
         map(chase => {
           console.log('Successfull deleted chase');
@@ -167,7 +167,7 @@ export class ChaseService implements AbstractChaseService {
   }
 
   public deleteMedia(chaseId: string, mediaId: string): Observable<any> {
-    return this.httpClient.delete(this.getMediaPath(chaseId, mediaId, true), this.getHttpOptions())
+    return this.httpClient.delete(this.getMediaPath(chaseId, mediaId), this.getHttpOptions())
       .pipe(
         map(chase => {
           console.log('Successfull deleted chase');
