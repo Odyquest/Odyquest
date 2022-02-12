@@ -92,7 +92,12 @@ export function removeDir(dir: string): void {
 }
 
 export function createSymlink(target: string, file: string) {
-  symlinkSync(target, file);
+  try {
+    // delete '/' at the end of the file
+    symlinkSync(target, file.slice(0, -1));
+  } catch (e) {
+    console.error('could not create symlink: ', e);
+  }
 }
 
 export function removeFile(file: string) {
