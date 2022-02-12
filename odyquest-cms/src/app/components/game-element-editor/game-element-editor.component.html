@@ -1,0 +1,86 @@
+<div class="editor-top-container">
+  <app-image-upload class="editor-image-outer-container"
+                    [mediaId]="getImage()"
+                    (mediaIdChange)="updateImage($event)" >
+  </app-image-upload>
+  <div class="editor-top-right-container">
+
+    <form id="editor-meta-info-input">
+      <mat-form-field>
+        <mat-label for="quest_name" i18n="@@quest_editor.title">Title:</mat-label>
+        <input matInput type="text" id="quest-name" name="quest_name"
+                        [(ngModel)]="gameElement.title"
+                        (ngModelChange)="chaseEditor.notifyElementTitleChanged()">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="description_name" i18n="@@quest_editor.description">Description:</mat-label>
+        <textarea matInput
+                  type="text"
+                  id="bug_brief"
+                  name="description_name"
+                  class="input_field_big"
+                  [(ngModel)]="gameElement.description.text"
+                  (ngModelChange)="chaseEditor.notifyElementChanged()"></textarea>
+      </mat-form-field>
+    </form>
+    <div class="row">
+      <div class="column">
+        <a href="https://www.markdownguide.org/cheat-sheet#basic-syntax"
+           i18n="@@quest_editor.markdown_tutorial">
+          Tutorial for text formatting
+        </a>
+        <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md"
+           i18n="@@quest_editor.emoji_tutorial">
+          Tutorial for inserting emojis
+        </a>
+      </div>
+      <!--<div class="column">
+        <button mat-raised-button color="primary" (click)="main_editor.tryInApp()">Ausprobieren</button>
+      </div>-->
+    </div>
+  </div>
+</div>
+
+<app-narrative-editor #narrative_editor
+                      [ngClass]="{'editor-hidden' : !is_narrative,  'editor-visible' : is_narrative}">
+</app-narrative-editor>
+<app-quest-editor #quest_editor
+                      [ngClass]="{'editor-hidden' : !is_quest,  'editor-visible' : is_quest}">
+</app-quest-editor>
+
+<!-- ! ============================ -->
+<!-- ! ========== HINTS =========== -->
+<!-- ! ============================ -->
+
+<div class="content-all-types">
+  <div class=content-type-hint>
+    <div class="button-array-container border">
+      <h3 i18n="@@quest_editor.hints">Hints</h3>
+      <form>
+        <div *ngFor="let hint of gameElement.hint; let i = index">
+          <hr />
+          <div class="single-button-container">
+            <span i18n="@@quest_editor.hint_page">Page {{i+1}}</span>
+            <mat-form-field>
+              <mat-label></mat-label>
+              <textarea matInput type="text" name="hint_text_{{i}}" [(ngModel)]="hint.text"></textarea>
+            </mat-form-field>
+            <app-image-upload class="editor-image-outer-container"
+                              [mediaId]="hint.image"
+                              (mediaIdChange)="updateHelpImage(i, $event)" >
+            </app-image-upload>
+            <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
+          </div>
+        </div>
+      </form>
+    </div>
+    <button class="saveCancelButton"
+            mat-raised-button
+            color="primary"
+            (click)="addHelpText()"
+            i18n="@@quest_editor.add_hint">
+      add hint
+    </button>
+  </div>
+</div>

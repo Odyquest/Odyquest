@@ -1,6 +1,7 @@
 import { Chase, ChaseMetaData } from '../chase';
 import { Description } from '../description';
 import { GameElement } from '../game_element';
+import { Image, ImageFile } from '../media';
 import { Narrative } from '../narrative';
 import { Quest, QuestType } from '../quest';
 import { Preview } from '../preview';
@@ -14,18 +15,19 @@ export function getSimpleExample(): Chase {
   const metaData = new ChaseMetaData();
   metaData.chaseId = 'simple_id';
   metaData.title = 'This is an example chase!';
-  metaData.description = 'This chase has no content';
   metaData.preview = new Preview()
-  metaData.preview.description = new Description()
-  metaData.preview.description.text = 'This chase has no content';
+  metaData.preview.text = 'This chase has no content';
   chase.metaData = metaData;
   chase.gameElements = new Map<number, GameElement>();
+  const image = new Image();
+  image.files = [new ImageFile('https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg', 0)];
+  chase.media.set('image_id', image);
 
   const narrative = new Narrative();
   narrative.title = 'Error occured!';
   narrative.description = new Description();
   narrative.description.text = 'If you can see this, something went wrong.';
-  narrative.description.image = 'https://upload.wikimedia.org/wikipedia/en/b/b4/Hitchhikers_Guide_TV_Titles.jpg';
+  narrative.description.image = 'image_id';
   const forward = new XButton();
   forward.name = 'stay';
   forward.destination = 0;
@@ -42,10 +44,8 @@ export function getTestChase(): Chase {
   const metaData = new ChaseMetaData();
   metaData.chaseId = 'simple_id';
   metaData.title = 'This is an example chase!';
-  metaData.description = 'This chase has no content';
   metaData.preview = new Preview()
-  metaData.preview.description = new Description()
-  metaData.preview.description.text = 'This chase has no content';
+  metaData.preview.text = 'This chase has no content';
   chase.metaData = metaData;
   chase.gameElements = new Map<number, GameElement>();
 
@@ -53,7 +53,7 @@ export function getTestChase(): Chase {
   narrative.title = 'narrative_title';
   narrative.description = new Description();
   narrative.description.text = 'Some text!';
-  narrative.description.image = 'image_url';
+  narrative.description.image = 'image_id';
   const forward = new XButton();
   forward.name = 'continue';
   forward.destination = 1;
@@ -67,7 +67,7 @@ export function getTestChase(): Chase {
   quest.title = 'quest_title';
   quest.description = new Description();
   quest.description.text = 'Some text!';
-  quest.description.image = 'image_url';
+  quest.description.image = 'image_id';
   chase.gameElements.set(1,quest);
 
   return chase;

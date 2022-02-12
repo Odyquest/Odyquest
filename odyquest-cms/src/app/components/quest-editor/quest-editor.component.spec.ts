@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
+import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 import { QuestEditorComponent } from './quest-editor.component';
 
 describe('QuestEditorComponent', () => {
@@ -8,7 +9,8 @@ describe('QuestEditorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuestEditorComponent ]
+      declarations: [ QuestEditorComponent ],
+      providers: [ ChaseEditorService ]
     })
     .compileComponents();
   }));

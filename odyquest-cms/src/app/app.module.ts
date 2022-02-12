@@ -42,7 +42,6 @@ import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleCo
 import { AppComponent } from './app.component';
 import { AuthGuard } from './services/auth/auth.guard.service';
 import { ChaseSelectorComponent } from './components/chase-selector/chase-selector.component';
-import { CreateChaseDialogComponent } from './components/create-chase-dialog/create-chase-dialog.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoggedOutComponent } from './components/logged-out/logged-out.component';
 import { LoginComponent } from './components/login/login.component';
@@ -56,6 +55,8 @@ import { ElementEditorComponent } from './components/element-editor/element-edit
 import { MetaDataEditorComponent } from './components/meta-data-editor/meta-data-editor.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { MediaUploadComponent } from './components/media-upload/media-upload.component';
+import { GameElementEditorComponent } from './components/game-element-editor/game-element-editor.component';
+import { NarrativeEditorComponent } from './components/narrative-editor/narrative-editor.component';
 
 function getAuthConfig(): AuthConfig {
   const config: AuthConfig = {
@@ -98,7 +99,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ChaseSelectorComponent,
-    CreateChaseDialogComponent,
     HomeComponent,
     LoggedOutComponent,
     LoginComponent,
@@ -109,6 +109,8 @@ const appRoutes: Routes = [
     MetaDataEditorComponent,
     ImageUploadComponent,
     MediaUploadComponent,
+    GameElementEditorComponent,
+    NarrativeEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -151,7 +153,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' })
   ],
   entryComponents: [
-    CreateChaseDialogComponent
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },

@@ -9,11 +9,11 @@
     <section>
       <div class="game_element_columns">
         <div class="game_element_text">
-          <p markdown emoji [data]="getCurrentHelpText()"></p>
+          <p markdown emoji [data]="getCurrentText()"></p>
         </div>
         <app-image class="game_element_image"
                    [imgClass]="getImgClass()"
-                   [description]="getDescription()"></app-image>
+                   [image]="getCurrentImage()"></app-image>
       </div>
     </section>
 </article>

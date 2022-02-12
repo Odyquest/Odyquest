@@ -1,7 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Chase, ChaseMetaData } from 'chase-model';
+import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
 import { deserialize, serialize } from 'typescript-json-serializer';
+import { saveAs } from 'file-saver';
 
 import { ChaseService } from 'chase-services';
 import { ChaseStorageService } from 'chase-services';
@@ -10,8 +11,9 @@ import { Description } from 'chase-model';
 import { GameElement } from 'chase-model';
 import { Narrative } from 'chase-model';
 import { Quest } from 'chase-model';
-import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
-import { saveAs } from 'file-saver';
+import { Chase, ChaseMetaData } from 'chase-model';
+
+import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 
 @Component({
   selector: 'main-chase-editor',
@@ -19,26 +21,18 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./main-editor.component.scss'],
 })
 export class MainEditorComponent implements OnInit, AfterViewInit {
-  public chase: Chase;
   selectedQuest: number;
   chaseID: string;
   editorAction: string;
 
-  gameElementsMap = new Map<number, string>();
-  gameElementsList = [];
-
   @ViewChild('element_editor') elementEditor;
-
-  // these values are filled with info from the chase
-  // todo use actual questList
-  questList: string[];
-  narrativeList: string[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private configuration: RuntimeConfigurationService,
     private chaseService: ChaseService,
-    public chaseStorage: ChaseStorageService
+    private chaseStorage: ChaseStorageService,
+    public chaseEditor: ChaseEditorService
   ) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
     this.editorAction = this.activatedRoute.snapshot.queryParams.action;
@@ -47,94 +41,52 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (this.chaseID) {
       console.log('load chase from given id');
-      this.loadChaseToEditorById(this.chaseID);
+      this.chaseService.getChase(this.chaseID).subscribe((chase) => {
+        this.chaseEditor.setChase(chase);
+        this.loadDataFromChase();
+      });
     } else {
       console.log('create new chase');
       this.createNewChase();
     }
   }
 
-  createGameElementListsFromChase() {
-    //write questList string
-    console.log(
-      'Contained GameElements (' + this.chase.gameElements.size + '):'
-    );
-    this.questList = [];
-    this.narrativeList = [];
-
-    this.chase.gameElements.forEach((value: GameElement, key: Number) => {
-      let title_with_id = value.title + ' (' + key + ')';
-      if (value instanceof Quest) {
-        console.log('Quest:' + title_with_id);
-        this.questList.push(title_with_id);
-      } else if (value instanceof Narrative) {
-        console.log('Narrative:' + title_with_id);
-        this.narrativeList.push(title_with_id);
-      }
-    });
-
-    this.gameElementsMap = new Map<number, string>();
-    this.gameElementsList = [];
-
-    this.chase.gameElements.forEach((value: GameElement, key: number) => {
-      let title_with_id = value.title + ' (' + key + ')';
-      console.log('Key', key, 'GameElement' + title_with_id);
-      this.gameElementsMap.set(key, title_with_id);
-      this.gameElementsList.push(title_with_id);
-    });
-
-    console.log('GameElementsList length:', this.gameElementsList.length);
-    this.gameElementsList.forEach(function (value) {
-      console.log(value);
-    });
-  }
-
-  // reads all the info from this.chase and writes onto class members
+  // reads all the info from this.chaseEditor.getChase() and writes onto class members
   loadDataFromChase(): void {
-    this.selectedQuest = 1; //todo change again
-    this.createGameElementListsFromChase();
-    this.elementEditor.setChase(this.chase);
-    this.elementEditor.setMetaDataToEdit();
+    this.selectedQuest = 1; // todo change again
+    if (this.elementEditor) {
+      this.elementEditor.reloadChase();
+      this.elementEditor.setMetaDataToEdit();
+    }
   }
-
-  // forwards the selected quest to the QuestEditorComponent
-  selectQuestByNumber(itemID: number): void {}
 
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit()');
   }
 
-  // selectQuestByName(value: String) {
-  //   console.log(value)
-  // }
-
-  // FIXME outsource
-  static parseIdFromGEString(text: string): number {
-    let id_text = text.substr(text.lastIndexOf('(') + 1); //)
-    id_text = id_text.substr(0, id_text.length - 1);
-
-    return +id_text;
-  }
-
   metaDataSelectorClicked() {
-    this.elementEditor.setChase(this.chase);
-    this.elementEditor.setMetaDataToEdit();
+    if (this.elementEditor) {
+      // this.elementEditor.reloadChase();
+      this.elementEditor.setMetaDataToEdit();
+    }
   }
 
   questSelectorClicked(text: string) {
     console.log('Quest Selector Clicked', text);
 
-    //parse id from name, not so pretty a solution TBH
-    this.selectedQuest = MainEditorComponent.parseIdFromGEString(text);
-    this.elementEditor.setChase(this.chase);
-    this.elementEditor.setGameElementToEdit(
-      this.chase.gameElements.get(this.selectedQuest)
-    );
+    // parse id from name, not so pretty a solution TBH
+    this.selectedQuest = this.chaseEditor.getElementIdByName(text);
+    if (this.elementEditor) {
+      // this.elementEditor.reloadChase();
+      this.elementEditor.setGameElementToEdit(
+        this.chaseEditor.getChase().gameElements.get(this.selectedQuest)
+      );
+    }
   }
 
   deleteGameElement(text: string) {
-    let delete_index = MainEditorComponent.parseIdFromGEString(text);
-    this.chase.gameElements.delete(delete_index);
+    const index = this.chaseEditor.getElementIdByName(text);
+    this.chaseEditor.getChase().gameElements.delete(index);
     console.log('deleted GameElement:', text);
 
     this.loadDataFromChase();
@@ -143,90 +95,61 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
   deleteChase() {
     console.log('Lösche Chase mit ID: ', this.chaseID);
     this.chaseService.deleteChase(this.chaseID);
+    // FIXME navigate to list?
   }
 
   addQuest() {
     console.log('addQuest()');
     const quest = new Quest();
-    quest.title = 'Neues Rätsel';
+    quest.title = 'Neues Rätsel'; // FIXME set localized string
     this.addGameElement(quest);
   }
 
   addNarrative() {
     console.log('addNarrative()');
     const narrative = new Narrative();
-    narrative.title = 'Neues Erzählelement';
+    narrative.title = 'Neues Erzählelement'; // FIXME set localized string
     this.addGameElement(narrative);
   }
 
   addGameElement(element: GameElement) {
-    const key = this.getNextFreeMapKey();
-    this.chase.gameElements.set(key, element);
+    const id = this.chaseEditor.addGameElement(element);
     this.loadDataFromChase();
 
     // jump to new element
-    this.questSelectorClicked(this.gameElementsMap.get(key));
-  }
-
-  getNextFreeMapKey(): number {
-    let key = 1;
-
-    while (true) {
-      if (!this.chase.gameElements.has(key)) {
-        console.log('Found next free key: ', key);
-        return key;
-      }
-      key++;
-    }
-  }
-
-  loadChaseToEditorById(id: string) {
-    this.chaseService.getChase(this.chaseID).subscribe((chase) => {
-      this.chase = chase;
-
-      this.loadDataFromChase();
-    });
-  }
-
-  createNewChase(): void {
-    console.log('Creating new Chase from scratch...');
-
-    this.chase = new Chase();
-    this.chase.gameElements = new Map();
-    this.chase.metaData = new ChaseMetaData();
-    this.addQuest();
-
-    this.loadDataFromChase();
+    this.questSelectorClicked(this.chaseEditor.getElementNameById(id));
   }
 
   uploadChase($event): void {
     console.log('Opening file explorer to load local chase file...');
 
     console.log($event.target.files[0]);
-    var reader = new FileReader();
+    const reader = new FileReader();
     reader.addEventListener('load', (e) => {
-      const json_string: string = reader.result as string;
-      var json = JSON.parse(json_string);
-      var chase = deserialize<Chase>(json, Chase);
+      const jsonString: string = reader.result as string;
+      const json = JSON.parse(jsonString);
+      const chase = deserialize<Chase>(json, Chase);
       console.log(chase);
 
-      this.chase = chase;
+      this.chaseEditor.setChase(chase);
       this.loadDataFromChase();
     });
     reader.readAsText($event.target.files[0]);
   }
 
   prepareSavingChase(): void {
-    this.elementEditor.saveGameElementChangesToChase();
-    this.elementEditor.saveMetaDataChangesToChase();
+    if (this.elementEditor) {
+      this.elementEditor.saveGameElementChangesToChase();
+      this.elementEditor.saveMetaDataChangesToChase();
+    }
   }
 
   pushChase(): void {
     console.log('Push chase to server!');
     this.prepareSavingChase();
     // push chase to server database
-    this.chaseService.createOrUpdateChase(this.chase).subscribe((id) => {
-      this.chase.metaData.chaseId = id;
+    this.chaseService.createOrUpdateChase(this.chaseEditor.getChase()).subscribe((id) => {
+      this.chaseEditor.getChase().metaData.chaseId = id;
     });
   }
 
@@ -234,7 +157,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     console.log('Provide Chase as Download...');
     this.prepareSavingChase();
 
-    const serialized = serialize(this.chase, true);
+    const serialized = serialize(this.chaseEditor.getChase(), true);
     const json = JSON.stringify(serialized, null, 2);
 
     const blob = new Blob([json], { type: 'text/plain;charset=utf-8' });
@@ -243,13 +166,20 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
   public tryInApp() {
     this.prepareSavingChase();
-    this.chaseStorage.setRunningChase(this.chase);
+    this.chaseStorage.setRunningChase(this.chaseEditor.getChase());
     this.chaseStorage.setCurrentPosition(this.selectedQuest);
-    window.open("/app/de/chase?id=", "_blank");
+    window.open('/app/de/chase?id=', '_blank');
   }
 
   hasModifiableApi(): boolean {
     return this.configuration.isApiBased();
+  }
 
+  createNewChase(): void {
+    // TODO check for unsaved changes
+    const chase = new Chase();
+    this.chaseEditor.setChase(chase);
+    this.addQuest();
+    this.loadDataFromChase();
   }
 }

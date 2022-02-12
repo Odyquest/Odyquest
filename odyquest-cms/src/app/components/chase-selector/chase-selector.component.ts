@@ -1,16 +1,13 @@
 // import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseMetaData } from 'chase-model';
+import { ChaseList, ChaseMetaData, Image } from 'chase-model';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ChaseService } from 'chase-services';
+import { ChaseService, RuntimeConfigurationService } from 'chase-services';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { deserialize } from 'typescript-json-serializer';
-
-// import { ChaseStorageService } from 'src/app/core/services/chaseStorage.service';
-// import { ChaseStatus } from 'src/app/core/models/chase_status';
 
 @Component({
   selector: 'app-chase-selector',
@@ -21,12 +18,22 @@ export class ChaseSelectorComponent implements OnInit {
   inputUrl: boolean;
   chaseList = new ChaseList();
   loading = false;
+  imageUrls = new Map<string, string>();
 
   constructor(private chaseService: ChaseService,
+              private configuration: RuntimeConfigurationService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.chaseService.getAllChases(true).subscribe(chases => this.chaseList = chases);
+    this.chaseService.getAllChases().subscribe(chases => {
+      this.chaseList = chases;
+      this.chaseList.chases.forEach((chase: ChaseMetaData) => {
+        this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
+          console.log('get media data for chase ', chase.chaseId);
+          this.imageUrls.set(chase.chaseId, media.getDefaultUrl(this.configuration.getMediaUrlPrefix()));
+        });
+      });
+    });
   }
 
   onInputUrl(): void {

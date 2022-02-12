@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Inject } from '@angular/core';
+import { Inject, Optional } from '@angular/core';
 
-import { Description } from 'chase-model';
+import { Description, Media, Image } from 'chase-model';
 import { Quest, QuestType } from 'chase-model';
-import { QuestStatus } from '../../../core/services/game.service';
+import { GameService, QuestStatus } from '../../../core/services/game.service';
 
 @Component({
   selector: 'app-hint',
@@ -13,29 +13,30 @@ import { QuestStatus } from '../../../core/services/game.service';
   styleUrls: ['./hint.component.scss']
 })
 export class HintComponent {
-  help = new Array<Description>();
+  hint = new Array<Description>();
   index = 0;
   pageNumber: string;
 
   constructor(public dialogRef: MatDialogRef<HintComponent>,
+              private game: GameService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.help = this.data.quest.help;
-    if (this.help.length < 1) {
-      console.log('No help available, close immediately');
+    this.hint = this.data.quest.hint;
+    if (this.hint.length < 1) {
+      console.log('No hint available, close immediately');
       this.closeDialog();
     }
     this.setPageNumber();
   }
 
   setPageNumber(): void {
-    this.pageNumber = ' ' + (this.index + 1) + '/' + this.help.length + ' ';
+    this.pageNumber = ' ' + (this.index + 1) + '/' + this.hint.length + ' ';
   }
 
   closeDialog(): void  {
   }
 
   has_next(): boolean {
-    return this.index < this.help.length - 1;
+    return this.index < this.hint.length - 1;
   }
 
   next(): void {
@@ -58,11 +59,25 @@ export class HintComponent {
   }
 
   getDescription(): Description {
-     return this.help[this.index];
+     return this.hint[this.index];
   }
 
-  getCurrentHelpText(): string {
-    return this.help[this.index].text;
+  getCurrentText(): string {
+    if (!this.hint[this.index]) {
+      return '';
+    }
+    return this.hint[this.index].text;
+  }
+
+  getCurrentImage(): Image {
+    if (!this.hint[this.index]) {
+      return new Image();
+    }
+    const image = this.game.chase.getMedia<Image>(this.hint[this.index].image);
+    if (!image) {
+      return new Image();
+    }
+    return image;
   }
 
   getImgClass(): string {

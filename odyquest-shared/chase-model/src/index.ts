@@ -2,7 +2,22 @@ export { Chase, ChaseList, ChaseMetaData } from './chase';
 export { ChaseStatus} from './chase_status';
 export { Description } from './description';
 export { GameElement } from './game_element';
-export { Narrative, NarrativeType, NarrativeStatus } from './narrative';
+export {
+  Audio,
+   AudioFile,
+   AugmentedReality,
+   Image,
+   ImageFile,
+   Media,
+   MediaCollection,
+   MediaFile,
+   MediaWithFilelist,
+   Video,
+  VideoFile
+} from './media';
+export { MediaContainer } from './media-container';
+export { Narrative, NarrativeStatus } from './narrative';
+export { NarrativeType } from './narrative_type';
 export { Preview } from './preview';
 export { Quest, QuestType } from './quest';
 export { RequirementCombination } from './requirement_combination';

@@ -17,16 +17,16 @@ export class ElementEditorComponent implements OnInit {
   elementType = ElementType.MetaData;
 
   @ViewChild('meta_data_editor') metaDataEditor;
-  @ViewChild('quest_editor') questEditor;
+  @ViewChild('game_element_editor') gameElementEditor;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  setChase(chase: Chase): void {
-    this.metaDataEditor.setChase(chase);
-    this.questEditor.setChase(chase);
+  reloadChase(): void {
+    this.metaDataEditor.reloadChase();
+    this.gameElementEditor.reloadChase();
   }
 
   setMetaDataToEdit(): void {
@@ -35,7 +35,7 @@ export class ElementEditorComponent implements OnInit {
 
   setGameElementToEdit(element: GameElement): void {
     this.elementType = ElementType.GameElement;
-    this.questEditor.setGameElementToEdit(element);
+    this.gameElementEditor.setGameElementToEdit(element);
   }
 
   saveMetaDataChangesToChase(): void {
@@ -46,7 +46,7 @@ export class ElementEditorComponent implements OnInit {
 
   saveGameElementChangesToChase(): void {
     if (this.elementType === ElementType.GameElement) {
-      this.questEditor.localToGameElement();
+      this.gameElementEditor.localToGameElement();
     }
   }
 

@@ -4,10 +4,10 @@ import {MatDialog} from '@angular/material/dialog';
 import * as moment from 'moment';
 import {Subscription, TimeInterval} from 'rxjs';
 
-import {QuestStatus} from '../../../core/services/game.service';
-import {ChaseStatus} from 'chase-model';
-import {Description} from 'chase-model';
+import {ChaseStatus, Description, Image} from 'chase-model';
 import {Quest, QuestType} from 'chase-model';
+import { GameService } from 'src/app/core/services/game.service';
+import {QuestStatus} from '../../../core/services/game.service';
 import {HintComponent} from '../hint/hint.component';
 import {SubmitSolutionComponent} from '../submit-solution/submit-solution.component';
 import {TimeService} from './../../../core/services/time.service';
@@ -34,7 +34,11 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   subscriptions = new Array<Subscription>();
   timeTicker;
-  constructor(public dialog: MatDialog, public timeService: TimeService) {
+  constructor(
+    public dialog: MatDialog,
+    public timeService: TimeService,
+    private game: GameService
+  ) {
   }
 
   ngOnInit(): void {
@@ -131,7 +135,7 @@ export class QuestComponent implements OnInit, OnDestroy {
   }
 
   hasHelp(): boolean {
-    return this.quest.help.length > 0;
+    return this.quest.hint.length > 0;
   }
 
   hasSolution(): boolean {
@@ -161,5 +165,14 @@ export class QuestComponent implements OnInit, OnDestroy {
 
   getImgClass(): string {
     return 'game_element_image';
+  }
+
+  getImage(): Image {
+    const image = this.game.chase.getMedia<Image>(this.quest.description.image);
+    if (!image) {
+      console.log('image not found');
+      return new Image();
+    }
+    return image;
   }
 }

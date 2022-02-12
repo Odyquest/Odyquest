@@ -1,20 +1,26 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { ProvideSolutionComponent } from './provide-solution.component';
+import { Quest } from 'chase-model';
+import { SubmitSolutionComponent } from './submit-solution.component';
 
-describe('ProvideSolutionComponent', () => {
-  let component: ProvideSolutionComponent;
-  let fixture: ComponentFixture<ProvideSolutionComponent>;
+describe('SubmitSolutionComponent', () => {
+  let component: SubmitSolutionComponent;
+  let fixture: ComponentFixture<SubmitSolutionComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProvideSolutionComponent ]
-    })
-    .compileComponents();
+      declarations: [ SubmitSolutionComponent ],
+      imports: [ MatDialogModule ],
+       providers: [
+         { provide: MatDialogRef, useValue: {} },
+         { provide: MAT_DIALOG_DATA, useValue: { quest: new Quest() } }
+       ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProvideSolutionComponent);
+    fixture = TestBed.createComponent(SubmitSolutionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -20,22 +20,21 @@ export class AppComponent {
   constructor(public router: Router,
               private configuration: RuntimeConfigurationService,
               public oauthService: OAuthService) {
-        // For debugging:
-    oauthService.events.subscribe(e => e instanceof OAuthErrorEvent ? console.error(e) : console.warn(e));
+    // For debugging:
+    if (oauthService.events) {
+      oauthService.events.subscribe(e => e instanceof OAuthErrorEvent ? console.error(e) : console.warn(e));
+    }
 
     // Load information from Auth0 (could also be configured manually)
     oauthService.loadDiscoveryDocument()
-
       // See if the hash fragment contains tokens (when user got redirected back)
       .then(() => oauthService.tryLogin())
-
       // If we're still not logged in yet, try with a silent refresh:
       .then(() => {
         if (!oauthService.hasValidAccessToken()) {
           return oauthService.silentRefresh();
         }
       })
-
       // Get username, if possible.
       .then(() => {
         if (oauthService.getIdentityClaims()) {

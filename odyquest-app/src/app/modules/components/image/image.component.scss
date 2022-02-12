@@ -11,5 +11,11 @@
   object-position: center;
   max-height: 30vh;
   width: calc(100% + 32px);
-  margin: 0 -16px 16px -16px;
+  margin: 0 -16px 0 -16px;
+}
+
+.image-annotation {
+  margin-bottom: 16px;
+  font-style: italic;
+  text-align: right;
 }

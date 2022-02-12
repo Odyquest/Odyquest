@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
+import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
 import { WelcomeComponent } from './welcome.component';
 
 describe('WelcomeComponent', () => {
@@ -8,7 +10,13 @@ describe('WelcomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomeComponent ]
+      imports: [ RouterTestingModule ],
+      declarations: [ WelcomeComponent ],
+      providers: [
+        { provide: RuntimeConfigurationService,
+          useClass: RuntimeConfigurationServiceMock
+        }
+      ]
     })
     .compileComponents();
   }));

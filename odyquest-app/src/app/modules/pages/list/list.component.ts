@@ -4,11 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ChaseService } from 'chase-services';
-import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseMetaData } from 'chase-model';
-import { ChaseStorageService } from 'chase-services';
+import { ChaseList, ChaseMetaData, Image, Preview } from 'chase-model';
 import { ChaseStatus } from 'chase-model';
+import { ChaseService } from 'chase-services';
+import { ChaseStorageService } from 'chase-services';
+import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
   selector: 'app-list',
@@ -19,6 +19,7 @@ export class ListComponent implements OnInit {
   inputUrl: boolean;
   chaseList = new ChaseList();
   loading = false;
+  images = new Map<string, Image>();
 
   constructor(private chaseService: ChaseService,
               private router: Router,
@@ -27,7 +28,14 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.uiService.toolbarTitle.next('Wähle eine Schnitzeljagd');
-    this.chaseService.getAllChases().subscribe(chases => this.chaseList = chases);
+    this.chaseService.getAllChases().subscribe(chases => {
+      this.chaseList = chases;
+      this.chaseList.chases.forEach((chase: ChaseMetaData) => {
+        this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
+          this.images.set(chase.chaseId, media as Image);
+        });
+      });
+    });
   }
 
   onInputUrl(): void {
@@ -45,11 +53,11 @@ export class ListComponent implements OnInit {
   getRunningChaseTitle(): any {
     return this.chaseStorage.getRunningChase().metaData.title;
   }
-  getRunningChaseDescription(): any {
-    return this.chaseStorage.getRunningChase().metaData.preview.description;
+  getRunningChaseImage(): any {
+    return this.getImage(this.chaseStorage.getRunningChase().metaData);
   }
   getRunningChaseText(): any {
-    return this.chaseStorage.getRunningChase().metaData.preview.description.text;
+    return this.chaseStorage.getRunningChase().metaData.preview.text;
   }
   getRunningChaseId(): any {
     return this.chaseStorage.getRunningChase().metaData.chaseId;
@@ -57,6 +65,10 @@ export class ListComponent implements OnInit {
 
   hasNoChases(): boolean {
     return this.getChaseList().length === 0;
+  }
+
+  getImage(chase: ChaseMetaData): Image {
+    return this.images.get(chase.chaseId);
   }
 
   isSucceeded(chaseId: string): boolean {

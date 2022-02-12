@@ -21,19 +21,23 @@ export class QuestStatus {
   providedIn: 'root'
 })
 export class GameService {
+  chase: Chase;
   currentQuest: Quest;
   currentElement: GameElement;
   currentQuestStatus: QuestStatus;
   startElement: number | undefined;
   finished = false;
 
-  static fromStorage(chaseStorage: ChaseStorageService): GameService {
-    const service = new GameService(chaseStorage, chaseStorage.getRunningChase());
-    service.startElement = chaseStorage.getCurrentPosition();
-    return service;
+  constructor(private chaseStorage: ChaseStorageService) {
   }
 
-  constructor(private chaseStorage: ChaseStorageService, public chase: Chase) {
+  startChase(chase: Chase): void {
+    this.chase = chase;
+  }
+
+  startChaseFromStorage(): void {
+    this.chase = this.chaseStorage.getRunningChase();
+    this.startElement = this.chaseStorage.getCurrentPosition();
   }
 
   startQuest(quest: Quest): void {

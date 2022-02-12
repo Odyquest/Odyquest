@@ -1,8 +1,9 @@
-import { Description } from './description';
+import { Image } from './media';
 
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
 export class Preview {
-	@JsonProperty() description: Description = new Description();
+  @JsonProperty() text = "";
+  @JsonProperty() image = "";
 }

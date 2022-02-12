@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Chase, ChaseMetaData, GameElement, Image } from 'chase-model';
 import { ChaseService } from 'chase-services';
-import { Chase, ChaseMetaData, GameElement } from 'chase-model';
+
+import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 
 @Component({
   selector: 'app-meta-data-editor',
@@ -9,78 +11,40 @@ import { Chase, ChaseMetaData, GameElement } from 'chase-model';
   styleUrls: ['./meta-data-editor.component.scss']
 })
 export class MetaDataEditorComponent implements OnInit {
-  public chase: Chase;
-
-  title = '';
-  author = '';
-  description = '';
-  published = false;
   initialElement = '';
-  imageUrl = '';
-
-  gameElementsMap = new Map<number, string>();
-  gameElementsList = [];
-
-  // FIXME outsource to own lib
-  static parseIdFromGEString(text: string): number {
-    let idText = text.substr(text.lastIndexOf('(') + 1);
-    idText = idText.substr(0, idText.length - 1);
-    return +idText;
-  }
 
   constructor(
-    private chaseService: ChaseService,
+    public chaseEditor: ChaseEditorService,
+    public chaseService: ChaseService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  setChase(chase: Chase): void {
-    this.chase = chase;
-
-    this.title = this.chase.metaData.title;
-    this.author = this.chase.metaData.author;
-    this.description = this.chase.metaData.preview.description.text;
-    this.imageUrl = this.chase.metaData.preview.description.image;
-
-    // create gameelementsmap (id -> string)
-    // also create simple array used to generate dropdown values
-    this.gameElementsMap = new Map<number, string>();
-    this.gameElementsList = [];
-
-    this.chase.gameElements.forEach((value: GameElement, key: number) => {
-      const titleWithId = value.title + ' (' + key + ')';
-      this.gameElementsMap.set(key, titleWithId);
-      this.gameElementsList.push(titleWithId);
-    });
-
-    this.initialElement = this.gameElementsMap.get(this.chase.initialGameElement);
-    this.published = this.chase.metaData.published;
+  reloadChase(): void {
+    this.initialElement = this.chaseEditor.getElementNameById(this.chaseEditor.getChase().initialGameElement);
   }
 
   onInitialGameElementChange(value: string) {
-    this.chase.initialGameElement = MetaDataEditorComponent.parseIdFromGEString(value);
+    this.chaseEditor.getChase().initialGameElement = this.chaseEditor.getElementIdByName(value);
     this.initialElement = value;
-    console.log('Set initial game element to ' + this.chase.initialGameElement);
+    console.log('Set initial game element to ' + this.chaseEditor.getChase().initialGameElement);
   }
 
   saveInputElements(): void {
-    this.chase.metaData.published = this.published;
-    this.chase.metaData.title = this.title;
-    this.chase.metaData.author = this.author;
-    this.chase.metaData.preview.description.text = this.description;
-    this.chase.metaData.preview.description.image = this.imageUrl;
-    this.chase.metaData.published = this.published;
   }
 
   getChaseId(): string {
-    if (this.chase && this.chase.metaData.chaseId) {
-      return this.chase.metaData.chaseId;
+    if (this.chaseEditor.getChase() && this.chaseEditor.getChase().metaData.chaseId) {
+      return this.chaseEditor.getChase().metaData.chaseId;
     }
   }
 
-  updateImageUrl(url: string): void {
-    this.imageUrl = url;
+  updateImage(mediaId: string): void {
+    this.chaseEditor.getChase().metaData.preview.image= mediaId;
   }
 
+  getImage(): string {
+    return this.chaseEditor.getChase().metaData.preview.image;
+  }
 }

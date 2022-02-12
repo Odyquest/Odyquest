@@ -23,11 +23,68 @@
           <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="quest_editor.title" datatype="html">
+        <source>Title:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quest_editor.description" datatype="html">
+        <source>Description:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quest_editor.markdown_tutorial" datatype="html">
+        <source> Tutorial for text formatting </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quest_editor.emoji_tutorial" datatype="html">
+        <source> Tutorial for inserting emojis </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quest_editor.hints" datatype="html">
+        <source>Hints</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quest_editor.hint_page" datatype="html">
+        <source>Page <x id="INTERPOLATION" equiv-text="{{i+1}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quest_editor.add_hint" datatype="html">
+        <source> add hint </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
+          <context context-type="linenumber">83,84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="add_image" datatype="html">
+        <source> Add image
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="e10652297c8ff806eba3d9eaf06094b8a4352728" datatype="html">
         <source>URL pointing to image...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="upload_image" datatype="html">
@@ -35,7 +92,21 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
-          <context context-type="linenumber">22,23</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a3a495dfc59c7616e0173a13c95a5ac27d92ced8" datatype="html">
+        <source>Alternative text describing the image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eb5b0e88f1c06d030039c7bfdca7e323b9c43650" datatype="html">
+        <source>Text to annotate the image with</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="login.login" datatype="html">
@@ -74,11 +145,19 @@
         </context-group>
         <note priority="1" from="description">@main_editor.add_narrative</note>
       </trans-unit>
+      <trans-unit id="add_media" datatype="html">
+        <source> Add media
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/media-upload/media-upload.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5d75e7ce195c9d1dac9b76fc44f1ed415d8f8b11" datatype="html">
         <source>URL pointing to media...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-upload/media-upload.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="upload_media" datatype="html">
@@ -86,176 +165,113 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/media-upload/media-upload.component.html</context>
-          <context context-type="linenumber">33,34</context>
+          <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="657302ea7706c99823016b6f625748a32d2530b3" datatype="html">
         <source>Title of the scavenger hunt...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8dc480be955440e38ea87dbbe812885dde996c0d" datatype="html">
         <source>Author...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4de7f386cf969d49c79537e073664f27a3a92875" datatype="html">
         <source>Short description...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="meta_data.published" datatype="html">
         <source> public available </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">52,53</context>
+          <context context-type="linenumber">51,52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="32e673fe93d45ad8728afdc8196846544aff5038" datatype="html">
         <source> Initial element: </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">56,57</context>
+          <context context-type="linenumber">55,56</context>
         </context-group>
         <note priority="1" from="description">@meta_data.initial_element</note>
       </trans-unit>
-      <trans-unit id="quest_editor.title" datatype="html">
-        <source>Title:</source>
+      <trans-unit id="quest_editor.button.available_buttons" datatype="html">
+        <source> Available Buttons: </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="sourcefile">src/app/components/narrative-editor/narrative-editor.component.html</context>
+          <context context-type="linenumber">51,52</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="quest_editor.description" datatype="html">
-        <source>Description:</source>
+      <trans-unit id="quest_editor.button.text_header" datatype="html">
+        <source>Label:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="sourcefile">src/app/components/narrative-editor/narrative-editor.component.html</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="24fa4eb99e2785fdfa70c104ae6cfe3c1682764b" datatype="html">
-        <source>Description text...</source>
+      <trans-unit id="quest_editor.button.destination_header" datatype="html">
+        <source>Destination:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="sourcefile">src/app/components/narrative-editor/narrative-editor.component.html</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="quest_editor.markdown_tutorial" datatype="html">
-        <source> Tutorial for text formatting </source>
+      <trans-unit id="quest_editor.button.text_input" datatype="html">
+        <source>label of the button</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="sourcefile">src/app/components/narrative-editor/narrative-editor.component.html</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="quest_editor.emoji_tutorial" datatype="html">
-        <source> Tutorial for inserting emojis </source>
+      <trans-unit id="quest_editor.add_button" datatype="html">
+        <source> add button </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">35,36</context>
+          <context context-type="sourcefile">src/app/components/narrative-editor/narrative-editor.component.html</context>
+          <context context-type="linenumber">99,100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="quest_editor.number_tries" datatype="html">
         <source>Tries (0 = ∞):</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="quest_editor.max_time" datatype="html">
         <source>Seconds for solving (0 = ∞):</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">75</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5b982c1f2cbbc2bd929e7665836ea47ffb7f8e49" datatype="html">
-        <source>Bild zuerst anzeigen</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="quest_editor.solution.title" datatype="html">
         <source>Solutions:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="solution_option.all" datatype="html">
         <source>all</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="solution_option.one" datatype="html">
         <source>one</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">104</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="quest_editor.button.available_buttons" datatype="html">
-        <source> Available Buttons: </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">215,216</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="quest_editor.button.text_header" datatype="html">
-        <source>Label:</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">222</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="quest_editor.button.destination_header" datatype="html">
-        <source>Destination:</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">225</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="quest_editor.button.text_input" datatype="html">
-        <source>label of the button</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">235</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="quest_editor.add_button" datatype="html">
-        <source> add button </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">263,264</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="quest_editor.hints" datatype="html">
-        <source>Hints</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">278</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="quest_editor.hint_page" datatype="html">
-        <source>Page <x id="INTERPOLATION" equiv-text="{{i+1}}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">283</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="quest_editor.add_hint" datatype="html">
-        <source> add hint </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">303,304</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
     </body>

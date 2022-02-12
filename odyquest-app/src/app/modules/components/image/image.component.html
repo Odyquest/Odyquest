@@ -1,7 +1,7 @@
-<img *ngIf="hasDifferentImageSizes()"
-     class="{{getClass()}}"
+<img [class]="getClass()"
      [src]="getImage()"
-     [srcset]="getImageSrcset()" />
-<img *ngIf="!hasDifferentImageSizes()"
-     class="{{getClass()}}"
-     [src]="getImage()"/>
+     [srcset]="getImageSrcset()"
+     [alt]="getAlternativeText()"/>
+<div class="image-annotation">
+  {{getAnnotation()}}
+</div>

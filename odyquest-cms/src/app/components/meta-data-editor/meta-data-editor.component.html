@@ -1,8 +1,7 @@
 <div class="editor-top-container">
   <app-image-upload class="editor-image-outer-container"
-                    [imageUrl]="this.imageUrl"
-                    [chaseId]="getChaseId()"
-                    (updateUrl)="updateImageUrl($event)" >
+                    [mediaId]="getImage()"
+                    (mediaIdChange)="updateImage($event)" >
   </app-image-upload>
   <div class="editor-top-right-container">
 
@@ -12,7 +11,7 @@
                type="text"
                id="author"
                name="Titel"
-               [(ngModel)]="title"
+               [(ngModel)]="chaseEditor.getChase().metaData.title"
                i18n-placeholder
                placeholder="Title of the scavenger hunt...">
       </mat-form-field>
@@ -22,7 +21,7 @@
                type="text"
                id="author"
                name="Autor"
-               [(ngModel)]="author"
+               [(ngModel)]="chaseEditor.getChase().metaData.author"
                i18n-placeholder
                placeholder="Author...">
       </mat-form-field>
@@ -35,7 +34,7 @@
                   placeholder="Short description..."
                   name="fname"
                   class="input_field_big"
-                  [(ngModel)]="description"></textarea>
+                  [(ngModel)]="chaseEditor.getChase().metaData.preview.text"></textarea>
       </mat-form-field>
     </form>
   </div>
@@ -47,7 +46,7 @@
       <mat-checkbox class="content-field-container"
                     color="primary"
                     name="combination_map_check"
-                    [(ngModel)]="published"
+                    [(ngModel)]="chaseEditor.getChase().metaData.published"
                     i18n="@@meta_data.published">
         public available
       </mat-checkbox>
@@ -58,7 +57,7 @@
         <mat-select name="initial-game-element"
                     id="initial-game-element"
                     [(ngModel)]="initialElement">
-          <mat-option *ngFor="let target of gameElementsList"
+          <mat-option *ngFor="let target of chaseEditor.getElementNames()"
                       [value]='target'
                       [attr.selected]='target'
                       (click)="onInitialGameElementChange(target)">

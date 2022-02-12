@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { Audio, NarrativeType } from 'chase-model';
+import { ChaseService, ChaseServiceMock } from 'chase-services';
+import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
 import { MediaUploadComponent } from './media-upload.component';
 
 describe('MediaUploadComponent', () => {
@@ -8,7 +11,17 @@ describe('MediaUploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MediaUploadComponent ]
+      declarations: [ MediaUploadComponent ],
+      providers: [
+        {
+          provide: RuntimeConfigurationService,
+          useClass: RuntimeConfigurationServiceMock
+        },
+        {
+          provide: ChaseService,
+          useClass: ChaseServiceMock
+        }
+      ]
     })
     .compileComponents();
   });
@@ -16,6 +29,8 @@ describe('MediaUploadComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MediaUploadComponent);
     component = fixture.componentInstance;
+    component.mediaId = 'audio_id';
+    component.narrativeType = NarrativeType.Audio;
     fixture.detectChanges();
   });
 

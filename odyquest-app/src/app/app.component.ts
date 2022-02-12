@@ -12,10 +12,9 @@ export class AppComponent implements OnInit {
   constructor(private uiService: UiService){
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.uiService.toolbarTitle.subscribe(title => {
       this.title = title;
-    })
-    
+    });
   }
 }
