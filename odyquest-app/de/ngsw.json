@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1642757727037,
+  "timestamp": 1644676210245,
   "index": "/Odyquest/odyquest-app/de/index.html",
   "assetGroups": [
     {
@@ -13,10 +13,10 @@
       "urls": [
         "/Odyquest/odyquest-app/de/favicon.ico",
         "/Odyquest/odyquest-app/de/index.html",
-        "/Odyquest/odyquest-app/de/main.9bcf847a5b5ec8251f7b.js",
+        "/Odyquest/odyquest-app/de/main.3dd815079b79181b5fee.js",
         "/Odyquest/odyquest-app/de/manifest.webmanifest",
-        "/Odyquest/odyquest-app/de/polyfills.652cedc5c176f05b1694.js",
-        "/Odyquest/odyquest-app/de/runtime.e927ee90ec038f083782.js",
+        "/Odyquest/odyquest-app/de/polyfills.ef87b7db3af0c47104c4.js",
+        "/Odyquest/odyquest-app/de/runtime.f4c660e8a1ab8578ec0c.js",
         "/Odyquest/odyquest-app/de/scripts.1db98f8b72daced1b79c.js",
         "/Odyquest/odyquest-app/de/styles.98c857c1dfa7fd50b8f5.css"
       ],
@@ -85,11 +85,11 @@
     "/Odyquest/odyquest-app/de/assets/privacy.en.md": "e1d3cc5130facd7172038ec8b4f1c019fb289960",
     "/Odyquest/odyquest-app/de/background-boot.3c8a6174eb9130e7770f.svg": "9cca7b042751cd1a309bb7fa7fb5b0a6999a335c",
     "/Odyquest/odyquest-app/de/favicon.ico": "ca252d6a6542573b7fe1bc8117ec2341899448c3",
-    "/Odyquest/odyquest-app/de/index.html": "252c58723a60bd0d3d4b21b6a2e1b6e60a3d34d9",
-    "/Odyquest/odyquest-app/de/main.9bcf847a5b5ec8251f7b.js": "84b7721bdf1f76eac1ae138425be9eddeac70231",
+    "/Odyquest/odyquest-app/de/index.html": "8fdcf37fde27bac2ac88f978d006e04aa087ee3e",
+    "/Odyquest/odyquest-app/de/main.3dd815079b79181b5fee.js": "560115e6836b7d68899821bd7e39086ec764996f",
     "/Odyquest/odyquest-app/de/manifest.webmanifest": "3030217fd641c97ceb90c28c59be1ddf436ffeb2",
-    "/Odyquest/odyquest-app/de/polyfills.652cedc5c176f05b1694.js": "93b32dc4242e22d65647a6c3410bd3c58e43775d",
-    "/Odyquest/odyquest-app/de/runtime.e927ee90ec038f083782.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/Odyquest/odyquest-app/de/polyfills.ef87b7db3af0c47104c4.js": "93b32dc4242e22d65647a6c3410bd3c58e43775d",
+    "/Odyquest/odyquest-app/de/runtime.f4c660e8a1ab8578ec0c.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/Odyquest/odyquest-app/de/scripts.1db98f8b72daced1b79c.js": "6122d595c1af3fc5d3f59fe1976edec87a78e3d7",
     "/Odyquest/odyquest-app/de/styles.98c857c1dfa7fd50b8f5.css": "c5e4d6c75e67565327451a5a84243c354f1c2bcb"
   },
