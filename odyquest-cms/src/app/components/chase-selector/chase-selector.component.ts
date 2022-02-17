@@ -1,5 +1,5 @@
 // import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseMetaData, Image } from 'chase-model';
+import { ChaseList, ChaseSummary, ChaseMetaData, Image } from 'chase-model';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ChaseService, RuntimeConfigurationService } from 'chase-services';
@@ -18,7 +18,6 @@ export class ChaseSelectorComponent implements OnInit {
   inputUrl: boolean;
   chaseList = new ChaseList();
   loading = false;
-  imageUrls = new Map<string, string>();
 
   constructor(private chaseService: ChaseService,
               private configuration: RuntimeConfigurationService,
@@ -27,12 +26,6 @@ export class ChaseSelectorComponent implements OnInit {
   ngOnInit(): void {
     this.chaseService.getAllChases().subscribe(chases => {
       this.chaseList = chases;
-      this.chaseList.chases.forEach((chase: ChaseMetaData) => {
-        this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
-          console.log('get media data for chase ', chase.chaseId);
-          this.imageUrls.set(chase.chaseId, media.getDefaultUrl(this.configuration.getMediaUrlPrefix()));
-        });
-      });
     });
   }
 
@@ -41,7 +34,7 @@ export class ChaseSelectorComponent implements OnInit {
     this.inputUrl = true;
   }
 
-  getChaseList(): Array<ChaseMetaData> {
+  getChaseList(): Array<ChaseSummary> {
     return this.chaseList.chases;
   }
 

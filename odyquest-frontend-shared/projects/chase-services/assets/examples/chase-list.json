@@ -1,13 +1,34 @@
 {
   "chases":[
     {
-      "chaseId":"lorem",
-      "title":"Lorem ipsum dolor sit amet",
-      "author":"Ipsum Lorem",
-      "published":true,
-      "preview": {
-        "text":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam\n\n_Images by Johannes Bleier, CC BY-SA 4.0_",
-        "image": "title"
+      "metaData":
+      {
+        "chaseId":"lorem",
+        "title":"Lorem ipsum dolor sit amet",
+        "author": {
+          "text": "Ipsum Lorem",
+          "image": "title"
+        },
+        "published":true,
+        "preview": {
+          "text":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam\n\n_Images by Johannes Bleier, CC BY-SA 4.0_",
+          "image": "title"
+        }
+      },
+      "_images": {
+        "title": {
+          "mediaId": "title",
+          "chaseId": "lorem",
+          "alternative": "text describing the image",
+          "defaultIndex": 0,
+          "files": [
+            { "filename":  "./assets-shared/examples/lorem/images/title_200.jpg", "width": 200 },
+            { "filename":  "./assets-shared/examples/lorem/images/title_700.jpg", "width": 700 },
+            { "filename":  "./assets-shared/examples/lorem/images/title_1100.jpg", "width": 1100 },
+            { "filename":  "./assets-shared/examples/lorem/images/title_1500.jpg", "width": 1500 },
+            { "filename":  "./assets-shared/examples/lorem/images/title_1980.jpg", "width": 1980 }
+          ]
+        }
       }
     }
   ]

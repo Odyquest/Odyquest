@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ChaseList, ChaseMetaData, Image, Preview } from 'chase-model';
+import { Chase, ChaseList, ChaseSummary, ChaseMetaData, Image, Preview } from 'chase-model';
 import { ChaseStatus } from 'chase-model';
 import { ChaseService } from 'chase-services';
 import { ChaseStorageService } from 'chase-services';
@@ -19,7 +19,6 @@ export class ListComponent implements OnInit {
   inputUrl: boolean;
   chaseList = new ChaseList();
   loading = false;
-  images = new Map<string, Image>();
 
   constructor(private chaseService: ChaseService,
               private router: Router,
@@ -30,11 +29,6 @@ export class ListComponent implements OnInit {
     this.uiService.toolbarTitle.next('Wähle eine Schnitzeljagd');
     this.chaseService.getAllChases().subscribe(chases => {
       this.chaseList = chases;
-      this.chaseList.chases.forEach((chase: ChaseMetaData) => {
-        this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
-          this.images.set(chase.chaseId, media as Image);
-        });
-      });
     });
   }
 
@@ -43,23 +37,23 @@ export class ListComponent implements OnInit {
     this.inputUrl = true;
   }
 
-  getChaseList(): Array<ChaseMetaData> {
+  getChaseList(): Array<ChaseSummary> {
     return this.chaseList.chases;
   }
 
   hasRunningChase(): boolean {
     return this.chaseStorage.hasRunningChase();
   }
-  getRunningChaseTitle(): any {
+  getRunningChaseTitle(): string {
     return this.chaseStorage.getRunningChase().metaData.title;
   }
-  getRunningChaseImage(): any {
-    return this.getImage(this.chaseStorage.getRunningChase().metaData);
+  getRunningChasePreviewImage(): Image {
+    return this.getPreviewImage(this.chaseStorage.getRunningChase());
   }
-  getRunningChaseText(): any {
+  getRunningChaseText(): string {
     return this.chaseStorage.getRunningChase().metaData.preview.text;
   }
-  getRunningChaseId(): any {
+  getRunningChaseId(): string {
     return this.chaseStorage.getRunningChase().metaData.chaseId;
   }
 
@@ -67,8 +61,17 @@ export class ListComponent implements OnInit {
     return this.getChaseList().length === 0;
   }
 
-  getImage(chase: ChaseMetaData): Image {
-    return this.images.get(chase.chaseId);
+  getPreviewImage(chase: ChaseSummary|Chase): Image {
+    return this.getImage(chase.metaData.preview.image, chase);
+  }
+  getAuthorImage(chase: ChaseSummary|Chase): Image {
+    return this.getImage(chase.metaData.author.image, chase);
+  }
+  getImage(mediaId: string, chase: ChaseSummary|Chase): Image {
+    if (!chase.media.has(mediaId)) {
+      console.error("could not find image ", mediaId);
+    }
+    return chase.media.get(mediaId) as Image;
   }
 
   isSucceeded(chaseId: string): boolean {

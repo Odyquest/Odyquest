@@ -1,4 +1,4 @@
-export { Chase, ChaseList, ChaseMetaData } from './chase';
+export { Chase, ChaseList, ChaseSummary, ChaseMetaData } from './chase';
 export { ChaseStatus} from './chase_status';
 export { Description } from './description';
 export { GameElement } from './game_element';
