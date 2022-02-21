@@ -23,7 +23,10 @@
           <mat-card-subtitle>{{chase.metaData.author}}</mat-card-subtitle>
         </mat-card-header>
       </header>
-      <img mat-card-image src="{{chase.media.get(chase.metaData.preview.image)}}">
+      <chase-image id="running_chase_img"
+                 [imgClass]="getMatCardImageClass()"
+                 [image]="getImage(chase.metaData.preview.image, chase)">
+      </chase-image>
       <mat-card-content>
         <p markdown emoji>{{chase.metaData.preview.text}}</p>
       </mat-card-content>

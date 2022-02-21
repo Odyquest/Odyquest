@@ -1,13 +1,8 @@
-// import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseSummary, ChaseMetaData, Image } from 'chase-model';
-import { Component, Input, OnInit } from '@angular/core';
-
-import { ChaseService, RuntimeConfigurationService } from 'chase-services';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Title } from '@angular/platform-browser';
-import { deserialize } from 'typescript-json-serializer';
+
+import { ChaseList, ChaseSummary, Image } from 'chase-model';
+import { ChaseService, RuntimeConfigurationService } from 'chase-services';
 
 @Component({
   selector: 'app-chase-selector',
@@ -58,5 +53,14 @@ export class ChaseSelectorComponent implements OnInit {
     }, 1500);
   }
 
+  getMatCardImageClass(): string {
+    return 'card-image';
+  }
+  getImage(mediaId: string, chase: ChaseSummary): Image {
+    if (!chase.media.has(mediaId)) {
+      console.error("could not find image ", mediaId);
+    }
+    return chase.media.get(mediaId) as Image;
+  }
 }
 

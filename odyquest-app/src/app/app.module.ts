@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { ChaseComponent } from './modules/pages/chase/chase.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './modules/pages/list/list.component';
-import { RuntimeConfigurationService, runtimeInitializerFn } from 'chase-services';
+import { RuntimeConfigurationService, runtimeInitializerFn, ImageModule } from 'chase-services';
 
 // Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -61,7 +61,6 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
-import { ImageComponent } from './modules/components/image/image.component';
 import { AudioComponent } from './modules/components/audio/audio.component';
 import { VideoComponent } from './modules/components/video/video.component';
 import { AugmentedRealityComponent } from './modules/components/augmented-reality/augmented-reality.component';
@@ -109,7 +108,6 @@ function getAuthModuleConfig(): OAuthModuleConfig {
     PrivacyComponent,
     InformationComponent,
     SettingsComponent,
-    ImageComponent,
     AudioComponent,
     VideoComponent,
     AugmentedRealityComponent,
@@ -119,6 +117,7 @@ function getAuthModuleConfig(): OAuthModuleConfig {
     HintComponent,
   ],
   imports: [
+    ImageModule,
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,

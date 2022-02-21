@@ -21,7 +21,7 @@
              i18n="@@list.hide_running">
           <mat-icon>unfold_less</mat-icon><span class="text_button">Hide details</span>
         </div>
-        <app-image id="running_chase_img" [imgClass]="getMatCardImageClass()" [image]="getRunningChasePreviewImage()"></app-image>
+        <chase-image id="running_chase_img" [imgClass]="getMatCardImageClass()" [image]="getRunningChasePreviewImage()"></chase-image>
         <p markdown emoji id="running_chase_text">{{getRunningChaseText()}}</p>
       </mat-card-content>
       <mat-card-actions>
@@ -40,7 +40,7 @@
             <mat-card-subtitle>{{chase.metaData.author.text}}</mat-card-subtitle>
           </mat-card-header>
         </header>
-        <app-image [imgClass]="getMatCardImageClass()" [image]="getPreviewImage(chase)"></app-image>
+        <chase-image [imgClass]="getMatCardImageClass()" [image]="getPreviewImage(chase)"></chase-image>
         <mat-card-content>
           <p markdown emoji>{{chase.metaData.preview.text}}</p>
         </mat-card-content>

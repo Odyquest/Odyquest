@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { RuntimeConfigurationService } from 'chase-services';
+import { RuntimeConfigurationService } from '../runtime-configuration.service';
 
 import { Description, Image, ImageFile, Media } from 'chase-model';
 
 @Component({
-  selector: 'app-image',
+  selector: 'chase-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })

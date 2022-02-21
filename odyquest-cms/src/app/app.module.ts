@@ -39,6 +39,9 @@ import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import {MarkdownModule } from 'ngx-markdown';
 import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
 
+import { RuntimeConfigurationService, runtimeInitializerFn } from 'chase-services';
+import { ImageModule } from 'chase-services';
+
 import { AppComponent } from './app.component';
 import { AuthGuard } from './services/auth/auth.guard.service';
 import { ChaseSelectorComponent } from './components/chase-selector/chase-selector.component';
@@ -47,7 +50,6 @@ import { LoggedOutComponent } from './components/logged-out/logged-out.component
 import { LoginComponent } from './components/login/login.component';
 import { MainEditorComponent } from './components/main-editor/main-editor.component';
 import { QuestEditorComponent } from './components/quest-editor/quest-editor.component';
-import { RuntimeConfigurationService, runtimeInitializerFn } from 'chase-services';
 import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.component';
 
 import { environment } from '../environments/environment';
@@ -117,6 +119,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ImageModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
     MatAutocompleteModule,
     MatButtonModule,

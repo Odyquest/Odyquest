@@ -6,6 +6,8 @@ export * from './lib/chase.service';
 export * from './lib/chase-storage.service';
 export * from './lib/local-storage.service';
 export * from './lib/runtime-configuration.service';
+export * from './lib/image/image.module';
+export * from './lib/image/image.component';
 
 /**
  * Mocks for testing

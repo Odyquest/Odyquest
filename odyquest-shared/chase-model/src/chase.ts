@@ -92,22 +92,18 @@ export class ChaseSummary {
   @JsonProperty() metaData: ChaseMetaData = new ChaseMetaData();
 
   @JsonProperty(convertMediaList) media: Map<string, Media> = new Map<string, Media>();
-}
 
-/**
- * Encapsulates a list of chase meta data for easier serialization and deserialization
- */
-@Serializable()
-export class ChaseList {
-  @JsonProperty({ type: ChaseSummary }) chases: Array<ChaseSummary> = new Array<ChaseSummary>();
+  /** Get media with the given id */
+  getMedia<T extends Media>(id: string): T | undefined {
+    return this.media.get(id) as T;
+  }
 }
 
 /**
  * Actual implementation of a chase which represents a treasure hunt or escape game
  */
 @Serializable()
-export class Chase {
-  @JsonProperty() metaData: ChaseMetaData = new ChaseMetaData();
+export class Chase extends ChaseSummary {
   /** A chase is a collection of game elements.
    * Each game element is a specialized implementation of GameElement and can be addressed by the key in the map.
    */
@@ -147,8 +143,6 @@ export class Chase {
   /** Index of first element in gameElements to start the chase with */
   @JsonProperty() initialGameElement: number = -1; // GameElementID
 
-  @JsonProperty(convertMediaList) media: Map<string, Media> = new Map<string, Media>();
-
   @JsonProperty() tags?: Array<string>;
 
   /**
@@ -182,9 +176,15 @@ export class Chase {
     return this.gameElements.get(destination);
   }
 
-  /** Get media with the given id */
-  getMedia<T extends Media>(id: string): T | undefined {
-    return this.media.get(id) as T;
-  }
-
 }
+
+/**
+ * Encapsulates a list of chase summaries
+ *
+ * The list type exists mainly for easier serialization and deserialization
+ */
+@Serializable()
+export class ChaseList {
+  @JsonProperty({ type: ChaseSummary }) chases: Array<ChaseSummary> = new Array<ChaseSummary>();
+}
+
