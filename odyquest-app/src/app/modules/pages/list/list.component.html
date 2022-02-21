@@ -5,7 +5,9 @@
     <mat-card *ngIf="hasRunningChase()">
       <header>
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+          <div mat-card-avatar class="example-header-image">
+            <img class="avatar" [src]="getAuthorImageUrl(chase.metaData.preview.image, chase)" />
+          </div>
           <mat-card-title i18n="@@list.continue_with">Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
           <!--<mat-card-subtitle>started today</mat-card-subtitle>-->
         </mat-card-header>
@@ -35,7 +37,9 @@
       <mat-card (click)="startChase(chase.metaData.chaseId)">
         <header>
           <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
+            <div mat-card-avatar>
+              <img class="avatar" [src]="getAuthorImageUrl(chase.metaData.preview.image, chase)" />
+            </div>
             <mat-card-title>{{chase.metaData.title}}</mat-card-title>
             <mat-card-subtitle>{{chase.metaData.author.text}}</mat-card-subtitle>
           </mat-card-header>

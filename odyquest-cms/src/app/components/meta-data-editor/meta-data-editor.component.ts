@@ -40,11 +40,17 @@ export class MetaDataEditorComponent implements OnInit {
     }
   }
 
+  getImage(): string {
+    return this.chaseEditor.getChase().metaData.preview.image;
+  }
   updateImage(mediaId: string): void {
     this.chaseEditor.getChase().metaData.preview.image= mediaId;
   }
 
-  getImage(): string {
-    return this.chaseEditor.getChase().metaData.preview.image;
+  getAuthorImage(): string {
+    return this.chaseEditor.getChase().metaData.author.image;
+  }
+  updateAuthorImage(mediaId: string): void {
+    this.chaseEditor.getChase().metaData.author.image= mediaId;
   }
 }

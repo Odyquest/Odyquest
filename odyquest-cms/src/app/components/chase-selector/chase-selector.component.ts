@@ -62,5 +62,11 @@ export class ChaseSelectorComponent implements OnInit {
     }
     return chase.media.get(mediaId) as Image;
   }
+  getAuthorImageUrl(mediaId: string, chase: ChaseSummary): string {
+    if (!chase.media.has(mediaId)) {
+      console.error("could not find image ", mediaId);
+    }
+    return chase.media.get(mediaId).getDefaultUrl(this.configuration.getMediaUrlPrefix());
+  }
 }
 

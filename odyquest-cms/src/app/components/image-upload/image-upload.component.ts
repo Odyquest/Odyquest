@@ -14,6 +14,7 @@ import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 export class ImageUploadComponent implements OnInit {
 
   @Input() mediaId: string;
+  @Input() label: string;
   @Output() mediaIdChange: EventEmitter<string> = new EventEmitter();
 
   constructor(
@@ -102,5 +103,9 @@ export class ImageUploadComponent implements OnInit {
     return this.mediaId && this.mediaId !== ''
       && this.chaseEditor.getImage(this.mediaId) instanceof Image
       && this.chaseEditor.getImage(this.mediaId).hasFiles();
+  }
+
+  getMatCardImageClass(): string {
+    return 'game_element_image';
   }
 }

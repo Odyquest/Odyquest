@@ -18,9 +18,11 @@
     <mat-card>
       <header>
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+          <div mat-card-avatar class="example-header-image">
+            <img class="avatar" [src]="getAuthorImageUrl(chase.metaData.preview.image, chase)" />
+          </div>
           <mat-card-title>{{chase.metaData.title}}</mat-card-title>
-          <mat-card-subtitle>{{chase.metaData.author}}</mat-card-subtitle>
+          <mat-card-subtitle>{{chase.metaData.author.text}}</mat-card-subtitle>
         </mat-card-header>
       </header>
       <chase-image id="running_chase_img"

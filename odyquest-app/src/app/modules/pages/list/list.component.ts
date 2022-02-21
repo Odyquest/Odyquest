@@ -1,13 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
-import { Chase, ChaseList, ChaseSummary, ChaseMetaData, Image, Preview } from 'chase-model';
-import { ChaseStatus } from 'chase-model';
-import { ChaseService } from 'chase-services';
-import { ChaseStorageService } from 'chase-services';
+import { Chase, ChaseList, ChaseSummary, ChaseStatus, ChaseMetaData, Image, Preview } from 'chase-model';
+import { ChaseService, ChaseStorageService, RuntimeConfigurationService } from 'chase-services';
 import { UiService } from 'src/app/core/services/ui.service';
 
 @Component({
@@ -21,6 +16,7 @@ export class ListComponent implements OnInit {
   loading = false;
 
   constructor(private chaseService: ChaseService,
+              private configuration: RuntimeConfigurationService,
               private router: Router,
               private uiService: UiService,
               private chaseStorage: ChaseStorageService) { }
@@ -64,8 +60,11 @@ export class ListComponent implements OnInit {
   getPreviewImage(chase: ChaseSummary|Chase): Image {
     return this.getImage(chase.metaData.preview.image, chase);
   }
-  getAuthorImage(chase: ChaseSummary|Chase): Image {
-    return this.getImage(chase.metaData.author.image, chase);
+  getAuthorImageUrl(mediaId: string, chase: ChaseSummary): string {
+    if (!chase.media.has(mediaId)) {
+      console.error("could not find image ", mediaId);
+    }
+    return chase.media.get(mediaId).getDefaultUrl(this.configuration.getMediaUrlPrefix());
   }
   getImage(mediaId: string, chase: ChaseSummary|Chase): Image {
     if (!chase.media.has(mediaId)) {
@@ -88,7 +87,6 @@ export class ListComponent implements OnInit {
         this.router.navigateByUrl('/chase?id=' + id);
     }, 1500);
   }
-
 
   getMatCardImageClass(): string {
     return 'card-image';

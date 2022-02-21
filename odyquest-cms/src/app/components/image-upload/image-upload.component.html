@@ -1,3 +1,4 @@
+<span>{{label}}</span>
 <div *ngIf="!hasImage()">
 <button id="addImageButton"
         mat-raised-button
@@ -9,7 +10,9 @@
 </div>
 <div *ngIf="hasImage()">
 <div class="editor-image-container">
-  <img *ngIf="hasFiles()" [src]="getDefaultImageUrl()">
+  <chase-image [imgClass]="getMatCardImageClass()"
+               [image]="chaseEditor.getImage(mediaId)">
+  </chase-image>
   <mat-icon class="default-image" *ngIf="!hasFiles()">collections</mat-icon>
 </div>
 <div *ngIf="hasFiles()">
