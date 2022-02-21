@@ -1,13 +1,12 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select';
 import { deserialize, serialize } from 'typescript-json-serializer';
 import { saveAs } from 'file-saver';
 
 import { ChaseService } from 'chase-services';
 import { ChaseStorageService } from 'chase-services';
 import { RuntimeConfigurationService } from 'chase-services';
-import { Description } from 'chase-model';
 import { GameElement } from 'chase-model';
 import { Narrative } from 'chase-model';
 import { Quest } from 'chase-model';
@@ -32,6 +31,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     private configuration: RuntimeConfigurationService,
     private chaseService: ChaseService,
     private chaseStorage: ChaseStorageService,
+    private location: Location,
     public chaseEditor: ChaseEditorService
   ) {
     this.chaseID = this.activatedRoute.snapshot.queryParams.id;
@@ -181,5 +181,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.chaseEditor.setChase(chase);
     this.addQuest();
     this.loadDataFromChase();
+    this.pushChase();
+    this.location.go('/editor?id=' + this.chaseEditor.getChaseId());
   }
 }
