@@ -10,7 +10,7 @@ import { RuntimeConfigurationService } from 'chase-services';
 import { GameElement } from 'chase-model';
 import { Narrative } from 'chase-model';
 import { Quest } from 'chase-model';
-import { Chase, ChaseMetaData } from 'chase-model';
+import { Chase } from 'chase-model';
 
 import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 
@@ -151,6 +151,7 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
     this.chaseService.createOrUpdateChase(this.chaseEditor.getChase()).subscribe((id) => {
       this.chaseEditor.getChase().metaData.chaseId = id;
     });
+    this.chaseEditor.notifySaved();
   }
 
   downloadChase(): void {
