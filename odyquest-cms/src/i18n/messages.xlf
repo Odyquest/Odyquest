@@ -13,14 +13,14 @@
         <source>Published</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/chase-selector/chase-selector.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="chase-selector.edit" datatype="html">
         <source>edit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/chase-selector/chase-selector.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="quest_editor.title" datatype="html">
@@ -72,41 +72,56 @@
           <context context-type="linenumber">83,84</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="image-selection.list" datatype="html">
+        <source>Image list</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/image-selection/image-selection.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="add_image" datatype="html">
         <source> Add image
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
-          <context context-type="linenumber">7,8</context>
+          <context context-type="linenumber">8,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e10652297c8ff806eba3d9eaf06094b8a4352728" datatype="html">
         <source>URL pointing to image...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="upload_image" datatype="html">
-        <source> Upload image
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon id=&quot;saveChaseButton&quot;&gt;"/>file_upload <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Upload image
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
-          <context context-type="linenumber">33,34</context>
+          <context context-type="linenumber">38,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="select_image" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon id=&quot;saveChaseButton&quot;&gt;"/>library<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Select image from existing
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
+          <context context-type="linenumber">46,48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a3a495dfc59c7616e0173a13c95a5ac27d92ced8" datatype="html">
         <source>Alternative text describing the image</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="eb5b0e88f1c06d030039c7bfdca7e323b9c43650" datatype="html">
         <source>Text to annotate the image with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="login.login" datatype="html">
@@ -172,35 +187,35 @@
         <source>Title of the scavenger hunt...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8dc480be955440e38ea87dbbe812885dde996c0d" datatype="html">
         <source>Author...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4de7f386cf969d49c79537e073664f27a3a92875" datatype="html">
         <source>Short description...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="meta_data.published" datatype="html">
         <source> public available </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">51,52</context>
+          <context context-type="linenumber">56,57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="32e673fe93d45ad8728afdc8196846544aff5038" datatype="html">
         <source> Initial element: </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context>
-          <context context-type="linenumber">55,56</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
         <note priority="1" from="description">@meta_data.initial_element</note>
       </trans-unit>

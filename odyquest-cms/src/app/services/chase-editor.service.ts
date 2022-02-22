@@ -116,6 +116,15 @@ export class ChaseEditorService {
   public setMedia(id: string, media: Media): void {
     this.chase.media.set(id, media);
   }
+  public getImages(): Image[] {
+    const list = new Array<Image>();
+    for (const media of this.chase.media.values()){
+      if (media instanceof Image) {
+        list.push(media);
+      }
+    }
+    return list;
+  }
 
   statusSaved = true;
   elementTitleCallbacks = new Array<{(): void;}>();

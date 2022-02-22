@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { deserialize, serialize } from 'typescript-json-serializer';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ChaseService } from 'chase-services';
 import { RuntimeConfigurationService } from 'chase-services';
 import { Image, ImageFile } from 'chase-model';
 import { ChaseEditorService } from 'src/app/services/chase-editor.service';
+import { ImageSelectionComponent } from 'src/app/components/image-selection/image-selection.component';
 
 @Component({
   selector: 'app-image-upload',
@@ -19,8 +20,9 @@ export class ImageUploadComponent implements OnInit {
 
   constructor(
     private chaseService: ChaseService,
+    private configuration: RuntimeConfigurationService,
     public chaseEditor: ChaseEditorService,
-    private configuration: RuntimeConfigurationService
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -107,5 +109,19 @@ export class ImageUploadComponent implements OnInit {
 
   getMatCardImageClass(): string {
     return 'game_element_image';
+  }
+
+  selectImage(): void {
+    const dialogRef = this.dialog.open(ImageSelectionComponent, {
+      height: '90vh',
+      width: '200px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== '') {
+        console.log(`Select media id ${result}`);
+        this.mediaId = result
+        this.mediaIdChange.emit(this.mediaId);
+      }
+    });
   }
 }

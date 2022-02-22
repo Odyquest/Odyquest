@@ -56,6 +56,7 @@ import { environment } from '../environments/environment';
 import { ElementEditorComponent } from './components/element-editor/element-editor.component';
 import { MetaDataEditorComponent } from './components/meta-data-editor/meta-data-editor.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import { ImageSelectionComponent } from './components/image-selection/image-selection.component';
 import { MediaUploadComponent } from './components/media-upload/media-upload.component';
 import { GameElementEditorComponent } from './components/game-element-editor/game-element-editor.component';
 import { NarrativeEditorComponent } from './components/narrative-editor/narrative-editor.component';
@@ -92,10 +93,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   //{ path: '**', redirectTo: 'home' },
   //{ path: 'logged-out', component: LoggedOutComponent }
-
 ];
-
-
 
 @NgModule({
   declarations: [
@@ -110,6 +108,7 @@ const appRoutes: Routes = [
     ElementEditorComponent,
     MetaDataEditorComponent,
     ImageUploadComponent,
+    ImageSelectionComponent,
     MediaUploadComponent,
     GameElementEditorComponent,
     NarrativeEditorComponent,
