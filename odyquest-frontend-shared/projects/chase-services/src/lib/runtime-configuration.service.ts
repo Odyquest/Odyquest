@@ -6,6 +6,8 @@ export abstract class AbstractRuntimeConfigurationService {
   public abstract isApiBased(): boolean;
   public abstract getTitleText(locale: string): string;
   public abstract getSubtitleText(locale: string): string;
+  public abstract getMediaUrlPrefix(): string;
+  public abstract getStreamUrlPrefix(): string;
 }
 
 @Injectable({

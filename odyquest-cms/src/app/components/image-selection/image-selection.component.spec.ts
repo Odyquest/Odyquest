@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
 import { ImageSelectionComponent } from './image-selection.component';
 
 describe('ImageSelectionComponent', () => {
@@ -8,7 +9,13 @@ describe('ImageSelectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImageSelectionComponent ]
+      declarations: [ ImageSelectionComponent ],
+      providers: [
+        {
+          provide: RuntimeConfigurationService,
+          useClass: RuntimeConfigurationServiceMock
+        }
+      ]
     })
     .compileComponents();
   });

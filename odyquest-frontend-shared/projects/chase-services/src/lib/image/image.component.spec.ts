@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Image } from 'chase-model';
-import { RuntimeConfigurationService, RuntimeConfigurationServiceMock } from 'chase-services';
+import { RuntimeConfigurationService } from '../runtime-configuration.service';
+import { RuntimeConfigurationServiceMock } from '../runtime-configuration.service.mock';
 import { ImageComponent } from './image.component';
 
 describe('ImageComponent', () => {
