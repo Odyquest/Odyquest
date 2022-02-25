@@ -10,8 +10,37 @@ mat-dialog-container {
   padding: 0 !important;
 }
 
+@font-face {
+  font-family: "Quicksand";
+  src: local("Quicksand"), url(^assets-shared/fonts/Quicksand/Quicksand.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(^assets-shared/fonts/MaterialIcons/MaterialIcons.ttf) format("truetype");
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
 body {
-  font-family: "Quicksand", "Helvetica Neue", sans-serif;
+  font-family: "Quicksand", sans-serif;
   background: #eee;
   font-variant-numeric: normal;
   line-height: 1.6;
