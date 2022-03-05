@@ -158,35 +158,26 @@
         
       <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/information/information.component.ts</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="list.continue_with" datatype="html">
         <source>Continue with: <x id="INTERPOLATION" equiv-text="{{getRunningChaseTitle()}}"/></source><target state="final">Continue with: <x id="INTERPOLATION" equiv-text="{{getRunningChaseTitle()}}"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit><trans-unit id="list.show_running" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context><context context-type="linenumber">11</context></context-group></trans-unit><trans-unit id="list.show_running" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>unfold_more<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text_button&quot;>"/>Show details<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>unfold_more<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text_button&quot;>"/>Show details<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit><trans-unit id="list.hide_running" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit><trans-unit id="list.hide_running" datatype="html">
         <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>unfold_less<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text_button&quot;>"/>Hide details<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>unfold_less<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text_button&quot;>"/>Hide details<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="list.cancle" datatype="html">
+        <source>CANCLE</source><target state="final">CANCLE</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit><trans-unit id="list.continue" datatype="html">
         <source>CONTINUE</source><target state="final">CONTINUE</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit><trans-unit id="list.start" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context><context context-type="linenumber">30</context></context-group></trans-unit><trans-unit id="list.start" datatype="html">
         <source>START</source><target state="final">START</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context>
-          <context context-type="linenumber">51</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">src/app/modules/pages/list/list.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit>
       <trans-unit id="settings.title" datatype="html">
         <source>Settings</source><target state="final">Settings</target>
         <context-group purpose="location">

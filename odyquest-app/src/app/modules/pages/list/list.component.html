@@ -6,10 +6,9 @@
       <header>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">
-            <img class="avatar" [src]="getAuthorImageUrl(chase.metaData.preview.image, chase)" />
+            <img class="avatar" [src]="getAuthorImageUrl(chase)" />
           </div>
           <mat-card-title i18n="@@list.continue_with">Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
-          <!--<mat-card-subtitle>started today</mat-card-subtitle>-->
         </mat-card-header>
       </header>
       <mat-card-content>
@@ -27,6 +26,7 @@
         <p markdown emoji id="running_chase_text">{{getRunningChaseText()}}</p>
       </mat-card-content>
       <mat-card-actions>
+        <button primary mat-button (click)="cancleRunningChase()" i18n="@@list.cancle">CANCLE</button>
         <button primary mat-button (click)="startChase('')" i18n="@@list.continue">CONTINUE</button>
       </mat-card-actions>
     </mat-card>
@@ -38,7 +38,7 @@
         <header>
           <mat-card-header>
             <div mat-card-avatar>
-              <img class="avatar" [src]="getAuthorImageUrl(chase.metaData.preview.image, chase)" />
+              <img class="avatar" [src]="getAuthorImageUrl(chase)" />
             </div>
             <mat-card-title>{{chase.metaData.title}}</mat-card-title>
             <mat-card-subtitle>{{chase.metaData.author.text}}</mat-card-subtitle>
@@ -50,7 +50,7 @@
         </mat-card-content>
         <mat-card-actions>
           <div class="card-flags">
-            <mat-icon tooltip="chase already succeeded" *ngIf="isSucceeded(chase.metaDatachaseId)" >done</mat-icon>
+            <mat-icon tooltip="chase already succeeded" *ngIf="isSucceeded(chase.metaData.chaseId)" >done</mat-icon>
           </div>
           <button primary mat-button i18n="@@list.start">START</button>
           <!--<button mat-button>LIKE</button>-->

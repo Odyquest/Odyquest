@@ -52,6 +52,9 @@ export class ListComponent implements OnInit {
   getRunningChaseId(): string {
     return this.chaseStorage.getRunningChase().metaData.chaseId;
   }
+  cancleRunningChase(): void {
+    this.chaseStorage.deleteRunningChase();
+  }
 
   hasNoChases(): boolean {
     return this.getChaseList().length === 0;
@@ -60,7 +63,8 @@ export class ListComponent implements OnInit {
   getPreviewImage(chase: ChaseSummary|Chase): Image {
     return this.getImage(chase.metaData.preview.image, chase);
   }
-  getAuthorImageUrl(mediaId: string, chase: ChaseSummary): string {
+  getAuthorImageUrl(chase: ChaseSummary): string {
+    const mediaId = chase.metaData.author.image;
     if (!chase.media.has(mediaId)) {
       console.error("could not find image ", mediaId);
     }
