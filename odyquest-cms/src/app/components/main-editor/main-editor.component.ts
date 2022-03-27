@@ -163,6 +163,9 @@ export class MainEditorComponent implements OnInit, AfterViewInit {
 
     const blob = new Blob([json], { type: 'text/plain;charset=utf-8' });
     saveAs(blob, 'chase.json');
+    if (!this.hasModifiableApi()) {
+      this.chaseEditor.notifySaved();
+    }
   }
 
   public tryInApp() {

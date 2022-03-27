@@ -1,7 +1,7 @@
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 import { GameElement } from './game_element';
 import { XButton } from './x_button';
-import { Media, MediaCollection } from './media';
+import { Media } from './media';
 import { NarrativeType } from './narrative_type';
 
 /**

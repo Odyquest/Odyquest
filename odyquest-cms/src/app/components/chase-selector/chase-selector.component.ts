@@ -56,13 +56,15 @@ export class ChaseSelectorComponent implements OnInit {
   getMatCardImageClass(): string {
     return 'card-image';
   }
-  getImage(mediaId: string, chase: ChaseSummary): Image {
+  getPreviewImage(chase: ChaseSummary): Image {
+    const mediaId = chase.metaData.preview.image;
     if (!chase.media.has(mediaId)) {
       console.error("could not find image ", mediaId);
     }
     return chase.media.get(mediaId) as Image;
   }
-  getAuthorImageUrl(mediaId: string, chase: ChaseSummary): string {
+  getAuthorImageUrl(chase: ChaseSummary): string {
+    const mediaId = chase.metaData.author.image;
     if (!chase.media.has(mediaId)) {
       console.error("could not find image ", mediaId);
     }

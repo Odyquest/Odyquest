@@ -97,8 +97,8 @@ export class ImageUploadComponent implements OnInit {
     this.chaseEditor.setImage(this.mediaId, image);
   }
 
-  canUploadImage(): boolean {
-    return this.configuration.isApiBased();
+  canUploadNewImage(): boolean {
+    return this.configuration.isApiBased() && !this.hasFiles();
   }
 
   hasFiles(): boolean {

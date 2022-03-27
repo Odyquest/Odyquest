@@ -9,7 +9,6 @@ export {
    Image,
    ImageFile,
    Media,
-   MediaCollection,
    MediaFile,
    MediaWithFilelist,
    Video,

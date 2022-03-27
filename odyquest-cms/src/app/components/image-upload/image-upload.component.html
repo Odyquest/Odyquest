@@ -29,7 +29,7 @@
          placeholder="URL pointing to image..." />
 </mat-form-field>
 <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
-<button *ngIf="canUploadImage()"
+<button *ngIf="canUploadNewImage()"
         id="saveChaseButton"
         mat-raised-button
         color="primary"
@@ -37,6 +37,15 @@
         i18n="@@upload_image">
   <mat-icon id="saveChaseButton">file_upload </mat-icon>
   Upload image
+</button>
+<button id="deleteImageButton"
+        *ngIf="hasFiles()"
+        mat-raised-button
+        color="primary"
+        (click)="deleteImage()"
+        i18n="@@delete_image">
+  <mat-icon id="deleteImageButton">clear</mat-icon>
+  Delete image
 </button>
 <button id="saveChaseButton"
         mat-raised-button
