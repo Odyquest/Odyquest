@@ -1,5 +1,16 @@
 import { deserialize, serialize, Serializable, JsonProperty } from 'typescript-json-serializer';
-import { Audio, AugmentedReality, Image, Video, Media } from './media';
+import {
+  Audio,
+  AudioFile,
+  AugmentedReality,
+  // AugmentedRealityFile,
+  Image,
+  ImageFile,
+  Video,
+  VideoFile,
+  Media,
+  MediaFile
+} from './media';
 
 /**
  * helper class for proper serialization
@@ -18,7 +29,7 @@ class MediaData {
   }
 };
 
-/** 
+/**
  * Container to serialize Media keeping inherited type.
  */
 export class MediaContainer {
@@ -62,5 +73,20 @@ export class MediaContainer {
 
   public get(): Media {
     return this.data.get();
+  }
+};
+
+/**
+ * Container to serialize media file list keeping inherited type.
+ */
+export class MediaFileListContainer {
+  @JsonProperty() data: MediaFile[];
+
+  constructor(data: MediaFile[]) {
+    this.data = data;
+  }
+
+  public get(): MediaFile[] {
+    return this.data;
   }
 };
