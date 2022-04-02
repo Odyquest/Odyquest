@@ -124,4 +124,10 @@ export class ImageUploadComponent implements OnInit {
       }
     });
   }
+
+  deleteImage(): void {
+    this.mediaId = "";
+    this.mediaIdChange.emit(this.mediaId);
+    // TODO clean up media list
+  }
 }
