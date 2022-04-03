@@ -22,7 +22,6 @@
 @media screen and (orientation: portrait) {
   .folding_container {
     visibility: visible;
-    // padding: 2em;
   }
   .main_body {
     display: flex;
@@ -41,111 +40,14 @@
   width: 100%;
   align-items: center;
   justify-content: flex-start;
-  // border-right: 2px solid #262527;
-  // overflow-y: auto;
   box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
   z-index: 100;
   height: fit-content;
 }
 
-.quest-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-img {
-  width: 95%;
-  margin-top: 5px;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-}
-
-.quest_selector {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  //height: 100%;
-  padding-bottom: 20px;
-  align-items: center;
-  //border-bottom: 2px solid black;
-}
-
-.quest_connections:hover {
-  background: white;
-}
-
-#chase-meta-info-form {
-  margin: 15px;
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-}
-
-.golden-font {
-  color: #bea05a;
-}
-
-mat-form-field {
-  color: white;
-}
-
-label {
-  margin-top: 10px;
-  font-size: 20px;
-  margin-bottom: 5px;
-}
-
-.selector_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: $background_color_selectable;
-    color: $text_color;
-    width: 90%;
-    height: 30px;
-    margin: 2px;
-    text-align: center;
-    text-justify: middle;
-    font-size: 20px;
-    //color: $selector_color_inactive;
-    //border: 2px solid $selector_color_inactive;
-    border: 2px solid $text_color;
-    cursor: pointer;
-}
-
-.selector_content:hover {
-    color: $background_color_content_darker;
-    //border: 2px solid $background_color_content_darker;
-    background: $text_color;
-}
-
-h1 {
-  font-weight: bold;
-  margin-bottom: 0px;
-}
-
-#quest_connections_selector {
-  margin-top: 15px;
-}
-
-
-// ================================================================================= GFLOW
-
 mat-selection-list {
-  // background: #ffedc1;
   width: 100%;
 }
-
 
 .button-wrapper{
   display: flex;
@@ -155,7 +57,6 @@ mat-selection-list {
   background: #bea05a;
   padding-top: 5px;
   padding-bottom: 5px;
-  // background: #262527;
 }
 
 .chase-menu-icon {
@@ -172,64 +73,8 @@ mat-selection-list {
   background: #8d732e;
 }
 
-#add_quest_button {
-    background: $background_color_selectable;
-    color: $text_color;
-    border: 2px solid $text_color;
-    padding: 6px 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 2px 2px;
-    transition-duration: 0.4s;
-    border-radius: 5px;
-    cursor: pointer;
-    outline: none;
-    font-weight: bold;
-}
-
-#add_quest_button:hover {
-    color: $background_color_content_darker;
-    //border: 2px solid $background_color_content_darker;
-    background: $text_color;
-}
-
 mat-list-option {
-  // background: #ffedc1;
   width: 100%;
-}
-
-#addQuestButton {
-  margin-top: 15px;
-}
-
-#saveChaseButton {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: #bea05a;
-  border: 1px solid #bea05a;
-  background: white;
-  border-radius: 5px;
-  padding: 1px;
-  cursor: pointer;
-}
-
-#saveChaseButton:hover {
-  background: #bea05a;
-  border: 1px solid #bea05a;
-  color: white;
-}
-
-.quest_selector_header {
-  font-size: 15pt;
-  text-align: center;
-  width: 100%;
-  color: white;
-  background: #bea05a;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  // border-top: 2px solid #262527;
 }
 
 .text-and-delete-container {
@@ -243,27 +88,14 @@ mat-list-option {
   color: red;
 }
 
-.single-button-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
+.headline {
+  text-align: center;
+  background: #bea05a;
+  color: white;
+  pointer-events: none;
+  cursor: default;
 }
 
-.single-solution-item-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.add {
+  text-align: center;
 }
-
-.initial-game-element-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-

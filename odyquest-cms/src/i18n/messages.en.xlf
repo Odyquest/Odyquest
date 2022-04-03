@@ -21,19 +21,18 @@
           <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit><trans-unit id="main_editor.quest" datatype="html">
-        <source>Quests</source><target state="final">Quests</target>
+        <source> Quests </source><target state="final"> Quests </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/main-editor/main-editor.component.html</context><context context-type="linenumber">21</context></context-group></trans-unit><trans-unit id="main_editor.add_quest" datatype="html">
-        <source> Add Quest </source><target state="final"> Add Quest </target>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/main-editor/main-editor.component.html</context><context context-type="linenumber">20</context></context-group></trans-unit><trans-unit id="main_editor.add_quest" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span>"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> add quest<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></source><target state="final"><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span>"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> add quest<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/main-editor/main-editor.component.html</context><context context-type="linenumber">38</context></context-group></trans-unit><trans-unit id="main_editor.narratives" datatype="html">
-        <source>Narratives</source><target state="final">Narratives</target>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/main-editor/main-editor.component.html</context><context context-type="linenumber">30</context></context-group></trans-unit><trans-unit id="main_editor.narratives" datatype="html">
+        <source> Narratives </source><target state="final"> Narratives </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/main-editor/main-editor.component.html</context><context context-type="linenumber">41</context></context-group></trans-unit><trans-unit id="d1a6e64bcee29a266345f382aca8f255c750fd5e" datatype="html">
-        <source> Add Narrative </source><target state="final"> Add Narrative </target>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/main-editor/main-editor.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit><trans-unit id="main_editor.add_narrative" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span>"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> add narrative<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></source><target state="final"><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span>"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> add narrative<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></target>
         
-        <note priority="1" from="description">@main_editor.add_narrative</note>
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/main-editor/main-editor.component.html</context><context context-type="linenumber">57</context></context-group></trans-unit><trans-unit id="add_media" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/main-editor/main-editor.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="add_media" datatype="html">
         <source> Add media
 </source><target state="final"> Add media
 </target>
@@ -52,32 +51,26 @@
       <context-group purpose="location"><context context-type="sourcefile">src/app/components/media-upload/media-upload.component.html</context><context context-type="linenumber">54</context></context-group></trans-unit><trans-unit id="e10652297c8ff806eba3d9eaf06094b8a4352728" datatype="html">
         <source>URL pointing to image...</source><target state="final">URL pointing to image...</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">29</context></context-group></trans-unit><trans-unit id="upload_image" datatype="html">
-        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon id=&quot;saveChaseButton&quot;>"/>file_upload <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Upload image
-</source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon id=&quot;saveChaseButton&quot;>"/>file_upload <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Upload image
-</target>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">63</context></context-group></trans-unit><trans-unit id="upload_image" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>file_upload<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Upload image </source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>file_upload<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Upload image </target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">38</context></context-group></trans-unit><trans-unit id="delete_image" datatype="html">
-        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon id=&quot;deleteImageButton&quot;>"/>clear<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Delete image
-</source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon id=&quot;deleteImageButton&quot;>"/>clear<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Delete image
-</target>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">32</context></context-group></trans-unit><trans-unit id="remove_image" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>clear<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Remove image </source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>clear<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Remove image </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
-          <context context-type="linenumber">47,49</context>
+          <context context-type="linenumber">41,43</context>
         </context-group>
       </trans-unit><trans-unit id="select_image" datatype="html">
-        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon id=&quot;saveChaseButton&quot;>"/>library<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Select image from existing
-</source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon id=&quot;saveChaseButton&quot;>"/>library<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Select image from existing
-</target>
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>photo_library<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Select image from existing </source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>photo_library<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Select image from existing </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit><trans-unit id="a3a495dfc59c7616e0173a13c95a5ac27d92ced8" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit><trans-unit id="a3a495dfc59c7616e0173a13c95a5ac27d92ced8" datatype="html">
         <source>Alternative text describing the image</source><target state="final">Alternative text describing the image</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">67</context></context-group></trans-unit><trans-unit id="eb5b0e88f1c06d030039c7bfdca7e323b9c43650" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">85</context></context-group></trans-unit><trans-unit id="eb5b0e88f1c06d030039c7bfdca7e323b9c43650" datatype="html">
         <source>Text to annotate the image with</source><target state="final">Text to annotate the image with</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">76</context></context-group></trans-unit><trans-unit id="657302ea7706c99823016b6f625748a32d2530b3" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">74</context></context-group></trans-unit><trans-unit id="657302ea7706c99823016b6f625748a32d2530b3" datatype="html">
         <source>Title of the scavenger hunt...</source><target state="final">Title of the scavenger hunt...</target>
         
       <context-group purpose="location"><context context-type="sourcefile">src/app/components/meta-data-editor/meta-data-editor.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit><trans-unit id="8dc480be955440e38ea87dbbe812885dde996c0d" datatype="html">
@@ -151,10 +144,14 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit><trans-unit id="add_image" datatype="html">
-        <source> Add image
-</source><target state="final"> Add image
-</target>
+        <source> Add image </source><target state="final"> Add image </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit></body>
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit><trans-unit id="edit_image" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>edit<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Edit image </source><target state="final"><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon>"/>edit<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon>"/> Edit image </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/image-upload/image-upload.component.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit></body>
   </file>
 </xliff>
