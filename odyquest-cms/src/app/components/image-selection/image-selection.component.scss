@@ -1,10 +1,7 @@
 :host {
   display: flex;
-  height: 100%;
-  width: 100%;
   flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
+  overflow: auto;
 }
 
 mat-toolbar {
@@ -13,24 +10,22 @@ mat-toolbar {
   color: white !important;
 }
 
-mat-dialog-content {
-  padding: 15px;
-  margin: 0 !important;
-  height: 100%;
-}
-
-mat-dialog-actions {
-  margin-bottom: 0 !important;
-  width: 100%
-}
-
-mat-dialog-actions nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 15px 0 15px;
-}
-
 img {
-  height: 48px;
+  min-width: 100px;
+  padding: 5px;
+}
+
+ul {
+  padding: 0 20px;
+}
+
+li {
+  cursor: pointer;
+  list-style-type: none;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
 }

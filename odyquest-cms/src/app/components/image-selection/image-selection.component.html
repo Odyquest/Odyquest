@@ -4,10 +4,9 @@
     <mat-icon target="_blank">close</mat-icon>
   </button>
 </mat-toolbar>
-<mat-selection-list #selected [multiple]="false" #questlist>
-  <mat-list-option *ngFor="let image of chaseEditor.getImages()" (click)="select(image.mediaId)">
-    <div class=text-and-delete-container>
-      <img class="preview" [src]="getUrl(image)" />
-    </div>
-  </mat-list-option>
-</mat-selection-list>
+<ul>
+  <li *ngFor="let image of chaseEditor.getImages()" (click)="select(image.mediaId)">
+    <img class="preview" [src]="getUrl(image)" /><span>{{getUrl(image)}}</span>
+    <hr />
+  </li>
+</ul>

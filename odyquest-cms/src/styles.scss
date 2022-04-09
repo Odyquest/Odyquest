@@ -30,6 +30,10 @@ body {
   height: 100%;
 }
 
+mat-dialog-container {
+  padding: 0 !important;
+}
+
 body {
   font-family: "Quicksand", "Helvetica Neue", sans-serif;
   background: #eee;
