@@ -1,13 +1,22 @@
 {
   "chases":[
     {
-      "chaseId":"lorem",
-      "title":"Lorem ipsum dolor sit amet",
-      "author":"Ipsum Lorem",
-      "published":true,
-      "preview": {
-        "text":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam\n\n_Images by Johannes Bleier, CC BY-SA 4.0_",
-        "image": {
+      "metaData":
+      {
+        "chaseId":"lorem",
+        "title":"Lorem ipsum dolor sit amet",
+        "author": {
+          "text": "Ipsum Lorem",
+          "image": "title"
+        },
+        "published":true,
+        "preview": {
+          "text":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam\n\n_Images by Johannes Bleier, CC BY-SA 4.0_",
+          "image": "title"
+        }
+      },
+      "_images": {
+        "title": {
           "mediaId": "title",
           "chaseId": "lorem",
           "alternative": "text describing the image",
