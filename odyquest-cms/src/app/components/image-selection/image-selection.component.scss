@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden;
 }
 
 mat-toolbar {
@@ -10,22 +10,28 @@ mat-toolbar {
   color: white !important;
 }
 
-img {
-  min-width: 100px;
-  padding: 5px;
-}
-
 ul {
   padding: 0 20px;
+  overflow: auto;
 }
 
 li {
   cursor: pointer;
   list-style-type: none;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 hr {
   border: none;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+chase-image {
+  display: block;
+  min-width: 250px;
+  width: 35%;
+  margin-right: 10px;
 }

@@ -6,7 +6,10 @@
 </mat-toolbar>
 <ul>
   <li *ngFor="let image of chaseEditor.getImages()" (click)="select(image.mediaId)">
-    <img class="preview" [src]="getUrl(image)" /><span>{{getUrl(image)}}</span>
+    <chase-image [imgClass]="getMatCardImageClass()"
+       [image]="image">
+    </chase-image>
+    <p>{{getUrl(image)}}</p>
     <hr />
   </li>
 </ul>

@@ -113,7 +113,8 @@ export class ImageUploadComponent implements OnInit {
 
   selectImage(): void {
     const dialogRef = this.dialog.open(ImageSelectionComponent, {
-      height: '90vh'
+      height: '90vh',
+      width: '90vw'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {

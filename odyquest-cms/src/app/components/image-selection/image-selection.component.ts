@@ -30,4 +30,8 @@ export class ImageSelectionComponent implements OnInit {
     console.log("Select ", mediaId);
     this.dialogRef.close(mediaId);
   }
+
+  getMatCardImageClass(): string {
+    return 'game_element_image';
+  }
 }
