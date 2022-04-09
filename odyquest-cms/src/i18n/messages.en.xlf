@@ -152,10 +152,16 @@
       <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit><trans-unit id="quest_editor.hint_page" datatype="html">
         <source>Page <x id="INTERPOLATION" equiv-text="{{i+1}}"/></source><target state="final">Page <x id="INTERPOLATION" equiv-text="{{i+1}}"/></target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="quest_editor.add_hint" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="hint_editor.hint_text" datatype="html">
+        <source>Hint text</source><target state="final">Hint text</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit><trans-unit id="quest_editor.add_hint" datatype="html">
         <source> add hint </source><target state="final"> add hint </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">79</context></context-group></trans-unit><trans-unit id="image-selection.list" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">81</context></context-group></trans-unit><trans-unit id="image-selection.list" datatype="html">
         <source>Image list</source><target state="final">Image list</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-selection/image-selection.component.html</context>
