@@ -55,21 +55,21 @@
         <source>Hints</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="quest_editor.hint_page" datatype="html">
         <source>Page <x id="INTERPOLATION" equiv-text="{{i+1}}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="quest_editor.add_hint" datatype="html">
         <source> add hint </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context>
-          <context context-type="linenumber">83,84</context>
+          <context context-type="linenumber">79,80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="image-selection.list" datatype="html">
@@ -285,18 +285,32 @@
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="solution_option.all" datatype="html">
-        <source>all</source>
+      <trans-unit id="solution_option.type_label" datatype="html">
+        <source>Requirement:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
           <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="solution_option.one" datatype="html">
-        <source>one</source>
+      <trans-unit id="solution_option.match_all" datatype="html">
+        <source>match all</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="solution_option.match_one" datatype="html">
+        <source>match one</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="solution_option.destination_label" datatype="html">
+        <source>Destination:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
     </body>

@@ -107,13 +107,31 @@
       <context-group purpose="location"><context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit><trans-unit id="quest_editor.solution.title" datatype="html">
         <source>Solutions:</source><target state="final">Solutions:</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="solution_option.all" datatype="html">
-        <source>all</source><target state="final">all</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context><context context-type="linenumber">48</context></context-group></trans-unit><trans-unit id="solution_option.one" datatype="html">
-        <source>one</source><target state="final">one</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit><trans-unit id="quest_editor.button.available_buttons" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="solution_option.type_label" datatype="html">
+        <source>Requirement:</source><target state="final">Requirement:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit><trans-unit id="solution_option.match_all" datatype="html">
+        <source>match all</source><target state="final">match all</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit><trans-unit id="solution_option.match_one" datatype="html">
+        <source>match one</source><target state="final">match one</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit><trans-unit id="solution_option.destination_label" datatype="html">
+        <source>Destination:</source><target state="final">Destination:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/quest-editor/quest-editor.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit><trans-unit id="quest_editor.button.available_buttons" datatype="html">
         <source> Available Buttons: </source><target state="final"> Available Buttons: </target>
         
       <context-group purpose="location"><context context-type="sourcefile">src/app/components/narrative-editor/narrative-editor.component.html</context><context context-type="linenumber">51</context></context-group></trans-unit><trans-unit id="quest_editor.button.text_header" datatype="html">
@@ -131,13 +149,13 @@
       <context-group purpose="location"><context context-type="sourcefile">src/app/components/narrative-editor/narrative-editor.component.html</context><context context-type="linenumber">99</context></context-group></trans-unit><trans-unit id="quest_editor.hints" datatype="html">
         <source>Hints</source><target state="final">Hints</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">59</context></context-group></trans-unit><trans-unit id="quest_editor.hint_page" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit><trans-unit id="quest_editor.hint_page" datatype="html">
         <source>Page <x id="INTERPOLATION" equiv-text="{{i+1}}"/></source><target state="final">Page <x id="INTERPOLATION" equiv-text="{{i+1}}"/></target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">64</context></context-group></trans-unit><trans-unit id="quest_editor.add_hint" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="quest_editor.add_hint" datatype="html">
         <source> add hint </source><target state="final"> add hint </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">83</context></context-group></trans-unit><trans-unit id="image-selection.list" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">src/app/components/game-element-editor/game-element-editor.component.html</context><context context-type="linenumber">79</context></context-group></trans-unit><trans-unit id="image-selection.list" datatype="html">
         <source>Image list</source><target state="final">Image list</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/image-selection/image-selection.component.html</context>
