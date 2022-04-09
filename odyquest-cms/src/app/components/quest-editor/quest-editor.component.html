@@ -36,22 +36,24 @@
       <div class="row combinationmap_header">
         <h3 i18n="@@quest_editor.solution.title">Solutions:</h3>
       </div>
-      <div class="row quest-solution-list-container">
+      <div class="row">
         <div class="solution-input-wrapper">
-          <div class="quest-combinationmap-bottom-container">
-            <div class="combination_map_name_width"></div>
+          <div class="combinationmap-bottom-container">
+            <div class="combination_map_name_width">
+            </div>
             <ng-container *ngFor="let combination of combinationMap; let j = index">
               <div class=combination_map_checkbox_width>
                 <div class="combination-map-bottom-row-attributes">
                   <mat-form-field class="solution-list-form-field" appearance="fill">
+                    <mat-label i18n="@@solution_option.type_label">Requirement:</mat-label>
                     <mat-select [(ngModel)]="solution_type_status_int[j]">
-                      <mat-option [value]="1" i18n="@@solution_option.all">all</mat-option>
-                      <mat-option [value]="2" i18n="@@solution_option.one">one</mat-option>
+                      <mat-option [value]="1" i18n="@@solution_option.match_all">match all</mat-option>
+                      <mat-option [value]="2" i18n="@@solution_option.match_one">match one</mat-option>
                     </mat-select>
                   </mat-form-field>
 
                   <mat-form-field class="solution-list-form-field" appearance="fill">
-                    <mat-label>Quest Typ:</mat-label>
+                    <mat-label i18n="@@solution_option.destination_label">Destination:</mat-label>
                     <mat-select [(ngModel)]="solution_destination_description[j]">
                       <mat-option *ngFor="let target of chaseEditor.getElementNames()" [value]='target'
                         [attr.selected]="chaseEditor.getElementIdByName(target)==1 ? true : null"
@@ -67,7 +69,7 @@
           </div>
           <ng-container *ngFor="let solution of solutionItems; let i = index">
             <div class="single-solution-item-container">
-              <div class=combination_map_name_width>
+              <div class="combination_map_name_width">
                 <form>
                   <mat-form-field class="solution-list-form-field">
                     <mat-label></mat-label>

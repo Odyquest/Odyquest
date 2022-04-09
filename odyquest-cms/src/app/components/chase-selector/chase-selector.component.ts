@@ -1,13 +1,8 @@
-// import { UiService } from 'src/app/core/services/ui.service';
-import { ChaseList, ChaseMetaData, Image } from 'chase-model';
-import { Component, Input, OnInit } from '@angular/core';
-
-import { ChaseService, RuntimeConfigurationService } from 'chase-services';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Title } from '@angular/platform-browser';
-import { deserialize } from 'typescript-json-serializer';
+
+import { ChaseList, ChaseSummary, Image } from 'chase-model';
+import { ChaseService, RuntimeConfigurationService } from 'chase-services';
 
 @Component({
   selector: 'app-chase-selector',
@@ -18,7 +13,6 @@ export class ChaseSelectorComponent implements OnInit {
   inputUrl: boolean;
   chaseList = new ChaseList();
   loading = false;
-  imageUrls = new Map<string, string>();
 
   constructor(private chaseService: ChaseService,
               private configuration: RuntimeConfigurationService,
@@ -27,12 +21,6 @@ export class ChaseSelectorComponent implements OnInit {
   ngOnInit(): void {
     this.chaseService.getAllChases().subscribe(chases => {
       this.chaseList = chases;
-      this.chaseList.chases.forEach((chase: ChaseMetaData) => {
-        this.chaseService.getMedia(chase.chaseId, chase.preview.image).subscribe(media => {
-          console.log('get media data for chase ', chase.chaseId);
-          this.imageUrls.set(chase.chaseId, media.getDefaultUrl(this.configuration.getMediaUrlPrefix()));
-        });
-      });
     });
   }
 
@@ -41,7 +29,7 @@ export class ChaseSelectorComponent implements OnInit {
     this.inputUrl = true;
   }
 
-  getChaseList(): Array<ChaseMetaData> {
+  getChaseList(): Array<ChaseSummary> {
     return this.chaseList.chases;
   }
 
@@ -65,5 +53,22 @@ export class ChaseSelectorComponent implements OnInit {
     }, 1500);
   }
 
+  getMatCardImageClass(): string {
+    return 'card-image';
+  }
+  getPreviewImage(chase: ChaseSummary): Image {
+    const mediaId = chase.metaData.preview.image;
+    if (!chase.media.has(mediaId)) {
+      console.error("could not find image ", mediaId);
+    }
+    return chase.media.get(mediaId) as Image;
+  }
+  getAuthorImageUrl(chase: ChaseSummary): string {
+    const mediaId = chase.metaData.author.image;
+    if (!chase.media.has(mediaId)) {
+      console.error("could not find image ", mediaId);
+    }
+    return chase.media.get(mediaId).getDefaultUrl(this.configuration.getMediaUrlPrefix());
+  }
 }
 

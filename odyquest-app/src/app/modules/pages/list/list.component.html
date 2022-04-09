@@ -5,9 +5,10 @@
     <mat-card *ngIf="hasRunningChase()">
       <header>
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+          <div mat-card-avatar class="example-header-image">
+            <img class="avatar" [src]="getAuthorImageUrl(chase)" />
+          </div>
           <mat-card-title i18n="@@list.continue_with">Continue with:  {{getRunningChaseTitle()}}</mat-card-title>
-          <!--<mat-card-subtitle>started today</mat-card-subtitle>-->
         </mat-card-header>
       </header>
       <mat-card-content>
@@ -21,10 +22,11 @@
              i18n="@@list.hide_running">
           <mat-icon>unfold_less</mat-icon><span class="text_button">Hide details</span>
         </div>
-        <app-image id="running_chase_img" [imgClass]="getMatCardImageClass()" [image]="getRunningChaseImage()"></app-image>
+        <chase-image id="running_chase_img" [imgClass]="getMatCardImageClass()" [image]="getRunningChasePreviewImage()"></chase-image>
         <p markdown emoji id="running_chase_text">{{getRunningChaseText()}}</p>
       </mat-card-content>
       <mat-card-actions>
+        <button primary mat-button (click)="cancleRunningChase()" i18n="@@list.cancle">CANCLE</button>
         <button primary mat-button (click)="startChase('')" i18n="@@list.continue">CONTINUE</button>
       </mat-card-actions>
     </mat-card>
@@ -32,21 +34,23 @@
 
   <div *ngFor="let chase of getChaseList()">
     <section>
-      <mat-card (click)="startChase(chase.chaseId)">
+      <mat-card (click)="startChase(chase.metaData.chaseId)">
         <header>
           <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{chase.title}}</mat-card-title>
-            <mat-card-subtitle>{{chase.author}}</mat-card-subtitle>
+            <div mat-card-avatar>
+              <img class="avatar" [src]="getAuthorImageUrl(chase)" />
+            </div>
+            <mat-card-title>{{chase.metaData.title}}</mat-card-title>
+            <mat-card-subtitle>{{chase.metaData.author.text}}</mat-card-subtitle>
           </mat-card-header>
         </header>
-        <app-image [imgClass]="getMatCardImageClass()" [image]="getImage(chase)"></app-image>
+        <chase-image [imgClass]="getMatCardImageClass()" [image]="getPreviewImage(chase)"></chase-image>
         <mat-card-content>
-          <p markdown emoji>{{chase.preview.text}}</p>
+          <p markdown emoji>{{chase.metaData.preview.text}}</p>
         </mat-card-content>
         <mat-card-actions>
           <div class="card-flags">
-            <mat-icon tooltip="chase already succeeded" *ngIf="isSucceeded(chase.chaseId)" >done</mat-icon>
+            <mat-icon tooltip="chase already succeeded" *ngIf="isSucceeded(chase.metaData.chaseId)" >done</mat-icon>
           </div>
           <button primary mat-button i18n="@@list.start">START</button>
           <!--<button mat-button>LIKE</button>-->

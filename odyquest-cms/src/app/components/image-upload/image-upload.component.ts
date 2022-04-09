@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { deserialize, serialize } from 'typescript-json-serializer';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ChaseService } from 'chase-services';
 import { RuntimeConfigurationService } from 'chase-services';
 import { Image, ImageFile } from 'chase-model';
 import { ChaseEditorService } from 'src/app/services/chase-editor.service';
+import { ImageSelectionComponent } from 'src/app/components/image-selection/image-selection.component';
 
 @Component({
   selector: 'app-image-upload',
@@ -14,12 +15,14 @@ import { ChaseEditorService } from 'src/app/services/chase-editor.service';
 export class ImageUploadComponent implements OnInit {
 
   @Input() mediaId: string;
+  @Input() label: string;
   @Output() mediaIdChange: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private chaseService: ChaseService,
+    private configuration: RuntimeConfigurationService,
     public chaseEditor: ChaseEditorService,
-    private configuration: RuntimeConfigurationService
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -94,13 +97,37 @@ export class ImageUploadComponent implements OnInit {
     this.chaseEditor.setImage(this.mediaId, image);
   }
 
-  canUploadImage(): boolean {
-    return this.configuration.isApiBased();
+  canUploadNewImage(): boolean {
+    return this.configuration.isApiBased() && !this.hasFiles();
   }
 
   hasFiles(): boolean {
     return this.mediaId && this.mediaId !== ''
       && this.chaseEditor.getImage(this.mediaId) instanceof Image
       && this.chaseEditor.getImage(this.mediaId).hasFiles();
+  }
+
+  getMatCardImageClass(): string {
+    return 'game_element_image';
+  }
+
+  selectImage(): void {
+    const dialogRef = this.dialog.open(ImageSelectionComponent, {
+      height: '90vh',
+      width: '90vw'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== '') {
+        console.log(`Select media id ${result}`);
+        this.mediaId = result
+        this.mediaIdChange.emit(this.mediaId);
+      }
+    });
+  }
+
+  deleteImage(): void {
+    this.mediaId = "";
+    this.mediaIdChange.emit(this.mediaId);
+    // TODO clean up media list
   }
 }

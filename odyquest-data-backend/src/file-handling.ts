@@ -1,4 +1,4 @@
-import { Chase, ChaseList, ChaseMetaData, Image, Media, MediaContainer } from './chase-model';
+import { Chase, ChaseList, ChaseSummary, ChaseMetaData, Image, Media, MediaContainer } from './chase-model';
 import {
   readObject,
   readSpecializedObject,
@@ -42,7 +42,17 @@ export class FileHandling {
       createDir(path);
     }
     writeObject<Chase>(path + new Path(this.access).getChaseFilename(id), chase);
-    writeObject<ChaseMetaData>(path + new Path(this.access).getChaseMetaDataFilename(), chase.metaData);
+    const summary = new ChaseSummary();
+    summary.metaData = chase.metaData;
+    const preview = chase.metaData.preview.image;
+    if (chase.media.has(preview)) {
+      summary.media.set(preview, chase.media.get(preview) as Media);
+    }
+    const author = chase.metaData.author.image;
+    if (chase.media.has(author)) {
+      summary.media.set(author, chase.media.get(author) as Media);
+    }
+    writeObject<ChaseSummary>(path + new Path(this.access).getChaseSummaryFilename(), summary);
     for (const mediaId in chase.media.keys()) {
       const media = chase.media.get(mediaId);
       if (!media) {
@@ -72,7 +82,7 @@ export class FileHandling {
 
   public readChaseList(): Promise<ChaseList> {
     return new Promise<ChaseList>((resolve, reject) => {
-      listObjects<ChaseMetaData>(new Path(this.access).getChasesPrefixPath(), new Path(this.access).getChaseMetaDataSuffixPath(), ChaseMetaData).then(list => {
+      listObjects<ChaseSummary>(new Path(this.access).getChasesPrefixPath(), new Path(this.access).getChaseSummarySuffixPath(), ChaseSummary).then(list => {
         const chaseList = new ChaseList()
         chaseList.chases = list;
         resolve(chaseList);

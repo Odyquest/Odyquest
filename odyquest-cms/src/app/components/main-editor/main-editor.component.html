@@ -1,6 +1,5 @@
 <div class="main_body">
   <div class="quest_selector_container">
-    <div class="quest_selector_header">Jagd</div>
     <input hidden type="file" #uploader (change)="uploadChase($event)" />
     <div class="button-wrapper">
       <mat-icon class="chase-menu-icon" (click)="createNewChase()" matTooltip="Neue Jagd">add</mat-icon>
@@ -16,47 +15,34 @@
           Allgemein
         </div>
       </mat-list-option>
+
+      <mat-list-option class="headline" i18n="@@main_editor.quest">
+        Quests
+      </mat-list-option>
+
+      <mat-list-option *ngFor="let quest of chaseEditor.getQuestNames()" (click)="questSelectorClicked(quest)">
+        <div class=text-and-delete-container>
+          {{quest}}
+          <mat-icon class=delete_icon (click)=deleteGameElement(quest)>delete</mat-icon>
+        </div>
+      </mat-list-option>
+      <mat-list-option class="add" (click)="addQuest()" i18n="@@main_editor.add_quest">
+        <span><mat-icon>add</mat-icon> add quest</span>
+      </mat-list-option>
+
+      <mat-list-option class="headline" i18n="@@main_editor.narratives">
+        Narratives
+      </mat-list-option>
+      <mat-list-option *ngFor="let quest of chaseEditor.getNarrativeNames()" (click)="questSelectorClicked(quest)">
+        <div class=text-and-delete-container>
+          {{quest}}
+          <mat-icon class=delete_icon (click)=deleteGameElement(quest)>delete</mat-icon>
+        </div>
+      </mat-list-option>
+      <mat-list-option class="add" (click)="addNarrative()" i18n="@@main_editor.add_narrative">
+        <span><mat-icon>add</mat-icon> add narrative</span>
+      </mat-list-option>
     </mat-selection-list>
-
-    <div class="quest_selector_header" i18n="@@main_editor.quest">Quests</div>
-
-    <div class="quest_selector">
-      <mat-selection-list #selected [multiple]="false" #questlist>
-        <mat-list-option *ngFor="let quest of chaseEditor.getQuestNames()" (click)="questSelectorClicked(quest)">
-          <div class=text-and-delete-container>
-            {{quest}}
-            <mat-icon class=delete_icon (click)=deleteGameElement(quest)>delete</mat-icon>
-          </div>
-        </mat-list-option>
-      </mat-selection-list>
-
-      <button id="addQuestButton"
-              mat-raised-button
-              color="primary"
-              (click)="addQuest()"
-              i18n="@@main_editor.add_quest">
-        Add Quest
-      </button>
-    </div>
-    <div class="quest_selector_header" i18n="@@main_editor.narratives">Narratives</div>
-    <div class="quest_selector">
-      <mat-selection-list #selected [multiple]="false" #questlist>
-        <mat-list-option *ngFor="let quest of chaseEditor.getNarrativeNames()" (click)="questSelectorClicked(quest)">
-          <div class=text-and-delete-container>
-            {{quest}}
-            <mat-icon class=delete_icon (click)=deleteGameElement(quest)>delete</mat-icon>
-          </div>
-        </mat-list-option>
-      </mat-selection-list>
-
-      <button id="addQuestButton"
-              mat-raised-button
-              color="primary"
-              (click)="addNarrative()"
-              i18n="@main_editor.add_narrative">
-        Add Narrative
-      </button>
-    </div>
 
   </div>
   <app-element-editor #element_editor></app-element-editor>

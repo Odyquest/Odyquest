@@ -1,56 +1,89 @@
+<span>{{label}}</span>
 <div *ngIf="!hasImage()">
-<button id="addImageButton"
-        mat-raised-button
-        color="primary"
-        (click)="addImage()"
-        i18n="@@add_image">
-  Add image
-</button>
+  <button id="addImageButton"
+          mat-raised-button
+          color="primary"
+          (click)="addImage()"
+          i18n="@@add_image">
+    Add image
+  </button>
 </div>
 <div *ngIf="hasImage()">
-<div class="editor-image-container">
-  <img *ngIf="hasFiles()" [src]="getDefaultImageUrl()">
-  <mat-icon class="default-image" *ngIf="!hasFiles()">collections</mat-icon>
-</div>
-<div *ngIf="hasFiles()">
-  show list of files
-</div>
-<input type="text"
-       id="image-name"
-       name="quest_name"
-       [ngModel]="getDefaultImageUrl()"
-       (change)="updateImageUrl($event)"
-       i18n-placeholder
-       placeholder="URL pointing to image..." />
-<input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
-<button *ngIf="canUploadImage()"
-        id="saveChaseButton"
-        mat-raised-button
-        color="primary"
-        (click)="MediaUploader.click()"
-        i18n="@@upload_image">
-  <!--<mat-icon id="saveChaseButton" matTooltip="Bild für Chase hochladen">file_upload </mat-icon>-->
-  Upload image
-</button>
+  <div class="editor-image-container">
+    <chase-image [imgClass]="getMatCardImageClass()"
+       [image]="chaseEditor.getImage(mediaId)">
+    </chase-image>
+    <mat-icon class="default-image" *ngIf="!hasFiles()">collections</mat-icon>
+  </div>
+  <div class="editor_menu_button">
+    <button mat-flat-button [matMenuTriggerFor]="menu"
+            color="primary"
+            i18n="@@edit_image">
+      <mat-icon>edit</mat-icon> Edit image
+    </button>
+    <mat-menu #menu="matMenu">
+      <input hidden type="file" #MediaUploader (change)="uploadMedia($event)" />
+      <button *ngIf="canUploadNewImage()"
+                    mat-menu-item
+                    id="saveChaseButton"
+                    color="primary"
+                    (click)="MediaUploader.click()"
+                    i18n="@@upload_image">
+        <mat-icon>file_upload</mat-icon>
+        Upload image
+      </button>
+      <button id="deleteImageButton"
+              *ngIf="hasFiles()"
+              mat-menu-item
+              color="primary"
+              (click)="deleteImage()"
+              i18n="@@remove_image">
+        <mat-icon>clear</mat-icon>
+        Remove image
+      </button>
+      <button id="saveChaseButton"
+              mat-menu-item
+              color="primary"
+              (click)="selectImage()"
+              i18n="@@select_image">
+        <mat-icon>photo_library</mat-icon>
+        Select image from existing
+      </button>
+    </mat-menu>
+  </div>
 
-<div *ngIf="hasFiles()">
-  <mat-form-field>
+  <mat-form-field class="text_input">
     <input matInput
            type="text"
-           id="alternative"
-           name="alternative"
-           [(ngModel)]="chaseEditor.getImage(mediaId).alternative"
+           id="image-name"
+           name="quest_name"
+           [ngModel]="getDefaultImageUrl()"
+           (change)="updateImageUrl($event)"
            i18n-placeholder
-           placeholder="Alternative text describing the image">
+           placeholder="URL pointing to image..." />
   </mat-form-field>
-  <mat-form-field>
-    <input matInput
-           type="text"
-           id="annotation"
-           name="annotation"
-           [(ngModel)]="chaseEditor.getImage(mediaId).annotation"
-           i18n-placeholder
-           placeholder="Text to annotate the image with">
-  </mat-form-field>
-</div>
+
+  <div *ngIf="hasFiles()">
+    <mat-form-field class="text_input">
+      <input matInput
+             type="text"
+             id="annotation"
+             name="annotation"
+             [(ngModel)]="chaseEditor.getImage(mediaId).annotation"
+             i18n-placeholder
+             placeholder="Text to annotate the image with">
+    </mat-form-field>
+  </div>
+  <div *ngIf="hasFiles()">
+    <mat-form-field class="text_input">
+      <textarea matInput
+             type="text"
+             id="alternative"
+             name="alternative"
+             [(ngModel)]="chaseEditor.getImage(mediaId).alternative"
+             i18n-placeholder
+             placeholder="Alternative text describing the image">
+      </textarea>
+    </mat-form-field>
+  </div>
 </div>

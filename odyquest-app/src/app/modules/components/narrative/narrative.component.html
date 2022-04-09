@@ -3,11 +3,11 @@
     <h3 class="game_element_title" >{{narrative.title}}</h3>
   </div>
   <div class="game_element_columns">
-    <app-image class="game_element_image"
+    <chase-image class="game_element_image"
                *ngIf="showImage()"
                [imgClass]="getImgClass()"
                [image]="getImage()">
-    </app-image>
+    </chase-image>
     <app-audio class="game_element_text"
                *ngIf="isAudioType()"
                [audio]="getAudio()">

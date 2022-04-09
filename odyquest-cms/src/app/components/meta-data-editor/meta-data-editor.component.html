@@ -1,7 +1,8 @@
 <div class="editor-top-container">
   <app-image-upload class="editor-image-outer-container"
-                    [mediaId]="getImage()"
-                    (mediaIdChange)="updateImage($event)" >
+                    [label]="'Author'"
+                    [mediaId]="getAuthorImage()"
+                    (mediaIdChange)="updateAuthorImage($event)" >
   </app-image-upload>
   <div class="editor-top-right-container">
 
@@ -21,10 +22,14 @@
                type="text"
                id="author"
                name="Autor"
-               [(ngModel)]="chaseEditor.getChase().metaData.author"
+               [(ngModel)]="chaseEditor.getChase().metaData.author.text"
                i18n-placeholder
                placeholder="Author...">
       </mat-form-field>
+
+      <app-image-upload [mediaId]="getImage()"
+                        (mediaIdChange)="updateImage($event)" >
+      </app-image-upload>
 
       <mat-form-field>
         <textarea matInput

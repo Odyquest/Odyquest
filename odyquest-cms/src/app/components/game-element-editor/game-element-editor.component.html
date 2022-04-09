@@ -49,38 +49,37 @@
                       [ngClass]="{'editor-hidden' : !is_quest,  'editor-visible' : is_quest}">
 </app-quest-editor>
 
-<!-- ! ============================ -->
-<!-- ! ========== HINTS =========== -->
-<!-- ! ============================ -->
-
 <div class="content-all-types">
   <div class=content-type-hint>
     <div class="button-array-container border">
       <h3 i18n="@@quest_editor.hints">Hints</h3>
-      <form>
-        <div *ngFor="let hint of gameElement.hint; let i = index">
-          <hr />
-          <div class="single-button-container">
-            <span i18n="@@quest_editor.hint_page">Page {{i+1}}</span>
-            <mat-form-field>
-              <mat-label></mat-label>
-              <textarea matInput type="text" name="hint_text_{{i}}" [(ngModel)]="hint.text"></textarea>
-            </mat-form-field>
-            <app-image-upload class="editor-image-outer-container"
-                              [mediaId]="hint.image"
-                              (mediaIdChange)="updateHelpImage(i, $event)" >
-            </app-image-upload>
+      <div *ngFor="let hint of gameElement.hint; let i = index">
+        <hr />
+        <div class="hint_top_container">
+          <div class="hint_control_container">
+            <h4 i18n="@@quest_editor.hint_page">Page {{i+1}}</h4>
             <mat-icon class=delete_icon (click)=deleteHelpText(i)>delete</mat-icon>
           </div>
+          <form class="hint_text_container">
+            <mat-form-field class="hint_text_form_field">
+              <mat-label i18n="@@hint_editor.hint_text">Hint text</mat-label>
+              <textarea matInput class="hint_text_area" type="text" name="hint_text_{{i}}" [(ngModel)]="hint.text"></textarea>
+            </mat-form-field>
+          </form>
+          <app-image-upload class="hint_image_container"
+                            [mediaId]="hint.image"
+                            (mediaIdChange)="updateHelpImage(i, $event)" >
+          </app-image-upload>
         </div>
-      </form>
+      </div>
+      <hr />
+      <button class="saveCancelButton"
+              mat-raised-button
+              color="primary"
+              (click)="addHelpText()"
+              i18n="@@quest_editor.add_hint">
+        add hint
+      </button>
     </div>
-    <button class="saveCancelButton"
-            mat-raised-button
-            color="primary"
-            (click)="addHelpText()"
-            i18n="@@quest_editor.add_hint">
-      add hint
-    </button>
   </div>
 </div>

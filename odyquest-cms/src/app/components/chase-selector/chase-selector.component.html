@@ -9,6 +9,7 @@
           <mat-icon color="primary">add</mat-icon>
           Add new chase
         </button>
+        <!-- <button mat-button>Add chase from file</button> -->
       </mat-card-actions>
     </mat-card>
   </section>
@@ -17,37 +18,25 @@
     <mat-card>
       <header>
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{chase.title}}</mat-card-title>
-          <mat-card-subtitle>{{chase.author}}</mat-card-subtitle>
+          <div mat-card-avatar class="example-header-image">
+            <img class="avatar" [src]="getAuthorImageUrl(chase)" />
+          </div>
+          <mat-card-title>{{chase.metaData.title}}</mat-card-title>
+          <mat-card-subtitle>{{chase.metaData.author.text}}</mat-card-subtitle>
         </mat-card-header>
       </header>
-      <img mat-card-image src="{{imageUrls.get(chase.chaseId)}}">
+      <chase-image id="running_chase_img"
+                 [imgClass]="getMatCardImageClass()"
+                 [image]="getPreviewImage(chase)">
+      </chase-image>
       <mat-card-content>
-        <p markdown emoji>{{chase.preview.text}}</p>
+        <p markdown emoji>{{chase.metaData.preview.text}}</p>
       </mat-card-content>
       <mat-card-actions>
-        <mat-checkbox primary [checked]="chase.published" disabled i18n="@@chase-selector.published_flag">Published</mat-checkbox>
-        <button primary mat-button (click)="editChase(chase.chaseId)" i18n="@@chase-selector.edit">edit</button>
+        <mat-checkbox primary [checked]="chase.metaData.published" disabled i18n="@@chase-selector.published_flag">Published</mat-checkbox>
+        <button primary mat-button (click)="editChase(chase.metaData.chaseId)" i18n="@@chase-selector.edit">edit</button>
       </mat-card-actions>
     </mat-card>
   </section>
-
-  <!--
-  <section>
-    <mat-card *ngIf="hasNoChases()" (click)="editChase(-1)">
-      <header>
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Start chase from file</mat-card-title>
-        </mat-card-header>
-      </header>
-      <mat-card-actions>
-        <button primary mat-button>Upload file</button>
-        <button primary mat-button>EDIT</button>
-      </mat-card-actions>
-    </mat-card>
-  </section>
-  -->
 </div>
 

@@ -28,14 +28,14 @@ export class Path {
   public getChaseFilename(chaseId: string): string {
     return 'chase.json';
   }
-  public getChaseMetaDataFilename(): string {
-    return 'chase_meta_data.json';
+  public getChaseSummaryFilename(): string {
+    return 'chase_summary.json';
   }
   public getChasesPrefixPath(): string {
     return getFilesystemPath() + '/chases/';
   }
-  public getChaseMetaDataSuffixPath(): string {
-    return this.getAccessDirName() + this.getChaseMetaDataFilename();
+  public getChaseSummarySuffixPath(): string {
+    return this.getAccessDirName() + this.getChaseSummaryFilename();
   }
 
   public getMediaPath(chaseId: string, mediaId: string): string {

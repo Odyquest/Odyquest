@@ -10,8 +10,8 @@ export class ChaseEditorService {
 
   private gameElementNameMap: Map<number, string>;
   private gameElementNameList: string[];
-  private narrativeNames: string[];
-  private questNames: string[];
+  public narrativeNames: string[];
+  public questNames: string[];
 
   constructor() {
     this.initElementNames();
@@ -116,17 +116,35 @@ export class ChaseEditorService {
   public setMedia(id: string, media: Media): void {
     this.chase.media.set(id, media);
   }
+  public getImages(): Image[] {
+    const list = new Array<Image>();
+    for (const media of this.chase.media.values()){
+      if (media instanceof Image) {
+        list.push(media);
+      }
+    }
+    return list;
+  }
+
+  statusSaved = true;
+  elementTitleCallbacks = new Array<{(): void;}>();
 
   public notifyElementChanged(): void {
-    // TODO
+    this.statusSaved = false;
   }
 
   public notifyElementTitleChanged(): void {
-    // TODO
+    console.log('ChaseEditor: element title was changed');
+    this.elementTitleCallbacks.forEach((c: {(): void;}) => c());
+    this.initElementNames();
     this.notifyElementChanged();
   }
 
   public notifySaved(): void {
-    // TODO
+    this.statusSaved = true;
+  }
+
+  public registerCallbackElementTitleChanged(callback: {(): void;}): void {
+    this.elementTitleCallbacks.push(callback);
   }
 }

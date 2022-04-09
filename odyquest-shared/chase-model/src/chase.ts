@@ -1,10 +1,66 @@
 import { deserialize, serialize, Serializable, JsonProperty } from 'typescript-json-serializer';
 
-import { Preview } from './preview';
+import { Description } from './description';
 import { Narrative } from './narrative';
 import { Quest } from './quest';
 import { GameElement } from './game_element';
 import { Media, Audio, AugmentedReality, Image, Video } from './media';
+
+/**
+ * JsonProperty setting for converting media map
+ */
+const convertMediaList = {
+  names: ['_images', '_audios', '_videos', '_augmented_reality'],
+  isDictionary: true,
+  /** Merge specialized maps together to original map */
+  onDeserialize: (value: any) => {
+    const medias = new Map<string, Media>();
+    for (const v in value._images) {
+      medias.set(v, deserialize<Image>(value._images[v], Image));
+    }
+    const audios = new Map<string, Audio>();
+    for (const v in value._audios) {
+      medias.set(v, deserialize<Audio>(value._audios[v], Audio));
+    }
+    const videos = new Map<string, Video>();
+    for (const v in value._videos) {
+      medias.set(v, deserialize<Video>(value._videos[v], Video));
+    }
+    const augmentedRealitys = new Map<string, AugmentedReality>();
+    for (const v in value._augmented_reality) {
+      medias.set(v, deserialize<AugmentedReality>(value._augmented_reality[v], AugmentedReality));
+    }
+    return medias;
+  },
+  /**
+   * Split up images for serialization to keep type safety 
+   */
+  onSerialize: (value: any) => {
+    const images: {[index: number]:any} = new Object();
+    const audios: {[index: number]:any} = new Object();
+    const videos: {[index: number]:any} = new Object();
+    const ars: {[index: number]:any} = new Object();
+    for (const element of value.keys()) {
+      if (value.get(element) instanceof Image) {
+        images[element] = serialize(value.get(element));
+      } else if (value.get(element) instanceof Audio) {
+        audios[element] = serialize(value.get(element));
+      } else if (value.get(element) instanceof Video) {
+        videos[element] = serialize(value.get(element));
+      } else if (value.get(element) instanceof AugmentedReality) {
+        ars[element] = serialize(value.get(element));
+      } else {
+        console.warn('can not serialize media of unknown type');
+      }
+    }
+    return {
+      _images: images,
+      _audios: audios,
+      _videos: videos,
+      _augmented_reality: ars
+    };
+  }
+}
 
 @Serializable()
 export class ChaseEditingData {
@@ -26,20 +82,20 @@ export class ChaseMetaData {
   @JsonProperty() version?: number;
   @JsonProperty() title: string = '';
 
-  @JsonProperty() preview: Preview = new Preview();
-  @JsonProperty() author?: string;
+  @JsonProperty() preview: Description = new Description();
+  @JsonProperty() author: Description = new Description();
   @JsonProperty() editing?: ChaseEditingData;
 }
 
-/**
- * Encapsulates a list of chase meta data for easier serialization and deserialization
- */
 @Serializable()
-export class ChaseList {
-  @JsonProperty({ type: ChaseMetaData }) chases: Array<ChaseMetaData>;
+export class ChaseSummary {
+  @JsonProperty() metaData: ChaseMetaData = new ChaseMetaData();
 
-  constructor() {
-    this.chases = new Array<ChaseMetaData>();
+  @JsonProperty(convertMediaList) media: Map<string, Media> = new Map<string, Media>();
+
+  /** Get media with the given id */
+  getMedia<T extends Media>(id: string): T | undefined {
+    return this.media.get(id) as T;
   }
 }
 
@@ -47,8 +103,7 @@ export class ChaseList {
  * Actual implementation of a chase which represents a treasure hunt or escape game
  */
 @Serializable()
-export class Chase {
-  @JsonProperty() metaData: ChaseMetaData = new ChaseMetaData();
+export class Chase extends ChaseSummary {
   /** A chase is a collection of game elements.
    * Each game element is a specialized implementation of GameElement and can be addressed by the key in the map.
    */
@@ -88,57 +143,6 @@ export class Chase {
   /** Index of first element in gameElements to start the chase with */
   @JsonProperty() initialGameElement: number = -1; // GameElementID
 
-  @JsonProperty({
-    names: ['_images', '_audios', '_videos', '_augmented_reality'],
-    isDictionary: true,
-    /** Merge specialized maps together to original map */
-    onDeserialize: value => {
-      const medias = new Map<string, Media>();
-      for (const v in value._images) {
-        medias.set(v, deserialize<Image>(value._images[v], Image));
-      }
-      const audios = new Map<string, Audio>();
-      for (const v in value._audios) {
-        medias.set(v, deserialize<Audio>(value._audios[v], Audio));
-      }
-      const videos = new Map<string, Video>();
-      for (const v in value._videos) {
-        medias.set(v, deserialize<Video>(value._videos[v], Video));
-      }
-      const augmentedRealitys = new Map<string, AugmentedReality>();
-      for (const v in value._augmented_reality) {
-        medias.set(v, deserialize<AugmentedReality>(value._augmented_reality[v], AugmentedReality));
-      }
-      return medias;
-    },
-    /** Split up images for serialization to keep type safety */
-    onSerialize: value => {
-      const images: {[index: number]:any} = new Object();
-      const audios: {[index: number]:any} = new Object();
-      const videos: {[index: number]:any} = new Object();
-      const ars: {[index: number]:any} = new Object();
-      for (const element of value.keys()) {
-        if (value.get(element) instanceof Image) {
-          images[element] = serialize(value.get(element));
-        } else if (value.get(element) instanceof Audio) {
-          audios[element] = serialize(value.get(element));
-        } else if (value.get(element) instanceof Video) {
-          videos[element] = serialize(value.get(element));
-        } else if (value.get(element) instanceof AugmentedReality) {
-          ars[element] = serialize(value.get(element));
-        } else {
-          console.warn('can not serialize media of unknown type');
-        }
-      }
-      return {
-        _images: images,
-        _audios: audios,
-        _videos: videos,
-        _augmented_reality: ars
-      };
-    }
-  }) media: Map<string, Media> = new Map<string, Media>();
-
   @JsonProperty() tags?: Array<string>;
 
   /**
@@ -172,9 +176,15 @@ export class Chase {
     return this.gameElements.get(destination);
   }
 
-  /** Get media with the given id */
-  getMedia<T extends Media>(id: string): T | undefined {
-    return this.media.get(id) as T;
-  }
-
 }
+
+/**
+ * Encapsulates a list of chase summaries
+ *
+ * The list type exists mainly for easier serialization and deserialization
+ */
+@Serializable()
+export class ChaseList {
+  @JsonProperty({ type: ChaseSummary }) chases: Array<ChaseSummary> = new Array<ChaseSummary>();
+}
+

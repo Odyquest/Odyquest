@@ -39,6 +39,9 @@ import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import {MarkdownModule } from 'ngx-markdown';
 import { OAuthModule, AuthConfig, ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
 
+import { RuntimeConfigurationService, runtimeInitializerFn } from 'chase-services';
+import { ImageModule } from 'chase-services';
+
 import { AppComponent } from './app.component';
 import { AuthGuard } from './services/auth/auth.guard.service';
 import { ChaseSelectorComponent } from './components/chase-selector/chase-selector.component';
@@ -47,13 +50,13 @@ import { LoggedOutComponent } from './components/logged-out/logged-out.component
 import { LoginComponent } from './components/login/login.component';
 import { MainEditorComponent } from './components/main-editor/main-editor.component';
 import { QuestEditorComponent } from './components/quest-editor/quest-editor.component';
-import { RuntimeConfigurationService, runtimeInitializerFn } from 'chase-services';
 import { SidebarComponent } from './components/ui-elements/sidebar/sidebar.component';
 
 import { environment } from '../environments/environment';
 import { ElementEditorComponent } from './components/element-editor/element-editor.component';
 import { MetaDataEditorComponent } from './components/meta-data-editor/meta-data-editor.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import { ImageSelectionComponent } from './components/image-selection/image-selection.component';
 import { MediaUploadComponent } from './components/media-upload/media-upload.component';
 import { GameElementEditorComponent } from './components/game-element-editor/game-element-editor.component';
 import { NarrativeEditorComponent } from './components/narrative-editor/narrative-editor.component';
@@ -90,10 +93,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   //{ path: '**', redirectTo: 'home' },
   //{ path: 'logged-out', component: LoggedOutComponent }
-
 ];
-
-
 
 @NgModule({
   declarations: [
@@ -108,6 +108,7 @@ const appRoutes: Routes = [
     ElementEditorComponent,
     MetaDataEditorComponent,
     ImageUploadComponent,
+    ImageSelectionComponent,
     MediaUploadComponent,
     GameElementEditorComponent,
     NarrativeEditorComponent,
@@ -117,6 +118,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ImageModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
     MatAutocompleteModule,
     MatButtonModule,

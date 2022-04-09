@@ -14,7 +14,7 @@ describe('HintComponent', () => {
       declarations: [ HintComponent ],
       imports: [ MatDialogModule ],
       providers: [
-        {provide: MatDialogRef, useValue: {} },
+        { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {  quest: new Quest() } },
         { provide: GameService, useValue: { chase: new Chase()} }
       ]

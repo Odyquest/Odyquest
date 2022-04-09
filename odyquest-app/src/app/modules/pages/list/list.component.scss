@@ -20,10 +20,13 @@ img {
   max-height: 30vh;
 }
 
-.example-header-image {
-  background-image: url('./../../../../favicon.ico');
-  background-size: cover;
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  float: left;
 }
+
 
 mat-card-actions {
   text-align: right;

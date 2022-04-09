@@ -1,4 +1,4 @@
-export { Chase, ChaseList, ChaseMetaData } from './chase';
+export { Chase, ChaseList, ChaseSummary, ChaseMetaData } from './chase';
 export { ChaseStatus} from './chase_status';
 export { Description } from './description';
 export { GameElement } from './game_element';
@@ -9,13 +9,12 @@ export {
    Image,
    ImageFile,
    Media,
-   MediaCollection,
    MediaFile,
    MediaWithFilelist,
    Video,
   VideoFile
 } from './media';
-export { MediaContainer } from './media-container';
+export { MediaContainer, MediaFileListContainer } from './media-container';
 export { Narrative, NarrativeStatus } from './narrative';
 export { NarrativeType } from './narrative_type';
 export { Preview } from './preview';
